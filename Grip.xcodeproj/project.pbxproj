@@ -1,0 +1,477 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		509BA66118EB4E960011D374 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66018EB4E960011D374 /* Foundation.framework */; };
+		509BA66318EB4E960011D374 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66218EB4E960011D374 /* CoreGraphics.framework */; };
+		509BA66518EB4E960011D374 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66418EB4E960011D374 /* UIKit.framework */; };
+		509BA66B18EB4E960011D374 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 509BA66918EB4E960011D374 /* InfoPlist.strings */; };
+		509BA66D18EB4E960011D374 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 509BA66C18EB4E960011D374 /* main.m */; };
+		509BA67118EB4E960011D374 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 509BA67018EB4E960011D374 /* AppDelegate.m */; };
+		509BA67418EB4E960011D374 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 509BA67218EB4E960011D374 /* Main.storyboard */; };
+		509BA67718EB4E960011D374 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 509BA67618EB4E960011D374 /* ViewController.m */; };
+		509BA67918EB4E960011D374 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 509BA67818EB4E960011D374 /* Images.xcassets */; };
+		509BA68018EB4E960011D374 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA67F18EB4E960011D374 /* XCTest.framework */; };
+		509BA68118EB4E960011D374 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66018EB4E960011D374 /* Foundation.framework */; };
+		509BA68218EB4E960011D374 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66418EB4E960011D374 /* UIKit.framework */; };
+		509BA68A18EB4E960011D374 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 509BA68818EB4E960011D374 /* InfoPlist.strings */; };
+		509BA68C18EB4E960011D374 /* GripTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 509BA68B18EB4E960011D374 /* GripTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		509BA68318EB4E960011D374 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 509BA65518EB4E960011D374 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 509BA65C18EB4E960011D374;
+			remoteInfo = Grip;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		509BA65D18EB4E960011D374 /* Grip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		509BA66018EB4E960011D374 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		509BA66218EB4E960011D374 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		509BA66418EB4E960011D374 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		509BA66818EB4E960011D374 /* Grip-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Grip-Info.plist"; sourceTree = "<group>"; };
+		509BA66A18EB4E960011D374 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		509BA66C18EB4E960011D374 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		509BA66E18EB4E960011D374 /* Grip-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grip-Prefix.pch"; sourceTree = "<group>"; };
+		509BA66F18EB4E960011D374 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		509BA67018EB4E960011D374 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		509BA67318EB4E960011D374 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		509BA67518EB4E960011D374 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		509BA67618EB4E960011D374 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		509BA67818EB4E960011D374 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		509BA67E18EB4E960011D374 /* GripTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GripTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		509BA67F18EB4E960011D374 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		509BA68718EB4E960011D374 /* GripTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GripTests-Info.plist"; sourceTree = "<group>"; };
+		509BA68918EB4E960011D374 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		509BA68B18EB4E960011D374 /* GripTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GripTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		509BA65A18EB4E960011D374 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				509BA66318EB4E960011D374 /* CoreGraphics.framework in Frameworks */,
+				509BA66518EB4E960011D374 /* UIKit.framework in Frameworks */,
+				509BA66118EB4E960011D374 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		509BA67B18EB4E960011D374 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				509BA68018EB4E960011D374 /* XCTest.framework in Frameworks */,
+				509BA68218EB4E960011D374 /* UIKit.framework in Frameworks */,
+				509BA68118EB4E960011D374 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		509BA65418EB4E960011D374 = {
+			isa = PBXGroup;
+			children = (
+				509BA66618EB4E960011D374 /* Grip */,
+				509BA68518EB4E960011D374 /* GripTests */,
+				509BA65F18EB4E960011D374 /* Frameworks */,
+				509BA65E18EB4E960011D374 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		509BA65E18EB4E960011D374 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				509BA65D18EB4E960011D374 /* Grip.app */,
+				509BA67E18EB4E960011D374 /* GripTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		509BA65F18EB4E960011D374 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				509BA66018EB4E960011D374 /* Foundation.framework */,
+				509BA66218EB4E960011D374 /* CoreGraphics.framework */,
+				509BA66418EB4E960011D374 /* UIKit.framework */,
+				509BA67F18EB4E960011D374 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		509BA66618EB4E960011D374 /* Grip */ = {
+			isa = PBXGroup;
+			children = (
+				509BA66F18EB4E960011D374 /* AppDelegate.h */,
+				509BA67018EB4E960011D374 /* AppDelegate.m */,
+				509BA67218EB4E960011D374 /* Main.storyboard */,
+				509BA67518EB4E960011D374 /* ViewController.h */,
+				509BA67618EB4E960011D374 /* ViewController.m */,
+				509BA67818EB4E960011D374 /* Images.xcassets */,
+				509BA66718EB4E960011D374 /* Supporting Files */,
+			);
+			path = Grip;
+			sourceTree = "<group>";
+		};
+		509BA66718EB4E960011D374 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				509BA66818EB4E960011D374 /* Grip-Info.plist */,
+				509BA66918EB4E960011D374 /* InfoPlist.strings */,
+				509BA66C18EB4E960011D374 /* main.m */,
+				509BA66E18EB4E960011D374 /* Grip-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		509BA68518EB4E960011D374 /* GripTests */ = {
+			isa = PBXGroup;
+			children = (
+				509BA68B18EB4E960011D374 /* GripTests.m */,
+				509BA68618EB4E960011D374 /* Supporting Files */,
+			);
+			path = GripTests;
+			sourceTree = "<group>";
+		};
+		509BA68618EB4E960011D374 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				509BA68718EB4E960011D374 /* GripTests-Info.plist */,
+				509BA68818EB4E960011D374 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		509BA65C18EB4E960011D374 /* Grip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 509BA68F18EB4E960011D374 /* Build configuration list for PBXNativeTarget "Grip" */;
+			buildPhases = (
+				509BA65918EB4E960011D374 /* Sources */,
+				509BA65A18EB4E960011D374 /* Frameworks */,
+				509BA65B18EB4E960011D374 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Grip;
+			productName = Grip;
+			productReference = 509BA65D18EB4E960011D374 /* Grip.app */;
+			productType = "com.apple.product-type.application";
+		};
+		509BA67D18EB4E960011D374 /* GripTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 509BA69218EB4E960011D374 /* Build configuration list for PBXNativeTarget "GripTests" */;
+			buildPhases = (
+				509BA67A18EB4E960011D374 /* Sources */,
+				509BA67B18EB4E960011D374 /* Frameworks */,
+				509BA67C18EB4E960011D374 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				509BA68418EB4E960011D374 /* PBXTargetDependency */,
+			);
+			name = GripTests;
+			productName = GripTests;
+			productReference = 509BA67E18EB4E960011D374 /* GripTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		509BA65518EB4E960011D374 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Mickey Barboi";
+				TargetAttributes = {
+					509BA67D18EB4E960011D374 = {
+						TestTargetID = 509BA65C18EB4E960011D374;
+					};
+				};
+			};
+			buildConfigurationList = 509BA65818EB4E960011D374 /* Build configuration list for PBXProject "Grip" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 509BA65418EB4E960011D374;
+			productRefGroup = 509BA65E18EB4E960011D374 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				509BA65C18EB4E960011D374 /* Grip */,
+				509BA67D18EB4E960011D374 /* GripTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		509BA65B18EB4E960011D374 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				509BA67918EB4E960011D374 /* Images.xcassets in Resources */,
+				509BA66B18EB4E960011D374 /* InfoPlist.strings in Resources */,
+				509BA67418EB4E960011D374 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		509BA67C18EB4E960011D374 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				509BA68A18EB4E960011D374 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		509BA65918EB4E960011D374 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				509BA67718EB4E960011D374 /* ViewController.m in Sources */,
+				509BA67118EB4E960011D374 /* AppDelegate.m in Sources */,
+				509BA66D18EB4E960011D374 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		509BA67A18EB4E960011D374 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				509BA68C18EB4E960011D374 /* GripTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		509BA68418EB4E960011D374 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 509BA65C18EB4E960011D374 /* Grip */;
+			targetProxy = 509BA68318EB4E960011D374 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		509BA66918EB4E960011D374 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				509BA66A18EB4E960011D374 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		509BA67218EB4E960011D374 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				509BA67318EB4E960011D374 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		509BA68818EB4E960011D374 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				509BA68918EB4E960011D374 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		509BA68D18EB4E960011D374 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		509BA68E18EB4E960011D374 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		509BA69018EB4E960011D374 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Grip/Grip-Prefix.pch";
+				INFOPLIST_FILE = "Grip/Grip-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		509BA69118EB4E960011D374 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Grip/Grip-Prefix.pch";
+				INFOPLIST_FILE = "Grip/Grip-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		509BA69318EB4E960011D374 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Grip.app/Grip";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Grip/Grip-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "GripTests/GripTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		509BA69418EB4E960011D374 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Grip.app/Grip";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Grip/Grip-Prefix.pch";
+				INFOPLIST_FILE = "GripTests/GripTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		509BA65818EB4E960011D374 /* Build configuration list for PBXProject "Grip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				509BA68D18EB4E960011D374 /* Debug */,
+				509BA68E18EB4E960011D374 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		509BA68F18EB4E960011D374 /* Build configuration list for PBXNativeTarget "Grip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				509BA69018EB4E960011D374 /* Debug */,
+				509BA69118EB4E960011D374 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		509BA69218EB4E960011D374 /* Build configuration list for PBXNativeTarget "GripTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				509BA69318EB4E960011D374 /* Debug */,
+				509BA69418EB4E960011D374 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 509BA65518EB4E960011D374 /* Project object */;
+}
