@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  DealViewController.h
 //  Grip
 //
 //  Created by Mickey Barboi on 4/1/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface DealViewController : UIViewController
 
 @end
