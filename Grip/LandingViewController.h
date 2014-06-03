@@ -18,4 +18,9 @@
 //buttons
 - (IBAction)login:(id)sender;
 - (IBAction)viewPackages:(id)sender;
+
+
+//debug
+- (IBAction)DEBUGout:(id)sender;
+- (IBAction)DEBUGin:(id)sender;
 @end

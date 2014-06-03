@@ -8,6 +8,7 @@
 
 #import "LandingViewController.h"
 #import "MBViewAnimator.h"
+#import "UIView+Utils.h"
 
 @interface LandingViewController () {
     MBViewAnimator *animator;
@@ -32,7 +33,9 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-
+    //add the colored border to the view. Method is in a category in the frameworks folder. 
+    [viewLogos addDefaultBorder];
+    [viewMenu addDefaultBorder];
 }
 
 - (void) viewDidLayoutSubviews {
@@ -52,7 +55,20 @@
 }
 
 - (IBAction)viewPackages:(id)sender {
+    [animator animateObjectOffscreen:viewMenu completion:nil];
+    [animator animateObjectOffscreen:viewLogos completion:^(BOOL completion){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"dealViewController"];
+        [self presentViewController:vc animated:NO completion:nil];
+    }];
+}
+
+- (IBAction)DEBUGin:(id)sender {
     [animator animateObjectOnscreen:viewMenu completion:nil];
     [animator animateObjectOnscreen:viewLogos completion:nil];
+}
+- (IBAction)DEBUGout:(id)sender {
+    [animator animateObjectOffscreen:viewMenu completion:nil];
+    [animator animateObjectOffscreen:viewLogos completion:nil];
 }
 @end

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		507D0470193E7A18003CC3B6 /* UIView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D046F193E7A18003CC3B6 /* UIView+Utils.m */; };
+		507D0473193E7B36003CC3B6 /* ProductTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D0472193E7B36003CC3B6 /* ProductTableView.m */; };
+		507D0476193E7CA4003CC3B6 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */; };
 		509BA66118EB4E960011D374 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66018EB4E960011D374 /* Foundation.framework */; };
 		509BA66318EB4E960011D374 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66218EB4E960011D374 /* CoreGraphics.framework */; };
 		509BA66518EB4E960011D374 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66418EB4E960011D374 /* UIKit.framework */; };
@@ -60,6 +63,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		507D046E193E7A18003CC3B6 /* UIView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Utils.h"; sourceTree = "<group>"; };
+		507D046F193E7A18003CC3B6 /* UIView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Utils.m"; sourceTree = "<group>"; };
+		507D0471193E7B36003CC3B6 /* ProductTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableView.h; sourceTree = "<group>"; };
+		507D0472193E7B36003CC3B6 /* ProductTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTableView.m; sourceTree = "<group>"; };
+		507D0474193E7CA4003CC3B6 /* ProductTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableViewCell.h; sourceTree = "<group>"; };
+		507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTableViewCell.m; sourceTree = "<group>"; };
 		509BA65D18EB4E960011D374 /* Grip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		509BA66018EB4E960011D374 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		509BA66218EB4E960011D374 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -158,6 +167,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		507D0477193E7CA7003CC3B6 /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				507D0471193E7B36003CC3B6 /* ProductTableView.h */,
+				507D0472193E7B36003CC3B6 /* ProductTableView.m */,
+				507D0474193E7CA4003CC3B6 /* ProductTableViewCell.h */,
+				507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */,
+			);
+			name = Table;
+			sourceTree = "<group>";
+		};
 		509BA65418EB4E960011D374 = {
 			isa = PBXGroup;
 			children = (
@@ -247,6 +267,7 @@
 		509BA69618EB4FED0011D374 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				507D0477193E7CA7003CC3B6 /* Table */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -265,7 +286,6 @@
 				509BA66F18EB4E960011D374 /* AppDelegate.h */,
 				509BA67018EB4E960011D374 /* AppDelegate.m */,
 				509BA67218EB4E960011D374 /* Main.storyboard */,
-				509BB144193A756100FC8CC7 /* MBFramework */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -375,6 +395,8 @@
 				509BB171193A756100FC8CC7 /* UIButton+Utils.m */,
 				509BB172193A756100FC8CC7 /* UIImageView+Utils.h */,
 				509BB173193A756100FC8CC7 /* UIImageView+Utils.m */,
+				507D046E193E7A18003CC3B6 /* UIView+Utils.h */,
+				507D046F193E7A18003CC3B6 /* UIView+Utils.m */,
 				509BB174193A756100FC8CC7 /* UILabel+Utils.h */,
 				509BB175193A756100FC8CC7 /* UILabel+Utils.m */,
 			);
@@ -405,6 +427,7 @@
 		509BB198193A757800FC8CC7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				509BB144193A756100FC8CC7 /* MBFramework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -550,6 +573,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				507D0473193E7B36003CC3B6 /* ProductTableView.m in Sources */,
 				509BB197193A756100FC8CC7 /* MBViewAnimator.m in Sources */,
 				509BB18B193A756100FC8CC7 /* MCTextFieldInterpreter.m in Sources */,
 				509BB18A193A756100FC8CC7 /* MCLabelInterpreter.m in Sources */,
@@ -558,6 +582,7 @@
 				509BB192193A756100FC8CC7 /* UIImageView+Utils.m in Sources */,
 				509BB195193A756100FC8CC7 /* MBObjectUtils.m in Sources */,
 				509BB194193A756100FC8CC7 /* StraightUpUtils.m in Sources */,
+				507D0476193E7CA4003CC3B6 /* ProductTableViewCell.m in Sources */,
 				509BB185193A756100FC8CC7 /* MCCollectionView.m in Sources */,
 				509BB187193A756100FC8CC7 /* MCTableView.m in Sources */,
 				509BB181193A756100FC8CC7 /* MBProgressHUD.m in Sources */,
@@ -572,6 +597,7 @@
 				509BB190193A756100FC8CC7 /* NSString+Utils.m in Sources */,
 				509BA67118EB4E960011D374 /* AppDelegate.m in Sources */,
 				509BA69B18EB50620011D374 /* LandingViewController.m in Sources */,
+				507D0470193E7A18003CC3B6 /* UIView+Utils.m in Sources */,
 				509BB196193A756100FC8CC7 /* MBPreCacher.m in Sources */,
 				509BB186193A756100FC8CC7 /* MCCollectionViewDelegate.m in Sources */,
 				509BA66D18EB4E960011D374 /* main.m in Sources */,

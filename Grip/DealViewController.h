@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DealViewController : UIViewController
+@interface DealViewController : UIViewController {
+    //views
+    __weak IBOutlet UIView *viewInfo;
+    __weak IBOutlet UIView *viewPackages;
+    
+    //table
+    __weak IBOutlet UITableView *tableProducts;
+}
 
 @end

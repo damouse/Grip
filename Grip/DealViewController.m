@@ -7,15 +7,18 @@
 //
 
 #import "DealViewController.h"
+#import "MBViewAnimator.h"
+#import "UIView+Utils.h"
 
-@interface DealViewController ()
+@interface DealViewController (){
+    MBViewAnimator *animator;
+}
 
 @end
 
 @implementation DealViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -23,16 +26,28 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+
+    animator = [[MBViewAnimator alloc] init];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void) viewWillAppear:(BOOL)animated {
+    [viewPackages addDefaultBorder];
+    [viewInfo addDefaultBorder];
+    
+    [animator initObject:viewInfo inView:self.view forSlideinAnimation:VAAnimationDirectionRight];
+    [animator initObject:viewPackages inView:self.view forSlideinAnimation:VAAnimationDirectionLeft];
 }
+
+- (void) viewDidLayoutSubviews {
+    //prepare holder views for animation
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [animator animateObjectOnscreen:viewInfo completion:nil];
+    [animator animateObjectOnscreen:viewPackages completion:nil];
+}
+
 
 @end
