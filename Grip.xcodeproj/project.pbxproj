@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		502F0431193FC8F900516A0F /* ProductTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 502F0430193FC8F900516A0F /* ProductTableView.m */; };
+		502F0434193FC90900516A0F /* ProductTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 502F0433193FC90900516A0F /* ProductTableViewDelegate.m */; };
 		507D0470193E7A18003CC3B6 /* UIView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D046F193E7A18003CC3B6 /* UIView+Utils.m */; };
-		507D0473193E7B36003CC3B6 /* ProductTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D0472193E7B36003CC3B6 /* ProductTableView.m */; };
 		507D0476193E7CA4003CC3B6 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */; };
 		509BA66118EB4E960011D374 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66018EB4E960011D374 /* Foundation.framework */; };
 		509BA66318EB4E960011D374 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66218EB4E960011D374 /* CoreGraphics.framework */; };
@@ -63,10 +64,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		502F042F193FC8F900516A0F /* ProductTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableView.h; sourceTree = "<group>"; };
+		502F0430193FC8F900516A0F /* ProductTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTableView.m; sourceTree = "<group>"; };
+		502F0432193FC90900516A0F /* ProductTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableViewDelegate.h; sourceTree = "<group>"; };
+		502F0433193FC90900516A0F /* ProductTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTableViewDelegate.m; sourceTree = "<group>"; };
 		507D046E193E7A18003CC3B6 /* UIView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Utils.h"; sourceTree = "<group>"; };
 		507D046F193E7A18003CC3B6 /* UIView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Utils.m"; sourceTree = "<group>"; };
-		507D0471193E7B36003CC3B6 /* ProductTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableView.h; sourceTree = "<group>"; };
-		507D0472193E7B36003CC3B6 /* ProductTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTableView.m; sourceTree = "<group>"; };
 		507D0474193E7CA4003CC3B6 /* ProductTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableViewCell.h; sourceTree = "<group>"; };
 		507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTableViewCell.m; sourceTree = "<group>"; };
 		509BA65D18EB4E960011D374 /* Grip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grip.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,15 +170,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		507D0477193E7CA7003CC3B6 /* Table */ = {
+		507D0477193E7CA7003CC3B6 /* ProductTable */ = {
 			isa = PBXGroup;
 			children = (
-				507D0471193E7B36003CC3B6 /* ProductTableView.h */,
-				507D0472193E7B36003CC3B6 /* ProductTableView.m */,
+				502F0432193FC90900516A0F /* ProductTableViewDelegate.h */,
+				502F0433193FC90900516A0F /* ProductTableViewDelegate.m */,
 				507D0474193E7CA4003CC3B6 /* ProductTableViewCell.h */,
 				507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */,
+				502F042F193FC8F900516A0F /* ProductTableView.h */,
+				502F0430193FC8F900516A0F /* ProductTableView.m */,
 			);
-			name = Table;
+			name = ProductTable;
 			sourceTree = "<group>";
 		};
 		509BA65418EB4E960011D374 = {
@@ -267,7 +272,7 @@
 		509BA69618EB4FED0011D374 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				507D0477193E7CA7003CC3B6 /* Table */,
+				507D0477193E7CA7003CC3B6 /* ProductTable */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -573,7 +578,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				507D0473193E7B36003CC3B6 /* ProductTableView.m in Sources */,
 				509BB197193A756100FC8CC7 /* MBViewAnimator.m in Sources */,
 				509BB18B193A756100FC8CC7 /* MCTextFieldInterpreter.m in Sources */,
 				509BB18A193A756100FC8CC7 /* MCLabelInterpreter.m in Sources */,
@@ -593,6 +597,7 @@
 				509BB193193A756100FC8CC7 /* UILabel+Utils.m in Sources */,
 				509BB188193A756100FC8CC7 /* MCButtonInterpreter.m in Sources */,
 				509BB18D193A756100FC8CC7 /* MCUIElementInterpreter.m in Sources */,
+				502F0431193FC8F900516A0F /* ProductTableView.m in Sources */,
 				509BB191193A756100FC8CC7 /* UIButton+Utils.m in Sources */,
 				509BB190193A756100FC8CC7 /* NSString+Utils.m in Sources */,
 				509BA67118EB4E960011D374 /* AppDelegate.m in Sources */,
@@ -600,6 +605,7 @@
 				507D0470193E7A18003CC3B6 /* UIView+Utils.m in Sources */,
 				509BB196193A756100FC8CC7 /* MBPreCacher.m in Sources */,
 				509BB186193A756100FC8CC7 /* MCCollectionViewDelegate.m in Sources */,
+				502F0434193FC90900516A0F /* ProductTableViewDelegate.m in Sources */,
 				509BA66D18EB4E960011D374 /* main.m in Sources */,
 				509BB18F193A756100FC8CC7 /* MBBoilerplateUtils.m in Sources */,
 				509BB189193A756100FC8CC7 /* MCImageViewInterpreter.m in Sources */,

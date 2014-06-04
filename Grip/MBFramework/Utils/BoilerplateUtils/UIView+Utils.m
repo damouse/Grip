@@ -18,7 +18,7 @@
 
 - (void) addDefaultBorder {
     self.layer.borderColor = [UIColor blackColor].CGColor;
-    self.layer.borderWidth = 3.0f;
+    self.layer.borderWidth = 2.0f;
 }
 
 @end

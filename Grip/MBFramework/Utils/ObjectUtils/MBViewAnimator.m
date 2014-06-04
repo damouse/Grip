@@ -87,31 +87,12 @@
     CGRect active = view.frame;
     CGRect hidden = active;
     
-    
+    /*
     //the way in which directions are calculated change based on device orientation
     if (UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
         switch(direction) {
             case VAAnimationDirectionUp:
                 hidden.origin.y = superview.frame.size.width;
-                break;
-                
-            case VAAnimationDirectionDown:
-                hidden.origin.y = -active.size.height;
-                break;
-                
-            case VAAnimationDirectionLeft:
-                hidden.origin.x = superview.frame.size.height;
-                break;
-                
-            case VAAnimationDirectionRight:
-                hidden.origin.x = -active.size.width;
-                break;
-        }
-    }
-    else { //portrait
-        switch(direction) {
-            case VAAnimationDirectionUp:
-                hidden.origin.y = superview.frame.size.height;
                 break;
                 
             case VAAnimationDirectionDown:
@@ -127,6 +108,25 @@
                 break;
         }
     }
+    else { //portrait */
+        switch(direction) {
+            case VAAnimationDirectionUp:
+                hidden.origin.y = superview.bounds.size.height;
+                break;
+                
+            case VAAnimationDirectionDown:
+                hidden.origin.y = -active.size.height;
+                break;
+                
+            case VAAnimationDirectionLeft:
+                hidden.origin.x = superview.bounds.size.width;
+                break;
+                
+            case VAAnimationDirectionRight:
+                hidden.origin.x = -active.size.width;
+                break;
+        }
+    //}
     
     //set the view to start in its hidden state
     view.frame = hidden;

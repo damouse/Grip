@@ -10,4 +10,13 @@
 
 @interface ProductTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIView *viewTitleBar;
+@property (weak, nonatomic) IBOutlet UIView *viewHolder;
+
+@property (weak, nonatomic) IBOutlet UILabel *labelTitle;
+
+@property (weak, nonatomic) IBOutlet UITextView *textviewDetails;
+
+@property (weak, nonatomic) IBOutlet UIImageView *imageviewCaption;
+
 @end
