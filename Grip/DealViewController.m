@@ -4,22 +4,35 @@
 //
 //  Created by Mickey Barboi on 4/1/14.
 //  Copyright (c) 2014 Mickey Barboi. All rights reserved.
-//
+//  GOAL: use an HCF somewhere in here
 
 #import "DealViewController.h"
 #import "MBViewAnimator.h"
 #import "UIView+Utils.h"
 #import "ProductTableViewDelegate.h"
+#import "Product.h"
 
 @interface DealViewController (){
     MBViewAnimator *animator;
-    
     ProductTableViewDelegate *tableDelegate;
+    
+    //this array backs the table delegate and the product info object
+    NSMutableArray *products;
+    
+    int currentUIState;
 }
+
+typedef enum UIState{
+    StateNeutral,
+    StateShowingInfo,
+    StateShowingProduct
+} UIState;
 
 @end
 
 @implementation DealViewController
+
+
 
 #pragma mark Lifecycle Methods
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -32,18 +45,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //DEMO
+    [self initDemoModel];
 
     //table init
     tableDelegate = [[ProductTableViewDelegate alloc] init];
+    tableDelegate.parent = self;
+    tableDelegate.products = products;
+    tableDelegate.tableView = tableProducts;
     tableProducts.delegate = tableDelegate;
     tableProducts.dataSource = tableDelegate;
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-    //minor init on views: add a border
-    [viewPackages addDefaultBorder];
-    [viewInfo addDefaultBorder];
-    
+    [self initViews];
     [self initAnimations];
 }
 
@@ -52,16 +68,37 @@
 }
 
 
+#pragma mark View Setup and Teardown
+- (void) initViews {
+    //minor init on views: add a border
+    [viewPackages addDefaultBorder];
+    [viewInfo addDefaultBorder];
+    [viewInfoDetails addDefaultBorder];
+    [viewProductDetails addDefaultBorder];
+    
+    //[viewInfo addGestureRecognizer:UITapGestureRecognizer];
+}
+
+
 #pragma mark Animations
 - (void) initAnimations {
     //animations init
-    animator = [[MBViewAnimator alloc] init];
+    animator = [[MBViewAnimator alloc] initWithDuration:ANIMATION_DURATION];
     [animator initObject:viewInfo inView:self.view forSlideinAnimation:VAAnimationDirectionRight];
     [animator initObject:viewPackages inView:self.view forSlideinAnimation:VAAnimationDirectionLeft];
     
     //side in buttons
     [animator initObject:viewBottomLeftContainer inView:self.view forSlideinAnimation:VAAnimationDirectionUp];
     [animator initObject:viewBottomRightContainer inView:self.view forSlideinAnimation:VAAnimationDirectionUp];
+    
+    //slidein details panes
+    [animator initObject:viewInfoDetails inView:self.view forSlideinAnimation:VAAnimationDirectionRight];
+    [animator initObject:viewProductDetails inView:self.view forSlideinAnimation:VAAnimationDirectionLeft];
+    
+    //relative animations
+    [animator initObjectForRelativeAnimation:tableProducts inView:self.view];
+    
+    tableProducts.alpha = 0.0;
 }
 
 - (void) introAnimations {
@@ -72,6 +109,10 @@
     //bottom buttons
     [animator animateObjectOnscreen:viewBottomRightContainer completion:nil];
     [animator animateObjectOnscreen:viewBottomLeftContainer completion:nil];
+    
+    [UIView animateWithDuration:ANIMATION_DURATION animations:^{tableProducts.alpha = 1.0;}];
+    
+    currentUIState = StateNeutral;
 }
 
 - (void) outroAnimations:(void (^)(BOOL))completion  {
@@ -82,27 +123,138 @@
     //bottom buttons
     [animator animateObjectOffscreen:viewBottomRightContainer completion:nil];
     [animator animateObjectOffscreen:viewBottomLeftContainer completion:completion];
+    
+    [UIView animateWithDuration:ANIMATION_DURATION animations:^{tableProducts.alpha = 0.0;}];
+}
+
+- (void) animateInfoPaneIn {
+    //the info pane on the left side of the screen. Perform animations in two ticks
+    void (^secondStep)(BOOL) = ^(BOOL completion) {
+        [animator animateObjectToRelativePosition:tableProducts direction:VAAnimationDirectionRight withMargin:80 completion:nil];
+        [animator animateObjectOnscreen:viewInfoDetails completion:nil];
+    };
+    
+    //bottom buttons
+    [animator animateObjectOffscreen:viewBottomRightContainer completion:nil];
+    [animator animateObjectOffscreen:viewBottomLeftContainer completion:nil];
+    
+    //small package view
+    [animator animateObjectOffscreen:viewInfo completion:nil];
+    [animator animateObjectOffscreen:viewPackages completion:secondStep];
+    
+    currentUIState = StateShowingInfo;
+}
+
+- (void) animateInfoPaneOut {
+    //dismiss the info pane, return to normal
+    void (^secondStep)(BOOL) = ^(BOOL completion) {
+        //bottom buttons
+        [animator animateObjectOnscreen:viewBottomRightContainer completion:nil];
+        [animator animateObjectOnscreen:viewBottomLeftContainer completion:nil];
+        
+        //small package view
+        [animator animateObjectOnscreen:viewInfo completion:nil];
+        [animator animateObjectOnscreen:viewPackages completion:nil];
+    };
+    
+    [animator animateObjectToStartingPosition:tableProducts completion:nil];
+    [animator animateObjectOffscreen:viewInfoDetails completion:secondStep];
+    
+    currentUIState = StateNeutral;
+}
+
+- (void) animateProductPaneIn {
+    //the product pane on the right side of the screen. Perform animations in two ticks
+    void (^secondStep)(BOOL) = ^(BOOL completion) {
+        [animator animateObjectToRelativePosition:tableProducts direction:VAAnimationDirectionLeft withMargin:80 completion:nil];
+        [animator animateObjectOnscreen:viewProductDetails completion:nil];
+    };
+    
+    //bottom buttons
+    [animator animateObjectOffscreen:viewBottomRightContainer completion:nil];
+    [animator animateObjectOffscreen:viewBottomLeftContainer completion:nil];
+    
+    //small package view
+    [animator animateObjectOffscreen:viewInfo completion:nil];
+    [animator animateObjectOffscreen:viewPackages completion:secondStep];
+    
+    currentUIState = StateShowingProduct;
+}
+
+- (void) animateProductPaneOut {
+    void (^secondStep)(BOOL) = ^(BOOL completion) {
+        //bottom buttons
+        [animator animateObjectOnscreen:viewBottomRightContainer completion:nil];
+        [animator animateObjectOnscreen:viewBottomLeftContainer completion:nil];
+        
+        //small package view
+        [animator animateObjectOnscreen:viewInfo completion:nil];
+        [animator animateObjectOnscreen:viewPackages completion:nil];
+    };
+    
+    [animator animateObjectToStartingPosition:tableProducts completion:nil];
+    [animator animateObjectOffscreen:viewProductDetails completion:secondStep];
+    
+    currentUIState = StateNeutral;
+}
+
+
+#pragma mark Delegate Methods
+- (void) didSelectProduct {
+    //triggered from the table
+    if (currentUIState == StateNeutral)
+        [self animateProductPaneIn];
+    else {
+        //change the currently shown product in the the product pane
+    }
 }
 
 
 #pragma mark IBActions
 - (IBAction)cancel:(id)sender {
     [self outroAnimations:^(BOOL completion){
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"dealViewController"];
-        [self presentViewController:vc animated:NO completion:nil];
+        [self.navigationController popViewControllerAnimated:NO];
     }];
 }
 
 - (IBAction)complete:(id)sender {
-    
+
 }
 
 - (IBAction)walkthrough:(id)sender {
-    
+
 }
 
 - (IBAction)undo:(id)sender {
+
+}
+
+- (IBAction)infoTapped:(id)sender {
+    [self animateInfoPaneIn];
+}
+
+- (IBAction)infoDetailsExit:(id)sender {
+    [self animateInfoPaneOut];
+}
+
+- (IBAction)productDetailsExit:(id)sender {
+    //dismiss product pane, return to normal
+    [self animateProductPaneOut];
+}
+
+
+#pragma mark DEMO DETAILS
+- (void) initDemoModel {
+    NSMutableArray *array = [NSMutableArray array];
+
+    for (int i = 0; i < 5; i++) {
+        Product *product = [[Product alloc] init];
+        product.name = [NSString stringWithFormat:@"Product %i", i];
+        [product setDescripton:@"Adfasdfasdfasdljkfasdjfhaslkdjf asdfkj asdfkja sdlfja sdfjha sldfha sdjfha sdfjha sdkjfa sdfjh "];
+        product.selected = YES;
+        [array addObject:product];
+    }
     
+    products = [NSMutableArray arrayWithArray:array];
 }
 @end

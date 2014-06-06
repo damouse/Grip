@@ -6,19 +6,22 @@
 
 #import <Availability.h>
 
+//animation durations
+#define ANIMATION_DURATION 0.4
+
 #ifndef __IPHONE_5_0
 #warning "This project uses features only available in iOS SDK 5.0 and later."
 #endif
 
 //conditional debug logging
 #ifdef DEBUG
-#   define DLog(fmt, ...) NSLog((@"%s [Line %d]\n" fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#   define DLog(fmt, ...) NSLog((@"%s [Line %d]\n\t" fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
 #else
 #   define DLog(...)
 #endif
 
 //unconditional logging
-#define ULog(fmt, ...) NSLog((@"%s [Line %d]\n" fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#define ULog(fmt, ...) NSLog((@"%s [Line %d]\n\t" fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
 
 //pops an alert, debug logging
 #ifdef DEBUG

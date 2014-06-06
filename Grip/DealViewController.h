@@ -22,6 +22,8 @@
 @interface DealViewController : UIViewController {
     //views
     __weak IBOutlet UIView *viewInfo;
+    __weak IBOutlet UIView *viewInfoDetails;
+    __weak IBOutlet UIView *viewProductDetails;
     __weak IBOutlet UIView *viewPackages;
     
     __weak IBOutlet UIView *viewBottomLeftContainer; //cancel, complete buttons
@@ -31,10 +33,20 @@
     __weak IBOutlet UITableView *tableProducts;
 }
 
+//buttons within slidein info panes
+- (IBAction)infoDetailsExit:(id)sender;
+- (IBAction)productDetailsExit:(id)sender;
+
+
 //bottom buttons
 - (IBAction)cancel:(id)sender;
 - (IBAction)complete:(id)sender;
 - (IBAction)walkthrough:(id)sender;
 - (IBAction)undo:(id)sender;
 
+//gesture recognizers
+- (IBAction)infoTapped:(id)sender;
+
+//delegate methods
+- (void) didSelectProduct;
 @end

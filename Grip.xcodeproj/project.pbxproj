@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		502F0431193FC8F900516A0F /* ProductTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 502F0430193FC8F900516A0F /* ProductTableView.m */; };
 		502F0434193FC90900516A0F /* ProductTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 502F0433193FC90900516A0F /* ProductTableViewDelegate.m */; };
+		5053F108194132B400EDF062 /* RMSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5053F107194132B400EDF062 /* RMSwipeTableViewCell.m */; };
+		5053F10E1941444F00EDF062 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 5053F10D1941444F00EDF062 /* Product.m */; };
 		507D0470193E7A18003CC3B6 /* UIView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D046F193E7A18003CC3B6 /* UIView+Utils.m */; };
 		507D0476193E7CA4003CC3B6 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */; };
 		509BA66118EB4E960011D374 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66018EB4E960011D374 /* Foundation.framework */; };
@@ -64,10 +65,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		502F042F193FC8F900516A0F /* ProductTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableView.h; sourceTree = "<group>"; };
-		502F0430193FC8F900516A0F /* ProductTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTableView.m; sourceTree = "<group>"; };
 		502F0432193FC90900516A0F /* ProductTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableViewDelegate.h; sourceTree = "<group>"; };
 		502F0433193FC90900516A0F /* ProductTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTableViewDelegate.m; sourceTree = "<group>"; };
+		5053F106194132B400EDF062 /* RMSwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSwipeTableViewCell.h; sourceTree = "<group>"; };
+		5053F107194132B400EDF062 /* RMSwipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSwipeTableViewCell.m; sourceTree = "<group>"; };
+		5053F10C1941444F00EDF062 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
+		5053F10D1941444F00EDF062 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		507D046E193E7A18003CC3B6 /* UIView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Utils.h"; sourceTree = "<group>"; };
 		507D046F193E7A18003CC3B6 /* UIView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Utils.m"; sourceTree = "<group>"; };
 		507D0474193E7CA4003CC3B6 /* ProductTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableViewCell.h; sourceTree = "<group>"; };
@@ -170,6 +173,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5053F1051941327A00EDF062 /* SwipableTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				5053F106194132B400EDF062 /* RMSwipeTableViewCell.h */,
+				5053F107194132B400EDF062 /* RMSwipeTableViewCell.m */,
+			);
+			name = SwipableTableCell;
+			sourceTree = "<group>";
+		};
 		507D0477193E7CA7003CC3B6 /* ProductTable */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,8 +189,6 @@
 				502F0433193FC90900516A0F /* ProductTableViewDelegate.m */,
 				507D0474193E7CA4003CC3B6 /* ProductTableViewCell.h */,
 				507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */,
-				502F042F193FC8F900516A0F /* ProductTableView.h */,
-				502F0430193FC8F900516A0F /* ProductTableView.m */,
 			);
 			name = ProductTable;
 			sourceTree = "<group>";
@@ -280,6 +290,8 @@
 		509BA69718EB4FF30011D374 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5053F10C1941444F00EDF062 /* Product.h */,
+				5053F10D1941444F00EDF062 /* Product.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -420,11 +432,12 @@
 		509BB179193A756100FC8CC7 /* ObjectUtils */ = {
 			isa = PBXGroup;
 			children = (
+				509BB17E193A756100FC8CC7 /* MBViewAnimator.h */,
+				509BB17F193A756100FC8CC7 /* MBViewAnimator.m */,
 				509BB17A193A756100FC8CC7 /* MBObjectUtils.h */,
 				509BB17B193A756100FC8CC7 /* MBObjectUtils.m */,
 				509BB17C193A756100FC8CC7 /* MBPreCacher.h */,
 				509BB17D193A756100FC8CC7 /* MBPreCacher.m */,
-				509BB19B193A7E5B00FC8CC7 /* ViewAnimator */,
 			);
 			path = ObjectUtils;
 			sourceTree = "<group>";
@@ -432,18 +445,10 @@
 		509BB198193A757800FC8CC7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5053F1051941327A00EDF062 /* SwipableTableCell */,
 				509BB144193A756100FC8CC7 /* MBFramework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		509BB19B193A7E5B00FC8CC7 /* ViewAnimator */ = {
-			isa = PBXGroup;
-			children = (
-				509BB17E193A756100FC8CC7 /* MBViewAnimator.h */,
-				509BB17F193A756100FC8CC7 /* MBViewAnimator.m */,
-			);
-			name = ViewAnimator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -583,6 +588,7 @@
 				509BB18A193A756100FC8CC7 /* MCLabelInterpreter.m in Sources */,
 				509BB180193A756100FC8CC7 /* MBConnectionManager.m in Sources */,
 				509BB183193A756100FC8CC7 /* MCBinder.m in Sources */,
+				5053F10E1941444F00EDF062 /* Product.m in Sources */,
 				509BB192193A756100FC8CC7 /* UIImageView+Utils.m in Sources */,
 				509BB195193A756100FC8CC7 /* MBObjectUtils.m in Sources */,
 				509BB194193A756100FC8CC7 /* StraightUpUtils.m in Sources */,
@@ -597,7 +603,6 @@
 				509BB193193A756100FC8CC7 /* UILabel+Utils.m in Sources */,
 				509BB188193A756100FC8CC7 /* MCButtonInterpreter.m in Sources */,
 				509BB18D193A756100FC8CC7 /* MCUIElementInterpreter.m in Sources */,
-				502F0431193FC8F900516A0F /* ProductTableView.m in Sources */,
 				509BB191193A756100FC8CC7 /* UIButton+Utils.m in Sources */,
 				509BB190193A756100FC8CC7 /* NSString+Utils.m in Sources */,
 				509BA67118EB4E960011D374 /* AppDelegate.m in Sources */,
@@ -605,6 +610,7 @@
 				507D0470193E7A18003CC3B6 /* UIView+Utils.m in Sources */,
 				509BB196193A756100FC8CC7 /* MBPreCacher.m in Sources */,
 				509BB186193A756100FC8CC7 /* MCCollectionViewDelegate.m in Sources */,
+				5053F108194132B400EDF062 /* RMSwipeTableViewCell.m in Sources */,
 				502F0434193FC90900516A0F /* ProductTableViewDelegate.m in Sources */,
 				509BA66D18EB4E960011D374 /* main.m in Sources */,
 				509BB18F193A756100FC8CC7 /* MBBoilerplateUtils.m in Sources */,

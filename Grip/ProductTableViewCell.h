@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RMSwipeTableViewCell.h"
 
-@interface ProductTableViewCell : UITableViewCell
+@interface ProductTableViewCell : RMSwipeTableViewCell
 
 @property (weak, nonatomic) IBOutlet UIView *viewTitleBar;
 @property (weak, nonatomic) IBOutlet UIView *viewHolder;
@@ -18,5 +19,10 @@
 @property (weak, nonatomic) IBOutlet UITextView *textviewDetails;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageviewCaption;
+
+//Swipable goodies
+@property (nonatomic, assign) id delegate;
+
+-(void) resetContentView;
 
 @end

@@ -18,8 +18,16 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "DealViewController.h"
 
 
 @interface ProductTableViewDelegate : NSObject <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) NSMutableArray *products;
+@property (weak, nonatomic) DealViewController *parent;
+@property (weak, nonatomic) UITableView *tableView;
+
+//TESTING SWIPING CELLS
+@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
 @end

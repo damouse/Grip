@@ -27,6 +27,7 @@
 @property (strong, nonatomic) UIView *view;
 @property CGRect activeFrame;
 @property CGRect hiddenFrame;
+@property CGRect superview; //used by relative animations
 @end
 
 @implementation VAViewMetadata : NSObject 
@@ -41,47 +42,30 @@
     
     //the next tag to be used
     int currentlyFreeTag;
+    
+    double animationDuration;
 }
 
+
 #pragma mark Stock Object
-- (id) init {
+- (id) initWithDuration:(double)duration {
     //init the object for use
     self = [super init];
     
+    animationDuration = duration;
     currentlyFreeTag = STARTING_TAG;
     animationFrameStorage = [NSMutableDictionary dictionary];
     
     return self;
 }
 
-#pragma mark Public
-- (void) initObject:(UIView *)view inView:(UIView *)superview forSlideinAnimation:(VAAnimationDirection)direction  {
-    /** 
-        Given a view, this method creates the two frames needed to animate it simply onto the screen. The direction specifies which
-        direction the view comes onto the screen from (direction == up means the view will appear from the bottom.)
-     
-        This class WILL TAG VIEWS starting with tag# 700. Be careful not to use this class if you have tags in that range!
-        Alternatively, you can change the starting tag number at the top of this object.
-     
-        To animate the view, simply call the animation method with the correct direction. 
-     
-        Superview is included to support automatic frame recalc in the case of an orientation change (NOT CURRENTLY IMPLEMENTED)
-     
-        You cannot call this method twice with two different directions on the same object and expect it to work.
-     */
 
-    [self cLog:@"init object starting..."];
-    
-    if(view == nil /*|| direction == nil*/){
-        NSLog(@"VA WARN: Invalid parameters passed to initObject");
-        return;
-    }
-    
+#pragma mark Onscreen/Offscreen animations
+- (void) initObject:(UIView *)view inView:(UIView *)superview forSlideinAnimation:(VAAnimationDirection)direction  {
     if([animationFrameStorage objectForKey:[NSNumber numberWithInt:view.tag]] != nil) {
         [self cLog:@"duplicate init call, aborting"];
         return;
     }
-    
     
     //save the current frame
     CGRect active = view.frame;
@@ -132,31 +116,20 @@
     view.frame = hidden;
     
     //tag the view (if it does not already have a tag) and add it to the save dictionary
-    int tag;
-    if(view.tag == 0) {
-        //ASSUME: view tags are unique AND view tags do not conflict with VA tags (need to fix this)
-        tag = currentlyFreeTag;
-        view.tag = currentlyFreeTag;
-        currentlyFreeTag++;
-    }
-    else 
-        tag = view.tag;
-    
+    if(view.tag == 0)
+        view.tag = [self getFreeTag];
+
     //create the save object
     VAViewMetadata *save = [[VAViewMetadata alloc] init];
     [save setHiddenFrame:hidden];
     [save setActiveFrame:active];
-    [save setView:view]; //do we need to keep a ref to the object?
-    [save setTag:tag];
+    [save setView:view];
+    [save setTag:view.tag];
     
-    [animationFrameStorage setObject:save forKey:[NSNumber numberWithInt:tag]];
-    
-    [self cLog:@"init object done"];
+    [animationFrameStorage setObject:save forKey:[NSNumber numberWithInt:view.tag]];
 }
 
 - (void) animateObjectOnscreen:(UIView *)view completion:(void (^)(BOOL))completion {
-    //bring the object in from its hidden state to its active state
-    [self cLog:@"animateObjectOnscreen starting..."];
     
     if(view.tag == 0) {
         [self cLog:@"animateObject called with an untagged view"];
@@ -164,15 +137,10 @@
     }
     
     //check if save is present and valid
-    VAViewMetadata *save = [animationFrameStorage objectForKey:[NSNumber numberWithInt:view.tag]];
-    if(save == nil) {
-        [self cLog:[NSString stringWithFormat:@"save not found for tag %i", view.tag]];
-        return;
-    }
+    //check if save is present and valid
+    VAViewMetadata *save = [self getSaveForView:view];
+    if(save == nil) return;
 
-    // This project does not deal with this check very well, since VC's are not sizing themselves appropriately in viewDidLoad (because of the nested subviews)
-    //NSLog(@"view o: %@, saved o: %@",  NSStringFromCGPoint(view.frame.origin),  NSStringFromCGPoint([save hiddenFrame].origin));
-    
     //check if the object is actually in its hidden position
     if(!CGPointEqualToPoint(view.frame.origin, [save hiddenFrame].origin)) {
         [self cLog:[NSString stringWithFormat:@"view with tag %i is supposed to animate in, but is not in its hidden position", view.tag]];
@@ -181,12 +149,11 @@
     
     //if its a button turn it off while its animating
     if([view isKindOfClass:[UIButton class]]) {
-        // do somthing
         ((UIButton *)view).enabled = NO;
     }
     
     //perform the animation
-    [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
+    [UIView animateWithDuration:animationDuration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
                      animations:^ {
                          view.frame = [save activeFrame];
                      }
@@ -197,27 +164,17 @@
         // do somthing
         ((UIButton *)view).enabled = YES;
     }
-    
-    [self cLog:@"animateObjectOnscreen done"];
 }
 
 - (void) animateObjectOffscreen:(UIView *)view completion:(void (^)(BOOL))completion {
-    //bring the object in from its hidden state to its active state
-    [self cLog:@"animateObjectOffscreen starting..."];
-    
     if(view.tag == 0) {
         [self cLog:@"animateObjectOffscreen called with an untagged view"];
         return;
     }
     
     //check if save is present and valid
-    VAViewMetadata *save = [animationFrameStorage objectForKey:[NSNumber numberWithInt:view.tag]];
-    if(save == nil) {
-        [self cLog:[NSString stringWithFormat:@"save not found for tag %i", view.tag]];
-        return;
-    }
-    
-    //NSLog(@"view o: %@, saved o: %@",  NSStringFromCGPoint(view.frame.origin),  NSStringFromCGPoint([save activeFrame].origin));
+    VAViewMetadata *save = [self getSaveForView:view];
+    if(save == nil) return;
     
     //check if the object is actually in its active position
     if(!CGPointEqualToPoint(view.frame.origin, [save activeFrame].origin)) {
@@ -226,25 +183,97 @@
     }
     
     //perform the animation
-    [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
+    [UIView animateWithDuration:animationDuration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
                      animations:^ {
                          view.frame = [save hiddenFrame];
                      }
                      completion:completion];
+}
+
+
+#pragma mark Relative Superview Animations
+- (void) initObjectForRelativeAnimation:(UIView *)view inView:(UIView *)superview {
+    //What happens when you want to relatively animate a view that was also animated in?
+    if([animationFrameStorage objectForKey:[NSNumber numberWithInt:view.tag]] != nil) {
+        [self cLog:@"duplicate init call, aborting"];
+        return;
+    }
+
+    //tag the view (if it does not already have a tag) and add it to the save dictionary
+    if(view.tag == 0)
+        view.tag = [self getFreeTag];
     
-    [self cLog:@"animateObjectOffscreen done"];
+    //create the save object
+    VAViewMetadata *save = [[VAViewMetadata alloc] init];
+    [save setActiveFrame:view.frame];
+    [save setView:view];
+    [save setTag:view.tag];
+    [save setSuperview:superview.bounds];
+    
+    [animationFrameStorage setObject:save forKey:[NSNumber numberWithInt:view.tag]];
+}
+
+- (void) animateObjectToRelativePosition:(UIView *)view direction:(VAAnimationDirection)direction withMargin:(int)margin completion:(void (^)(BOOL))completion {
+    //check if save is present and valid
+    VAViewMetadata *save = [self getSaveForView:view];
+    if(save == nil) return;
+    
+    CGRect newFrame = view.frame;
+    CGRect superview = [save superview];
+    
+    switch(direction) {
+        case VAAnimationDirectionUp:
+            newFrame.origin.y = margin;
+            break;
+            
+        case VAAnimationDirectionDown:
+            newFrame.origin.y = superview.size.height - newFrame.size.height - margin;
+            break;
+            
+        case VAAnimationDirectionLeft:
+            newFrame.origin.x = margin;
+            break;
+            
+        case VAAnimationDirectionRight:
+            newFrame.origin.x = superview.size.width - newFrame.size.width - margin;
+            break;
+    }
+    
+    //perform the animation
+    [UIView animateWithDuration:animationDuration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^ {
+                         view.frame = newFrame;
+                     }
+                     completion:completion];
+}
+
+- (void) animateObjectToStartingPosition:(UIView *)view completion:(void (^)(BOOL))completion {
+    VAViewMetadata *save = [self getSaveForView:view];
+    if(save == nil) return;
+
+    //perform the animation
+    [UIView animateWithDuration:animationDuration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^ {
+                         view.frame = [save activeFrame];
+                     }
+                     completion:completion];
 }
 
 #pragma mark Utility
-- (BOOL) saveIsValid {
-    //checks to make sure the packaged save data is valid: IN PROGRESS
-    return true;
+- (int) getFreeTag {
+    currentlyFreeTag++;
+    return currentlyFreeTag;
 }
 
-- (CGRect) getHiddenFrameForDirection {
-    //This method is independant of all the other init methods so that it can be called on orientation change (in progress)
+- (VAViewMetadata *) getSaveForView:(UIView *)view {
+    //check if save is present and valid
+    VAViewMetadata *save = [animationFrameStorage objectForKey:[NSNumber numberWithInt:view.tag]];
+    if(save == nil) {
+        [self cLog:[NSString stringWithFormat:@"save not found for tag %i", view.tag]];
+        return nil;
+    }
     
-    return CGRectMake(0, 0, 0, 0);
+    return save;
 }
 
 - (void) cLog:(NSString *)log {

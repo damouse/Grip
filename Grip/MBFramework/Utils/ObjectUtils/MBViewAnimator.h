@@ -33,7 +33,23 @@ typedef enum VAAnimationDirection{
 
 @interface MBViewAnimator : NSObject
 
-//Register an object for offscreen animation: should be called in viewDidLoad. 
+- (id) initWithDuration:(double)duration;
+
+#pragma mark Onscreen/Offscreen animations
+/* Used to move a view on and offscreen.
+ 
+ Given a view, this method creates the two frames needed to animate it simply onto the screen. The direction specifies which
+ direction the view comes onto the screen from (direction == up means the view will appear from the bottom.)
+ 
+ This class WILL TAG VIEWS starting with tag# 700. Be careful not to use this class if you have tags in that range!
+ Alternatively, you can change the starting tag number at the top of this object.
+ 
+ To animate the view, simply call the animation method with the correct direction.
+ 
+ Superview is included to support automatic frame recalc in the case of an orientation change (NOT CURRENTLY IMPLEMENTED)
+ 
+ You cannot call this method twice with two different directions on the same object and expect it to work.
+ */
 - (void) initObject:(UIView *)view inView:(UIView *)superview forSlideinAnimation:(VAAnimationDirection)direction;
 
 //move the object onscreen. Does nothing if the object is not in its proper offscreen position
@@ -42,4 +58,26 @@ typedef enum VAAnimationDirection{
 //move the object offscreen. Does nothing if the object is not in its proper offscreen position
 - (void) animateObjectOffscreen:(UIView *)view completion:(void (^)(BOOL))completion;
 
+
+#pragma mark Relative Animations
+/*
+ Used to move an object around within its superview. 
+ 
+ Register the object, then call the animate method with the appropriate direction.
+ 
+ Example: object is in the middle of the screen, and Left is passed as the direction with a margin of 10. When the animation is called 
+ the object is moved from its current position to the left margin of its superview.
+ 
+ The purpose of the registration is to tag the view and remember its original position.
+ */
+- (void) initObjectForRelativeAnimation:(UIView *)view inView:(UIView *)superview;
+
+/*
+ Moves the view in the direction specified until it is (margin) away from the edge of its superview. Note that the direction given specifies
+ which edge to compare the margin to: a right animation will check the right edge of the view with the right edge of the superview.
+ */
+- (void) animateObjectToRelativePosition:(UIView *)view direction:(VAAnimationDirection)direction withMargin:(int)margin completion:(void (^)(BOOL))completion;
+
+//reset the view to its starting position. Must have previously been registered.
+- (void) animateObjectToStartingPosition:(UIView *)view completion:(void (^)(BOOL))completion;
 @end

@@ -8,27 +8,32 @@
 
 #import "ProductTableViewCell.h"
 
+#define BUTTON_THRESHOLD 80
+
 @implementation ProductTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+- (void) initialize {
+    [super initialize];
+    
+    self.backViewbackgroundColor = [UIColor colorWithWhite:0.92 alpha:0];
+    self.revealDirection = RMSwipeTableViewCellRevealDirectionBoth;
+    self.animationType = RMSwipeTableViewCellAnimationTypeEaseOut;
+    self.panElasticityStartingPoint = BUTTON_THRESHOLD;
 }
 
-- (void)awakeFromNib
-{
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+}
 
-    // Configure the view for the selected state
+-(void)resetContentView {
+    [UIView animateWithDuration:0.15f
+                     animations:^{
+                         self.contentView.frame = CGRectOffset(self.contentView.bounds, 0, 0);
+                     }
+                     completion:^(BOOL finished) {
+                         self.shouldAnimateCellReset = YES;
+                         [self cleanupBackView];
+                     }];
 }
 
 @end

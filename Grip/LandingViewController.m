@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-    animator = [[MBViewAnimator alloc] init];
+    animator = [[MBViewAnimator alloc] initWithDuration:ANIMATION_DURATION];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -50,8 +50,7 @@
 }
 
 - (IBAction)login:(id)sender {
-    [animator animateObjectOffscreen:viewMenu completion:nil];
-    [animator animateObjectOffscreen:viewLogos completion:nil];
+
 }
 
 - (IBAction)viewPackages:(id)sender {
@@ -59,16 +58,7 @@
     [animator animateObjectOffscreen:viewLogos completion:^(BOOL completion){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"dealViewController"];
-        [self presentViewController:vc animated:NO completion:nil];
+        [self.navigationController pushViewController:vc animated:NO];
     }];
-}
-
-- (IBAction)DEBUGin:(id)sender {
-    [animator animateObjectOnscreen:viewMenu completion:nil];
-    [animator animateObjectOnscreen:viewLogos completion:nil];
-}
-- (IBAction)DEBUGout:(id)sender {
-    [animator animateObjectOffscreen:viewMenu completion:nil];
-    [animator animateObjectOffscreen:viewLogos completion:nil];
 }
 @end
