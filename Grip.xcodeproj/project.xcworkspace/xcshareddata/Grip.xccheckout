@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>07A5AD9E-4C31-483F-B024-751159541F10</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Grip</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>8825E6E4-0668-493B-959B-FF75C560E79B</key>
+		<string>https://github.com/damouse/Grip.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Grip.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>8825E6E4-0668-493B-959B-FF75C560E79B</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/damouse/Grip.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8825E6E4-0668-493B-959B-FF75C560E79B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8825E6E4-0668-493B-959B-FF75C560E79B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Grip</string>
+		</dict>
+	</array>
+</dict>
+</plist>
