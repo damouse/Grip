@@ -12,6 +12,7 @@
 		5053F10E1941444F00EDF062 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 5053F10D1941444F00EDF062 /* Product.m */; };
 		507D0470193E7A18003CC3B6 /* UIView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D046F193E7A18003CC3B6 /* UIView+Utils.m */; };
 		507D0476193E7CA4003CC3B6 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */; };
+		5094D4E41991B84500F3EF1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5094D4E31991B84500F3EF1C /* AppDelegate.swift */; };
 		509BA66118EB4E960011D374 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66018EB4E960011D374 /* Foundation.framework */; };
 		509BA66318EB4E960011D374 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66218EB4E960011D374 /* CoreGraphics.framework */; };
 		509BA66518EB4E960011D374 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66418EB4E960011D374 /* UIKit.framework */; };
@@ -75,6 +76,8 @@
 		507D046F193E7A18003CC3B6 /* UIView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Utils.m"; sourceTree = "<group>"; };
 		507D0474193E7CA4003CC3B6 /* ProductTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableViewCell.h; sourceTree = "<group>"; };
 		507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTableViewCell.m; sourceTree = "<group>"; };
+		5094D4E01991B82800F3EF1C /* Grip-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grip-Bridging-Header.h"; sourceTree = "<group>"; };
+		5094D4E31991B84500F3EF1C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		509BA65D18EB4E960011D374 /* Grip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		509BA66018EB4E960011D374 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		509BA66218EB4E960011D374 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -300,9 +303,11 @@
 			isa = PBXGroup;
 			children = (
 				509BB198193A757800FC8CC7 /* Frameworks */,
+				5094D4E31991B84500F3EF1C /* AppDelegate.swift */,
 				509BA66F18EB4E960011D374 /* AppDelegate.h */,
 				509BA67018EB4E960011D374 /* AppDelegate.m */,
 				509BA67218EB4E960011D374 /* Main.storyboard */,
+				5094D4E01991B82800F3EF1C /* Grip-Bridging-Header.h */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -583,6 +588,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5094D4E41991B84500F3EF1C /* AppDelegate.swift in Sources */,
 				509BB197193A756100FC8CC7 /* MBViewAnimator.m in Sources */,
 				509BB18B193A756100FC8CC7 /* MCTextFieldInterpreter.m in Sources */,
 				509BB18A193A756100FC8CC7 /* MCLabelInterpreter.m in Sources */,
@@ -744,10 +750,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Mihnea Barboi (MBE45279K3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Mihnea Barboi (MBE45279K3)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Grip/Grip-Prefix.pch";
 				INFOPLIST_FILE = "Grip/Grip-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "A0086BA2-018A-4A71-968D-F8149751BBEC";
+				SWIFT_OBJC_BRIDGING_HEADER = "Grip/Grip-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -758,10 +771,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Mihnea Barboi (MBE45279K3)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Grip/Grip-Prefix.pch";
 				INFOPLIST_FILE = "Grip/Grip-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "A0086BA2-018A-4A71-968D-F8149751BBEC";
+				SWIFT_OBJC_BRIDGING_HEADER = "Grip/Grip-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

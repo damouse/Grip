@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>734E4DF5-A61C-4DD8-BB1B-D81EA82B9D56</string>
+	<string>B86C876E-4E24-42C3-8F9C-42366AD8EF0D</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Grip</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>8825E6E4-0668-493B-959B-FF75C560E79B</key>
+		<key>495F200F2728E2BB2E4ECAF59CF6BD59A1097D65</key>
 		<string>https://github.com/damouse/Grip.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Grip.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>8825E6E4-0668-493B-959B-FF75C560E79B</key>
+		<key>495F200F2728E2BB2E4ECAF59CF6BD59A1097D65</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/damouse/Grip.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>8825E6E4-0668-493B-959B-FF75C560E79B</string>
+	<string>495F200F2728E2BB2E4ECAF59CF6BD59A1097D65</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>8825E6E4-0668-493B-959B-FF75C560E79B</string>
+			<string>495F200F2728E2BB2E4ECAF59CF6BD59A1097D65</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Grip</string>
 		</dict>
