@@ -59,8 +59,8 @@ typedef enum UIState{
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-    [self initViews];
     [self initAnimations];
+    [self colorize];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -69,14 +69,22 @@ typedef enum UIState{
 
 
 #pragma mark View Setup and Teardown
-- (void) initViews {
-    //minor init on views: add a border
-    [viewPackages addDefaultBorder];
-    [viewInfo addDefaultBorder];
-    [viewInfoDetails addDefaultBorder];
-    [viewProductDetails addDefaultBorder];
+- (void) colorize {
+    //Colorize the view based on the constants. Here for quick changing
+    viewPackages.backgroundColor = PRIMARY_DARK;
+    viewProductDetails.backgroundColor = PRIMARY_DARK;
+    viewInfo.backgroundColor = PRIMARY_DARK;
+    viewInfoDetails.backgroundColor = PRIMARY_DARK;
+    viewBottomLeftContainer.backgroundColor = PRIMARY_LIGHT;
+    viewBottomRightContainer.backgroundColor = PRIMARY_LIGHT;
     
-    //[viewInfo addGestureRecognizer:UITapGestureRecognizer];
+    self.view.backgroundColor = PRIMARY_LIGHT;
+    tableProducts.backgroundColor = PRIMARY_LIGHT;
+    
+    for(UIButton *button in buttons) {
+        [button setTitleColor:HIGHLIGHT_COLOR forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    }
 }
 
 

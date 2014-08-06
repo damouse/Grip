@@ -32,10 +32,21 @@
     animator = [[MBViewAnimator alloc] initWithDuration:ANIMATION_DURATION];
 }
 
-- (void) viewWillAppear:(BOOL)animated {
-    //add the colored border to the view. Method is in a category in the frameworks folder. 
-    [viewLogos addDefaultBorder];
-    [viewMenu addDefaultBorder];
+- (void) viewWillAppear:(BOOL)animated {   
+    [self colorize];
+}
+
+
+- (void) colorize {
+    //Colorize the view based on the constants. Here for quick changing
+    self.view.backgroundColor = PRIMARY_LIGHT;
+    viewMenu.backgroundColor = PRIMARY_DARK;
+    viewLogos.backgroundColor = PRIMARY_DARK;
+    
+    for(UIButton *button in buttons) {
+        [button setTitleColor:HIGHLIGHT_COLOR forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    }
 }
 
 - (void) viewDidLayoutSubviews {

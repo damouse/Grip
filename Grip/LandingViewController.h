@@ -13,6 +13,8 @@
     __weak IBOutlet UIView *viewMenu;
     __weak IBOutlet UIView *viewLogos;
     
+    //Buttons
+    IBOutletCollection(UIButton) NSArray *buttons;
 }
 
 //buttons

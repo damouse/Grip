@@ -31,6 +31,9 @@
     
     //table
     __weak IBOutlet UITableView *tableProducts;
+    
+    //Buttons
+    IBOutletCollection(UIButton) NSArray *buttons;
 }
 
 //buttons within slidein info panes

@@ -3,11 +3,15 @@
 //
 //  The contents of this file are implicitly included at the beginning of every source file.
 //
-
 #import <Availability.h>
 
-//animation durations
+//Constants
 #define ANIMATION_DURATION 0.4
+
+#define PRIMARY_DARK [UIColor colorWithRed:38.0/255.0 green:41.0/255.0 blue:46.0/255.0 alpha:1.0]
+#define PRIMARY_LIGHT [UIColor colorWithRed:47.0/255.0 green:50.0/255.0 blue:56.0/255.0 alpha:1.0]
+#define HIGHLIGHT_COLOR [UIColor colorWithRed:222.0/255.0 green:94.0/255.0 blue:96.0/255.0 alpha:1.0]
+
 
 #ifndef __IPHONE_5_0
 #warning "This project uses features only available in iOS SDK 5.0 and later."

@@ -14,11 +14,21 @@
 
 - (void) initialize {
     [super initialize];
+    [self colorize];
     
-    self.backViewbackgroundColor = [UIColor colorWithWhite:0.92 alpha:0];
     self.revealDirection = RMSwipeTableViewCellRevealDirectionBoth;
     self.animationType = RMSwipeTableViewCellAnimationTypeEaseOut;
     self.panElasticityStartingPoint = BUTTON_THRESHOLD;
+}
+
+- (void) colorize {
+    self.viewTitleBar.backgroundColor = HIGHLIGHT_COLOR;
+    self.viewHolder.backgroundColor = PRIMARY_DARK;
+    self.contentView.backgroundColor = PRIMARY_LIGHT;
+    self.textviewDetails.backgroundColor = PRIMARY_DARK;
+    self.labelTitle.backgroundColor = PRIMARY_DARK;
+    
+    self.backViewbackgroundColor = PRIMARY_LIGHT;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

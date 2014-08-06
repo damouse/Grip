@@ -50,12 +50,6 @@
     //[cell.textviewDetails setText:@"Test"];
     [cell.labelTitle setText:product.name];
     
-    //sliding testing
-    
-    
-    //set border
-    [cell.viewHolder addDefaultBorder];
-    
     return cell;
 }
 

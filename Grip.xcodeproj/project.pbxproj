@@ -12,7 +12,6 @@
 		5053F10E1941444F00EDF062 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 5053F10D1941444F00EDF062 /* Product.m */; };
 		507D0470193E7A18003CC3B6 /* UIView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D046F193E7A18003CC3B6 /* UIView+Utils.m */; };
 		507D0476193E7CA4003CC3B6 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */; };
-		5094D4E41991B84500F3EF1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5094D4E31991B84500F3EF1C /* AppDelegate.swift */; };
 		509BA66118EB4E960011D374 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66018EB4E960011D374 /* Foundation.framework */; };
 		509BA66318EB4E960011D374 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66218EB4E960011D374 /* CoreGraphics.framework */; };
 		509BA66518EB4E960011D374 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66418EB4E960011D374 /* UIKit.framework */; };
@@ -52,6 +51,22 @@
 		509BB196193A756100FC8CC7 /* MBPreCacher.m in Sources */ = {isa = PBXBuildFile; fileRef = 509BB17D193A756100FC8CC7 /* MBPreCacher.m */; };
 		509BB197193A756100FC8CC7 /* MBViewAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 509BB17F193A756100FC8CC7 /* MBViewAnimator.m */; };
 		509BB19A193A7B9F00FC8CC7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BB199193A7B9F00FC8CC7 /* CoreData.framework */; };
+		50B701AB1991D2AB0018FB31 /* Titillium-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B7019B1991CFDC0018FB31 /* Titillium-Black.otf */; };
+		50B701AC1991D2AB0018FB31 /* Titillium-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B7019C1991CFDC0018FB31 /* Titillium-Bold.otf */; };
+		50B701AD1991D2AB0018FB31 /* Titillium-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B7019D1991CFDC0018FB31 /* Titillium-BoldItalic.otf */; };
+		50B701AE1991D2AB0018FB31 /* Titillium-BoldUpright.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B7019E1991CFDC0018FB31 /* Titillium-BoldUpright.otf */; };
+		50B701AF1991D2AB0018FB31 /* Titillium-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B7019F1991CFDC0018FB31 /* Titillium-Light.otf */; };
+		50B701B01991D2AB0018FB31 /* Titillium-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701A01991CFDC0018FB31 /* Titillium-LightItalic.otf */; };
+		50B701B11991D2AB0018FB31 /* Titillium-LightUpright.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701A11991CFDC0018FB31 /* Titillium-LightUpright.otf */; };
+		50B701B21991D2AB0018FB31 /* Titillium-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701A21991CFDC0018FB31 /* Titillium-Regular.otf */; };
+		50B701B31991D2AB0018FB31 /* Titillium-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701A31991CFDC0018FB31 /* Titillium-RegularItalic.otf */; };
+		50B701B41991D2AB0018FB31 /* Titillium-RegularUpright.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701A41991CFDC0018FB31 /* Titillium-RegularUpright.otf */; };
+		50B701B51991D2AB0018FB31 /* Titillium-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701A51991CFDC0018FB31 /* Titillium-Semibold.otf */; };
+		50B701B61991D2AB0018FB31 /* Titillium-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701A61991CFDC0018FB31 /* Titillium-SemiboldItalic.otf */; };
+		50B701B71991D2AB0018FB31 /* Titillium-SemiboldUpright.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701A71991CFDC0018FB31 /* Titillium-SemiboldUpright.otf */; };
+		50B701B81991D2AB0018FB31 /* Titillium-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701A81991CFDC0018FB31 /* Titillium-Thin.otf */; };
+		50B701B91991D2AB0018FB31 /* Titillium-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701A91991CFDC0018FB31 /* Titillium-ThinItalic.otf */; };
+		50B701BA1991D2AB0018FB31 /* Titillium-ThinUpright.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701AA1991CFDC0018FB31 /* Titillium-ThinUpright.otf */; };
 		F35AE82AA7F5417A814DCAEE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57EC558AFF9D4E6D9C4B789A /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -77,7 +92,6 @@
 		507D0474193E7CA4003CC3B6 /* ProductTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableViewCell.h; sourceTree = "<group>"; };
 		507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTableViewCell.m; sourceTree = "<group>"; };
 		5094D4E01991B82800F3EF1C /* Grip-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grip-Bridging-Header.h"; sourceTree = "<group>"; };
-		5094D4E31991B84500F3EF1C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		509BA65D18EB4E960011D374 /* Grip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		509BA66018EB4E960011D374 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		509BA66218EB4E960011D374 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -146,6 +160,22 @@
 		509BB17E193A756100FC8CC7 /* MBViewAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBViewAnimator.h; sourceTree = "<group>"; };
 		509BB17F193A756100FC8CC7 /* MBViewAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBViewAnimator.m; sourceTree = "<group>"; };
 		509BB199193A7B9F00FC8CC7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		50B7019B1991CFDC0018FB31 /* Titillium-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-Black.otf"; sourceTree = "<group>"; };
+		50B7019C1991CFDC0018FB31 /* Titillium-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-Bold.otf"; sourceTree = "<group>"; };
+		50B7019D1991CFDC0018FB31 /* Titillium-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-BoldItalic.otf"; sourceTree = "<group>"; };
+		50B7019E1991CFDC0018FB31 /* Titillium-BoldUpright.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-BoldUpright.otf"; sourceTree = "<group>"; };
+		50B7019F1991CFDC0018FB31 /* Titillium-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-Light.otf"; sourceTree = "<group>"; };
+		50B701A01991CFDC0018FB31 /* Titillium-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-LightItalic.otf"; sourceTree = "<group>"; };
+		50B701A11991CFDC0018FB31 /* Titillium-LightUpright.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-LightUpright.otf"; sourceTree = "<group>"; };
+		50B701A21991CFDC0018FB31 /* Titillium-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-Regular.otf"; sourceTree = "<group>"; };
+		50B701A31991CFDC0018FB31 /* Titillium-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-RegularItalic.otf"; sourceTree = "<group>"; };
+		50B701A41991CFDC0018FB31 /* Titillium-RegularUpright.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-RegularUpright.otf"; sourceTree = "<group>"; };
+		50B701A51991CFDC0018FB31 /* Titillium-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-Semibold.otf"; sourceTree = "<group>"; };
+		50B701A61991CFDC0018FB31 /* Titillium-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-SemiboldItalic.otf"; sourceTree = "<group>"; };
+		50B701A71991CFDC0018FB31 /* Titillium-SemiboldUpright.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-SemiboldUpright.otf"; sourceTree = "<group>"; };
+		50B701A81991CFDC0018FB31 /* Titillium-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-Thin.otf"; sourceTree = "<group>"; };
+		50B701A91991CFDC0018FB31 /* Titillium-ThinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-ThinItalic.otf"; sourceTree = "<group>"; };
+		50B701AA1991CFDC0018FB31 /* Titillium-ThinUpright.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-ThinUpright.otf"; sourceTree = "<group>"; };
 		57EC558AFF9D4E6D9C4B789A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		86E46A5E4CF540BC84E44282 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -245,6 +275,7 @@
 		509BA66718EB4E960011D374 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				50B7019A1991CFD00018FB31 /* Fonts */,
 				509BA66818EB4E960011D374 /* Grip-Info.plist */,
 				509BA66918EB4E960011D374 /* InfoPlist.strings */,
 				509BA66C18EB4E960011D374 /* main.m */,
@@ -303,7 +334,6 @@
 			isa = PBXGroup;
 			children = (
 				509BB198193A757800FC8CC7 /* Frameworks */,
-				5094D4E31991B84500F3EF1C /* AppDelegate.swift */,
 				509BA66F18EB4E960011D374 /* AppDelegate.h */,
 				509BA67018EB4E960011D374 /* AppDelegate.m */,
 				509BA67218EB4E960011D374 /* Main.storyboard */,
@@ -456,6 +486,29 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		50B7019A1991CFD00018FB31 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				50B7019B1991CFDC0018FB31 /* Titillium-Black.otf */,
+				50B7019C1991CFDC0018FB31 /* Titillium-Bold.otf */,
+				50B7019D1991CFDC0018FB31 /* Titillium-BoldItalic.otf */,
+				50B7019E1991CFDC0018FB31 /* Titillium-BoldUpright.otf */,
+				50B7019F1991CFDC0018FB31 /* Titillium-Light.otf */,
+				50B701A01991CFDC0018FB31 /* Titillium-LightItalic.otf */,
+				50B701A11991CFDC0018FB31 /* Titillium-LightUpright.otf */,
+				50B701A21991CFDC0018FB31 /* Titillium-Regular.otf */,
+				50B701A31991CFDC0018FB31 /* Titillium-RegularItalic.otf */,
+				50B701A41991CFDC0018FB31 /* Titillium-RegularUpright.otf */,
+				50B701A51991CFDC0018FB31 /* Titillium-Semibold.otf */,
+				50B701A61991CFDC0018FB31 /* Titillium-SemiboldItalic.otf */,
+				50B701A71991CFDC0018FB31 /* Titillium-SemiboldUpright.otf */,
+				50B701A81991CFDC0018FB31 /* Titillium-Thin.otf */,
+				50B701A91991CFDC0018FB31 /* Titillium-ThinItalic.otf */,
+				50B701AA1991CFDC0018FB31 /* Titillium-ThinUpright.otf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -534,8 +587,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50B701B71991D2AB0018FB31 /* Titillium-SemiboldUpright.otf in Resources */,
+				50B701B51991D2AB0018FB31 /* Titillium-Semibold.otf in Resources */,
+				50B701B31991D2AB0018FB31 /* Titillium-RegularItalic.otf in Resources */,
+				50B701B11991D2AB0018FB31 /* Titillium-LightUpright.otf in Resources */,
+				50B701B01991D2AB0018FB31 /* Titillium-LightItalic.otf in Resources */,
+				50B701B81991D2AB0018FB31 /* Titillium-Thin.otf in Resources */,
+				50B701B21991D2AB0018FB31 /* Titillium-Regular.otf in Resources */,
+				50B701AD1991D2AB0018FB31 /* Titillium-BoldItalic.otf in Resources */,
 				509BA67918EB4E960011D374 /* Images.xcassets in Resources */,
+				50B701AC1991D2AB0018FB31 /* Titillium-Bold.otf in Resources */,
+				50B701B61991D2AB0018FB31 /* Titillium-SemiboldItalic.otf in Resources */,
+				50B701AB1991D2AB0018FB31 /* Titillium-Black.otf in Resources */,
+				50B701BA1991D2AB0018FB31 /* Titillium-ThinUpright.otf in Resources */,
+				50B701AF1991D2AB0018FB31 /* Titillium-Light.otf in Resources */,
 				509BA66B18EB4E960011D374 /* InfoPlist.strings in Resources */,
+				50B701B91991D2AB0018FB31 /* Titillium-ThinItalic.otf in Resources */,
+				50B701B41991D2AB0018FB31 /* Titillium-RegularUpright.otf in Resources */,
+				50B701AE1991D2AB0018FB31 /* Titillium-BoldUpright.otf in Resources */,
 				509BA67418EB4E960011D374 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -588,7 +657,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5094D4E41991B84500F3EF1C /* AppDelegate.swift in Sources */,
 				509BB197193A756100FC8CC7 /* MBViewAnimator.m in Sources */,
 				509BB18B193A756100FC8CC7 /* MCTextFieldInterpreter.m in Sources */,
 				509BB18A193A756100FC8CC7 /* MCLabelInterpreter.m in Sources */,
