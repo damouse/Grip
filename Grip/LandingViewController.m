@@ -11,6 +11,10 @@
 #import "UIView+Utils.h"
 #import "MBConnectionManager.h"
 
+#import "Grip-Swift.h"
+
+
+
 @interface LandingViewController () {
     MBViewAnimator *animator;
 }
@@ -32,7 +36,8 @@
 	
     animator = [[MBViewAnimator alloc] initWithDuration:ANIMATION_DURATION];
     
-    [[MBConnectionManager manager] login];
+    PGApiManager *man = [[PGApiManager alloc] init];
+    NSLog(@"%@", [man login]);
 }
 
 - (void) viewWillAppear:(BOOL)animated {   
