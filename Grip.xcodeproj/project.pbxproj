@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5016F1C81991EA3B0000B72B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5016F1C61991EA3B0000B72B /* Model.xcdatamodeld */; };
 		502F0434193FC90900516A0F /* ProductTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 502F0433193FC90900516A0F /* ProductTableViewDelegate.m */; };
 		5053F108194132B400EDF062 /* RMSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5053F107194132B400EDF062 /* RMSwipeTableViewCell.m */; };
 		5053F10E1941444F00EDF062 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 5053F10D1941444F00EDF062 /* Product.m */; };
@@ -81,6 +82,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5016F1C71991EA3B0000B72B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		502F0432193FC90900516A0F /* ProductTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableViewDelegate.h; sourceTree = "<group>"; };
 		502F0433193FC90900516A0F /* ProductTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTableViewDelegate.m; sourceTree = "<group>"; };
 		5053F106194132B400EDF062 /* RMSwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSwipeTableViewCell.h; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			children = (
 				5053F10C1941444F00EDF062 /* Product.h */,
 				5053F10D1941444F00EDF062 /* Product.m */,
+				5016F1C61991EA3B0000B72B /* Model.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -677,6 +680,7 @@
 				509BB193193A756100FC8CC7 /* UILabel+Utils.m in Sources */,
 				509BB188193A756100FC8CC7 /* MCButtonInterpreter.m in Sources */,
 				509BB18D193A756100FC8CC7 /* MCUIElementInterpreter.m in Sources */,
+				5016F1C81991EA3B0000B72B /* Model.xcdatamodeld in Sources */,
 				509BB191193A756100FC8CC7 /* UIButton+Utils.m in Sources */,
 				509BB190193A756100FC8CC7 /* NSString+Utils.m in Sources */,
 				509BA67118EB4E960011D374 /* AppDelegate.m in Sources */,
@@ -925,6 +929,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5016F1C61991EA3B0000B72B /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5016F1C71991EA3B0000B72B /* Model.xcdatamodel */,
+			);
+			currentVersion = 5016F1C71991EA3B0000B72B /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 509BA65518EB4E960011D374 /* Project object */;
 }
