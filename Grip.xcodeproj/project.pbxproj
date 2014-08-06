@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		500FAD3A19920731007F0722 /* PGApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 500FAD3919920731007F0722 /* PGApiManager.m */; };
+		500FAD3A19920731007F0722 /* PGApiManagers.m in Sources */ = {isa = PBXBuildFile; fileRef = 500FAD3919920731007F0722 /* PGApiManagers.m */; };
 		5016F1DA1991F70D0000B72B /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 5016F1D01991F70D0000B72B /* Group.m */; };
 		5016F1DB1991F70D0000B72B /* Merchandise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5016F1D21991F70D0000B72B /* Merchandise.m */; };
 		5016F1DC1991F70D0000B72B /* Package.m in Sources */ = {isa = PBXBuildFile; fileRef = 5016F1D41991F70D0000B72B /* Package.m */; };
@@ -73,6 +73,7 @@
 		50B701B81991D2AB0018FB31 /* Titillium-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701A81991CFDC0018FB31 /* Titillium-Thin.otf */; };
 		50B701B91991D2AB0018FB31 /* Titillium-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701A91991CFDC0018FB31 /* Titillium-ThinItalic.otf */; };
 		50B701BA1991D2AB0018FB31 /* Titillium-ThinUpright.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701AA1991CFDC0018FB31 /* Titillium-ThinUpright.otf */; };
+		50EB9DC71992313100CEB088 /* PGApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EB9DC61992313100CEB088 /* PGApiManager.swift */; };
 		F35AE82AA7F5417A814DCAEE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57EC558AFF9D4E6D9C4B789A /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -87,8 +88,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		500FAD3819920731007F0722 /* PGApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGApiManager.h; sourceTree = "<group>"; };
-		500FAD3919920731007F0722 /* PGApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGApiManager.m; sourceTree = "<group>"; };
+		500FAD3819920731007F0722 /* PGApiManagera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGApiManagera.h; sourceTree = "<group>"; };
+		500FAD3919920731007F0722 /* PGApiManagers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGApiManagers.m; sourceTree = "<group>"; };
 		5016F1CF1991F70D0000B72B /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		5016F1D01991F70D0000B72B /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		5016F1D11991F70D0000B72B /* Merchandise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Merchandise.h; sourceTree = "<group>"; };
@@ -194,6 +195,7 @@
 		50B701A81991CFDC0018FB31 /* Titillium-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-Thin.otf"; sourceTree = "<group>"; };
 		50B701A91991CFDC0018FB31 /* Titillium-ThinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-ThinItalic.otf"; sourceTree = "<group>"; };
 		50B701AA1991CFDC0018FB31 /* Titillium-ThinUpright.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-ThinUpright.otf"; sourceTree = "<group>"; };
+		50EB9DC61992313100CEB088 /* PGApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PGApiManager.swift; sourceTree = "<group>"; };
 		57EC558AFF9D4E6D9C4B789A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		86E46A5E4CF540BC84E44282 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -227,8 +229,9 @@
 		500FAD35199206D7007F0722 /* Server */ = {
 			isa = PBXGroup;
 			children = (
-				500FAD3819920731007F0722 /* PGApiManager.h */,
-				500FAD3919920731007F0722 /* PGApiManager.m */,
+				50EB9DC61992313100CEB088 /* PGApiManager.swift */,
+				500FAD3819920731007F0722 /* PGApiManagera.h */,
+				500FAD3919920731007F0722 /* PGApiManagers.m */,
 				5064D3B419921D60003B9DC6 /* PGCacheManager.h */,
 				5064D3B519921D60003B9DC6 /* PGCacheManager.m */,
 			);
@@ -715,7 +718,7 @@
 				509BB18C193A756100FC8CC7 /* MCTextViewInterpreter.m in Sources */,
 				509BB18E193A756100FC8CC7 /* MBPickerView.m in Sources */,
 				509BA69E18EB50930011D374 /* DealViewController.m in Sources */,
-				500FAD3A19920731007F0722 /* PGApiManager.m in Sources */,
+				500FAD3A19920731007F0722 /* PGApiManagers.m in Sources */,
 				509BB193193A756100FC8CC7 /* UILabel+Utils.m in Sources */,
 				5016F1DD1991F70D0000B72B /* Product.m in Sources */,
 				509BB188193A756100FC8CC7 /* MCButtonInterpreter.m in Sources */,
@@ -724,6 +727,7 @@
 				509BB190193A756100FC8CC7 /* NSString+Utils.m in Sources */,
 				509BA67118EB4E960011D374 /* AppDelegate.m in Sources */,
 				509BA69B18EB50620011D374 /* LandingViewController.m in Sources */,
+				50EB9DC71992313100CEB088 /* PGApiManager.swift in Sources */,
 				507D0470193E7A18003CC3B6 /* UIView+Utils.m in Sources */,
 				509BB196193A756100FC8CC7 /* MBPreCacher.m in Sources */,
 				509BB186193A756100FC8CC7 /* MCCollectionViewDelegate.m in Sources */,

@@ -45,6 +45,7 @@
 }
 
 
+#pragma mark Public interface
 - (void) login {
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager manager] initWithBaseURL:[NSURL URLWithString:base_url]];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -66,5 +67,6 @@
     }];
 }
 
-#pragma mark Interal Helpers
+
+
 @end
