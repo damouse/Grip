@@ -10,19 +10,31 @@
 import Foundation
 import UIKit
 
+
 @objc class PGApiManager : NSObject {
     let base_url = "http://packagegrid.com/"
     
     
-    func login() -> String {
+    func login() -> Void {
         var man = AFHTTPRequestOperationManager(baseURL: NSURL(string: base_url))
         man.requestSerializer = AFJSONRequestSerializer()
         man.requestSerializer.setValue("application/json", forHTTPHeaderField: "Accept")
-        
 
-        return "yay!"
-        
-        
+        //Issue the call
+        man.GET("api/v1/auth?user_email=test@test.com&password=12345678", parameters: nil,
+            success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
+                print("success- ")
+                var error: NSError?
+                
+                //WARNING-- not checking type of responseObject before unpacking to dictionary-- will crash at runtime if a dictionary is not passed in!
+                var user: User = MTLJSONAdapter.modelOfClass(User.self, fromJSONDictionary: responseObject as Dictionary<String, AnyObject>, error: &error) as User
+                println(user)
+
+            },
+            failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
+                print("failure- ")
+                println(error)
+        })
     }
     
     

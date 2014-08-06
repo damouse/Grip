@@ -37,7 +37,7 @@
     animator = [[MBViewAnimator alloc] initWithDuration:ANIMATION_DURATION];
     
     PGApiManager *man = [[PGApiManager alloc] init];
-    NSLog(@"%@", [man login]);
+    [man login];
 }
 
 - (void) viewWillAppear:(BOOL)animated {   

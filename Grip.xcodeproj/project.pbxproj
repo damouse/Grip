@@ -11,9 +11,9 @@
 		5016F1DB1991F70D0000B72B /* Merchandise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5016F1D21991F70D0000B72B /* Merchandise.m */; };
 		5016F1DC1991F70D0000B72B /* Package.m in Sources */ = {isa = PBXBuildFile; fileRef = 5016F1D41991F70D0000B72B /* Package.m */; };
 		5016F1DD1991F70D0000B72B /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 5016F1D61991F70D0000B72B /* Product.m */; };
-		5016F1DE1991F70D0000B72B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5016F1D81991F70D0000B72B /* User.m */; };
 		502F0434193FC90900516A0F /* ProductTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 502F0433193FC90900516A0F /* ProductTableViewDelegate.m */; };
 		5053F108194132B400EDF062 /* RMSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5053F107194132B400EDF062 /* RMSwipeTableViewCell.m */; };
+		50637C63199247F40010A6EF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50637C62199247F40010A6EF /* User.swift */; };
 		507D0470193E7A18003CC3B6 /* UIView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D046F193E7A18003CC3B6 /* UIView+Utils.m */; };
 		507D0476193E7CA4003CC3B6 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */; };
 		509BA66118EB4E960011D374 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66018EB4E960011D374 /* Foundation.framework */; };
@@ -94,12 +94,11 @@
 		5016F1D41991F70D0000B72B /* Package.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Package.m; sourceTree = "<group>"; };
 		5016F1D51991F70D0000B72B /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
 		5016F1D61991F70D0000B72B /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
-		5016F1D71991F70D0000B72B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		5016F1D81991F70D0000B72B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		502F0432193FC90900516A0F /* ProductTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableViewDelegate.h; sourceTree = "<group>"; };
 		502F0433193FC90900516A0F /* ProductTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTableViewDelegate.m; sourceTree = "<group>"; };
 		5053F106194132B400EDF062 /* RMSwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSwipeTableViewCell.h; sourceTree = "<group>"; };
 		5053F107194132B400EDF062 /* RMSwipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSwipeTableViewCell.m; sourceTree = "<group>"; };
+		50637C62199247F40010A6EF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		507D046E193E7A18003CC3B6 /* UIView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Utils.h"; sourceTree = "<group>"; };
 		507D046F193E7A18003CC3B6 /* UIView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Utils.m"; sourceTree = "<group>"; };
 		507D0474193E7CA4003CC3B6 /* ProductTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableViewCell.h; sourceTree = "<group>"; };
@@ -348,6 +347,7 @@
 		509BA69718EB4FF30011D374 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				50637C62199247F40010A6EF /* User.swift */,
 				5016F1CF1991F70D0000B72B /* Group.h */,
 				5016F1D01991F70D0000B72B /* Group.m */,
 				5016F1D11991F70D0000B72B /* Merchandise.h */,
@@ -356,8 +356,6 @@
 				5016F1D41991F70D0000B72B /* Package.m */,
 				5016F1D51991F70D0000B72B /* Product.h */,
 				5016F1D61991F70D0000B72B /* Product.m */,
-				5016F1D71991F70D0000B72B /* User.h */,
-				5016F1D81991F70D0000B72B /* User.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -688,7 +686,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5016F1DE1991F70D0000B72B /* User.m in Sources */,
 				5016F1DA1991F70D0000B72B /* Group.m in Sources */,
 				509BB197193A756100FC8CC7 /* MBViewAnimator.m in Sources */,
 				509BB18B193A756100FC8CC7 /* MCTextFieldInterpreter.m in Sources */,
@@ -706,6 +703,7 @@
 				509BB181193A756100FC8CC7 /* MBProgressHUD.m in Sources */,
 				509BB184193A756100FC8CC7 /* MCProperty.m in Sources */,
 				509BB18C193A756100FC8CC7 /* MCTextViewInterpreter.m in Sources */,
+				50637C63199247F40010A6EF /* User.swift in Sources */,
 				509BB18E193A756100FC8CC7 /* MBPickerView.m in Sources */,
 				509BA69E18EB50930011D374 /* DealViewController.m in Sources */,
 				509BB193193A756100FC8CC7 /* UILabel+Utils.m in Sources */,
