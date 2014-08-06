@@ -1,6 +1,6 @@
 //
 //
-// Product
+// Merchandise
 // This is an object created by COBGIN
 //
 //
@@ -9,9 +9,9 @@
 //
 
 
-#import "Product.h"
+#import "Merchandise.h"
 
-@implementation Product
+@implementation Merchandise
 @synthesize name, description, group_id, order_index, price, created_at, updated_at, image_file_name, image_updated_at;
 
 #pragma mark Connection Manager

@@ -1,6 +1,6 @@
 //
 //
-// Product
+// Merchandise
 // This is an object created by COBGIN
 //
 //
@@ -9,7 +9,7 @@
 //
 
 
-@interface Product : NSObject
+@interface Merchandise : NSObject
 
 @property (strong, nonatomic) NSString * name;
 @property (strong, nonatomic) NSString * description;
