@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5016F1D91991F70D0000B72B /* CLConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5016F1CE1991F70D0000B72B /* CLConnectionManager.m */; };
 		5016F1DA1991F70D0000B72B /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 5016F1D01991F70D0000B72B /* Group.m */; };
 		5016F1DB1991F70D0000B72B /* Merchandise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5016F1D21991F70D0000B72B /* Merchandise.m */; };
 		5016F1DC1991F70D0000B72B /* Package.m in Sources */ = {isa = PBXBuildFile; fileRef = 5016F1D41991F70D0000B72B /* Package.m */; };
@@ -86,8 +85,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5016F1CD1991F70D0000B72B /* CLConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLConnectionManager.h; sourceTree = "<group>"; };
-		5016F1CE1991F70D0000B72B /* CLConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLConnectionManager.m; sourceTree = "<group>"; };
 		5016F1CF1991F70D0000B72B /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		5016F1D01991F70D0000B72B /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		5016F1D11991F70D0000B72B /* Merchandise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Merchandise.h; sourceTree = "<group>"; };
@@ -339,8 +336,6 @@
 		509BA69718EB4FF30011D374 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5016F1CD1991F70D0000B72B /* CLConnectionManager.h */,
-				5016F1CE1991F70D0000B72B /* CLConnectionManager.m */,
 				5016F1CF1991F70D0000B72B /* Group.h */,
 				5016F1D01991F70D0000B72B /* Group.m */,
 				5016F1D11991F70D0000B72B /* Merchandise.h */,
@@ -696,7 +691,6 @@
 				509BB194193A756100FC8CC7 /* StraightUpUtils.m in Sources */,
 				507D0476193E7CA4003CC3B6 /* ProductTableViewCell.m in Sources */,
 				509BB185193A756100FC8CC7 /* MCCollectionView.m in Sources */,
-				5016F1D91991F70D0000B72B /* CLConnectionManager.m in Sources */,
 				509BB187193A756100FC8CC7 /* MCTableView.m in Sources */,
 				509BB181193A756100FC8CC7 /* MBProgressHUD.m in Sources */,
 				509BB184193A756100FC8CC7 /* MCProperty.m in Sources */,

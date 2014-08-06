@@ -14,5 +14,6 @@
 //Singleton call
 + (MBConnectionManager *) manager;
 
+- (void) login;
 //- (void) apiRequestWithMapping:(RKObjectMapping *)mapping atURL:(NSString *)url withKeyPath:(NSString *)path success:(void (^)(RKMappingResult *))success fail:(void (^)(NSError *))failure;
 @end

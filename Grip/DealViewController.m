@@ -258,8 +258,8 @@ typedef enum UIState{
     for (int i = 0; i < 5; i++) {
         Product *product = [[Product alloc] init];
         product.name = [NSString stringWithFormat:@"Product %i", i];
-        [product setDescripton:@"Adfasdfasdfasdljkfasdjfhaslkdjf asdfkj asdfkja sdlfja sdfjha sldfha sdjfha sdfjha sdkjfa sdfjh "];
-        product.selected = YES;
+//        [product setDescripton:@"Adfasdfasdfasdljkfasdjfhaslkdjf asdfkj asdfkja sdlfja sdfjha sldfha sdjfha sdfjha sdkjfa sdfjh "];
+//        product.selected = YES;
         [array addObject:product];
     }
     

@@ -9,6 +9,7 @@
 #import "LandingViewController.h"
 #import "MBViewAnimator.h"
 #import "UIView+Utils.h"
+#import "MBConnectionManager.h"
 
 @interface LandingViewController () {
     MBViewAnimator *animator;
@@ -30,6 +31,8 @@
     [super viewDidLoad];
 	
     animator = [[MBViewAnimator alloc] initWithDuration:ANIMATION_DURATION];
+    
+    [[MBConnectionManager manager] login];
 }
 
 - (void) viewWillAppear:(BOOL)animated {   
