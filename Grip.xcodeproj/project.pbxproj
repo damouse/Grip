@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		500FAD3A19920731007F0722 /* PGApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 500FAD3919920731007F0722 /* PGApiManager.m */; };
 		5016F1DA1991F70D0000B72B /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 5016F1D01991F70D0000B72B /* Group.m */; };
 		5016F1DB1991F70D0000B72B /* Merchandise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5016F1D21991F70D0000B72B /* Merchandise.m */; };
 		5016F1DC1991F70D0000B72B /* Package.m in Sources */ = {isa = PBXBuildFile; fileRef = 5016F1D41991F70D0000B72B /* Package.m */; };
@@ -14,6 +15,7 @@
 		5016F1DE1991F70D0000B72B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5016F1D81991F70D0000B72B /* User.m */; };
 		502F0434193FC90900516A0F /* ProductTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 502F0433193FC90900516A0F /* ProductTableViewDelegate.m */; };
 		5053F108194132B400EDF062 /* RMSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5053F107194132B400EDF062 /* RMSwipeTableViewCell.m */; };
+		5064D3B619921D60003B9DC6 /* PGCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5064D3B519921D60003B9DC6 /* PGCacheManager.m */; };
 		507D0470193E7A18003CC3B6 /* UIView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D046F193E7A18003CC3B6 /* UIView+Utils.m */; };
 		507D0476193E7CA4003CC3B6 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */; };
 		509BA66118EB4E960011D374 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66018EB4E960011D374 /* Foundation.framework */; };
@@ -85,6 +87,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		500FAD3819920731007F0722 /* PGApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGApiManager.h; sourceTree = "<group>"; };
+		500FAD3919920731007F0722 /* PGApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGApiManager.m; sourceTree = "<group>"; };
 		5016F1CF1991F70D0000B72B /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		5016F1D01991F70D0000B72B /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		5016F1D11991F70D0000B72B /* Merchandise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Merchandise.h; sourceTree = "<group>"; };
@@ -99,6 +103,8 @@
 		502F0433193FC90900516A0F /* ProductTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTableViewDelegate.m; sourceTree = "<group>"; };
 		5053F106194132B400EDF062 /* RMSwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSwipeTableViewCell.h; sourceTree = "<group>"; };
 		5053F107194132B400EDF062 /* RMSwipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSwipeTableViewCell.m; sourceTree = "<group>"; };
+		5064D3B419921D60003B9DC6 /* PGCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGCacheManager.h; sourceTree = "<group>"; };
+		5064D3B519921D60003B9DC6 /* PGCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGCacheManager.m; sourceTree = "<group>"; };
 		507D046E193E7A18003CC3B6 /* UIView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Utils.h"; sourceTree = "<group>"; };
 		507D046F193E7A18003CC3B6 /* UIView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Utils.m"; sourceTree = "<group>"; };
 		507D0474193E7CA4003CC3B6 /* ProductTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableViewCell.h; sourceTree = "<group>"; };
@@ -218,6 +224,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		500FAD35199206D7007F0722 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				500FAD3819920731007F0722 /* PGApiManager.h */,
+				500FAD3919920731007F0722 /* PGApiManager.m */,
+				5064D3B419921D60003B9DC6 /* PGCacheManager.h */,
+				5064D3B519921D60003B9DC6 /* PGCacheManager.m */,
+			);
+			name = Server;
+			sourceTree = "<group>";
+		};
 		5053F1051941327A00EDF062 /* SwipableTableCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +291,7 @@
 		509BA66618EB4E960011D374 /* Grip */ = {
 			isa = PBXGroup;
 			children = (
+				500FAD35199206D7007F0722 /* Server */,
 				509BA69718EB4FF30011D374 /* Model */,
 				509BA69518EB4FE90011D374 /* Controller */,
 				509BA69618EB4FED0011D374 /* View */,
@@ -697,6 +715,7 @@
 				509BB18C193A756100FC8CC7 /* MCTextViewInterpreter.m in Sources */,
 				509BB18E193A756100FC8CC7 /* MBPickerView.m in Sources */,
 				509BA69E18EB50930011D374 /* DealViewController.m in Sources */,
+				500FAD3A19920731007F0722 /* PGApiManager.m in Sources */,
 				509BB193193A756100FC8CC7 /* UILabel+Utils.m in Sources */,
 				5016F1DD1991F70D0000B72B /* Product.m in Sources */,
 				509BB188193A756100FC8CC7 /* MCButtonInterpreter.m in Sources */,
@@ -713,6 +732,7 @@
 				509BA66D18EB4E960011D374 /* main.m in Sources */,
 				509BB18F193A756100FC8CC7 /* MBBoilerplateUtils.m in Sources */,
 				509BB189193A756100FC8CC7 /* MCImageViewInterpreter.m in Sources */,
+				5064D3B619921D60003B9DC6 /* PGCacheManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,19 +15,21 @@
 @synthesize name, group_id, email, authentication_token, token_expiration, created_at, updated_at;
 
 #pragma mark Connection Manager
-+ (RKObjectMapping *) mapping {
-	//returns the mapping needed by RestKit to perform API calls
-	RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[self class]];
-	[mapping addAttributeMappingsFromDictionary:@{
-	@"name": @"name",
-	@"group_id": @"group_id",
-	@"email": @"email",
-	@"authentication_token": @"authentication_token",
-	@"token_expiration": @"token_expiration",
-	@"created_at": @"created_at",
-	@"updated_at": @"updated_at"  }];
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{
+             	@"name": @"name",
+             	@"group_id": @"group_id",
+             	@"email": @"email",
+             	@"authentication_token": @"authentication_token",
+             	@"token_expiration": @"token_expiration",
+             	@"created_at": @"created_at",
+             	@"updated_at": @"updated_at"  };
+}
 
-	return mapping;
++ (NSValueTransformer *)appURLSchemeJSONTransformer {
+    // use Mantle's built-in "value transformer" to convert strings to NSURL and vice-versa
+    // you can write your own transformers
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
 

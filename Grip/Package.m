@@ -15,19 +15,19 @@
 @synthesize name, discount, order_index, group_id, created_at, updated_at;
 
 #pragma mark Connection Manager
-+ (RKObjectMapping *) mapping {
-	//returns the mapping needed by RestKit to perform API calls
-	RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[self class]];
-	[mapping addAttributeMappingsFromDictionary:@{
-	@"name": @"name",
-	@"discount": @"discount",
-	@"order_index": @"order_index",
-	@"group_id": @"group_id",
-	@"created_at": @"created_at",
-	@"updated_at": @"updated_at"  }];
-
-	return mapping;
-}
+//+ (RKObjectMapping *) mapping {
+//	//returns the mapping needed by RestKit to perform API calls
+//	RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[self class]];
+//	[mapping addAttributeMappingsFromDictionary:@{
+//	@"name": @"name",
+//	@"discount": @"discount",
+//	@"order_index": @"order_index",
+//	@"group_id": @"group_id",
+//	@"created_at": @"created_at",
+//	@"updated_at": @"updated_at"  }];
+//
+//	return mapping;
+//}
 
 
 #pragma mark NSCoding Protocol

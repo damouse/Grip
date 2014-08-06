@@ -39,6 +39,6 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import <CoreData/CoreData.h>
-    #import <RestKit/RestKit.h>
+    #import <Mantle/Mantle.h>
 #import <objc/runtime.h>
 #endif

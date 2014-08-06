@@ -15,14 +15,14 @@
 @synthesize name;
 
 #pragma mark Connection Manager
-+ (RKObjectMapping *) mapping {
-	//returns the mapping needed by RestKit to perform API calls
-	RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[self class]];
-	[mapping addAttributeMappingsFromDictionary:@{
-	@"name": @"name"  }];
-
-	return mapping;
-}
+//+ (RKObjectMapping *) mapping {
+//	//returns the mapping needed by RestKit to perform API calls
+//	RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[self class]];
+//	[mapping addAttributeMappingsFromDictionary:@{
+//	@"name": @"name"  }];
+//
+//	return mapping;
+//}
 
 
 #pragma mark NSCoding Protocol

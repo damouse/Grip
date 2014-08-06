@@ -18,6 +18,6 @@
 @property (strong, nonatomic) NSString * created_at;
 @property (strong, nonatomic) NSString * updated_at;
 
-+ (RKObjectMapping *) mapping;
+//+ (RKObjectMapping *) mapping;
 
 @end

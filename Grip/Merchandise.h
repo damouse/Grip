@@ -21,6 +21,6 @@
 @property (strong, nonatomic) NSString * image_file_name;
 @property (strong, nonatomic) NSString * image_updated_at;
 
-+ (RKObjectMapping *) mapping;
+//+ (RKObjectMapping *) mapping;
 
 @end

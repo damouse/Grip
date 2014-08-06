@@ -11,6 +11,6 @@
 
 @property (strong, nonatomic) NSString * name;
 
-+ (RKObjectMapping *) mapping;
+//+ (RKObjectMapping *) mapping;
 
 @end

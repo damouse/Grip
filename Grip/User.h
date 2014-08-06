@@ -9,7 +9,8 @@
 //
 
 
-@interface User : NSObject
+
+@interface User : MTLModel <MTLJSONSerializing>
 
 @property (strong, nonatomic) NSString * name;
 @property (strong, nonatomic) NSString * group_id;
@@ -19,6 +20,6 @@
 @property (strong, nonatomic) NSString * created_at;
 @property (strong, nonatomic) NSString * updated_at;
 
-+ (RKObjectMapping *) mapping;
+//+ (RKObjectMapping *) mapping;
 
 @end
