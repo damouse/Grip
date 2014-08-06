@@ -17,6 +17,8 @@
 
 @interface LandingViewController () {
     MBViewAnimator *animator;
+    
+    PGApiManager *apiManager;
 }
 
 @end
@@ -36,8 +38,8 @@
 	
     animator = [[MBViewAnimator alloc] initWithDuration:ANIMATION_DURATION];
     
-    PGApiManager *man = [[PGApiManager alloc] init];
-    [man login];
+    apiManager = [[PGApiManager alloc] init];
+    [apiManager login];
 }
 
 - (void) viewWillAppear:(BOOL)animated {   
@@ -69,7 +71,11 @@
 }
 
 - (IBAction)login:(id)sender {
-
+    NSData *save = [NSKeyedArchiver archivedDataWithRootObject:apiManager.user];
+    [[NSUserDefaults standardUserDefaults] setObject:save forKey:@"save"];
+    
+    save = [[NSUserDefaults standardUserDefaults] objectForKey:@"save"];
+    NSLog(@"DUMP- %@", [NSKeyedUnarchiver unarchiveObjectWithData:save]);
 }
 
 - (IBAction)viewPackages:(id)sender {

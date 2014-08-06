@@ -36,31 +36,16 @@ class User : MTLModel, MTLJSONSerializing {
     }
     
     
-    //NSCoding adoption
+    //Boilerplate, compulsory overrides. Kinda stupid, isn't it?
+    //The following four methods allow this class access to its superclass' inherited methods
     override func encodeWithCoder(coder: NSCoder!) {
-        coder.encodeObject(name, forKey: "name")
-        coder.encodeObject(group_id, forKey: "group_id")
-        coder.encodeObject(email, forKey: "email")
-        coder.encodeObject(authentication_token, forKey: "authentication_token")
-        coder.encodeObject(token_expiration, forKey: "token_expiration")
-        coder.encodeObject(created_at, forKey: "created_at")
-        coder.encodeObject(updated_at, forKey: "updated_at")
-
+        super.encodeWithCoder(coder)
     }
     
     required init(coder:NSCoder) {
-        super.init()
-        name = coder.decodeObjectForKey("name") as? String
-        group_id = coder.decodeObjectForKey("group_id") as Int
-        email = coder.decodeObjectForKey("email") as? String
-        authentication_token = coder.decodeObjectForKey("authentication_token") as? String
-        token_expiration = coder.decodeObjectForKey("token_expiration") as? String
-        created_at = coder.decodeObjectForKey("created_at") as? String
-        updated_at = coder.decodeObjectForKey("updated_at") as? String
+        super.init(coder: coder)
     }
-    
-    
-    //Init calls
+
     override init() {
         super.init()
     }
