@@ -23,9 +23,11 @@
 //        completeDeal(Package, [SigningObject]) -> Void
 //            Given the salesperson, the customer, and the package that was created, create and upload a signing object, calling back 
 //            once completed. 
-
-// NOTE: Must construct a cacheing scheme!
-
+//
+// TODO: 
+// Must construct a cacheing scheme!
+// Note also the absence of groups. Cache the incoming objects behind the user object somehow
+// Backend is responsible for sending the right items, the app just functions as a listener for those objects. I.E. Inherited model objects (from old groups, etc)
 
 import Foundation
 import UIKit
@@ -37,28 +39,61 @@ import UIKit
     var user: User?
     
     
-    func login() -> Void {
-        var client = AFHTTPRequestOperationManager(baseURL: NSURL(string: base_url))
-        client.requestSerializer = AFJSONRequestSerializer()
-        client.requestSerializer.setValue("application/json", forHTTPHeaderField: "Accept")
-
-        client.GET("api/v1/auth?user_email=test@test.com&password=12345678", parameters: nil,
+    // MARK: Public Interface
+    func auth() -> Void {
+        generateAuthenticatedClient().GET("api/v1/auth?user_email=test@test.com&password=12345678", parameters: nil,
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
                 print("success- ")
                 var error: NSError?
                 
                 //WARNING-- not checking type of responseObject before unpacking to dictionary-- will crash at runtime if a dictionary is not passed in!
-                var user: User = MTLJSONAdapter.modelOfClass(User.self, fromJSONDictionary: responseObject as Dictionary<String, AnyObject>, error: &error) as User
-                println(user)
-                
-                self.user = user
-
+                self.user = MTLJSONAdapter.modelOfClass(User.self, fromJSONDictionary: responseObject as Dictionary<String, AnyObject>, error: &error) as? User
             },
             failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
                 print("failure- ")
                 println(error)
         })
     }
+
+    func products(user: User) -> Void {
+        generateAuthenticatedClient().GET("dashboard/2/products", parameters: nil,
+            success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
+                print("success- ")
+                println(responseObject)
+                
+            },
+            failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
+                print("failure- ")
+                println(error)
+        })
+    }
+
+    func merchandises() -> Void {
+        
+    }
+    
+    func packages() -> Void {
+        
+    }
+    
+    func customers() -> Void {
+        
+    }
     
     
+    //MARK: Internal Methods
+    //Returns an authenticated, ready to go AFHTTPManager. If a user is not currently signed in, the 
+    //authentication fields will silently NOT be filled!
+    func generateAuthenticatedClient() -> AFHTTPRequestOperationManager {
+        var client = AFHTTPRequestOperationManager(baseURL: NSURL(string: base_url))
+        client.requestSerializer = AFJSONRequestSerializer()
+        client.requestSerializer.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        if user != nil {
+            client.requestSerializer.setValue(String(user!.id), forHTTPHeaderField: "X-USER-ID")
+            client.requestSerializer.setValue(user?.authentication_token, forHTTPHeaderField: "X-AUTHENTICATION-TOKEN")
+        }
+        
+        return client
+    }
 }

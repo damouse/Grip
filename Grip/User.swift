@@ -9,6 +9,7 @@
 import Foundation
 
 class User : MTLModel, MTLJSONSerializing {
+    var id = -1
     var name: String?
     var group_id = -1
     var email: String?
@@ -20,6 +21,7 @@ class User : MTLModel, MTLJSONSerializing {
     //Boilerplate method for Mantle-- informs the framework how the JSON fields map to the model fields
     class func JSONKeyPathsByPropertyKey() -> [NSObject : AnyObject]! {
         return [
+            "id": "id",
             "name": "name",
             "group_id": "group_id",
             "email": "email",

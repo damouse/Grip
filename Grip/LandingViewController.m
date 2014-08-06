@@ -39,7 +39,7 @@
     animator = [[MBViewAnimator alloc] initWithDuration:ANIMATION_DURATION];
     
     apiManager = [[PGApiManager alloc] init];
-    [apiManager login];
+    [apiManager auth];
 }
 
 - (void) viewWillAppear:(BOOL)animated {   
