@@ -6,27 +6,31 @@
 //  Copyright (c) 2014 Mickey Barboi. All rights reserved.
 //
 
+
 import Foundation
 
-class User : MTLModel, MTLJSONSerializing {
+class Merchandise : MTLModel, MTLJSONSerializing {
     var id = -1
     var name: String?
-    var group_id = -1
-    var email: String?
-    var authentication_token: String?
-    var token_expiration: String?
     var created_at: String?
+    var item_description: String?
+    var group_id = -1
+    var image_url: String?
+    var order_index: String?
+    var price = 0.0
+    var type: String?
     var updated_at: String?
     
-
-
+    
     //Boilerplate Mantle code
     class func appURLSchemeJSONTransformer() -> NSValueTransformer {
         return NSValueTransformer(forName: MTLURLValueTransformerName)
     }
     
     class func JSONKeyPathsByPropertyKey() -> [NSObject : AnyObject]! {
-        return Dictionary<String, String>()
+        return [
+            "item_description" : "description",
+        ]
     }
     
     //Boilerplate, compulsory overrides. Kinda stupid, isn't it?
@@ -38,7 +42,7 @@ class User : MTLModel, MTLJSONSerializing {
     required init(coder:NSCoder) {
         super.init(coder: coder)
     }
-
+    
     override init() {
         super.init()
     }

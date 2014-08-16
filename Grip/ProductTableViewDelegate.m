@@ -8,7 +8,6 @@
 
 #import "ProductTableViewDelegate.h"
 #import "ProductTableViewCell.h"
-#import "Product.h"
 
 #import "UIView+Utils.h"
 
@@ -41,14 +40,14 @@
     cell.delegate = self;
     cell.maxDisplacement = MAX_DISPLACEMENT;
     
-    Product *product = [self.products objectAtIndex:indexPath.row];
+//    Product *product = [self.products objectAtIndex:indexPath.row];
     
     if (cell == nil)
         cell = [[ProductTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     
     //fill content
     //[cell.textviewDetails setText:@"Test"];
-    [cell.labelTitle setText:product.name];
+//    [cell.labelTitle setText:product.name];
     
     return cell;
 }
@@ -86,9 +85,9 @@
         NSMutableArray *oldOrder = [self.products mutableCopy];
         
         //set up the new order
-        Product *product = [self.products objectAtIndex:indexPath.row];
-        [self.products removeObjectAtIndex:indexPath.row];
-        [self.products addObject:product];
+//        Product *product = [self.products objectAtIndex:indexPath.row];
+//        [self.products removeObjectAtIndex:indexPath.row];
+//        [self.products addObject:product];
         
         [self.tableView beginUpdates];
 
