@@ -5,6 +5,7 @@
 //  Created by Mickey Barboi on 4/1/14.
 //  Copyright (c) 2014 Mickey Barboi. All rights reserved.
 //
+// you either black out a hero or drink long enough to see yourself become the villain
 
 #import "LandingViewController.h"
 #import "MBViewAnimator.h"
@@ -12,7 +13,6 @@
 #import "MBConnectionManager.h"
 
 #import "Grip-Swift.h"
-
 
 
 @interface LandingViewController () {
@@ -39,7 +39,12 @@
     animator = [[MBViewAnimator alloc] initWithDuration:ANIMATION_DURATION];
     
     apiManager = [[PGApiManager alloc] init];
-    [apiManager auth];
+    [apiManager logIn:@"test@test.com" password:@"12345678" success:^(void) {
+        NSLog(@"I Fired!");
+    }];
+    
+//    apiManager.products
+
 }
 
 - (void) viewWillAppear:(BOOL)animated {   

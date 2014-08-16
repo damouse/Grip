@@ -215,13 +215,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		500FAD35199206D7007F0722 /* Server */ = {
+		5048DED9199F24FB0014ABC4 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				50EC987C199236D400C62BFE /* PGApiManager.swift */,
-				501B6134199259CF00286A6E /* PGArchiver.swift */,
+				5048DED2199F0A9B0014ABC4 /* Merchandise.swift */,
+				5048DED3199F0A9B0014ABC4 /* Package.swift */,
+				5048DED4199F0A9B0014ABC4 /* Product.swift */,
+				50637C62199247F40010A6EF /* User.swift */,
 			);
-			name = Server;
+			name = Objects;
 			sourceTree = "<group>";
 		};
 		5053F1051941327A00EDF062 /* SwipableTableCell */ = {
@@ -280,7 +282,6 @@
 		509BA66618EB4E960011D374 /* Grip */ = {
 			isa = PBXGroup;
 			children = (
-				500FAD35199206D7007F0722 /* Server */,
 				509BA69718EB4FF30011D374 /* Model */,
 				509BA69518EB4FE90011D374 /* Controller */,
 				509BA69618EB4FED0011D374 /* View */,
@@ -344,10 +345,9 @@
 		509BA69718EB4FF30011D374 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5048DED2199F0A9B0014ABC4 /* Merchandise.swift */,
-				5048DED3199F0A9B0014ABC4 /* Package.swift */,
-				5048DED4199F0A9B0014ABC4 /* Product.swift */,
-				50637C62199247F40010A6EF /* User.swift */,
+				5048DED9199F24FB0014ABC4 /* Objects */,
+				50EC987C199236D400C62BFE /* PGApiManager.swift */,
+				501B6134199259CF00286A6E /* PGArchiver.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";

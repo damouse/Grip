@@ -4,30 +4,8 @@
 //
 //  Created by Mickey Barboi on 8/6/14.
 //  Copyright (c) 2014 Mickey Barboi. All rights reserved.
-//
-// Public interface
-//        currentUser -> User
-//            Returns the currently signed in, authenticated user. If there is no user cached, nil is returned.
-//            If there is a user in the cache present but with an expired/invalid token, opaquely refresh the token and 
-//            return the user
-//
-//        products -> Array
-//            Return the loaded products as an array
-//
-//        packages -> Array
-//            Return the loaded products as an array
-//
-//        customers -> Array
-//            Returns an array of customers
-//
-//        completeDeal(Package, [SigningObject]) -> Void
-//            Given the salesperson, the customer, and the package that was created, create and upload a signing object, calling back 
-//            once completed. 
-//
-// TODO: 
-// Must construct a cacheing scheme!
-// Note also the absence of groups. Cache the incoming objects behind the user object somehow
-// Backend is responsible for sending the right items, the app just functions as a listener for those objects. I.E. Inherited model objects (from old groups, etc)
+
+//TODO: reauth occasionally
 
 import Foundation
 import UIKit
@@ -43,25 +21,31 @@ import UIKit
     
     
     // MARK: Public Interface
-    func auth() -> Void {
-        generateAuthenticatedClient().GET("api/v1/auth?user_email=test@test.com&password=12345678", parameters: nil,
+    func logIn(email: String, password:String, success:(() -> Void)) -> Void {
+        generateAuthenticatedClient().GET("api/v1/auth?user_email=\(email)&password=\(password)", parameters: nil,
+            
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
                 println("API: User Success")
-                var error: NSError?
                 
-                //WARNING-- not checking type of responseObject before unpacking to dictionary-- will crash at runtime if a dictionary is not passed in!
+                var error: NSError?
                 self.user = MTLJSONAdapter.modelOfClass(User.self, fromJSONDictionary: responseObject as Dictionary<String, AnyObject>, error: &error) as? User
                 
-                self.packages(self.user!)
+                //issue the rest of the download calls
+                self.loadPackages()
+                self.loadProducts()
+                self.loadMerchandises()
+                
+                success()
             },
+            
             failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
                 print("failure- ")
                 println(error)
         })
     }
 
-    func products(user: User) -> Void {
-        generateAuthenticatedClient().GET("dashboard/\(user.group_id)/products", parameters: nil,
+    func loadProducts() -> Void {
+        generateAuthenticatedClient().GET("dashboard/\(self.user!.group_id)/products", parameters: nil,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
                 println("API: Products Success")
@@ -81,8 +65,8 @@ import UIKit
         })
     }
     
-    func merchandises(user: User) -> Void {
-        generateAuthenticatedClient().GET("dashboard/\(user.group_id)/merchandise", parameters: nil,
+    func loadMerchandises() -> Void {
+        generateAuthenticatedClient().GET("dashboard/\(self.user!.group_id)/merchandise", parameters: nil,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
                 println("API: Merchandise Success")
@@ -102,8 +86,8 @@ import UIKit
         })
     }
     
-    func packages(user: User) -> Void {
-        generateAuthenticatedClient().GET("dashboard/\(user.group_id)/packages", parameters: nil,
+    func loadPackages() -> Void {
+        generateAuthenticatedClient().GET("dashboard/\(self.user!.group_id)/packages", parameters: nil,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
                 println("API: Package Success")
