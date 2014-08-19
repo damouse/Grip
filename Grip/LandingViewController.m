@@ -5,7 +5,27 @@
 //  Created by Mickey Barboi on 4/1/14.
 //  Copyright (c) 2014 Mickey Barboi. All rights reserved.
 //
+
 // you either black out a hero or drink long enough to see yourself become the villain
+
+/*
+ On button press, make button turn white and drop down/slide in "modal" screen.
+ Actions: 
+ 
+ Login
+    Top-down Modal, Move logos to bottom of screen for duration of login. Drop the keyboard while the 
+    progress HUD spins, leave the grip logo on the bottom. On sucessful login, move the grip logo to the 
+    bottom and animate in the company logo.
+ About
+    Slide the logos down or right, slide in an about section on the right side of the screen
+ Present Package
+    Animate logos and side bar out, switch controllers
+ Help
+    Same as about
+ Settings
+    Same as About
+ 
+ */
 
 #import "LandingViewController.h"
 #import "MBViewAnimator.h"
@@ -56,7 +76,7 @@
     //Colorize the view based on the constants. Here for quick changing
     self.view.backgroundColor = PRIMARY_LIGHT;
     viewMenu.backgroundColor = PRIMARY_DARK;
-    viewLogos.backgroundColor = PRIMARY_DARK;
+    //viewLogos.backgroundColor = PRIMARY_DARK;
     
     for(UIButton *button in buttons) {
         [button setTitleColor:HIGHLIGHT_COLOR forState:UIControlStateNormal];

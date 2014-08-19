@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="9e0-7o-oBf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="9e0-7o-oBf">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
@@ -66,27 +66,38 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="451" placeholderIntrinsicHeight="472" id="gJd-Ne-uwp">
-                                <rect key="frame" x="-3" y="148" width="451" height="472"/>
+                                <rect key="frame" x="-3" y="0.0" width="221" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GbZ-vR-7k6">
-                                        <rect key="frame" x="20" y="202" width="140" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GbZ-vR-7k6">
+                                        <rect key="frame" x="34" y="352" width="140" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
                                         <state key="normal" title="Settings">
                                             <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ylh-W3-OFi">
-                                        <rect key="frame" x="20" y="240" width="140" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ylh-W3-OFi">
+                                        <rect key="frame" x="34" y="390" width="140" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
-                                        <state key="normal" title="Tutorial">
+                                        <state key="normal" title="Help">
                                             <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gvw-ax-GGF">
-                                        <rect key="frame" x="20" y="278" width="140" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jCT-Jz-Hgg">
+                                        <rect key="frame" x="20" y="310" width="154" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
+                                        <state key="normal" title="Present Package">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="viewPackages:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vdj-fJ-fcY"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gvw-ax-GGF">
+                                        <rect key="frame" x="34" y="432" width="140" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
                                         <state key="normal" title="Login">
@@ -94,17 +105,6 @@
                                         </state>
                                         <connections>
                                             <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TKX-ys-nbn"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jCT-Jz-Hgg">
-                                        <rect key="frame" x="20" y="164" width="140" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
-                                        <state key="normal" title="View Packages">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="viewPackages:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vdj-fJ-fcY"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -135,7 +135,6 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

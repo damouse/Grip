@@ -337,6 +337,7 @@
 		509BA69618EB4FED0011D374 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				509BA67218EB4E960011D374 /* Main.storyboard */,
 				507D0477193E7CA7003CC3B6 /* ProductTable */,
 			);
 			name = View;
@@ -358,7 +359,6 @@
 				509BB198193A757800FC8CC7 /* Frameworks */,
 				509BA66F18EB4E960011D374 /* AppDelegate.h */,
 				509BA67018EB4E960011D374 /* AppDelegate.m */,
-				509BA67218EB4E960011D374 /* Main.storyboard */,
 			);
 			name = App;
 			sourceTree = "<group>";
