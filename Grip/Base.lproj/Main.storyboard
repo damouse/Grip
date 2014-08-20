@@ -37,6 +37,8 @@
             <string>Titillium-Light</string>
             <string>Titillium-Light</string>
             <string>Titillium-Light</string>
+            <string>Titillium-Light</string>
+            <string>Titillium-Light</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -66,27 +68,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="451" placeholderIntrinsicHeight="472" id="gJd-Ne-uwp">
-                                <rect key="frame" x="-3" y="0.0" width="221" height="768"/>
+                                <rect key="frame" x="-3" y="0.0" width="254" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GbZ-vR-7k6">
-                                        <rect key="frame" x="34" y="352" width="140" height="30"/>
+                                        <rect key="frame" x="64" y="350" width="140" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
                                         <state key="normal" title="Settings">
                                             <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="settings:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TVb-xw-fb8"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ylh-W3-OFi">
-                                        <rect key="frame" x="34" y="390" width="140" height="34"/>
+                                        <rect key="frame" x="64" y="388" width="140" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
                                         <state key="normal" title="Help">
                                             <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="help:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sgt-7e-j9y"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jCT-Jz-Hgg">
-                                        <rect key="frame" x="20" y="310" width="154" height="34"/>
+                                        <rect key="frame" x="50" y="308" width="154" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
                                         <state key="normal" title="Present Package">
@@ -97,7 +105,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gvw-ax-GGF">
-                                        <rect key="frame" x="34" y="432" width="140" height="30"/>
+                                        <rect key="frame" x="64" y="430" width="140" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
                                         <state key="normal" title="Login">
@@ -108,46 +116,75 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="451" placeholderIntrinsicHeight="472" id="HHx-go-Yf7">
-                                <rect key="frame" x="576" y="148" width="451" height="472"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" id="Lqo-kf-cTD">
+                                <rect key="frame" x="403" y="235" width="400" height="288"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" id="PK2-73-G0e">
+                                <rect key="frame" x="403" y="235" width="400" height="288"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" id="2uq-zL-a4b">
+                                <rect key="frame" x="334" y="0.0" width="606" height="276"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" id="Lqo-kf-cTD">
-                                        <rect key="frame" x="31" y="20" width="400" height="288"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Email" minimumFontSize="17" id="lFb-cn-RV4">
+                                        <rect key="frame" x="111" y="53" width="384" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" id="HI0-4o-vOJ">
-                                        <rect key="frame" x="146" y="324" width="159" height="128"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Password" minimumFontSize="17" id="h94-c2-8Y9">
+                                        <rect key="frame" x="111" y="126" width="384" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grip Logo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="m1J-5M-ls0">
-                                        <rect key="frame" x="187" y="440" width="77" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fzq-tg-Sl2">
+                                        <rect key="frame" x="358" y="199" width="137" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Logo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bMc-Io-Hr6">
-                                        <rect key="frame" x="166" y="60" width="118" height="21"/>
+                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="dialogLoginCancel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lDP-89-GEa"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8q3-ZL-ogb">
+                                        <rect key="frame" x="111" y="201" width="137" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
+                                        <state key="normal" title="Login">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="dialogLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yvh-Uu-AA9"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="FfV-Oz-Yhz"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="viewLogos" destination="HHx-go-Yf7" id="OpB-0R-pqp"/>
+                        <outlet property="imageCompanyLogo" destination="PK2-73-G0e" id="HdJ-bj-idm"/>
+                        <outlet property="imageGripLogo" destination="Lqo-kf-cTD" id="JlX-wu-vE1"/>
+                        <outlet property="textfieldEmail" destination="lFb-cn-RV4" id="emm-cQ-LSk"/>
+                        <outlet property="textfieldPassword" destination="h94-c2-8Y9" id="gWX-K6-3hs"/>
+                        <outlet property="viewLogin" destination="2uq-zL-a4b" id="dYO-7P-Gpl"/>
                         <outlet property="viewMenu" destination="gJd-Ne-uwp" id="oqN-Fq-eTr"/>
                         <outletCollection property="buttons" destination="GbZ-vR-7k6" id="5rg-vT-Iyf"/>
                         <outletCollection property="buttons" destination="Ylh-W3-OFi" id="6gH-KE-8cA"/>
                         <outletCollection property="buttons" destination="gvw-ax-GGF" id="LgG-tz-bhT"/>
                         <outletCollection property="buttons" destination="jCT-Jz-Hgg" id="kdY-Tc-1CY"/>
+                        <outletCollection property="buttons" destination="8q3-ZL-ogb" id="Dq0-DB-iTR"/>
+                        <outletCollection property="buttons" destination="fzq-tg-Sl2" id="UqP-YS-Tzj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -526,6 +563,20 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="58" y="1045"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="jVa-OL-O6E">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Q2d-Q0-VnU" sceneMemberID="viewController">
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gan-33-AKp">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yyO-cR-yr9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>

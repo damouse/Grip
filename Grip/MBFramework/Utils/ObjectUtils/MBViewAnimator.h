@@ -80,4 +80,23 @@ typedef enum VAAnimationDirection{
 
 //reset the view to its starting position. Must have previously been registered.
 - (void) animateObjectToStartingPosition:(UIView *)view completion:(void (^)(BOOL))completion;
+
+
+#pragma mark Custom Animations
+/*
+ MUST call initObjectForRelativeAnimation first! Please refactor this later.
+ 
+ Registers a custom animation with the animator. Custom animations specify a new size and position for the view. The size is a
+ percentage of its current size.
+ 
+ The x and y parameters are relative values to the view's original frame
+ 
+ Custom animations are saved under a string and can be executed with the method below by providing the string. 
+ */
+- (void) registerCustomAnimationForView:(UIView *) view key:(NSString *)key size:(float) sizePercent x:(int) x y:(int) y;
+
+/*
+ Perform a custom animation previously registered,
+ */
+- (void) animateCustomAnimationForView:(UIView *)view andKey:(NSString *) key completion:(void (^)(BOOL))completion;
 @end
