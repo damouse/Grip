@@ -19,9 +19,75 @@ import UIKit
     var merchandises = Array<Merchandise>()
     var packages = Array<Package>()
     
+    var progressHUD: MBProgressHUD?
     
-    // MARK: Public Interface
-    func logIn(email: String, password:String, success:(() -> Void)) -> Void {
+    
+    //MARK: Public Interface
+    func logInAttempt(email: String, password:String, view:UIView, success:(() -> Void)) -> Void {
+        //wrapper function for issuing a login request from a controller, performs a login but shows the spinner
+
+        showHUD(view)
+        logIn(email, password: password, success: { () -> Void in
+                self.getAllResourcesSequentially()
+                success()
+            }
+        );
+    }
+    
+    
+    // MARK: ProgressHUD methods
+    func showHUD(view:UIView) {
+        progressHUD = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        progressHUD?.dimBackground = true
+        progressHUD?.minShowTime = 1
+        progressHUD?.removeFromSuperViewOnHide = true
+        progressHUD?.detailsLabelFont = UIFont(name:"Titillium", size: 16)
+        progressHUD?.labelFont = UIFont(name:"Titillium", size: 20)
+        progressHUD?.labelText = "Connecting to Server"
+        progressHUD?.detailsLabelText = ""
+        
+    }
+    
+    func removeHUD() {
+        //check to see if the HUD is actually present!
+        progressHUD?.hide(true)
+    }
+    
+    func updateHUDText(newText:String) {
+        progressHUD?.detailsLabelText = newText
+    }
+    
+    
+    //MARK: Batch Tasks
+    func getAllResourcesSequentially() {
+        //gets all of the resources sequentially-- waits for the previous one to finished before starting the next
+        
+        //success blocks
+        let packageSuccess = { () -> Void in
+            self.removeHUD()
+        }
+        
+        let productSuccess = { () -> Void in
+            self.loadPackages(packageSuccess)
+        }
+        
+        let merchandiseSuccess = { () -> Void in
+            self.loadProducts(productSuccess)
+        }
+        
+        let customerSuccess = { () -> Void in
+            self.loadMerchandises(merchandiseSuccess)
+        }
+        
+        //Kick off the daisy chain
+        loadCustomers(customerSuccess)
+    }
+    
+    
+    // MARK: Calls
+    func logIn(email: String, password:String, success:(() -> Void)?) -> Void {
+        updateHUDText("Logging in")
+        
         generateAuthenticatedClient().GET("api/v1/auth?user_email=\(email)&password=\(password)", parameters: nil,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
@@ -30,12 +96,7 @@ import UIKit
                 var error: NSError?
                 self.user = MTLJSONAdapter.modelOfClass(User.self, fromJSONDictionary: responseObject as Dictionary<String, AnyObject>, error: &error) as? User
                 
-                //issue the rest of the download calls
-                self.loadPackages()
-                self.loadProducts()
-                self.loadMerchandises()
-                
-                success()
+                success?()
             },
             
             failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
@@ -44,7 +105,9 @@ import UIKit
         })
     }
 
-    func loadProducts() -> Void {
+    func loadProducts(success:(() -> Void)?) -> Void {
+        updateHUDText("Updating Products")
+        
         generateAuthenticatedClient().GET("dashboard/\(self.user!.group_id)/products", parameters: nil,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
@@ -57,6 +120,8 @@ import UIKit
                 for product in cocoaArray {
                     self.products.append(product as Product)
                 }
+                
+                success?()
             },
             
             failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
@@ -65,7 +130,9 @@ import UIKit
         })
     }
     
-    func loadMerchandises() -> Void {
+    func loadMerchandises(success:(() -> Void)?) -> Void {
+        updateHUDText("Updating Merchandise")
+        
         generateAuthenticatedClient().GET("dashboard/\(self.user!.group_id)/merchandise", parameters: nil,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
@@ -78,6 +145,8 @@ import UIKit
                 for product in cocoaArray {
                     self.merchandises.append(product as Merchandise)
                 }
+                
+                success?()
             },
             
             failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
@@ -86,7 +155,9 @@ import UIKit
         })
     }
     
-    func loadPackages() -> Void {
+    func loadPackages(success:(() -> Void)?) -> Void {
+        updateHUDText("Updating Packages")
+        
         generateAuthenticatedClient().GET("dashboard/\(self.user!.group_id)/packages", parameters: nil,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
@@ -98,6 +169,8 @@ import UIKit
                 for product in cocoaArray {
                     self.packages.append(product as Package)
                 }
+                
+                success?()
             },
             
             failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
@@ -106,8 +179,11 @@ import UIKit
         })
     }
     
-    func customers() -> Void {
+    func loadCustomers(success:(() -> Void)?) -> Void {
+        updateHUDText("Updating Customers")
         
+        println("API: Customer Success")
+        success?()
     }
     
     

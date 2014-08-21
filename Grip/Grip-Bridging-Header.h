@@ -4,3 +4,4 @@
 
 #import <AFNetworking/AFNetworking.h>
 #import <Mantle/Mantle.h>
+#import "MBProgressHUD.h"

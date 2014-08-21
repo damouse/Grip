@@ -11,6 +11,9 @@
 
 #import "UIView+Utils.h"
 
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "UIImageView+WebCache.h"
+
 #define MAX_DISPLACEMENT 70
 
 @implementation ProductTableViewDelegate
@@ -40,14 +43,15 @@
     cell.delegate = self;
     cell.maxDisplacement = MAX_DISPLACEMENT;
     
-//    Product *product = [self.products objectAtIndex:indexPath.row];
+    Product *product = [self.products objectAtIndex:indexPath.row];
     
     if (cell == nil)
         cell = [[ProductTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     
     //fill content
-    //[cell.textviewDetails setText:@"Test"];
-//    [cell.labelTitle setText:product.name];
+    [cell.textviewDetails setText:product.item_description];
+    [cell.labelTitle setText:product.name];
+    [cell.imageView sd_setImageWithURL:[product imageUrl]];
     
     return cell;
 }
@@ -85,9 +89,9 @@
         NSMutableArray *oldOrder = [self.products mutableCopy];
         
         //set up the new order
-//        Product *product = [self.products objectAtIndex:indexPath.row];
-//        [self.products removeObjectAtIndex:indexPath.row];
-//        [self.products addObject:product];
+        Product *product = [self.products objectAtIndex:indexPath.row];
+        [self.products removeObjectAtIndex:indexPath.row];
+        [self.products addObject:product];
         
         [self.tableView beginUpdates];
 
@@ -103,14 +107,13 @@
         [swipeTableViewCell resetContentView];
         swipeTableViewCell.interruptPanGestureHandler = YES;
         
-        /*
-        [self.tableView beginUpdates];
-        Product *product = [self.products objectAtIndex:indexPath.row];
-        [self.products removeObjectAtIndex:indexPath.row];
-        [self.products addObject:product];
-        [self.tableView reloadData];
-        [self.tableView endUpdates];
-         */
+//        [self.tableView beginUpdates];
+//        product = [self.products objectAtIndex:indexPath.row];
+//        [self.products removeObjectAtIndex:indexPath.row];
+//        [self.products addObject:product];
+//        [self.tableView reloadData];
+//        [self.tableView endUpdates];
+        
     }
 }
 

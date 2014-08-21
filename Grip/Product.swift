@@ -20,6 +20,12 @@ class Product : MTLModel, MTLJSONSerializing {
     var type: String?
     var updated_at: String?
     
+    
+    //simple helper
+    func imageUrl() -> NSURL {
+        return NSURL(string: image_url)
+    }
+    
 
     //Boilerplate Mantle code
     class func appURLSchemeJSONTransformer() -> NSValueTransformer {

@@ -12,6 +12,8 @@
 	<dict>
 		<key>495F200F2728E2BB2E4ECAF59CF6BD59A1097D65</key>
 		<string>https://github.com/damouse/Grip.git</string>
+		<key>E28E36D423EC87798E52E2BF482E9F7A1E6479D6</key>
+		<string>https://github.com/rs/SDWebImage.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Grip.xcworkspace</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>495F200F2728E2BB2E4ECAF59CF6BD59A1097D65</key>
 		<string>..</string>
+		<key>E28E36D423EC87798E52E2BF482E9F7A1E6479D6</key>
+		<string>../SDWebImage/</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/damouse/Grip.git</string>
@@ -35,6 +39,14 @@
 			<string>495F200F2728E2BB2E4ECAF59CF6BD59A1097D65</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Grip</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E28E36D423EC87798E52E2BF482E9F7A1E6479D6</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SDWebImage</string>
 		</dict>
 	</array>
 </dict>

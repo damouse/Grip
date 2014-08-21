@@ -16,9 +16,6 @@
     MBViewAnimator *animator;
     ProductTableViewDelegate *tableDelegate;
     
-    //this array backs the table delegate and the product info object
-    NSMutableArray *products;
-    
     int currentUIState;
 }
 
@@ -33,7 +30,6 @@ typedef enum UIState{
 @implementation DealViewController
 
 
-
 #pragma mark Lifecycle Methods
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -45,14 +41,11 @@ typedef enum UIState{
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    //DEMO
-    [self initDemoModel];
 
     //table init
     tableDelegate = [[ProductTableViewDelegate alloc] init];
     tableDelegate.parent = self;
-    tableDelegate.products = products;
+    tableDelegate.products = self.products;
     tableDelegate.tableView = tableProducts;
     tableProducts.delegate = tableDelegate;
     tableProducts.dataSource = tableDelegate;
@@ -248,13 +241,5 @@ typedef enum UIState{
 - (IBAction)productDetailsExit:(id)sender {
     //dismiss product pane, return to normal
     [self animateProductPaneOut];
-}
-
-
-#pragma mark DEMO DETAILS
-- (void) initDemoModel {
-    NSMutableArray *array = [NSMutableArray array];
-    
-    products = [NSMutableArray arrayWithArray:array];
 }
 @end

@@ -31,6 +31,7 @@
 #import "MBViewAnimator.h"
 #import "UIView+Utils.h"
 #import "MBConnectionManager.h"
+#import "DealViewController.h"
 
 #import "Grip-Swift.h"
 
@@ -70,11 +71,6 @@
     animator = [[MBViewAnimator alloc] initWithDuration:ANIMATION_DURATION];
     
     apiManager = [[PGApiManager alloc] init];
-    [apiManager logIn:@"test@test.com" password:@"12345678" success:^(void) {
-        NSLog(@"I Fired!");
-    }];
-    
-//    apiManager.products
 
 }
 
@@ -83,23 +79,13 @@
     firstLayout = true;
     
     [self colorize];
-}
-
-
-- (void) colorize {
-    //Colorize the view based on the constants. Here for quick changing
-    self.view.backgroundColor = PRIMARY_LIGHT;
-    viewMenu.backgroundColor = PRIMARY_DARK;
-    viewLogin.backgroundColor = PRIMARY_DARK;
-    viewSettings.backgroundColor = PRIMARY_DARK;
     
-    for(UIButton *button in buttons) {
-        [button setTitleColor:HIGHLIGHT_COLOR forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-    }
-    
-    textfieldEmail.backgroundColor = PRIMARY_LIGHT;
-    textfieldPassword.backgroundColor = PRIMARY_LIGHT;
+    //TODO: DEBUG!
+    [apiManager logInAttempt:@"test@test.com" password:@"12345678" view: self.view success:^(void) {
+        [self dismissLogin];
+        [self showBothLogos];
+        loggedIn = true;
+    }];
 }
 
 - (void) viewDidLayoutSubviews {
@@ -123,6 +109,40 @@
 
 - (void) viewDidAppear:(BOOL)animated {
     [self initialAnimations];
+}
+
+- (void) colorize {
+    //Colorize the view based on the constants. Here for quick changing
+    self.view.backgroundColor = PRIMARY_LIGHT;
+    viewMenu.backgroundColor = PRIMARY_DARK;
+    viewLogin.backgroundColor = PRIMARY_DARK;
+    viewSettings.backgroundColor = PRIMARY_DARK;
+    
+    for(UIButton *button in buttons) {
+        [button setTitleColor:HIGHLIGHT_COLOR forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    }
+    
+    textfieldEmail.backgroundColor = PRIMARY_LIGHT;
+    textfieldPassword.backgroundColor = PRIMARY_LIGHT;
+}
+
+
+#pragma mark Login Flow
+
+
+#pragma mark Delegate
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+
+    NSString *newString =[textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    //strip/check leading whitespace
+    newString = [newString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    newString = [NSString stringWithFormat:@"  %@", newString];
+    
+    [textField setText:newString];
+    return NO;
 }
 
 
@@ -211,24 +231,26 @@
 #pragma mark IBActions
 - (IBAction)login:(id)sender {
     [self presentLogin];
-    
-    //on completon, move the logos to their respective places
-    //[self loginAnimations];
-    
-    //API testing code
-//    NSData *save = [NSKeyedArchiver archivedDataWithRootObject:apiManager.user];
-//    [[NSUserDefaults standardUserDefaults] setObject:save forKey:@"save"];
-//    
-//    save = [[NSUserDefaults standardUserDefaults] objectForKey:@"save"];
-//    NSLog(@"DUMP- %@", [NSKeyedUnarchiver unarchiveObjectWithData:save]);
 }
 
 - (IBAction)viewPackages:(id)sender {
+    if (!loggedIn) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Error"] message:@"You must log in first!"  delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
 
     [animator animateObjectOffscreen:viewMenu completion:^(BOOL completion){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"dealViewController"];
-        [self.navigationController pushViewController:vc animated:NO];
+        DealViewController *dealController = [storyboard instantiateViewControllerWithIdentifier:@"dealViewController"];
+        
+        dealController.products = [NSMutableArray arrayWithArray:apiManager.products];
+        dealController.merchandise = [apiManager.merchandises objectAtIndex:0];
+        dealController.customer = apiManager.user;
+        dealController.user = apiManager.user;
+        dealController.packages = apiManager.packages;
+        
+        [self.navigationController pushViewController:dealController animated:NO];
     }];
 }
 
@@ -237,6 +259,16 @@
 }
 
 - (IBAction)dialogLogin:(id)sender {
+    NSString *email = [textfieldEmail.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *password = [textfieldPassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    [apiManager logInAttempt:email password:password view: self.view success:^(void) {
+        [self dismissLogin];
+        [self showBothLogos];
+        loggedIn = true;
+        
+        
+    }];
 }
 
 - (IBAction)dialogLoginCancel:(id)sender {

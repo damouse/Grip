@@ -19,6 +19,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "Grip-Swift.h"
+
 @interface DealViewController : UIViewController {
     //views
     __weak IBOutlet UIView *viewInfo;
@@ -35,6 +37,15 @@
     //Buttons
     IBOutletCollection(UIButton) NSArray *buttons;
 }
+
+//Passed Model Properties-- these are sent piecemeal so the controller does not
+//have to manage customer/package selection
+@property (strong, nonatomic) User *user;
+@property (strong, nonatomic) User *customer;
+@property (strong, nonatomic) Merchandise *merchandise;
+@property (strong, nonatomic) NSMutableArray *products;
+@property (strong, nonatomic) NSArray *packages;
+
 
 //buttons within slidein info panes
 - (IBAction)infoDetailsExit:(id)sender;
