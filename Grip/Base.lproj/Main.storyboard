@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="9e0-7o-oBf">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Titillium-Light.otf">
+            <string>Titillium-Light</string>
             <string>Titillium-Light</string>
             <string>Titillium-Light</string>
             <string>Titillium-Light</string>
@@ -167,6 +167,31 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" id="kmD-cp-BAL">
+                                <rect key="frame" x="334" y="0.0" width="606" height="452"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings Placeholder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8pQ-si-hHg">
+                                        <rect key="frame" x="224" y="27" width="159" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.99995754076086951" green="0.99995754076086951" blue="0.99995754076086951" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="12l-FX-5od">
+                                        <rect key="frame" x="252" y="380" width="103" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="settingsDone:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lLV-cv-T1R"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -179,12 +204,14 @@
                         <outlet property="textfieldPassword" destination="h94-c2-8Y9" id="gWX-K6-3hs"/>
                         <outlet property="viewLogin" destination="2uq-zL-a4b" id="dYO-7P-Gpl"/>
                         <outlet property="viewMenu" destination="gJd-Ne-uwp" id="oqN-Fq-eTr"/>
+                        <outlet property="viewSettings" destination="kmD-cp-BAL" id="Gat-m6-nhP"/>
                         <outletCollection property="buttons" destination="GbZ-vR-7k6" id="5rg-vT-Iyf"/>
                         <outletCollection property="buttons" destination="Ylh-W3-OFi" id="6gH-KE-8cA"/>
                         <outletCollection property="buttons" destination="gvw-ax-GGF" id="LgG-tz-bhT"/>
                         <outletCollection property="buttons" destination="jCT-Jz-Hgg" id="kdY-Tc-1CY"/>
                         <outletCollection property="buttons" destination="8q3-ZL-ogb" id="Dq0-DB-iTR"/>
                         <outletCollection property="buttons" destination="fzq-tg-Sl2" id="UqP-YS-Tzj"/>
+                        <outletCollection property="buttons" destination="12l-FX-5od" id="cDN-iV-BjO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -563,20 +590,6 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="58" y="1045"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="jVa-OL-O6E">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Q2d-Q0-VnU" sceneMemberID="viewController">
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gan-33-AKp">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <toolbarItems/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yyO-cR-yr9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
     </scenes>
     <resources>

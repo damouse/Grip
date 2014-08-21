@@ -43,6 +43,8 @@
     BOOL loggedIn;
     
     BOOL firstLayout;
+    BOOL displayingLogin;
+    BOOL displayingSettings;
 }
 
 @end
@@ -62,6 +64,8 @@
     
     //default to not logged in
     loggedIn = false;
+    displayingLogin = false;
+    displayingSettings = false;
 	
     animator = [[MBViewAnimator alloc] initWithDuration:ANIMATION_DURATION];
     
@@ -87,6 +91,7 @@
     self.view.backgroundColor = PRIMARY_LIGHT;
     viewMenu.backgroundColor = PRIMARY_DARK;
     viewLogin.backgroundColor = PRIMARY_DARK;
+    viewSettings.backgroundColor = PRIMARY_DARK;
     
     for(UIButton *button in buttons) {
         [button setTitleColor:HIGHLIGHT_COLOR forState:UIControlStateNormal];
@@ -108,7 +113,9 @@
         [animator initObject:imageGripLogo inView:self.view forSlideinAnimation:VAAnimationDirectionLeft];
         [animator initObject:imageCompanyLogo inView:self.view forSlideinAnimation:VAAnimationDirectionLeft];
         
+        //dialogs
         [animator initObject:viewLogin inView:self.view forSlideinAnimation:VAAnimationDirectionDown];
+        [animator initObject:viewSettings inView:self.view forSlideinAnimation:VAAnimationDirectionDown];
     
         firstLayout = false;
     }
@@ -130,8 +137,8 @@
     [animator registerCustomAnimationForView:imageCompanyLogo key:@"initial login position" size:.6 x:0 y:-200];
     
     //clear the top of the screen so the dialogs have space
-    [animator registerCustomAnimationForView:imageGripLogo key:@"clear top" size:.3 x:200 y:300];
-    [animator registerCustomAnimationForView:imageCompanyLogo key:@"clear top" size:.3 x:-200 y:300];
+    [animator registerCustomAnimationForView:imageGripLogo key:@"clear top" size:.5 x:200 y:230];
+    [animator registerCustomAnimationForView:imageCompanyLogo key:@"clear top" size:.5 x:-120 y:230];
 }
 
 - (void) closingAnimations {
@@ -161,12 +168,50 @@
     [animator animateObjectOffscreen:imageCompanyLogo completion:nil];
 }
 
-
-#pragma mark IBActions
-- (IBAction)login:(id)sender {
+- (void) presentLogin {
+    if (displayingSettings)
+        [self dismissSettings];
+    
     [animator animateObjectOnscreen:viewLogin completion:nil];
     
     [self logosToBottom];
+    displayingLogin = true;
+}
+
+- (void) dismissLogin {
+    if (!displayingLogin) {
+        NSLog(@"Landing: WARN: asked to dismiss login, but login is not visible!");
+        return;
+    }
+    
+    [animator animateObjectOffscreen:viewLogin completion:nil];
+    displayingLogin = false;
+}
+
+- (void) presentSettings {
+    if (displayingLogin)
+        [self dismissLogin];
+    
+    [animator animateObjectOnscreen:viewSettings completion:nil];
+    [self logosToBottom];
+    displayingSettings = true;
+}
+
+- (void) dismissSettings {
+    if (!displayingSettings) {
+        NSLog(@"Landing: WARN: asked to dismiss settings, but settings is not visible!");
+        return;
+    }
+    
+    [animator animateObjectOffscreen:viewSettings completion:nil];
+    displayingSettings = false;
+}
+
+
+#pragma mark IBActions
+- (IBAction)login:(id)sender {
+    [self presentLogin];
+    
     //on completon, move the logos to their respective places
     //[self loginAnimations];
     
@@ -188,17 +233,18 @@
 }
 
 - (IBAction)settings:(id)sender {
-    [self logosToBottom];
+    [self presentSettings];
 }
 
 - (IBAction)dialogLogin:(id)sender {
 }
 
 - (IBAction)dialogLoginCancel:(id)sender {
-    [animator animateObjectOffscreen:viewLogin completion:nil];
-    
-    //bring logos back
-    [self showOnlyGripLogo];
+    [self dismissLogin];
+}
+
+- (IBAction)settingsDone:(id)sender {
+    [self dismissSettings];
 }
 
 - (IBAction)help:(id)sender {

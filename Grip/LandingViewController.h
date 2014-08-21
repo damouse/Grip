@@ -12,6 +12,7 @@
     //Views
     __weak IBOutlet UIView *viewMenu;
     __weak IBOutlet UIView *viewLogin;
+    __weak IBOutlet UIView *viewSettings;
     
     //Buttons
     IBOutletCollection(UIButton) NSArray *buttons;
@@ -36,4 +37,5 @@
 - (IBAction)dialogLogin:(id)sender;
 - (IBAction)dialogLoginCancel:(id)sender;
 
+- (IBAction)settingsDone:(id)sender;
 @end
