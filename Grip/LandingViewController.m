@@ -12,7 +12,6 @@
 #import "LandingViewController.h"
 #import "MBViewAnimator.h"
 #import "UIView+Utils.h"
-#import "MBConnectionManager.h"
 #import "DealViewController.h"
 
 #import "Grip-Swift.h"

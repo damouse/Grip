@@ -15,7 +15,7 @@ import UIKit
     let base_url = "http://packagegrid.com/"
     
     var user: User?
-    var products = Array<Product>()
+    var products = NSArray()
     var merchandises = Array<Product>()
     var packages = Array<Package>()
     
@@ -113,13 +113,7 @@ import UIKit
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
                 println("API: Products Success")
                 
-                var error: NSError?
-                let cocoaArray: NSArray = MTLJSONAdapter.modelsOfClass(Product.self, fromJSONArray: (responseObject as NSDictionary).objectForKey("products") as NSArray, error: &error) as NSArray
-                
-                //'cast' the NSArray to a swift array. There must be a cleaner way of doing this...
-                for product in cocoaArray {
-                    self.products.append(product as Product)
-                }
+                self.products = self.serializeObjects(responseObject!, jsonKey: "products", objectClass: Product.self)
                 
                 success?()
             },
@@ -201,5 +195,12 @@ import UIKit
         }
         
         return client
+    }
+    
+    func serializeObjects(responseObject:AnyObject, jsonKey:String, objectClass:AnyClass) -> NSArray {
+        println("API: Products Success")
+        var error: NSError?
+        let cocoaArray: NSArray = MTLJSONAdapter.modelsOfClass(objectClass, fromJSONArray: (responseObject as NSDictionary).objectForKey(jsonKey) as NSArray, error: &error) as NSArray
+        return cocoaArray
     }
 }

@@ -13,5 +13,51 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Grip/PGApiManager.swift"
+            timestampString = "430415160.980662"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "serializeObjects(_:jsonKey:objectClass:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_TFC4Grip12PGApiManager16serializeObjectsfS0_FTPSs9AnyObject_7jsonKeySS11objectClassPMPS1___CSo7NSArray"
+                  moduleName = "Grip"
+                  urlString = "file:///Users/Damouse/Documents/projects/ios/Grip/Grip/PGApiManager.swift"
+                  timestampString = "430415094.796029"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "208"
+                  endingLineNumber = "208"
+                  offsetFromSymbolStart = "193">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_TFC4Grip12PGApiManager16serializeObjectsfS0_FTPSs9AnyObject_7jsonKeySS11objectClassPMPS1___CSo7NSArray"
+                  moduleName = "Grip"
+                  urlString = "file:///Users/Damouse/Documents/projects/ios/Grip/Grip/PGApiManager.swift"
+                  timestampString = "430415094.796419"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "208"
+                  endingLineNumber = "208"
+                  offsetFromSymbolStart = "851">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -30,7 +30,6 @@
 		509BA68C18EB4E960011D374 /* GripTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 509BA68B18EB4E960011D374 /* GripTests.m */; };
 		509BA69B18EB50620011D374 /* LandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 509BA69A18EB50620011D374 /* LandingViewController.m */; };
 		509BA69E18EB50930011D374 /* DealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 509BA69D18EB50930011D374 /* DealViewController.m */; };
-		509BB180193A756100FC8CC7 /* MBConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 509BB147193A756100FC8CC7 /* MBConnectionManager.m */; };
 		509BB181193A756100FC8CC7 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 509BB149193A756100FC8CC7 /* MBProgressHUD.m */; };
 		509BB183193A756100FC8CC7 /* MCBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 509BB151193A756100FC8CC7 /* MCBinder.m */; };
 		509BB184193A756100FC8CC7 /* MCProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 509BB153193A756100FC8CC7 /* MCProperty.m */; };
@@ -118,8 +117,6 @@
 		509BA69A18EB50620011D374 /* LandingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingViewController.m; sourceTree = "<group>"; };
 		509BA69C18EB50930011D374 /* DealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealViewController.h; sourceTree = "<group>"; };
 		509BA69D18EB50930011D374 /* DealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealViewController.m; sourceTree = "<group>"; };
-		509BB146193A756100FC8CC7 /* MBConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBConnectionManager.h; sourceTree = "<group>"; };
-		509BB147193A756100FC8CC7 /* MBConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBConnectionManager.m; sourceTree = "<group>"; };
 		509BB148193A756100FC8CC7 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		509BB149193A756100FC8CC7 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		509BB150193A756100FC8CC7 /* MCBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCBinder.h; sourceTree = "<group>"; };
@@ -373,8 +370,6 @@
 		509BB145193A756100FC8CC7 /* ConnectionManager */ = {
 			isa = PBXGroup;
 			children = (
-				509BB146193A756100FC8CC7 /* MBConnectionManager.h */,
-				509BB147193A756100FC8CC7 /* MBConnectionManager.m */,
 				509BB148193A756100FC8CC7 /* MBProgressHUD.h */,
 				509BB149193A756100FC8CC7 /* MBProgressHUD.m */,
 			);
@@ -680,7 +675,6 @@
 				5048DED7199F0A9B0014ABC4 /* Package.swift in Sources */,
 				509BB18B193A756100FC8CC7 /* MCTextFieldInterpreter.m in Sources */,
 				509BB18A193A756100FC8CC7 /* MCLabelInterpreter.m in Sources */,
-				509BB180193A756100FC8CC7 /* MBConnectionManager.m in Sources */,
 				509BB183193A756100FC8CC7 /* MCBinder.m in Sources */,
 				509BB192193A756100FC8CC7 /* UIImageView+Utils.m in Sources */,
 				509BB195193A756100FC8CC7 /* MBObjectUtils.m in Sources */,
