@@ -22,7 +22,7 @@
 		<key>495F200F2728E2BB2E4ECAF59CF6BD59A1097D65</key>
 		<string>..</string>
 		<key>E28E36D423EC87798E52E2BF482E9F7A1E6479D6</key>
-		<string>../SDWebImage/</string>
+		<string>../SDWebImage</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/damouse/Grip.git</string>

@@ -16,6 +16,7 @@
     
     //Buttons
     IBOutletCollection(UIButton) NSArray *buttons;
+    __weak IBOutlet UIButton *buttonLogin;
     
     //Images
     __weak IBOutlet UIImageView *imageGripLogo;

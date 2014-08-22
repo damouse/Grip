@@ -16,7 +16,7 @@ import UIKit
     
     var user: User?
     var products = Array<Product>()
-    var merchandises = Array<Merchandise>()
+    var merchandises = Array<Product>()
     var packages = Array<Package>()
     
     var progressHUD: MBProgressHUD?
@@ -139,11 +139,11 @@ import UIKit
                 println("API: Merchandise Success")
                 
                 var error: NSError?
-                let cocoaArray: NSArray = MTLJSONAdapter.modelsOfClass(Merchandise.self, fromJSONArray: (responseObject as NSDictionary).objectForKey("merchandises") as NSArray, error: &error) as NSArray
+                let cocoaArray: NSArray = MTLJSONAdapter.modelsOfClass(Product.self, fromJSONArray: (responseObject as NSDictionary).objectForKey("merchandises") as NSArray, error: &error) as NSArray
                 
                 //'cast' the NSArray to a swift array. There must be a cleaner way of doing this...
                 for product in cocoaArray {
-                    self.merchandises.append(product as Merchandise)
+                    self.merchandises.append(product as Product)
                 }
                 
                 success?()

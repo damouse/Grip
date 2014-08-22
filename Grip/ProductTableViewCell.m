@@ -22,7 +22,7 @@
 }
 
 - (void) colorize {
-    self.viewTitleBar.backgroundColor = HIGHLIGHT_COLOR;
+//    self.viewTitleBar.backgroundColor = HIGHLIGHT_COLOR;
     self.viewHolder.backgroundColor = PRIMARY_DARK;
     self.contentView.backgroundColor = PRIMARY_LIGHT;
     self.textviewDetails.backgroundColor = PRIMARY_DARK;

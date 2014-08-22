@@ -8,24 +8,6 @@
 
 // you either black out a hero or drink long enough to see yourself become the villain
 
-/*
- On button press, make button turn white and drop down/slide in "modal" screen.
- Actions: 
- 
- Login
-    Top-down Modal, Move logos to bottom of screen for duration of login. Drop the keyboard while the 
-    progress HUD spins, leave the grip logo on the bottom. On sucessful login, move the grip logo to the 
-    bottom and animate in the company logo.
- About
-    Slide the logos down or right, slide in an about section on the right side of the screen
- Present Package
-    Animate logos and side bar out, switch controllers
- Help
-    Same as about
- Settings
-    Same as About
- 
- */
 
 #import "LandingViewController.h"
 #import "MBViewAnimator.h"
@@ -79,13 +61,14 @@
     firstLayout = true;
     
     [self colorize];
+    [self setLoginButtonState];
     
     //TODO: DEBUG!
-    [apiManager logInAttempt:@"test@test.com" password:@"12345678" view: self.view success:^(void) {
-        [self dismissLogin];
-        [self showBothLogos];
-        loggedIn = true;
-    }];
+//    [apiManager logInAttempt:@"test@test.com" password:@"12345678" view: self.view success:^(void) {
+//        [self dismissLogin];
+//        [self showBothLogos];
+//        loggedIn = true;
+//    }];
 }
 
 - (void) viewDidLayoutSubviews {
@@ -148,10 +131,10 @@
 
 #pragma mark View Batch Methods
 - (void) initialAnimations {
-    //bring the buttons onscreen
+//    bring the buttons onscreen
     [animator animateObjectOnscreen:viewMenu completion:nil];
-    [animator animateObjectOnscreen:imageGripLogo completion:nil];
-    
+//    [animator animateObjectOnscreen:imageGripLogo completion:nil];
+
     //register resizing and moving animations with animator
     [animator registerCustomAnimationForView:imageGripLogo key:@"initial login position" size:.6 x:0 y:200];
     [animator registerCustomAnimationForView:imageCompanyLogo key:@"initial login position" size:.6 x:0 y:-200];
@@ -159,6 +142,8 @@
     //clear the top of the screen so the dialogs have space
     [animator registerCustomAnimationForView:imageGripLogo key:@"clear top" size:.5 x:200 y:230];
     [animator registerCustomAnimationForView:imageCompanyLogo key:@"clear top" size:.5 x:-120 y:230];
+    
+    [self showBothLogos];
 }
 
 - (void) closingAnimations {
@@ -171,15 +156,24 @@
 
 - (void) logosToBottom {
     //move the logos to the bottom of the screen, clearing space for the top section
-    [animator animateCustomAnimationForView:imageCompanyLogo andKey:@"clear top" completion:nil];
     [animator animateCustomAnimationForView:imageGripLogo andKey:@"clear top" completion:nil];
+    
+    if(loggedIn)
+        [animator animateCustomAnimationForView:imageCompanyLogo andKey:@"clear top" completion:nil];
 }
 
 - (void) showBothLogos {
     //animate second logo onto the view
     //shrink the first logo and animate it down
-    [animator animateCustomAnimationForView:imageGripLogo andKey:@"initial login position" completion:nil];
-    [animator animateCustomAnimationForView:imageCompanyLogo andKey:@"initial login position" completion:nil];
+    if (loggedIn) {
+        [animator animateCustomAnimationForView:imageGripLogo andKey:@"initial login position" completion:nil];
+        [animator animateCustomAnimationForView:imageCompanyLogo andKey:@"initial login position" completion:nil];
+    }
+    
+    //if not logged in put the grip logo back into place
+    else {
+        [animator animateObjectToStartingPosition:imageGripLogo completion:nil];
+    }
 }
 
 - (void) showOnlyGripLogo {
@@ -206,6 +200,7 @@
     
     [animator animateObjectOffscreen:viewLogin completion:nil];
     displayingLogin = false;
+    [self showBothLogos];
 }
 
 - (void) presentSettings {
@@ -225,12 +220,27 @@
     
     [animator animateObjectOffscreen:viewSettings completion:nil];
     displayingSettings = false;
+    [self showBothLogos];
+}
+
+- (void) setLoginButtonState {
+    if (loggedIn)
+        [buttonLogin setTitle:@"LOG OUT" forState:UIControlStateNormal];
+    else
+        [buttonLogin setTitle:@"LOGIN" forState:UIControlStateNormal];
 }
 
 
 #pragma mark IBActions
 - (IBAction)login:(id)sender {
-    [self presentLogin];
+    if (loggedIn) {
+        loggedIn = false;
+        [self setLoginButtonState];
+        [self showOnlyGripLogo];
+    }
+    else {
+        [self presentLogin];
+    }
 }
 
 - (IBAction)viewPackages:(id)sender {
@@ -240,6 +250,7 @@
         return;
     }
 
+    [self closingAnimations];
     [animator animateObjectOffscreen:viewMenu completion:^(BOOL completion){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         DealViewController *dealController = [storyboard instantiateViewControllerWithIdentifier:@"dealViewController"];
@@ -263,11 +274,10 @@
     NSString *password = [textfieldPassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
     [apiManager logInAttempt:email password:password view: self.view success:^(void) {
+        loggedIn = true;
         [self dismissLogin];
         [self showBothLogos];
-        loggedIn = true;
-        
-        
+        [self setLoginButtonState];
     }];
 }
 

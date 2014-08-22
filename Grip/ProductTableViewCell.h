@@ -11,7 +11,7 @@
 
 @interface ProductTableViewCell : RMSwipeTableViewCell
 
-@property (weak, nonatomic) IBOutlet UIView *viewTitleBar;
+//@property (weak, nonatomic) IBOutlet UIView *viewTitleBar;
 @property (weak, nonatomic) IBOutlet UIView *viewHolder;
 
 @property (weak, nonatomic) IBOutlet UILabel *labelTitle;

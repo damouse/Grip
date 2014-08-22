@@ -57,7 +57,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.parent didSelectProduct];
+    Product *product = [self.products objectAtIndex:indexPath.row];
+    [self.parent didSelectProduct:product];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

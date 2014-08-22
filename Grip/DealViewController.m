@@ -12,6 +12,9 @@
 #import "UIView+Utils.h"
 #import "ProductTableViewDelegate.h"
 
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "UIImageView+WebCache.h"
+
 @interface DealViewController (){
     MBViewAnimator *animator;
     ProductTableViewDelegate *tableDelegate;
@@ -53,11 +56,17 @@ typedef enum UIState{
 
 - (void) viewWillAppear:(BOOL)animated {
     [self initAnimations];
+    [self setInitialLabels];
     [self colorize];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
     [self introAnimations];
+    
+    //DEBUG TESTING
+    NSURL *url = [NSURL URLWithString:@"http://www.youtube.com/watch?v=fDXWW5vX-64"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [webviewVideo loadRequest:request];
 }
 
 
@@ -78,6 +87,18 @@ typedef enum UIState{
         [button setTitleColor:HIGHLIGHT_COLOR forState:UIControlStateNormal];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     }
+}
+
+- (void) setInitialLabels {
+    //set merchandise and customer labels
+    labelCustomerName.text = self.customer.name;
+    labelDetailsCustomerName.text = self.customer.name;
+    labelMerchandiseName.text = self.merchandise.name;
+    labelDetailsMerchandiseName.text = self.merchandise.name;
+    labelDetailsMerchandiseDescription.text = self.merchandise.item_description;
+    
+    [imageDetailsMerchandise sd_setImageWithURL:[self.merchandise imageUrl]];
+    [imageMerchandise sd_setImageWithURL:[self.merchandise imageUrl]];
 }
 
 
@@ -131,7 +152,7 @@ typedef enum UIState{
 - (void) animateInfoPaneIn {
     //the info pane on the left side of the screen. Perform animations in two ticks
     void (^secondStep)(BOOL) = ^(BOOL completion) {
-        [animator animateObjectToRelativePosition:tableProducts direction:VAAnimationDirectionRight withMargin:80 completion:nil];
+        [animator animateObjectToRelativePosition:tableProducts direction:VAAnimationDirectionRight withMargin:50 completion:nil];
         [animator animateObjectOnscreen:viewInfoDetails completion:nil];
     };
     
@@ -167,7 +188,7 @@ typedef enum UIState{
 - (void) animateProductPaneIn {
     //the product pane on the right side of the screen. Perform animations in two ticks
     void (^secondStep)(BOOL) = ^(BOOL completion) {
-        [animator animateObjectToRelativePosition:tableProducts direction:VAAnimationDirectionLeft withMargin:80 completion:nil];
+        [animator animateObjectToRelativePosition:tableProducts direction:VAAnimationDirectionLeft withMargin:50 completion:nil];
         [animator animateObjectOnscreen:viewProductDetails completion:nil];
     };
     
@@ -201,13 +222,19 @@ typedef enum UIState{
 
 
 #pragma mark Delegate Methods
-- (void) didSelectProduct {
+- (void) didSelectProduct:(Product *) product {
     //triggered from the table
     if (currentUIState == StateNeutral)
         [self animateProductPaneIn];
-    else {
-        //change the currently shown product in the the product pane
-    }
+
+    labelProductName.text = product.name;
+    labelProductDescription.text = product.item_description;
+    
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
+    labelProductPrice.text = [numberFormatter stringFromNumber:[NSNumber numberWithFloat:product.price]];
+    
+    [imageProductImage sd_setImageWithURL:[product imageUrl]];
 }
 
 
