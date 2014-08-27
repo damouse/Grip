@@ -55,11 +55,6 @@
     [cell.labelTitle setText:product.name];
     [cell.imageviewCaption setImage:product.image];
     
-//    [cell.imageviewCaption sd_setImageWithURL:[product imageUrl] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//        NSLog(@"Loaded");
-//    }];
-    //[cell.imageView sd_setImageWithURL:[product imageUrl] placeholderImage:nil];
-    
     return cell;
 }
 

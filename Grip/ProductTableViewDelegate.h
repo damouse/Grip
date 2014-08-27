@@ -24,6 +24,8 @@
 @interface ProductTableViewDelegate : NSObject <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) NSMutableArray *products;
+@property (weak, nonatomic) Package *package;
+
 @property (weak, nonatomic) DealViewController *parent;
 @property (weak, nonatomic) UITableView *tableView;
 
