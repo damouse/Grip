@@ -217,6 +217,7 @@ import UIKit
         
         operation.setCompletionBlockWithSuccess({ (operation: AFHTTPRequestOperation!, object: AnyObject!) -> Void in
                 product.image = object as? UIImage
+                product.desaturatedImage = product.image!.desaturate()
             },
             failure: { (operation: AFHTTPRequestOperation!, error: NSError!) ->Void in
                 println("Image failure for product \(product.name)")
@@ -224,16 +225,5 @@ import UIKit
         })
         
         operation.start()
-        
-//        AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:urlRequest];
-//        requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
-//        [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//            NSLog(@"Response: %@", responseObject);
-//            _imageView.image = responseObject;
-//            
-//            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//            NSLog(@"Image error: %@", error);
-//            }];
-//        [requestOperation start];
     }
 }

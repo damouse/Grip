@@ -99,8 +99,8 @@ typedef enum UIState{
     labelDetailsMerchandiseName.text = self.merchandise.name;
     labelDetailsMerchandiseDescription.text = self.merchandise.item_description;
     
-    [imageDetailsMerchandise sd_setImageWithURL:[self.merchandise imageUrl]];
-    [imageMerchandise sd_setImageWithURL:[self.merchandise imageUrl]];
+    [imageDetailsMerchandise setImage:self.merchandise.image];
+    [imageMerchandise setImage:self.merchandise.image];
 }
 
 
@@ -236,7 +236,7 @@ typedef enum UIState{
     [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
     labelProductPrice.text = [numberFormatter stringFromNumber:[NSNumber numberWithFloat:product.price]];
     
-    [imageProductImage sd_setImageWithURL:[product imageUrl]];
+    [imageProductImage setImage:product.image];
 }
 
 

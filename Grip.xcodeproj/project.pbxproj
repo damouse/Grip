@@ -16,6 +16,7 @@
 		507D0470193E7A18003CC3B6 /* UIView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D046F193E7A18003CC3B6 /* UIView+Utils.m */; };
 		507D0476193E7CA4003CC3B6 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */; };
 		5095EC6919AD49AF00D887F7 /* GripButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095EC6819AD49AF00D887F7 /* GripButton.swift */; };
+		5095EC6C19AD595600D887F7 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5095EC6B19AD595600D887F7 /* UIImage+Utils.m */; };
 		509BA66118EB4E960011D374 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66018EB4E960011D374 /* Foundation.framework */; };
 		509BA66318EB4E960011D374 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66218EB4E960011D374 /* CoreGraphics.framework */; };
 		509BA66518EB4E960011D374 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66418EB4E960011D374 /* UIKit.framework */; };
@@ -98,6 +99,8 @@
 		507D0474193E7CA4003CC3B6 /* ProductTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableViewCell.h; sourceTree = "<group>"; };
 		507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTableViewCell.m; sourceTree = "<group>"; };
 		5095EC6819AD49AF00D887F7 /* GripButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GripButton.swift; sourceTree = "<group>"; };
+		5095EC6A19AD595600D887F7 /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
+		5095EC6B19AD595600D887F7 /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
 		509BA65D18EB4E960011D374 /* Grip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		509BA66018EB4E960011D374 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		509BA66218EB4E960011D374 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -467,6 +470,8 @@
 				507D046F193E7A18003CC3B6 /* UIView+Utils.m */,
 				509BB174193A756100FC8CC7 /* UILabel+Utils.h */,
 				509BB175193A756100FC8CC7 /* UILabel+Utils.m */,
+				5095EC6A19AD595600D887F7 /* UIImage+Utils.h */,
+				5095EC6B19AD595600D887F7 /* UIImage+Utils.m */,
 			);
 			path = BoilerplateUtils;
 			sourceTree = "<group>";
@@ -697,6 +702,7 @@
 				509BA69E18EB50930011D374 /* DealViewController.m in Sources */,
 				509BB193193A756100FC8CC7 /* UILabel+Utils.m in Sources */,
 				509BB188193A756100FC8CC7 /* MCButtonInterpreter.m in Sources */,
+				5095EC6C19AD595600D887F7 /* UIImage+Utils.m in Sources */,
 				509BB18D193A756100FC8CC7 /* MCUIElementInterpreter.m in Sources */,
 				509BB191193A756100FC8CC7 /* UIButton+Utils.m in Sources */,
 				509BB190193A756100FC8CC7 /* NSString+Utils.m in Sources */,

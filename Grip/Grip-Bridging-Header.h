@@ -6,4 +6,4 @@
 #import <Mantle/Mantle.h>
 #import "MBProgressHUD.h"
 
-#import "Grip-Prefix.pch"
+#import "UIImage+Utils.h"

@@ -21,11 +21,7 @@ class Product : MTLModel, MTLJSONSerializing {
     var updated_at: String?
     
     var image: UIImage?
-    
-    //simple helper
-    func imageUrl() -> NSURL {
-        return NSURL(string: image_url)
-    }
+    var desaturatedImage: UIImage?
     
 
     //Boilerplate Mantle code
