@@ -16,6 +16,8 @@
 
 #import "Grip-Swift.h"
 
+#import "UIButton+Utils.h"
+
 
 @interface LandingViewController () {
     MBViewAnimator *animator;
@@ -52,7 +54,6 @@
     animator = [[MBViewAnimator alloc] initWithDuration:ANIMATION_DURATION];
     
     apiManager = [[PGApiManager alloc] init];
-
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -101,8 +102,9 @@
     viewSettings.backgroundColor = PRIMARY_DARK;
     
     for(UIButton *button in buttons) {
-        [button setTitleColor:HIGHLIGHT_COLOR forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [button setTitleColor:HIGHLIGHT_COLOR forState:UIControlStateHighlighted];
+        button.adjustsImageWhenHighlighted = YES;
     }
     
     textfieldEmail.backgroundColor = PRIMARY_LIGHT;

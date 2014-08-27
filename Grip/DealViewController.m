@@ -83,6 +83,8 @@ typedef enum UIState{
     self.view.backgroundColor = PRIMARY_LIGHT;
     tableProducts.backgroundColor = PRIMARY_LIGHT;
     
+    [labelProductDescription setTextColor:P_TEXT_COLOR];
+    
     for(UIButton *button in buttons) {
         [button setTitleColor:HIGHLIGHT_COLOR forState:UIControlStateNormal];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];

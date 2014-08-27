@@ -10,6 +10,6 @@
 
 @interface UIImageView (Utils)
 
-- (void) removeWhitespace;
+//- (void) removeWhitespace;
 
 @end

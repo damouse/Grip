@@ -43,6 +43,8 @@
     cell.delegate = self;
     cell.maxDisplacement = MAX_DISPLACEMENT;
     
+    [cell.textviewDetails setTextColor:P_TEXT_COLOR];
+    
     Product *product = [self.products objectAtIndex:indexPath.row];
     
     if (cell == nil)
@@ -51,7 +53,12 @@
     //fill content
     [cell.textviewDetails setText:product.item_description];
     [cell.labelTitle setText:product.name];
-    [cell.imageView sd_setImageWithURL:[product imageUrl]];
+    [cell.imageviewCaption setImage:product.image];
+    
+//    [cell.imageviewCaption sd_setImageWithURL:[product imageUrl] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//        NSLog(@"Loaded");
+//    }];
+    //[cell.imageView sd_setImageWithURL:[product imageUrl] placeholderImage:nil];
     
     return cell;
 }

@@ -116,6 +116,11 @@ import UIKit
                 self.products = self.serializeObjects(responseObject!, jsonKey: "products", objectClass: Product.self)
                 
                 success?()
+                
+                //after calling success on products, go ahead and load the images for each product in the background
+                for product in self.products {
+                    self.loadImage(product as Product)
+                }
             },
             
             failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
@@ -202,5 +207,33 @@ import UIKit
         var error: NSError?
         let cocoaArray: NSArray = MTLJSONAdapter.modelsOfClass(objectClass, fromJSONArray: (responseObject as NSDictionary).objectForKey(jsonKey) as NSArray, error: &error) as NSArray
         return cocoaArray
+    }
+    
+    func loadImage(product: Product) {
+        //async call to load an image using AFNetworking
+        let request = NSURLRequest(URL: NSURL(string: product.image_url))
+        var operation = AFHTTPRequestOperation(request: request)
+        operation.responseSerializer = AFImageResponseSerializer()
+        
+        operation.setCompletionBlockWithSuccess({ (operation: AFHTTPRequestOperation!, object: AnyObject!) -> Void in
+                product.image = object as? UIImage
+            },
+            failure: { (operation: AFHTTPRequestOperation!, error: NSError!) ->Void in
+                println("Image failure for product \(product.name)")
+                println(error)
+        })
+        
+        operation.start()
+        
+//        AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:urlRequest];
+//        requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
+//        [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//            NSLog(@"Response: %@", responseObject);
+//            _imageView.image = responseObject;
+//            
+//            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//            NSLog(@"Image error: %@", error);
+//            }];
+//        [requestOperation start];
     }
 }

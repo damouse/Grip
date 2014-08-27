@@ -20,6 +20,7 @@ class Product : MTLModel, MTLJSONSerializing {
     var type: String?
     var updated_at: String?
     
+    var image: UIImage?
     
     //simple helper
     func imageUrl() -> NSURL {

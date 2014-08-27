@@ -15,6 +15,7 @@
 		50637C63199247F40010A6EF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50637C62199247F40010A6EF /* User.swift */; };
 		507D0470193E7A18003CC3B6 /* UIView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D046F193E7A18003CC3B6 /* UIView+Utils.m */; };
 		507D0476193E7CA4003CC3B6 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */; };
+		5095EC6919AD49AF00D887F7 /* GripButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095EC6819AD49AF00D887F7 /* GripButton.swift */; };
 		509BA66118EB4E960011D374 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66018EB4E960011D374 /* Foundation.framework */; };
 		509BA66318EB4E960011D374 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66218EB4E960011D374 /* CoreGraphics.framework */; };
 		509BA66518EB4E960011D374 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66418EB4E960011D374 /* UIKit.framework */; };
@@ -96,6 +97,7 @@
 		507D046F193E7A18003CC3B6 /* UIView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Utils.m"; sourceTree = "<group>"; };
 		507D0474193E7CA4003CC3B6 /* ProductTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableViewCell.h; sourceTree = "<group>"; };
 		507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTableViewCell.m; sourceTree = "<group>"; };
+		5095EC6819AD49AF00D887F7 /* GripButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GripButton.swift; sourceTree = "<group>"; };
 		509BA65D18EB4E960011D374 /* Grip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		509BA66018EB4E960011D374 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		509BA66218EB4E960011D374 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -333,6 +335,7 @@
 			children = (
 				509BA67218EB4E960011D374 /* Main.storyboard */,
 				507D0477193E7CA7003CC3B6 /* ProductTable */,
+				5095EC6819AD49AF00D887F7 /* GripButton.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -571,6 +574,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Mickey Barboi";
 				TargetAttributes = {
+					509BA65C18EB4E960011D374 = {
+						DevelopmentTeam = MBE45279K3;
+					};
 					509BA67D18EB4E960011D374 = {
 						TestTargetID = 509BA65C18EB4E960011D374;
 					};
@@ -679,6 +685,7 @@
 				509BB192193A756100FC8CC7 /* UIImageView+Utils.m in Sources */,
 				509BB195193A756100FC8CC7 /* MBObjectUtils.m in Sources */,
 				509BB194193A756100FC8CC7 /* StraightUpUtils.m in Sources */,
+				5095EC6919AD49AF00D887F7 /* GripButton.swift in Sources */,
 				507D0476193E7CA4003CC3B6 /* ProductTableViewCell.m in Sources */,
 				509BB185193A756100FC8CC7 /* MCCollectionView.m in Sources */,
 				509BB187193A756100FC8CC7 /* MCTableView.m in Sources */,
@@ -835,14 +842,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Mihnea Barboi (MBE45279K3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Mihnea Barboi (MBE45279K3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Grip/Grip-Prefix.pch";
 				INFOPLIST_FILE = "Grip/Grip-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A0086BA2-018A-4A71-968D-F8149751BBEC";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Grip/Grip-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
@@ -856,14 +863,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Mihnea Barboi (MBE45279K3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Grip/Grip-Prefix.pch";
 				INFOPLIST_FILE = "Grip/Grip-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A0086BA2-018A-4A71-968D-F8149751BBEC";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Grip/Grip-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

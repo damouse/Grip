@@ -29,5 +29,17 @@
     [self.titleLabel setAttributedText:commentString];
 }
 
-
+//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    self.titleLabel.textColor = HIGHLIGHT_COLOR;
+//}
+//
+//-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    [UIView animateWithDuration:10 animations:^{
+//        self setTitle
+//        self.titleLabel.textColor = [UIColor whiteColor];
+//    }];
+//    
+//}
 @end
