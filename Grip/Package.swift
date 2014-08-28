@@ -16,7 +16,7 @@ class Package : MTLModel, MTLJSONSerializing {
     var order_index: String?
     var updated_at: String?
 
-    var products = Array<AnyObject>()
+    var products = Array<Product>()
     
     //Boilerplate Mantle code
     class func appURLSchemeJSONTransformer() -> NSValueTransformer {

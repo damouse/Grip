@@ -66,13 +66,8 @@
     __weak IBOutlet UIImageView *imageMerchandise;
 }
 
-//Passed Model Properties-- these are sent piecemeal so the controller does not
-//have to manage customer/package selection
-@property (strong, nonatomic) User *user;
-@property (strong, nonatomic) User *customer;
-@property (strong, nonatomic) Product *merchandise;
-@property (strong, nonatomic) NSMutableArray *products;
-@property (strong, nonatomic) NSArray *packages;
+//passed in from the landing controller
+@property (strong, nonatomic) Dealmaker *dealmaker;
 
 
 //buttons within slidein info panes
@@ -90,5 +85,5 @@
 - (IBAction)infoTapped:(id)sender;
 
 //delegate methods
-- (void) didSelectProduct:(Product *) product;
+- (void) didSelectProduct:(ProductReceipt *) product;
 @end

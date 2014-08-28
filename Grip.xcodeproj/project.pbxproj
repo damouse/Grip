@@ -17,6 +17,9 @@
 		507D0476193E7CA4003CC3B6 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */; };
 		5095EC6919AD49AF00D887F7 /* GripButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095EC6819AD49AF00D887F7 /* GripButton.swift */; };
 		5095EC6C19AD595600D887F7 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5095EC6B19AD595600D887F7 /* UIImage+Utils.m */; };
+		5097550919AED47A006E7859 /* Dealmaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5097550819AED47A006E7859 /* Dealmaker.swift */; };
+		5097550B19AED59E006E7859 /* Rollback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5097550A19AED59E006E7859 /* Rollback.swift */; };
+		5097550D19AED5A2006E7859 /* DealAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5097550C19AED5A2006E7859 /* DealAction.swift */; };
 		5099444919AE86C100E7D004 /* ProductReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5099444819AE86C100E7D004 /* ProductReceipt.swift */; };
 		5099444B19AE86C600E7D004 /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5099444A19AE86C600E7D004 /* Receipt.swift */; };
 		509BA66118EB4E960011D374 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66018EB4E960011D374 /* Foundation.framework */; };
@@ -103,6 +106,9 @@
 		5095EC6819AD49AF00D887F7 /* GripButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GripButton.swift; sourceTree = "<group>"; };
 		5095EC6A19AD595600D887F7 /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
 		5095EC6B19AD595600D887F7 /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
+		5097550819AED47A006E7859 /* Dealmaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dealmaker.swift; sourceTree = "<group>"; };
+		5097550A19AED59E006E7859 /* Rollback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rollback.swift; sourceTree = "<group>"; };
+		5097550C19AED5A2006E7859 /* DealAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DealAction.swift; sourceTree = "<group>"; };
 		5099444819AE86C100E7D004 /* ProductReceipt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductReceipt.swift; sourceTree = "<group>"; };
 		5099444A19AE86C600E7D004 /* Receipt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
 		509BA65D18EB4E960011D374 /* Grip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grip.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -355,6 +361,9 @@
 				5048DED9199F24FB0014ABC4 /* Objects */,
 				50EC987C199236D400C62BFE /* PGApiManager.swift */,
 				501B6134199259CF00286A6E /* PGArchiver.swift */,
+				5097550819AED47A006E7859 /* Dealmaker.swift */,
+				5097550A19AED59E006E7859 /* Rollback.swift */,
+				5097550C19AED5A2006E7859 /* DealAction.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -702,6 +711,7 @@
 				507D0476193E7CA4003CC3B6 /* ProductTableViewCell.m in Sources */,
 				509BB185193A756100FC8CC7 /* MCCollectionView.m in Sources */,
 				509BB187193A756100FC8CC7 /* MCTableView.m in Sources */,
+				5097550B19AED59E006E7859 /* Rollback.swift in Sources */,
 				509BB181193A756100FC8CC7 /* MBProgressHUD.m in Sources */,
 				509BB184193A756100FC8CC7 /* MCProperty.m in Sources */,
 				509BB18C193A756100FC8CC7 /* MCTextViewInterpreter.m in Sources */,
@@ -711,6 +721,7 @@
 				509BB193193A756100FC8CC7 /* UILabel+Utils.m in Sources */,
 				509BB188193A756100FC8CC7 /* MCButtonInterpreter.m in Sources */,
 				5095EC6C19AD595600D887F7 /* UIImage+Utils.m in Sources */,
+				5097550919AED47A006E7859 /* Dealmaker.swift in Sources */,
 				509BB18D193A756100FC8CC7 /* MCUIElementInterpreter.m in Sources */,
 				509BB191193A756100FC8CC7 /* UIButton+Utils.m in Sources */,
 				509BB190193A756100FC8CC7 /* NSString+Utils.m in Sources */,
@@ -722,6 +733,7 @@
 				509BB186193A756100FC8CC7 /* MCCollectionViewDelegate.m in Sources */,
 				5053F108194132B400EDF062 /* RMSwipeTableViewCell.m in Sources */,
 				502F0434193FC90900516A0F /* ProductTableViewDelegate.m in Sources */,
+				5097550D19AED5A2006E7859 /* DealAction.swift in Sources */,
 				509BA66D18EB4E960011D374 /* main.m in Sources */,
 				509BB18F193A756100FC8CC7 /* MBBoilerplateUtils.m in Sources */,
 				509BB189193A756100FC8CC7 /* MCImageViewInterpreter.m in Sources */,

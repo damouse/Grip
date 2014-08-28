@@ -188,10 +188,6 @@ import UIKit
                 }
                 
                 success?()
-                
-                for package in self.packages {
-                    println(package.products)
-                }
             },
             
             failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in

@@ -15,9 +15,13 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UIImageView+WebCache.h"
 
+#import "Grip-Swift.h"
+
 @interface DealViewController (){
     MBViewAnimator *animator;
     ProductTableViewDelegate *tableDelegate;
+    
+    Rollback *rollback;
     
     int currentUIState;
 }
@@ -44,12 +48,13 @@ typedef enum UIState{
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     //table init
     tableDelegate = [[ProductTableViewDelegate alloc] init];
     tableDelegate.parent = self;
-    tableDelegate.products = self.products;
+    tableDelegate.dataSource = self.dealmaker;
     tableDelegate.tableView = tableProducts;
+    
     tableProducts.delegate = tableDelegate;
     tableProducts.dataSource = tableDelegate;
 }
@@ -93,14 +98,14 @@ typedef enum UIState{
 
 - (void) setInitialLabels {
     //set merchandise and customer labels
-    labelCustomerName.text = self.customer.name;
-    labelDetailsCustomerName.text = self.customer.name;
-    labelMerchandiseName.text = self.merchandise.name;
-    labelDetailsMerchandiseName.text = self.merchandise.name;
-    labelDetailsMerchandiseDescription.text = self.merchandise.item_description;
+    labelCustomerName.text = self.dealmaker.receipt.customer.name;
+    labelDetailsCustomerName.text = self.dealmaker.receipt.customer.name;
+    labelMerchandiseName.text = self.dealmaker.receipt.merchandise.name;
+    labelDetailsMerchandiseName.text = self.dealmaker.receipt.merchandise.name;
+    labelDetailsMerchandiseDescription.text = self.dealmaker.receipt.merchandise.product.item_description;
     
-    [imageDetailsMerchandise setImage:self.merchandise.image];
-    [imageMerchandise setImage:self.merchandise.image];
+    [imageDetailsMerchandise setImage:self.dealmaker.receipt.merchandise.product.image];
+    [imageMerchandise setImage:self.dealmaker.receipt.merchandise.product.image];
 }
 
 
@@ -224,19 +229,19 @@ typedef enum UIState{
 
 
 #pragma mark Delegate Methods
-- (void) didSelectProduct:(Product *) product {
+- (void) didSelectProduct:(ProductReceipt *) product {
     //triggered from the table
     if (currentUIState == StateNeutral)
         [self animateProductPaneIn];
 
     labelProductName.text = product.name;
-    labelProductDescription.text = product.item_description;
+    labelProductDescription.text = product.product.item_description;
     
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
     labelProductPrice.text = [numberFormatter stringFromNumber:[NSNumber numberWithFloat:product.price]];
     
-    [imageProductImage setImage:product.image];
+    [imageProductImage setImage:product.product.image];
 }
 
 

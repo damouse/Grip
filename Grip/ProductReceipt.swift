@@ -25,9 +25,11 @@ class ProductReceipt : MTLModel, MTLJSONSerializing {
 
     var product: Product?
     
+    var active = false
+    
     
     //create a Receipt from a Product
-    class func initWithProduct(product: Product) -> ProductReceipt {
+    class func createWith(product: Product) -> ProductReceipt {
         let receipt = ProductReceipt()
         
         receipt.base_item_id = product.id

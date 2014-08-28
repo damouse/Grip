@@ -20,11 +20,11 @@
 #import <Foundation/Foundation.h>
 #import "DealViewController.h"
 
+#import "Grip-Swift.h"
 
 @interface ProductTableViewDelegate : NSObject <UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) NSMutableArray *products;
-@property (weak, nonatomic) Package *package;
+@property (weak, nonatomic) Dealmaker *dataSource;
 
 @property (weak, nonatomic) DealViewController *parent;
 @property (weak, nonatomic) UITableView *tableView;

@@ -15,13 +15,25 @@ import Foundation
 
 class Receipt : MTLModel, MTLJSONSerializing {
     var id = -1
-    var productReceipts = Array<ProductReceipt>()
+    var productReceipts: [ProductReceipt]?
     var merchandise: ProductReceipt?
     var user: User?
     var customer: User?
     var discount = 0
     var base_package_id = -1
-    var signature = 0
+    var signature: AnyObject?
+    
+    
+    //class init
+    class func createWith(user: User, customer: User, merchandise: Product) -> Receipt {
+        let receipt = Receipt()
+        
+        receipt.merchandise = ProductReceipt.createWith(merchandise)
+        receipt.user = user
+        receipt.customer = customer
+        
+        return receipt
+    }
     
     
     //Boilerplate Mantle code

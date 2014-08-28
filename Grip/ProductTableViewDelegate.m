@@ -30,7 +30,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.products count];
+    return [self.dataSource numberOfProducts];
 }
 
 /*- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -45,21 +45,21 @@
     
     [cell.textviewDetails setTextColor:P_TEXT_COLOR];
     
-    Product *product = [self.products objectAtIndex:indexPath.row];
+    ProductReceipt *product = [self.dataSource productForIndex:indexPath.row];
     
     if (cell == nil)
         cell = [[ProductTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     
     //fill content
-    [cell.textviewDetails setText:product.item_description];
+    [cell.textviewDetails setText:product.product.item_description];
     [cell.labelTitle setText:product.name];
-    [cell.imageviewCaption setImage:product.image];
+    [cell.imageviewCaption setImage:product.product.image];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Product *product = [self.products objectAtIndex:indexPath.row];
+    ProductReceipt *product = [self.dataSource productForIndex:indexPath.row];
     [self.parent didSelectProduct:product];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -84,39 +84,24 @@
 }
 
 -(void)swipeTableViewCell:(ProductTableViewCell*)swipeTableViewCell didSwipeToPoint:(CGPoint)point velocity:(CGPoint)velocity {
-    //trigger reset
+    //reset the trigger for the cell, change the order and style of the cell where needed, and get a new cell ordering from the dealmaker
+    //reflecting the changed state of the slid cell
     if (point.x == MAX_DISPLACEMENT || point.x == (-1 * MAX_DISPLACEMENT)) {
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:swipeTableViewCell];
-        
-        //save the old order of the array
-        NSMutableArray *oldOrder = [self.products mutableCopy];
-        
-        //set up the new order
-        Product *product = [self.products objectAtIndex:indexPath.row];
-        [self.products removeObjectAtIndex:indexPath.row];
-        [self.products addObject:product];
+        NSArray *oldProducts = [self.dataSource.allProducts mutableCopy];
+        NSArray *newProducts = [self.dataSource selectProductAtIndex:[self.tableView indexPathForCell:swipeTableViewCell].row];
         
         [self.tableView beginUpdates];
-
-        for (int i = 0; i < self.products.count; i++) {
+        
+        for (int i = 0; i < newProducts.count; i++) {
             // newRow will get the new row of an object.  i is the old row.
-            int newRow = [self.products indexOfObject:[oldOrder objectAtIndex:i]];
+            int newRow = [newProducts indexOfObject:[oldProducts objectAtIndex:i]];
             [self.tableView moveRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0] toIndexPath:[NSIndexPath indexPathForRow:newRow inSection:0]];
         }
-
+        
         [self.tableView endUpdates];
         
-        //Dlog(@"Removing cell at index %i", indexPath.row);
         [swipeTableViewCell resetContentView];
         swipeTableViewCell.interruptPanGestureHandler = YES;
-        
-//        [self.tableView beginUpdates];
-//        product = [self.products objectAtIndex:indexPath.row];
-//        [self.products removeObjectAtIndex:indexPath.row];
-//        [self.products addObject:product];
-//        [self.tableView reloadData];
-//        [self.tableView endUpdates];
-        
     }
 }
 
