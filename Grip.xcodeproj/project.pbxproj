@@ -17,6 +17,8 @@
 		507D0476193E7CA4003CC3B6 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */; };
 		5095EC6919AD49AF00D887F7 /* GripButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095EC6819AD49AF00D887F7 /* GripButton.swift */; };
 		5095EC6C19AD595600D887F7 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5095EC6B19AD595600D887F7 /* UIImage+Utils.m */; };
+		5099444919AE86C100E7D004 /* ProductReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5099444819AE86C100E7D004 /* ProductReceipt.swift */; };
+		5099444B19AE86C600E7D004 /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5099444A19AE86C600E7D004 /* Receipt.swift */; };
 		509BA66118EB4E960011D374 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66018EB4E960011D374 /* Foundation.framework */; };
 		509BA66318EB4E960011D374 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66218EB4E960011D374 /* CoreGraphics.framework */; };
 		509BA66518EB4E960011D374 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BA66418EB4E960011D374 /* UIKit.framework */; };
@@ -101,6 +103,8 @@
 		5095EC6819AD49AF00D887F7 /* GripButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GripButton.swift; sourceTree = "<group>"; };
 		5095EC6A19AD595600D887F7 /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
 		5095EC6B19AD595600D887F7 /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
+		5099444819AE86C100E7D004 /* ProductReceipt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductReceipt.swift; sourceTree = "<group>"; };
+		5099444A19AE86C600E7D004 /* Receipt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
 		509BA65D18EB4E960011D374 /* Grip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		509BA66018EB4E960011D374 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		509BA66218EB4E960011D374 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -221,6 +225,8 @@
 				5048DED3199F0A9B0014ABC4 /* Package.swift */,
 				5048DED4199F0A9B0014ABC4 /* Product.swift */,
 				50637C62199247F40010A6EF /* User.swift */,
+				5099444819AE86C100E7D004 /* ProductReceipt.swift */,
+				5099444A19AE86C600E7D004 /* Receipt.swift */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -684,6 +690,7 @@
 				501B6135199259CF00286A6E /* PGArchiver.swift in Sources */,
 				509BB197193A756100FC8CC7 /* MBViewAnimator.m in Sources */,
 				5048DED7199F0A9B0014ABC4 /* Package.swift in Sources */,
+				5099444B19AE86C600E7D004 /* Receipt.swift in Sources */,
 				509BB18B193A756100FC8CC7 /* MCTextFieldInterpreter.m in Sources */,
 				509BB18A193A756100FC8CC7 /* MCLabelInterpreter.m in Sources */,
 				509BB183193A756100FC8CC7 /* MCBinder.m in Sources */,
@@ -691,6 +698,7 @@
 				509BB195193A756100FC8CC7 /* MBObjectUtils.m in Sources */,
 				509BB194193A756100FC8CC7 /* StraightUpUtils.m in Sources */,
 				5095EC6919AD49AF00D887F7 /* GripButton.swift in Sources */,
+				5099444919AE86C100E7D004 /* ProductReceipt.swift in Sources */,
 				507D0476193E7CA4003CC3B6 /* ProductTableViewCell.m in Sources */,
 				509BB185193A756100FC8CC7 /* MCCollectionView.m in Sources */,
 				509BB187193A756100FC8CC7 /* MCTableView.m in Sources */,

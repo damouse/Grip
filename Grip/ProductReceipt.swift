@@ -1,41 +1,44 @@
 //
-//  User.swift
+//  ProductReceipt.swift
 //  Grip
 //
-//  Created by Mickey Barboi on 8/6/14.
+//  Created by Mickey Barboi on 8/27/14.
 //  Copyright (c) 2014 Mickey Barboi. All rights reserved.
 //
 
-/*
-func createdAtJSONTransformer() -> NSValueTransformer {
-let _forwardBlock: MTLValueTransformerBlock? = { str in
-return self.dateFormatter().dateFromString(str as String!)
-}
-let _reverseBlock: MTLValueTransformerBlock? = { date in
-return self.dateFormatter().stringFromDate(date as NSDate!)
-}
-return MTLValueTransformer.reversibleTransformerWithForwardBlock(_forwardBlock, reverseBlock: _reverseBlock)
-}
+/**
+Product or Merchandise converted for sale/manipulation. Uploaded to the API when completed. 
+
 */
 
 import Foundation
 
-class Product : MTLModel, MTLJSONSerializing {
+
+class ProductReceipt : MTLModel, MTLJSONSerializing {
     var id = -1
+    var base_item_id = -1
+    
     var name: String?
-    var created_at: String?
-    var item_description: String?
-    var group_id = -1
-    var image_url: String?
-    var order_index: String?
+    
     var price = 0.0
     var type: String?
-    var updated_at: String?
-    
-    var image: UIImage?
-    var desaturatedImage: UIImage?
-    
 
+    var product: Product?
+    
+    
+    //create a Receipt from a Product
+    class func initWithProduct(product: Product) -> ProductReceipt {
+        let receipt = ProductReceipt()
+        
+        receipt.base_item_id = product.id
+        receipt.name = product.name
+        receipt.price = product.price
+        receipt.type = product.type
+        receipt.product = product
+        
+        return receipt
+    }
+    
     //Boilerplate Mantle code
     class func appURLSchemeJSONTransformer() -> NSValueTransformer {
         return NSValueTransformer(forName: MTLURLValueTransformerName)
@@ -56,7 +59,7 @@ class Product : MTLModel, MTLJSONSerializing {
     required init(coder:NSCoder) {
         super.init(coder: coder)
     }
-
+    
     override init() {
         super.init()
     }

@@ -1,41 +1,29 @@
 //
-//  User.swift
+//  Receipt.swift
 //  Grip
 //
-//  Created by Mickey Barboi on 8/6/14.
+//  Created by Mickey Barboi on 8/27/14.
 //  Copyright (c) 2014 Mickey Barboi. All rights reserved.
 //
 
-/*
-func createdAtJSONTransformer() -> NSValueTransformer {
-let _forwardBlock: MTLValueTransformerBlock? = { str in
-return self.dateFormatter().dateFromString(str as String!)
-}
-let _reverseBlock: MTLValueTransformerBlock? = { date in
-return self.dateFormatter().stringFromDate(date as NSDate!)
-}
-return MTLValueTransformer.reversibleTransformerWithForwardBlock(_forwardBlock, reverseBlock: _reverseBlock)
-}
+/**
+A package that has been converted and ready for presentation/finalization. This is the ultimate model object that
+is uploaded to the backend, but it is also used to store intermediary steps as to avoid polluting package objects with changed data
 */
 
 import Foundation
 
-class Product : MTLModel, MTLJSONSerializing {
+class Receipt : MTLModel, MTLJSONSerializing {
     var id = -1
-    var name: String?
-    var created_at: String?
-    var item_description: String?
-    var group_id = -1
-    var image_url: String?
-    var order_index: String?
-    var price = 0.0
-    var type: String?
-    var updated_at: String?
+    var productReceipts = Array<ProductReceipt>()
+    var merchandise: ProductReceipt?
+    var user: User?
+    var customer: User?
+    var discount = 0
+    var base_package_id = -1
+    var signature = 0
     
-    var image: UIImage?
-    var desaturatedImage: UIImage?
     
-
     //Boilerplate Mantle code
     class func appURLSchemeJSONTransformer() -> NSValueTransformer {
         return NSValueTransformer(forName: MTLURLValueTransformerName)
@@ -56,7 +44,7 @@ class Product : MTLModel, MTLJSONSerializing {
     required init(coder:NSCoder) {
         super.init(coder: coder)
     }
-
+    
     override init() {
         super.init()
     }

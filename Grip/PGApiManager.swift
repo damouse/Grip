@@ -16,8 +16,8 @@ import UIKit
     
     var user: User?
     var products = NSArray()
-    var merchandises = Array<Product>()
-    var packages = Array<Package>()
+    var merchandises = NSArray()
+    var packages = NSArray()
     
     var progressHUD: MBProgressHUD?
     
@@ -32,6 +32,20 @@ import UIKit
                 success()
             }
         );
+    }
+    
+    
+    //MARK: Model Helper Methods
+    func findProductById(id:Int) -> Product? {
+        var ret: Product?
+        
+        for product in self.products {
+            if (product as Product).id == id {
+                return product as? Product
+            }
+        }
+        
+        return ret
     }
     
     
@@ -111,10 +125,7 @@ import UIKit
         generateAuthenticatedClient().GET("dashboard/\(self.user!.group_id)/products", parameters: nil,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
-                println("API: Products Success")
-                
                 self.products = self.serializeObjects(responseObject!, jsonKey: "products", objectClass: Product.self)
-                
                 success?()
                 
                 //after calling success on products, go ahead and load the images for each product in the background
@@ -135,16 +146,7 @@ import UIKit
         generateAuthenticatedClient().GET("dashboard/\(self.user!.group_id)/merchandise", parameters: nil,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
-                println("API: Merchandise Success")
-                
-                var error: NSError?
-                let cocoaArray: NSArray = MTLJSONAdapter.modelsOfClass(Product.self, fromJSONArray: (responseObject as NSDictionary).objectForKey("merchandises") as NSArray, error: &error) as NSArray
-                
-                //'cast' the NSArray to a swift array. There must be a cleaner way of doing this...
-                for product in cocoaArray {
-                    self.merchandises.append(product as Product)
-                }
-                
+                self.merchandises = self.serializeObjects(responseObject!, jsonKey: "merchandises", objectClass: Product.self)
                 success?()
             },
             
@@ -160,16 +162,36 @@ import UIKit
         generateAuthenticatedClient().GET("dashboard/\(self.user!.group_id)/packages", parameters: nil,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
-                println("API: Package Success")
+                self.packages = self.serializeObjects(responseObject!, jsonKey: "packages", objectClass: Package.self)
                 
-                var error: NSError?
-                let cocoaArray: NSArray = MTLJSONAdapter.modelsOfClass(Package.self, fromJSONArray: (responseObject as NSDictionary).objectForKey("packages") as NSArray, error: &error) as NSArray
-
-                for product in cocoaArray {
-                    self.packages.append(product as Package)
+                //Christ this hurts me to look at
+                var packages = responseObject! as [String:AnyObject]
+                var unwrappedPackages: AnyObject? = packages["packages"]!
+                var packagesArray = unwrappedPackages! as [[String:AnyObject]]
+                
+                //Manually pair products to packages by comparing ids. Maybe a little rough, but it beats redundantly creating products
+                for var i = 0; i < packagesArray.count; i++ {
+                    let products: AnyObject? = packagesArray[i]["products"]
+                    let productsArray = products! as [[String:AnyObject]]
+                    
+                    let package = self.packages[0] as Package
+                    
+                    for product in productsArray {
+                        
+                        let productID: AnyObject? = product["id"]
+                        let ret = self.findProductById(productID as Int)
+                        
+                        if let un = ret {
+                            package.products.append(un as Product)
+                        }
+                    }
                 }
                 
                 success?()
+                
+                for package in self.packages {
+                    println(package.products)
+                }
             },
             
             failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
@@ -203,7 +225,7 @@ import UIKit
     }
     
     func serializeObjects(responseObject:AnyObject, jsonKey:String, objectClass:AnyClass) -> NSArray {
-        println("API: Products Success")
+        println("API: \(jsonKey) Success")
         var error: NSError?
         let cocoaArray: NSArray = MTLJSONAdapter.modelsOfClass(objectClass, fromJSONArray: (responseObject as NSDictionary).objectForKey(jsonKey) as NSArray, error: &error) as NSArray
         return cocoaArray

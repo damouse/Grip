@@ -16,6 +16,7 @@ class Package : MTLModel, MTLJSONSerializing {
     var order_index: String?
     var updated_at: String?
 
+    var products = Array<AnyObject>()
     
     //Boilerplate Mantle code
     class func appURLSchemeJSONTransformer() -> NSValueTransformer {
@@ -23,7 +24,9 @@ class Package : MTLModel, MTLJSONSerializing {
     }
     
     class func JSONKeyPathsByPropertyKey() -> [NSObject : AnyObject]! {
-        return NSDictionary()
+        return [
+            "products": NSNull()
+        ]
     }
 
     
