@@ -65,20 +65,36 @@ class Dealmaker : NSObject {
         return currentProductOrdering
     }
     
-    func selectPackage(package: Package) {
+    func selectPackage(package: Package) -> [ProductReceipt] {
         //select all of the products in this package, deselect all those not in the package
-        //WARN: this may break the undo functionality!
+        //returns a list of the products that were toggled by activating this package
+        //this method does NOT change the UI!
+        
+        var alteredProducts = [ProductReceipt]()
+        
         for product in allProducts {
             
             if contains(package.products, product.product!) {
-                product.active = true;
+                
+                //inner if statement only toggles the product if it does not already match its intended stae
+                if !product.active {
+                    product.active = true;
+                    alteredProducts.append(product)
+                }
             }
             else {
-                product.active = false;
+                if product.active {
+                    product.active = false;
+                    alteredProducts.append(product)
+                }
+                
             }
         }
         
         establishProductOrdering()
+        checkPackageMatch()
+        
+        return alteredProducts
     }
     
     

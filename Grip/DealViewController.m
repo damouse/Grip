@@ -56,6 +56,11 @@ typedef enum UIState{
 - (void) viewDidLoad {
     [super viewDidLoad];
     
+    //roll it back now, yall
+    rollback = [[Rollback alloc] initWithUndoBlock:^(ProductReceipt * product) {
+        [self selectProduct:product];
+    }];
+    
     //main table init
     tableDelegate = [[ProductTableViewDelegate alloc] init];
     tableDelegate.parent = self;
@@ -242,8 +247,8 @@ typedef enum UIState{
 }
 
 
-#pragma mark Delegate Methods
-- (void) didSelectProduct:(ProductReceipt *) product {
+#pragma mark Table Delegate Methods
+- (void) didTouchProduct:(ProductReceipt *) product {
     //triggered from the table
     if (currentUIState == StateNeutral)
         [self animateProductPaneIn];
@@ -258,12 +263,21 @@ typedef enum UIState{
     [imageProductImage setImage:product.product.image];
 }
 
-- (void) didSlideProduct:(ProductReceipt *)product {
+- (void) didSelectProduct:(ProductReceipt *)product {
     //called from the table when a product selection occurs. Inform Rollback
     
+    //Create new rollbackAction indicating a selection, add to rollback queue
+    [rollback actionProductSelection:product];
+}
+
+- (void) selectProduct:(ProductReceipt *) product {
+    [tableDelegate selectProduct:product];
 }
 
 - (void) didSelectPackage:(Package *) package {
+    
+    //assign list to a rollback
+    [self.dealmaker selectPackage:package];
     
 }
 
@@ -284,7 +298,7 @@ typedef enum UIState{
 }
 
 - (IBAction)undo:(id)sender {
-
+    [rollback undo];
 }
 
 - (IBAction)infoTapped:(id)sender {

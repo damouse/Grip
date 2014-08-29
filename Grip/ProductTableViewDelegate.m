@@ -62,7 +62,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ProductReceipt *product = [self.dataSource productForIndex:indexPath.row];
-    [self.parent didSelectProduct:product];
+    [self.parent didTouchProduct:product];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -100,17 +100,12 @@
     //reflecting the changed state of the slid cell
     if (point.x == MAX_DISPLACEMENT || point.x == (-1 * MAX_DISPLACEMENT)) {
         ProductReceipt *selectedProduct = [self.dataSource productForIndex:[self.tableView indexPathForCell:swipeTableViewCell].row];
-        
-        NSArray *oldProducts = [self.dataSource.currentProductOrdering mutableCopy];
-        NSArray *newProducts = [self.dataSource selectProductAtIndex:[self.tableView indexPathForCell:swipeTableViewCell].row];
-        
-        [self updateTableRowOrder:oldProducts toNewOrder:newProducts];
+        [self selectProduct:selectedProduct];
         
         [swipeTableViewCell resetContentView];
         swipeTableViewCell.interruptPanGestureHandler = YES;
         
-        [self setupCell:swipeTableViewCell withProduct:selectedProduct];
-        [self.parent didSlideProduct:selectedProduct];
+        [self.parent didSelectProduct:selectedProduct];
     }
 }
 
@@ -169,6 +164,8 @@
     //Dlog(@"Did reset state");
 }
 
+
+#pragma mark External Interface
 - (void) updateTableRowOrder:(NSArray *)oldProducts toNewOrder:(NSArray *)newProducts {
     [self.tableView beginUpdates];
     
@@ -178,5 +175,19 @@
     }
     
     [self.tableView endUpdates];
+}
+
+- (void) selectProduct:(ProductReceipt *) product {
+    //the method above triggers the slide, but the deal controller itself is what makes the magic happen. This is to allow external calls
+    //to this method, i.e. from rollback
+    
+    int index = [self.dataSource.currentProductOrdering indexOfObject:product];
+    NSArray *oldProducts = [self.dataSource.currentProductOrdering mutableCopy];
+    NSArray *newProducts = [self.dataSource selectProductAtIndex:index];
+    
+    ProductTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    
+    [self updateTableRowOrder:oldProducts toNewOrder:newProducts];
+    [self setupCell:cell withProduct:product];
 }
 @end

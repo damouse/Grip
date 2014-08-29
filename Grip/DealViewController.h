@@ -91,6 +91,6 @@
 - (IBAction)infoTapped:(id)sender;
 
 //delegate methods
-- (void) didSelectProduct:(ProductReceipt *) product;
-- (void) didSlideProduct:(ProductReceipt *)product;
+- (void) didTouchProduct:(ProductReceipt *) product;
+- (void) didSelectProduct:(ProductReceipt *)product;
 @end

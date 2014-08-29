@@ -32,4 +32,8 @@
 //TESTING SWIPING CELLS
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
+//triggers a redraw and reordering. This call be called "internally" (which means it bounces once through
+//DealVC) or from Rollback
+- (void) selectProduct:(ProductReceipt *) product;
+
 @end
