@@ -258,6 +258,15 @@ typedef enum UIState{
     [imageProductImage setImage:product.product.image];
 }
 
+- (void) didSlideProduct:(ProductReceipt *)product {
+    //called from the table when a product selection occurs. Inform Rollback
+    
+}
+
+- (void) didSelectPackage:(Package *) package {
+    
+}
+
 
 #pragma mark IBActions
 - (IBAction)cancel:(id)sender {

@@ -49,7 +49,7 @@ class Dealmaker : NSObject {
     }
     
     func productForIndex(index: Int) -> ProductReceipt? {
-        return allProducts[index]
+        return currentProductOrdering[index]
     }
     
     func selectProductAtIndex(index: Int) -> [ProductReceipt] {
@@ -77,6 +77,8 @@ class Dealmaker : NSObject {
                 product.active = false;
             }
         }
+        
+        establishProductOrdering()
     }
     
     
@@ -103,8 +105,8 @@ class Dealmaker : NSObject {
         }
         
         //sort each section individually
-        selectedItems.sort({$0.product?.order_index < $1.product?.order_index})
-        unselectedItems.sort({$0.product?.order_index < $1.product?.order_index})
+//        selectedItems.sort({$0.product?.order_index < $1.product?.order_index})
+//        unselectedItems.sort({$0.product?.order_index < $1.product?.order_index})
         
         currentProductOrdering = selectedItems + unselectedItems
     }

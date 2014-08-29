@@ -22,6 +22,7 @@ class PackageTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDel
         
         table.delegate = self
         table.dataSource = self
+        table.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
     
@@ -31,7 +32,7 @@ class PackageTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDel
     }
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         
         cell.textLabel.text = packages[indexPath.row].name
         
@@ -39,6 +40,7 @@ class PackageTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDel
     }
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-        didSelectBlock!(package: packages[indexPath.row])
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        didSelectBlock?(package: packages[indexPath.row])
     }
 }

@@ -92,4 +92,5 @@
 
 //delegate methods
 - (void) didSelectProduct:(ProductReceipt *) product;
+- (void) didSlideProduct:(ProductReceipt *)product;
 @end

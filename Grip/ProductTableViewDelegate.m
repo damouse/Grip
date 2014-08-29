@@ -53,7 +53,9 @@
     //fill content
     [cell.textviewDetails setText:product.product.item_description];
     [cell.labelTitle setText:product.name];
-    [cell.imageviewCaption setImage:product.product.image];
+    
+    //indicate the cell is either active or not
+    [self setupCell:cell withProduct:product];
     
     return cell;
 }
@@ -62,6 +64,16 @@
     ProductReceipt *product = [self.dataSource productForIndex:indexPath.row];
     [self.parent didSelectProduct:product];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+#pragma mark Cell Status
+- (void) setupCell:(ProductTableViewCell *) cell withProduct:(ProductReceipt *) product {
+    if (product.active)
+        [cell.imageviewCaption setImage:product.product.image];
+    else
+        [cell.imageviewCaption setImage:product.product.desaturatedImage];
+    
 }
 
 
@@ -87,21 +99,18 @@
     //reset the trigger for the cell, change the order and style of the cell where needed, and get a new cell ordering from the dealmaker
     //reflecting the changed state of the slid cell
     if (point.x == MAX_DISPLACEMENT || point.x == (-1 * MAX_DISPLACEMENT)) {
-        NSArray *oldProducts = [self.dataSource.allProducts mutableCopy];
+        ProductReceipt *selectedProduct = [self.dataSource productForIndex:[self.tableView indexPathForCell:swipeTableViewCell].row];
+        
+        NSArray *oldProducts = [self.dataSource.currentProductOrdering mutableCopy];
         NSArray *newProducts = [self.dataSource selectProductAtIndex:[self.tableView indexPathForCell:swipeTableViewCell].row];
         
-        [self.tableView beginUpdates];
-        
-        for (int i = 0; i < newProducts.count; i++) {
-            // newRow will get the new row of an object.  i is the old row.
-            int newRow = [newProducts indexOfObject:[oldProducts objectAtIndex:i]];
-            [self.tableView moveRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0] toIndexPath:[NSIndexPath indexPathForRow:newRow inSection:0]];
-        }
-        
-        [self.tableView endUpdates];
+        [self updateTableRowOrder:oldProducts toNewOrder:newProducts];
         
         [swipeTableViewCell resetContentView];
         swipeTableViewCell.interruptPanGestureHandler = YES;
+        
+        [self setupCell:swipeTableViewCell withProduct:selectedProduct];
+        [self.parent didSlideProduct:selectedProduct];
     }
 }
 
@@ -158,5 +167,16 @@
 
 -(void)swipeTableViewCellDidResetState:(RMSwipeTableViewCell*)swipeTableViewCell fromPoint:(CGPoint)point animation:(RMSwipeTableViewCellAnimationType)animation velocity:(CGPoint)velocity {
     //Dlog(@"Did reset state");
+}
+
+- (void) updateTableRowOrder:(NSArray *)oldProducts toNewOrder:(NSArray *)newProducts {
+    [self.tableView beginUpdates];
+    
+    for (int i = 0; i < newProducts.count; i++) {
+        int newRow = [newProducts indexOfObject:[oldProducts objectAtIndex:i]];
+        [self.tableView moveRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0] toIndexPath:[NSIndexPath indexPathForRow:newRow inSection:0]];
+    }
+    
+    [self.tableView endUpdates];
 }
 @end
