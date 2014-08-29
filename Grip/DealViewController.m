@@ -21,6 +21,13 @@
     MBViewAnimator *animator;
     ProductTableViewDelegate *tableDelegate;
     
+    //package table delegates
+    PackageTableViewDelegate *userPackageDelegate;
+    PackageTableViewDelegate *customerPackageDelegate;
+    
+    //two-pane slider
+    MBViewPaneSlider *paneSlider;
+    
     Rollback *rollback;
     
     int currentUIState;
@@ -38,7 +45,7 @@ typedef enum UIState{
 
 
 #pragma mark Lifecycle Methods
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -46,10 +53,10 @@ typedef enum UIState{
     return self;
 }
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
     
-    //table init
+    //main table init
     tableDelegate = [[ProductTableViewDelegate alloc] init];
     tableDelegate.parent = self;
     tableDelegate.dataSource = self.dealmaker;
@@ -57,6 +64,13 @@ typedef enum UIState{
     
     tableProducts.delegate = tableDelegate;
     tableProducts.dataSource = tableDelegate;
+    
+    //package table inits
+    customerPackageDelegate = [[PackageTableViewDelegate alloc] initWithPacks:self.dealmaker.customerPackages tableView:tableCustomerPackages];
+    userPackageDelegate = [[PackageTableViewDelegate alloc] initWithPacks:self.dealmaker.userPackages tableView:tablePresetPackages];
+    
+    //two-pane slider init
+    paneSlider = [[MBViewPaneSlider alloc] initWithView1:viewPresetPackageSlidein button1:buttonStockPackages view2:viewCustomerPackageSlideIn button2:buttonCustomerPackages];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -91,8 +105,8 @@ typedef enum UIState{
     [labelProductDescription setTextColor:P_TEXT_COLOR];
     
     for(UIButton *button in buttons) {
-        [button setTitleColor:HIGHLIGHT_COLOR forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [button setTitleColor:HIGHLIGHT_COLOR forState:UIControlStateHighlighted];
     }
 }
 

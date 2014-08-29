@@ -66,7 +66,17 @@ class Dealmaker : NSObject {
     }
     
     func selectPackage(package: Package) {
-        
+        //select all of the products in this package, deselect all those not in the package
+        //WARN: this may break the undo functionality!
+        for product in allProducts {
+            
+            if contains(package.products, product.product!) {
+                product.active = true;
+            }
+            else {
+                product.active = false;
+            }
+        }
     }
     
     

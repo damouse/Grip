@@ -27,15 +27,22 @@
     __weak IBOutlet UIView *viewInfoDetails;
     __weak IBOutlet UIView *viewProductDetails;
     __weak IBOutlet UIView *viewPackages;
-    
+
     __weak IBOutlet UIView *viewBottomLeftContainer; //cancel, complete buttons
     __weak IBOutlet UIView *viewBottomRightContainer; //undo, walkthrough
     
-    //table
+    __weak IBOutlet UIView *viewPresetPackageSlidein;
+    __weak IBOutlet UIView *viewCustomerPackageSlideIn;
+    
+    //tables
     __weak IBOutlet UITableView *tableProducts;
+    __weak IBOutlet UITableView *tableCustomerPackages;
+    __weak IBOutlet UITableView *tablePresetPackages;
     
     //Buttons
     IBOutletCollection(UIButton) NSArray *buttons;
+    __weak IBOutlet UIButton *buttonStockPackages;
+    __weak IBOutlet UIButton *buttonCustomerPackages;
     
     //Package Details Views
     __weak IBOutlet UIWebView *webviewVideo;
@@ -73,7 +80,6 @@
 //buttons within slidein info panes
 - (IBAction)infoDetailsExit:(id)sender;
 - (IBAction)productDetailsExit:(id)sender;
-
 
 //bottom buttons
 - (IBAction)cancel:(id)sender;

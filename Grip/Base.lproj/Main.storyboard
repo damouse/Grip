@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="9e0-7o-oBf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="9e0-7o-oBf">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Titillium-Light.otf">
-            <string>Titillium-Light</string>
             <string>Titillium-Light</string>
             <string>Titillium-Light</string>
             <string>Titillium-Light</string>
@@ -287,45 +286,63 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" id="VPm-AH-SuV">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" id="VPm-AH-SuV">
                                 <rect key="frame" x="794" y="192" width="233" height="384"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preset Packages" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0fJ-RU-B2b">
-                                        <rect key="frame" x="34" y="25" width="182" height="21"/>
+                                    <view contentMode="scaleToFill" id="HEh-Ye-vae">
+                                        <rect key="frame" x="0.0" y="0.0" width="225" height="339"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preset Packages" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0fJ-RU-B2b">
+                                                <rect key="frame" x="0.0" y="5" width="230" height="39"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="oJT-iW-fJR">
+                                                <rect key="frame" x="0.0" y="51" width="230" height="270"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </tableView>
+                                        </subviews>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZfW-Bw-a7D">
+                                        <rect key="frame" x="111" y="336" width="108" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gold" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eTe-2T-YPt">
-                                        <rect key="frame" x="67" y="72" width="117" height="21"/>
+                                        <state key="normal" title="CUSTOMER">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="COO-w0-CIe">
+                                        <rect key="frame" x="8" y="336" width="81" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Silver" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="c4I-qY-NUI">
-                                        <rect key="frame" x="67" y="101" width="117" height="21"/>
+                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
+                                        <state key="normal" title="USER">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <view contentMode="scaleToFill" id="hjR-28-JJQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="225" height="339"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Platinum" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2wb-8f-NnP">
-                                        <rect key="frame" x="67" y="130" width="117" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bronze" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1eH-pf-1hC">
-                                        <rect key="frame" x="74" y="159" width="110" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Packages" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OWV-ol-mxE">
+                                                <rect key="frame" x="0.0" y="5" width="230" height="39"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="JCV-1u-w8E">
+                                                <rect key="frame" x="0.0" y="51" width="230" height="270"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <sections/>
+                                            </tableView>
+                                        </subviews>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -504,7 +521,7 @@
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="WJ0-8G-zui">
-                                <rect key="frame" x="574" y="36" width="450" height="696"/>
+                                <rect key="frame" x="574" y="3600" width="450" height="696"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" id="GTO-7c-OAA">
@@ -560,6 +577,8 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="buttonCustomerPackages" destination="ZfW-Bw-a7D" id="muT-Xp-xgZ"/>
+                        <outlet property="buttonStockPackages" destination="COO-w0-CIe" id="E4Z-Jc-AhJ"/>
                         <outlet property="imageDetailsMerchandise" destination="e7J-t4-uRg" id="Ng2-FY-eYV"/>
                         <outlet property="imageMerchandise" destination="QiP-bh-qa7" id="zjh-FX-O5P"/>
                         <outlet property="imageProductImage" destination="GTO-7c-OAA" id="RJg-ux-mJD"/>
@@ -577,12 +596,16 @@
                         <outlet property="labelProductDescription" destination="ZC5-mu-3HG" id="KFg-kg-Qlq"/>
                         <outlet property="labelProductName" destination="1kh-x8-ulS" id="N18-ZO-Tsl"/>
                         <outlet property="labelProductPrice" destination="EkL-rv-iWZ" id="C6R-sc-wls"/>
+                        <outlet property="tableCustomerPackages" destination="JCV-1u-w8E" id="Dpd-Yg-bN7"/>
+                        <outlet property="tablePresetPackages" destination="oJT-iW-fJR" id="MBB-lM-Ow9"/>
                         <outlet property="tableProducts" destination="0tj-ff-apI" id="jiy-j1-kus"/>
                         <outlet property="viewBottomLeftContainer" destination="850-dh-vMx" id="qce-2D-YfD"/>
                         <outlet property="viewBottomRightContainer" destination="6ok-YB-t8I" id="tdd-3K-Phh"/>
+                        <outlet property="viewCustomerPackageSlideIn" destination="hjR-28-JJQ" id="xVV-Yk-Bq8"/>
                         <outlet property="viewInfo" destination="sMO-0H-Xxr" id="AyQ-ia-4YN"/>
                         <outlet property="viewInfoDetails" destination="s2f-Ea-MSk" id="C5O-Uh-2bh"/>
                         <outlet property="viewPackages" destination="VPm-AH-SuV" id="lme-fS-das"/>
+                        <outlet property="viewPresetPackageSlidein" destination="HEh-Ye-vae" id="j60-pu-DTe"/>
                         <outlet property="viewProductDetails" destination="WJ0-8G-zui" id="6am-09-sfb"/>
                         <outlet property="webviewVideo" destination="H5c-7e-a7D" id="TC1-DL-f8s"/>
                         <outletCollection property="buttons" destination="WAg-JD-p2O" id="USx-tg-zvE"/>
@@ -591,6 +614,8 @@
                         <outletCollection property="buttons" destination="om7-98-zqe" id="E3W-gX-mtB"/>
                         <outletCollection property="buttons" destination="xb6-Hu-hW2" id="kDV-2B-LdV"/>
                         <outletCollection property="buttons" destination="6CQ-pg-vou" id="icQ-4d-F0S"/>
+                        <outletCollection property="buttons" destination="ZfW-Bw-a7D" id="yJB-MB-FZp"/>
+                        <outletCollection property="buttons" destination="COO-w0-CIe" id="T8l-MN-zCK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rPn-4M-a2P" userLabel="First Responder" sceneMemberID="firstResponder"/>

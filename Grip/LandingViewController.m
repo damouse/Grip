@@ -257,6 +257,11 @@
         DealViewController *dealController = [storyboard instantiateViewControllerWithIdentifier:@"dealViewController"];
         
         Dealmaker *dealmaker = [[Dealmaker alloc] initWithAllProducts:apiManager.products user:apiManager.user customer:nil merchandise:[apiManager.merchandises objectAtIndex: 0]];
+        
+        dealmaker.userPackages = apiManager.packages;
+        dealmaker.customerPackages = apiManager.packages;
+        
+        [dealmaker selectPackage:[apiManager.packages objectAtIndex:0]];
         dealController.dealmaker = dealmaker;
         
         [self.navigationController pushViewController:dealController animated:NO];
