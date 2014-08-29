@@ -251,7 +251,6 @@
 		507D0477193E7CA7003CC3B6 /* ProductTable */ = {
 			isa = PBXGroup;
 			children = (
-				50AB237019B0EEFE001D62AB /* PackageTableViewDelegate.swift */,
 				502F0432193FC90900516A0F /* ProductTableViewDelegate.h */,
 				502F0433193FC90900516A0F /* ProductTableViewDelegate.m */,
 				507D0474193E7CA4003CC3B6 /* ProductTableViewCell.h */,
@@ -353,6 +352,7 @@
 			children = (
 				509BA67218EB4E960011D374 /* Main.storyboard */,
 				507D0477193E7CA7003CC3B6 /* ProductTable */,
+				50AB237419B124AB001D62AB /* PackageTable */,
 				5095EC6819AD49AF00D887F7 /* GripButton.swift */,
 			);
 			name = View;
@@ -523,6 +523,14 @@
 				509BB144193A756100FC8CC7 /* MBFramework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		50AB237419B124AB001D62AB /* PackageTable */ = {
+			isa = PBXGroup;
+			children = (
+				50AB237019B0EEFE001D62AB /* PackageTableViewDelegate.swift */,
+			);
+			name = PackageTable;
 			sourceTree = "<group>";
 		};
 		50B7019A1991CFD00018FB31 /* Fonts */ = {

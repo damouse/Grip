@@ -42,6 +42,9 @@
             <string>Titillium-Light</string>
             <string>Titillium-Light</string>
         </mutableArray>
+        <mutableArray key="Titillium-Regular.otf">
+            <string>Titillium-Regular</string>
+        </mutableArray>
     </customFonts>
     <scenes>
         <!--Navigation Controller-->
@@ -304,9 +307,25 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="oJT-iW-fJR">
-                                                <rect key="frame" x="0.0" y="51" width="230" height="270"/>
+                                                <rect key="frame" x="18" y="51" width="190" height="270"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <prototypes>
+                                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="A1Y-Yk-9Ah" style="IBUITableViewCellStyleDefault" id="ShX-dd-h8j">
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ShX-dd-h8j" id="v8P-PY-T2V">
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="A1Y-Yk-9Ah">
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </tableViewCellContentView>
+                                                    </tableViewCell>
+                                                </prototypes>
                                             </tableView>
                                         </subviews>
                                     </view>
@@ -338,9 +357,25 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="JCV-1u-w8E">
-                                                <rect key="frame" x="0.0" y="51" width="230" height="270"/>
+                                                <rect key="frame" x="18" y="51" width="190" height="270"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <prototypes>
+                                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="ZUK-wP-Yx4" style="IBUITableViewCellStyleDefault" id="yBs-gB-HzM">
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yBs-gB-HzM" id="uE0-po-p8s">
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZUK-wP-Yx4">
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <fontDescription key="fontDescription" name="Titillium-Regular" family="Titillium" pointSize="16"/>
+                                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </tableViewCellContentView>
+                                                    </tableViewCell>
+                                                </prototypes>
                                                 <sections/>
                                             </tableView>
                                         </subviews>
@@ -400,11 +435,11 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" id="850-dh-vMx">
-                                <rect key="frame" x="-3" y="705" width="301" height="63"/>
+                                <rect key="frame" x="-3" y="705" width="514" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="om7-98-zqe">
-                                        <rect key="frame" x="23" y="17" width="98" height="30"/>
+                                        <rect key="frame" x="88" y="17" width="98" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
                                         <state key="normal" title="CANCEL">
@@ -415,7 +450,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Jmd-1B-10A">
-                                        <rect key="frame" x="193" y="17" width="108" height="30"/>
+                                        <rect key="frame" x="323" y="17" width="108" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
                                         <state key="normal" title="COMPLETE">
@@ -429,11 +464,11 @@
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="6ok-YB-t8I">
-                                <rect key="frame" x="727" y="705" width="297" height="63"/>
+                                <rect key="frame" x="510" y="705" width="514" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WAg-JD-p2O">
-                                        <rect key="frame" x="112" y="17" width="164" height="30"/>
+                                        <rect key="frame" x="290" y="17" width="164" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
                                         <state key="normal" title="WALKTHROUGH">
@@ -444,7 +479,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="IDq-rA-Lld">
-                                        <rect key="frame" x="0.0" y="17" width="81" height="30"/>
+                                        <rect key="frame" x="108" y="17" width="81" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
                                         <state key="normal" title="UNDO">

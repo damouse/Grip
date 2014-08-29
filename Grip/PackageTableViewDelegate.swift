@@ -23,7 +23,6 @@ class PackageTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDel
         
         table.delegate = self
         table.dataSource = self
-        table.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
     
@@ -36,6 +35,7 @@ class PackageTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDel
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         
         cell.textLabel.text = packages[indexPath.row].name
+        cell.backgroundColor = UIColor.clearColor()
         
         return cell
     }
