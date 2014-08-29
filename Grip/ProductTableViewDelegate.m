@@ -55,7 +55,7 @@
     [cell.labelTitle setText:product.name];
     
     //indicate the cell is either active or not
-    [self setupCell:cell withProduct:product];
+    [self setupProductCell:cell withProduct:product];
     
     return cell;
 }
@@ -68,12 +68,24 @@
 
 
 #pragma mark Cell Status
-- (void) setupCell:(ProductTableViewCell *) cell withProduct:(ProductReceipt *) product {
+- (void) setupProductCell:(ProductReceipt *) product {
+    int index = [self.dataSource.currentProductOrdering indexOfObject:product];
+    ProductTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    
+    [self setupProductCell:cell withProduct:product];
+}
+
+- (void) setupProductCell:(ProductTableViewCell *) cell withProduct:(ProductReceipt *) product {
     if (product.active)
         [cell.imageviewCaption setImage:product.product.image];
     else
         [cell.imageviewCaption setImage:product.product.desaturatedImage];
-    
+}
+
+- (void) setupProductCells {
+    for (ProductReceipt *product in self.dataSource.currentProductOrdering) {
+        [self setupProductCell:product];
+    }
 }
 
 
@@ -175,6 +187,8 @@
     }
     
     [self.tableView endUpdates];
+    
+    [self setupProductCells];
 }
 
 - (void) selectProduct:(ProductReceipt *) product {
@@ -188,6 +202,5 @@
     ProductTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
     
     [self updateTableRowOrder:oldProducts toNewOrder:newProducts];
-    [self setupCell:cell withProduct:product];
 }
 @end

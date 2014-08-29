@@ -11,12 +11,13 @@ import Foundation
 class PackageTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDelegate {
     var packages: [Package]
     var table: UITableView
-    var didSelectBlock: ((package: Package) -> Void)?
+    var didSelectBlock: ((package: Package) -> Void)
     
     
-    init(packs: [Package], tableView: UITableView) {
+    init(packs: [Package], tableView: UITableView, selectBlock: (package: Package) -> Void) {
         packages = packs
         table = tableView
+        didSelectBlock = selectBlock
         
         super.init()
         
@@ -41,6 +42,6 @@ class PackageTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDel
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        didSelectBlock?(package: packages[indexPath.row])
+        didSelectBlock(package: packages[indexPath.row])
     }
 }

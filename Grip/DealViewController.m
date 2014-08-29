@@ -71,8 +71,13 @@ typedef enum UIState{
     tableProducts.dataSource = tableDelegate;
     
     //package table inits
-    customerPackageDelegate = [[PackageTableViewDelegate alloc] initWithPacks:self.dealmaker.customerPackages tableView:tableCustomerPackages];
-    userPackageDelegate = [[PackageTableViewDelegate alloc] initWithPacks:self.dealmaker.userPackages tableView:tablePresetPackages];
+    customerPackageDelegate = [[PackageTableViewDelegate alloc] initWithPacks:self.dealmaker.customerPackages tableView:tableCustomerPackages selectBlock:^(Package *package) {
+        [self selectPackage:package];
+    }];
+    
+    userPackageDelegate = [[PackageTableViewDelegate alloc] initWithPacks:self.dealmaker.userPackages tableView:tablePresetPackages selectBlock:^(Package *package) {
+        [self selectPackage:package];
+    }];
     
     //two-pane slider init
     paneSlider = [[MBViewPaneSlider alloc] initWithView1:viewPresetPackageSlidein button1:buttonStockPackages view2:viewCustomerPackageSlideIn button2:buttonCustomerPackages];
@@ -274,11 +279,14 @@ typedef enum UIState{
     [tableDelegate selectProduct:product];
 }
 
-- (void) didSelectPackage:(Package *) package {
-    
+- (void) selectPackage:(Package *) package {
     //assign list to a rollback
-    [self.dealmaker selectPackage:package];
+    NSArray *originalOrder = self.dealmaker.currentProductOrdering;
+    NSArray *changedProducts = [self.dealmaker selectPackage:package];
+    NSArray *newOrder = self.dealmaker.currentProductOrdering;
     
+    [tableDelegate updateTableRowOrder:originalOrder toNewOrder:newOrder];
+    [rollback actionPackageSelection:changedProducts];
 }
 
 

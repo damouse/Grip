@@ -36,4 +36,6 @@
 //DealVC) or from Rollback
 - (void) selectProduct:(ProductReceipt *) product;
 
+//takes a new order and updates the table appropriately
+- (void) updateTableRowOrder:(NSArray *)oldProducts toNewOrder:(NSArray *)newProducts;
 @end
