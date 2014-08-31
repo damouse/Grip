@@ -31,6 +31,9 @@
     Rollback *rollback;
     
     int currentUIState;
+    
+    //the last discount choosen not from a package
+    int lastCustomDiscount;
 }
 
 typedef enum UIState{
@@ -81,6 +84,12 @@ typedef enum UIState{
     
     //two-pane slider init
     paneSlider = [[MBViewPaneSlider alloc] initWithView1:viewPresetPackageSlidein button1:buttonStockPackages view2:viewCustomerPackageSlideIn button2:buttonCustomerPackages];
+    
+    //dealmaker package match callback (note: work around to avoid the circular dependancies when requiring the swift files with this deal controller)
+    __weak id weak_self = self;
+    self.dealmaker.packageMatch = ^(Package* package) {
+        [weak_self packageMatch:package];
+    };
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -287,6 +296,13 @@ typedef enum UIState{
     
     [tableDelegate updateTableRowOrder:originalOrder toNewOrder:newOrder];
     [rollback actionPackageSelection:changedProducts];
+}
+
+- (void) packageMatch:(Package *) package {
+    //called from dealmaker when a user's selection, rollback, or package selection matches an existing pakage
+    //change or set the package data
+    NSLog(@"Package Match! Package: %@", package.name);
+    [userPackageDelegate highlighCellForPackage:package];
 }
 
 

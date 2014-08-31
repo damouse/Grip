@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 class PackageTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDelegate {
     var packages: [Package]
     var table: UITableView
@@ -23,6 +24,18 @@ class PackageTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDel
         
         table.delegate = self
         table.dataSource = self
+    }
+    
+    
+    //MARK: Public Interface
+    func highlighCellForPackage(package: Package) {
+        //highlights the given cell in the given package
+        let index = find(packages, package)
+        
+        //check for nil!
+        
+        let cell = table.cellForRowAtIndexPath(NSIndexPath(forRow: index!, inSection: 0)) as UITableViewCell
+        cell.textLabel.textColor = HIGHLIGHT_COLOR
     }
     
     

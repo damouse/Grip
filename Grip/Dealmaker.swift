@@ -27,6 +27,8 @@ class Dealmaker : NSObject {
     
     var currentProductOrdering = [ProductReceipt]()
     
+    var packageMatch: ((package: Package) -> Void)?
+    
     
     init(allProducts: [Product], user: User, customer: User, merchandise: Product) {
         //Packages and customer packages may not exist, so do not assume their presence!
@@ -102,6 +104,31 @@ class Dealmaker : NSObject {
     func checkPackageMatch() -> Void {
         //if the current setup matches a package, "snap" that package into place, replacing the current discount value
         //call DealViewController to change any needed changes
+        for package in userPackages + customerPackages {
+            var foundPackage = true
+            
+            for product in currentProductOrdering {
+                
+                //if the product exists in the package but is not active, not a package match
+                if contains(package.products, product.product!) {
+                    if !product.active {
+                        foundPackage = false
+                    }
+                }
+                    
+                //if the product does not exist in the package but is active, not a package match
+                else {
+                    if product.active {
+                        foundPackage = false
+                    }
+                }
+            }
+            
+            if foundPackage {
+                packageMatch?(package: package)
+                return
+            }
+        }
     }
     
     func establishProductOrdering() {

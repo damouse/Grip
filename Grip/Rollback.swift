@@ -31,13 +31,10 @@ class Rollback : NSObject {
     
     func undo() {
         if actions.count < 1 {
-            println("Nothing to undo")
             return
         }
         
         let action = actions.removeLast()
-        
-        println("I'm undoing something!")
         for product in action.changedProducts {
             blockUndo(product: product)
         }
