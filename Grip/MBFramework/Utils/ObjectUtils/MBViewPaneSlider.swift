@@ -40,7 +40,7 @@ class MBViewPaneSlider : NSObject {
         //start with view1 as initial view
         view2.hidden = true
         activeButton = button1
-        button1.setTitleColor(HIGHLIGHT_COLOR, forState: .Normal)
+        self.button1?.setTitleColor(HIGHLIGHT_COLOR, forState: .Normal)
     }
     
     func buttonPress(sender: UIButton) {

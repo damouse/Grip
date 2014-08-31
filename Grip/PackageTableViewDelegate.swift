@@ -34,7 +34,7 @@ class PackageTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDel
         
         //check for nil!
         
-        let cell = table.cellForRowAtIndexPath(NSIndexPath(forRow: index!, inSection: 0)) as UITableViewCell
+        var cell = table.cellForRowAtIndexPath(NSIndexPath(forRow: index!, inSection: 0)) as UITableViewCell
         cell.textLabel.textColor = HIGHLIGHT_COLOR
     }
     
@@ -49,6 +49,7 @@ class PackageTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDel
         
         cell.textLabel.text = packages[indexPath.row].name
         cell.backgroundColor = UIColor.clearColor()
+//        cell.textLabel.textColor = UIColor(red:222, green: 94, blue: 96, alpha: 1)
         
         return cell
     }

@@ -119,6 +119,7 @@
         
         [self.parent didSelectProduct:selectedProduct];
     }
+    
 }
 
 -(void)swipeTableViewCellWillResetState:(RMSwipeTableViewCell *)swipeTableViewCell fromPoint:(CGPoint)point animation:(RMSwipeTableViewCellAnimationType)animation velocity:(CGPoint)velocity {

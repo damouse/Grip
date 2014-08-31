@@ -15,10 +15,10 @@ Sets its colors on init
 import Foundation
 
 //Color Constants
-let PRIMARY_DARK = UIColor(red:123, green: 123, blue: 123, alpha: 1)
-let PRIMARY_LIGHT = UIColor(red:47, green: 50, blue: 56, alpha: 1)
-let HIGHLIGHT_COLOR = UIColor(red:222, green: 94, blue: 96, alpha: 1)
-let P_TEXT_COLOR = UIColor(red:127, green: 130, blue: 137, alpha: 1)
+let PRIMARY_DARK = UIColor(red:123/255, green: 123/255, blue: 123/255, alpha: 1)
+let PRIMARY_LIGHT = UIColor(red:47/255, green: 50/255, blue: 56/255, alpha: 1)
+let HIGHLIGHT_COLOR = UIColor(red:222/255, green: 94/255, blue: 96/255, alpha: 1)
+let P_TEXT_COLOR = UIColor(red:127/255, green: 130/255, blue: 137/255, alpha: 1)
 
 class GripButton : UIButton {
     override init(frame: CGRect) {

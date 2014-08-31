@@ -82,9 +82,6 @@ typedef enum UIState{
         [self selectPackage:package];
     }];
     
-    //two-pane slider init
-    paneSlider = [[MBViewPaneSlider alloc] initWithView1:viewPresetPackageSlidein button1:buttonStockPackages view2:viewCustomerPackageSlideIn button2:buttonCustomerPackages];
-    
     //dealmaker package match callback (note: work around to avoid the circular dependancies when requiring the swift files with this deal controller)
     __weak id weak_self = self;
     self.dealmaker.packageMatch = ^(Package* package) {
@@ -93,6 +90,9 @@ typedef enum UIState{
 }
 
 - (void) viewWillAppear:(BOOL)animated {
+    //two-pane slider init
+    paneSlider = [[MBViewPaneSlider alloc] initWithView1:viewPresetPackageSlidein button1:buttonStockPackages view2:viewCustomerPackageSlideIn button2:buttonCustomerPackages];
+    
     [self initAnimations];
     [self setInitialLabels];
     [self colorize];
