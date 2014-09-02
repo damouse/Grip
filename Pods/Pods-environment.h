@@ -60,6 +60,12 @@
 #define COCOAPODS_VERSION_MINOR_Mantle_extobjc 5
 #define COCOAPODS_VERSION_PATCH_Mantle_extobjc 0
 
+// PPSSignatureView
+#define COCOAPODS_POD_AVAILABLE_PPSSignatureView
+#define COCOAPODS_VERSION_MAJOR_PPSSignatureView 0
+#define COCOAPODS_VERSION_MINOR_PPSSignatureView 1
+#define COCOAPODS_VERSION_PATCH_PPSSignatureView 2
+
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage
 #define COCOAPODS_VERSION_MAJOR_SDWebImage 3

@@ -229,7 +229,7 @@ import UIKit
     
     func loadImage(product: Product) {
         //async call to load an image using AFNetworking
-        let request = NSURLRequest(URL: NSURL(string: product.image_url))
+        let request = NSURLRequest(URL: NSURL(string: product.image_url!))
         var operation = AFHTTPRequestOperation(request: request)
         operation.responseSerializer = AFImageResponseSerializer()
         

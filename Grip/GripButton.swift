@@ -27,7 +27,7 @@ class GripButton : UIButton {
         println("subclass 1")
     }
     
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         colorize()

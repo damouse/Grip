@@ -34,22 +34,20 @@ class PackageTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDel
         
         //check for nil!
         
-        var cell = table.cellForRowAtIndexPath(NSIndexPath(forRow: index!, inSection: 0)) as UITableViewCell
-        cell.textLabel.textColor = HIGHLIGHT_COLOR
+        var cell = table.cellForRowAtIndexPath(NSIndexPath(forRow: index!, inSection: 0))!
+        cell.textLabel!.textColor = HIGHLIGHT_COLOR
     }
     
-    
-    //MARK: UITableView Delegate
-    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        return packages.count
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0;
     }
     
-    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         
-        cell.textLabel.text = packages[indexPath.row].name
+        cell.textLabel!.text = packages[indexPath.row].name
         cell.backgroundColor = UIColor.clearColor()
-//        cell.textLabel.textColor = UIColor(red:222, green: 94, blue: 96, alpha: 1)
+        //        cell.textLabel.textColor = UIColor(red:222, green: 94, blue: 96, alpha: 1)
         
         return cell
     }

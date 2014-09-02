@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0600"
+   LastUpgradeVersion = "0510"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "509BA65C18EB4E960011D374"
-               BuildableName = "Grip.app"
-               BlueprintName = "Grip"
-               ReferencedContainer = "container:Grip.xcodeproj">
+               BlueprintIdentifier = "9F02F811CEBD47CE81735F75"
+               BuildableName = "libPods-PPSSignatureView.a"
+               BlueprintName = "Pods-PPSSignatureView"
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,26 +28,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "509BA67D18EB4E960011D374"
-               BuildableName = "GripTests.xctest"
-               BlueprintName = "GripTests"
-               ReferencedContainer = "container:Grip.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "509BA65C18EB4E960011D374"
-            BuildableName = "Grip.app"
-            BlueprintName = "Grip"
-            ReferencedContainer = "container:Grip.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -58,15 +39,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "509BA65C18EB4E960011D374"
-            BuildableName = "Grip.app"
-            BlueprintName = "Grip"
-            ReferencedContainer = "container:Grip.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -76,15 +48,6 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "509BA65C18EB4E960011D374"
-            BuildableName = "Grip.app"
-            BlueprintName = "Grip"
-            ReferencedContainer = "container:Grip.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
