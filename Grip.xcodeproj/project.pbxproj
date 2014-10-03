@@ -61,6 +61,8 @@
 		509BB19A193A7B9F00FC8CC7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509BB199193A7B9F00FC8CC7 /* CoreData.framework */; };
 		50AB237119B0EEFE001D62AB /* PackageTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB237019B0EEFE001D62AB /* PackageTableViewDelegate.swift */; };
 		50AB237319B0F381001D62AB /* MBViewPaneSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB237219B0F381001D62AB /* MBViewPaneSlider.swift */; };
+		50AF2A8519DF32DF00F49EEE /* SignatureViewQuartzQuadratic.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AF2A8419DF32DF00F49EEE /* SignatureViewQuartzQuadratic.m */; };
+		50AF2A8719DF34DB00F49EEE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50AF2A8619DF34DB00F49EEE /* QuartzCore.framework */; };
 		50B701AB1991D2AB0018FB31 /* Titillium-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B7019B1991CFDC0018FB31 /* Titillium-Black.otf */; };
 		50B701AC1991D2AB0018FB31 /* Titillium-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B7019C1991CFDC0018FB31 /* Titillium-Bold.otf */; };
 		50B701AD1991D2AB0018FB31 /* Titillium-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B7019D1991CFDC0018FB31 /* Titillium-BoldItalic.otf */; };
@@ -179,6 +181,9 @@
 		509BB199193A7B9F00FC8CC7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		50AB237019B0EEFE001D62AB /* PackageTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PackageTableViewDelegate.swift; sourceTree = "<group>"; };
 		50AB237219B0F381001D62AB /* MBViewPaneSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MBViewPaneSlider.swift; sourceTree = "<group>"; };
+		50AF2A8319DF32DF00F49EEE /* SignatureViewQuartzQuadratic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureViewQuartzQuadratic.h; sourceTree = "<group>"; };
+		50AF2A8419DF32DF00F49EEE /* SignatureViewQuartzQuadratic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureViewQuartzQuadratic.m; sourceTree = "<group>"; };
+		50AF2A8619DF34DB00F49EEE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		50B7019B1991CFDC0018FB31 /* Titillium-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-Black.otf"; sourceTree = "<group>"; };
 		50B7019C1991CFDC0018FB31 /* Titillium-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-Bold.otf"; sourceTree = "<group>"; };
 		50B7019D1991CFDC0018FB31 /* Titillium-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-BoldItalic.otf"; sourceTree = "<group>"; };
@@ -206,6 +211,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50AF2A8719DF34DB00F49EEE /* QuartzCore.framework in Frameworks */,
 				509BB19A193A7B9F00FC8CC7 /* CoreData.framework in Frameworks */,
 				509BA66318EB4E960011D374 /* CoreGraphics.framework in Frameworks */,
 				509BA66518EB4E960011D374 /* UIKit.framework in Frameworks */,
@@ -282,6 +288,7 @@
 		509BA65F18EB4E960011D374 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				50AF2A8619DF34DB00F49EEE /* QuartzCore.framework */,
 				509BB199193A7B9F00FC8CC7 /* CoreData.framework */,
 				509BA66018EB4E960011D374 /* Foundation.framework */,
 				509BA66218EB4E960011D374 /* CoreGraphics.framework */,
@@ -350,6 +357,8 @@
 		509BA69618EB4FED0011D374 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				50AF2A8319DF32DF00F49EEE /* SignatureViewQuartzQuadratic.h */,
+				50AF2A8419DF32DF00F49EEE /* SignatureViewQuartzQuadratic.m */,
 				509BA67218EB4E960011D374 /* Main.storyboard */,
 				507D0477193E7CA7003CC3B6 /* ProductTable */,
 				50AB237419B124AB001D62AB /* PackageTable */,
@@ -722,6 +731,7 @@
 				507D0476193E7CA4003CC3B6 /* ProductTableViewCell.m in Sources */,
 				509BB185193A756100FC8CC7 /* MCCollectionView.m in Sources */,
 				509BB187193A756100FC8CC7 /* MCTableView.m in Sources */,
+				50AF2A8519DF32DF00F49EEE /* SignatureViewQuartzQuadratic.m in Sources */,
 				5097550B19AED59E006E7859 /* Rollback.swift in Sources */,
 				509BB181193A756100FC8CC7 /* MBProgressHUD.m in Sources */,
 				509BB184193A756100FC8CC7 /* MCProperty.m in Sources */,

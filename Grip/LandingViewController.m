@@ -14,6 +14,9 @@
 #import "UIView+Utils.h"
 #import "DealViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+#import "SignatureViewQuartzQuadratic.h"
+
 #import "Grip-Swift.h"
 
 #import "UIButton+Utils.h"
