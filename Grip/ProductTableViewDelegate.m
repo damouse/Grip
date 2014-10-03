@@ -70,7 +70,7 @@
 #pragma mark Cell Status
 - (void) setupProductCell:(ProductReceipt *) product {
     int index = [self.dataSource.currentProductOrdering indexOfObject:product];
-    ProductTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    ProductTableViewCell *cell = (ProductTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
     
     [self setupProductCell:cell withProduct:product];
 }
@@ -177,7 +177,7 @@
     NSArray *oldProducts = [self.dataSource.currentProductOrdering mutableCopy];
     NSArray *newProducts = [self.dataSource selectProductAtIndex:index];
     
-    ProductTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+//    ProductTableViewCell *cell = (ProductTableViewCell *) [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
     
     [self updateTableRowOrder:oldProducts toNewOrder:newProducts];
 }

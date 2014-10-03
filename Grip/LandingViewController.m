@@ -64,11 +64,11 @@
     [self setLoginButtonState];
     
     //TODO: DEBUG!
-    [apiManager logInAttempt:@"test@test.com" password:@"12345678" view: self.view success:^(void) {
-        [self dismissLogin];
-        [self showBothLogos];
-        loggedIn = true;
-    }];
+//    [apiManager logInAttempt:@"test@test.com" password:@"12345678" view: self.view success:^(void) {
+//        [self dismissLogin];
+//        [self showBothLogos];
+//        loggedIn = true;
+//    }];
 }
 
 - (void) viewDidLayoutSubviews {
