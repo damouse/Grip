@@ -13,6 +13,7 @@
 #import "MBViewAnimator.h"
 #import "UIView+Utils.h"
 #import "DealViewController.h"
+#import "SearchViewController.h"
 
 #import <QuartzCore/QuartzCore.h>
 #import "SignatureViewQuartzQuadratic.h"
@@ -24,6 +25,8 @@
 
 @interface LandingViewController () {
     MBViewAnimator *animator;
+    
+    SearchViewController *searchController;
     
     PGApiManager *apiManager;
     
@@ -38,7 +41,7 @@
 
 @implementation LandingViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -46,7 +49,7 @@
     return self;
 }
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
     
     //default to not logged in
@@ -88,6 +91,7 @@
         //dialogs
         [animator initObject:viewLogin inView:self.view forSlideinAnimation:VAAnimationDirectionDown];
         [animator initObject:viewSettings inView:self.view forSlideinAnimation:VAAnimationDirectionDown];
+        [animator initObject:viewPresentDialog inView:self.view forSlideinAnimation:VAAnimationDirectionDown];
     
         firstLayout = false;
     }
@@ -103,6 +107,7 @@
     viewMenu.backgroundColor = PRIMARY_DARK;
     viewLogin.backgroundColor = PRIMARY_DARK;
     viewSettings.backgroundColor = PRIMARY_DARK;
+    viewPresentDialog.backgroundColor = PRIMARY_DARK;
     
     for(UIButton *button in buttons) {
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -116,6 +121,32 @@
 
 
 #pragma mark Login Flow
+
+
+#pragma mark Search Embed and References
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString: @"embedSearch"]) {
+       searchController = (SearchViewController *) [segue destinationViewController];
+    }
+}
+
+-(void) presentPackage {
+    [self closingAnimations];
+    [animator animateObjectOffscreen:viewMenu completion:^(BOOL completion){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        DealViewController *dealController = [storyboard instantiateViewControllerWithIdentifier:@"dealViewController"];
+        
+        Dealmaker *dealmaker = [[Dealmaker alloc] initWithAllProducts:apiManager.products user:apiManager.user customer:nil merchandise:[apiManager.merchandises objectAtIndex: 0]];
+        
+        dealmaker.userPackages = apiManager.packages;
+        dealmaker.customerPackages = apiManager.packages;
+        
+        [dealmaker selectPackage:[apiManager.packages objectAtIndex:0]];
+        dealController.dealmaker = dealmaker;
+        
+        [self.navigationController pushViewController:dealController animated:NO];
+    }];
+}
 
 
 #pragma mark Delegate
@@ -236,7 +267,7 @@
 
 
 #pragma mark IBActions
-- (IBAction)login:(id)sender {
+- (IBAction) login:(id)sender {
     if (loggedIn) {
         loggedIn = false;
         [self setLoginButtonState];
@@ -247,55 +278,52 @@
     }
 }
 
-- (IBAction)viewPackages:(id)sender {
+- (IBAction) viewPackages:(id)sender {
     if (!loggedIn) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Error"] message:@"You must log in first!"  delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alert show];
         return;
     }
-
-    [self closingAnimations];
-    [animator animateObjectOffscreen:viewMenu completion:^(BOOL completion){
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        DealViewController *dealController = [storyboard instantiateViewControllerWithIdentifier:@"dealViewController"];
-        
-        Dealmaker *dealmaker = [[Dealmaker alloc] initWithAllProducts:apiManager.products user:apiManager.user customer:nil merchandise:[apiManager.merchandises objectAtIndex: 0]];
-        
-        dealmaker.userPackages = apiManager.packages;
-        dealmaker.customerPackages = apiManager.packages;
-        
-        [dealmaker selectPackage:[apiManager.packages objectAtIndex:0]];
-        dealController.dealmaker = dealmaker;
-        
-        [self.navigationController pushViewController:dealController animated:NO];
-    }];
+    
+    [animator animateObjectOnscreen:viewPresentDialog completion:nil];
 }
 
-- (IBAction)settings:(id)sender {
+- (IBAction) settings:(id)sender {
     [self presentSettings];
 }
 
-- (IBAction)dialogLogin:(id)sender {
+- (IBAction) dialogLogin:(id)sender {
     NSString *email = [textfieldEmail.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString *password = [textfieldPassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
     [apiManager logInAttempt:email password:password view: self.view success:^(void) {
         loggedIn = true;
+        
         [self dismissLogin];
         [self showBothLogos];
         [self setLoginButtonState];
+        
+        [searchController setCustomers:apiManager.customers];
     }];
 }
 
-- (IBAction)dialogLoginCancel:(id)sender {
+- (IBAction) dialogLoginCancel:(id)sender {
     [self dismissLogin];
 }
 
-- (IBAction)settingsDone:(id)sender {
+- (IBAction) settingsDone:(id)sender {
     [self dismissSettings];
 }
 
-- (IBAction)help:(id)sender {
+- (IBAction) help:(id)sender {
     
+}
+
+- (IBAction) existingCustomer:(id)sender {
+    [self presentPackage];
+}
+
+- (IBAction) newCustomer:(id)sender {
+    [self presentPackage];
 }
 @end

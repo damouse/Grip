@@ -18,6 +18,7 @@ import UIKit
     var products = NSArray()
     var merchandises = NSArray()
     var packages = NSArray()
+    var customers = NSArray()
     
     var progressHUD: MBProgressHUD?
     
@@ -28,8 +29,7 @@ import UIKit
 
         showHUD(view)
         logIn(email, password: password, success: { () -> Void in
-                self.getAllResourcesSequentially()
-                success()
+                self.getAllResourcesSequentially(success)
             }
         );
     }
@@ -73,12 +73,13 @@ import UIKit
     
     
     //MARK: Batch Tasks
-    func getAllResourcesSequentially() {
+    func getAllResourcesSequentially(success:(() -> Void)) {
         //gets all of the resources sequentially-- waits for the previous one to finished before starting the next
         
         //success blocks
         let packageSuccess = { () -> Void in
             self.removeHUD()
+            success()
         }
         
         let productSuccess = { () -> Void in
@@ -137,6 +138,7 @@ import UIKit
             failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
                 print("failure- ")
                 println(error)
+                println(operation)
         })
     }
     
@@ -199,8 +201,20 @@ import UIKit
     func loadCustomers(success:(() -> Void)?) -> Void {
         updateHUDText("Updating Customers")
         
+        generateAuthenticatedClient().GET("dashboard/\(self.user!.group_id)/customers", parameters: nil,
+            
+            success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
+                self.customers = self.serializeObjects(responseObject!, jsonKey: "customers", objectClass: Customer.self)
+                success?()
+            },
+            
+            failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
+                print("failure- ")
+                println(error)
+                println(operation)
+        })
+        
         println("API: Customer Success")
-        success?()
     }
     
     
@@ -222,6 +236,7 @@ import UIKit
     
     func serializeObjects(responseObject:AnyObject, jsonKey:String, objectClass:AnyClass) -> NSArray {
         println("API: \(jsonKey) Success")
+        println(responseObject)
         var error: NSError?
         let cocoaArray: NSArray = MTLJSONAdapter.modelsOfClass(objectClass, fromJSONArray: (responseObject as NSDictionary).objectForKey(jsonKey) as NSArray, error: &error) as NSArray
         return cocoaArray

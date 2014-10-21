@@ -15,6 +15,8 @@
 		50637C63199247F40010A6EF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50637C62199247F40010A6EF /* User.swift */; };
 		507D0470193E7A18003CC3B6 /* UIView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D046F193E7A18003CC3B6 /* UIView+Utils.m */; };
 		507D0476193E7CA4003CC3B6 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */; };
+		508F8F3719F70ECA00610C3F /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 508F8F3619F70ECA00610C3F /* SearchViewController.m */; };
+		508F8F3919F7108700610C3F /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508F8F3819F7108700610C3F /* Customer.swift */; };
 		5095EC6919AD49AF00D887F7 /* GripButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095EC6819AD49AF00D887F7 /* GripButton.swift */; };
 		5095EC6C19AD595600D887F7 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5095EC6B19AD595600D887F7 /* UIImage+Utils.m */; };
 		5097550919AED47A006E7859 /* Dealmaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5097550819AED47A006E7859 /* Dealmaker.swift */; };
@@ -106,6 +108,9 @@
 		507D046F193E7A18003CC3B6 /* UIView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Utils.m"; sourceTree = "<group>"; };
 		507D0474193E7CA4003CC3B6 /* ProductTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableViewCell.h; sourceTree = "<group>"; };
 		507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTableViewCell.m; sourceTree = "<group>"; };
+		508F8F3519F70ECA00610C3F /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		508F8F3619F70ECA00610C3F /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		508F8F3819F7108700610C3F /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		5095EC6819AD49AF00D887F7 /* GripButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GripButton.swift; sourceTree = "<group>"; };
 		5095EC6A19AD595600D887F7 /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
 		5095EC6B19AD595600D887F7 /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
@@ -240,6 +245,7 @@
 				5048DED4199F0A9B0014ABC4 /* Product.swift */,
 				50637C62199247F40010A6EF /* User.swift */,
 				5099444819AE86C100E7D004 /* ProductReceipt.swift */,
+				508F8F3819F7108700610C3F /* Customer.swift */,
 				5099444A19AE86C600E7D004 /* Receipt.swift */,
 			);
 			name = Objects;
@@ -350,6 +356,8 @@
 				509BA69A18EB50620011D374 /* LandingViewController.m */,
 				509BA69C18EB50930011D374 /* DealViewController.h */,
 				509BA69D18EB50930011D374 /* DealViewController.m */,
+				508F8F3519F70ECA00610C3F /* SearchViewController.h */,
+				508F8F3619F70ECA00610C3F /* SearchViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -721,6 +729,7 @@
 				5048DED7199F0A9B0014ABC4 /* Package.swift in Sources */,
 				5099444B19AE86C600E7D004 /* Receipt.swift in Sources */,
 				509BB18B193A756100FC8CC7 /* MCTextFieldInterpreter.m in Sources */,
+				508F8F3919F7108700610C3F /* Customer.swift in Sources */,
 				509BB18A193A756100FC8CC7 /* MCLabelInterpreter.m in Sources */,
 				509BB183193A756100FC8CC7 /* MCBinder.m in Sources */,
 				509BB192193A756100FC8CC7 /* UIImageView+Utils.m in Sources */,
@@ -755,6 +764,7 @@
 				509BB196193A756100FC8CC7 /* MBPreCacher.m in Sources */,
 				509BB186193A756100FC8CC7 /* MCCollectionViewDelegate.m in Sources */,
 				5053F108194132B400EDF062 /* RMSwipeTableViewCell.m in Sources */,
+				508F8F3719F70ECA00610C3F /* SearchViewController.m in Sources */,
 				502F0434193FC90900516A0F /* ProductTableViewDelegate.m in Sources */,
 				509BA66D18EB4E960011D374 /* main.m in Sources */,
 				509BB18F193A756100FC8CC7 /* MBBoilerplateUtils.m in Sources */,
