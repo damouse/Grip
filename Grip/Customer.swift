@@ -19,8 +19,8 @@ class Customer : MTLModel, MTLJSONSerializing {
     var name: String?
     var group_id = -1
     var email: String?
-    var created_at: NSDate?
-    var updated_at: NSDate?
+    var created_at: NSString?
+    var updated_at: NSString?
     
     //used to check package downloads
     var packages = NSArray()
@@ -36,20 +36,20 @@ class Customer : MTLModel, MTLJSONSerializing {
         return Dictionary<String, String>()
     }
     
-    class func JSONTransformerForKey(key: String!) -> NSValueTransformer! {
-        if key == "created_at" || key == "updated_at" {
-            let formatter = NSDateFormatter()
-            formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-            
-            return MTLValueTransformer(block: { (string: AnyObject?) -> NSDate in
-                return formatter.dateFromString(string! as String)
-            })
-        }
-        else {
-            return nil
-        }
-    }
+//    class func JSONTransformerForKey(key: String!) -> NSValueTransformer! {
+//        if key == "created_at" || key == "updated_at" {
+//            let formatter = NSDateFormatter()
+//            formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+//            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+//            
+//            return MTLValueTransformer(block: { (string: AnyObject?) -> NSDate in
+//                return formatter.dateFromString(string! as String)
+//            })
+//        }
+//        else {
+//            return nil
+//        }
+//    }
     
     //Boilerplate, compulsory overrides. Kinda stupid, isn't it?
     //The following four methods allow this class access to its superclass' inherited methods

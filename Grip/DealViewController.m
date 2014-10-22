@@ -308,9 +308,12 @@ typedef enum UIState{
 
 #pragma mark IBActions
 - (IBAction)cancel:(id)sender {
-    [self outroAnimations:^(BOOL completion){
-        [self.navigationController popViewControllerAnimated:NO];
-    }];
+//    [self outroAnimations:^(BOOL completion){
+//        [self.navigationController popViewControllerAnimated:NO];
+//    }];
+    
+    //ask the tablecontroller to reload its contents
+    [tableProducts reloadData];
 }
 
 - (IBAction)complete:(id)sender {

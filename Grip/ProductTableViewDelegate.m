@@ -25,11 +25,11 @@
 }
 
 #pragma mark Data and Delegate
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.dataSource numberOfProducts];
 }
 
@@ -37,7 +37,7 @@
     return 103;
 }*/
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *identifier = @"cell";
     ProductTableViewCell *cell = (ProductTableViewCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
     cell.delegate = self;
@@ -60,7 +60,7 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ProductReceipt *product = [self.dataSource productForIndex:indexPath.row];
     [self.parent didTouchProduct:product];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -76,10 +76,18 @@
 }
 
 - (void) setupProductCell:(ProductTableViewCell *) cell withProduct:(ProductReceipt *) product {
-    if (product.active)
-        [cell.imageviewCaption setImage:product.product.image];
-    else
-        [cell.imageviewCaption setImage:product.product.desaturatedImage];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (product.active) {
+            [cell.imageviewCaption setImage:product.product.image];
+            cell.viewHolder.alpha = 1.0;
+        }
+        else {
+            [cell.imageviewCaption setImage:product.product.desaturatedImage];
+            cell.viewHolder.alpha = 0.3;
+//            [cell setNeedsDisplay];
+        }
+    });
 }
 
 - (void) setupProductCells {
@@ -90,7 +98,7 @@
 
 
 #pragma mark Cell Swiping
--(void)resetSelectedCell {
+-(void) resetSelectedCell {
     //Dlog(@"Reset cell");
     ProductTableViewCell *cell = (ProductTableViewCell*)[self.tableView cellForRowAtIndexPath:self.selectedIndexPath];
     [cell resetContentView];
@@ -98,7 +106,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
 }
 
--(void)swipeTableViewCellDidStartSwiping:(RMSwipeTableViewCell *)swipeTableViewCell {
+-(void) swipeTableViewCellDidStartSwiping:(RMSwipeTableViewCell *)swipeTableViewCell {
     //Dlog(@"Did start swiping");
     
     NSIndexPath *indexPathForCell = [self.tableView indexPathForCell:swipeTableViewCell];
@@ -107,7 +115,7 @@
     }
 }
 
--(void)swipeTableViewCell:(ProductTableViewCell*)swipeTableViewCell didSwipeToPoint:(CGPoint)point velocity:(CGPoint)velocity {
+-(void) swipeTableViewCell:(ProductTableViewCell*)swipeTableViewCell didSwipeToPoint:(CGPoint)point velocity:(CGPoint)velocity {
     //reset the trigger for the cell, change the order and style of the cell where needed, and get a new cell ordering from the dealmaker
     //reflecting the changed state of the slid cell
     if (point.x == MAX_DISPLACEMENT || point.x == (-1 * MAX_DISPLACEMENT)) {
@@ -122,7 +130,7 @@
     
 }
 
--(void)swipeTableViewCellWillResetState:(RMSwipeTableViewCell *)swipeTableViewCell fromPoint:(CGPoint)point animation:(RMSwipeTableViewCellAnimationType)animation velocity:(CGPoint)velocity {
+-(void) swipeTableViewCellWillResetState:(RMSwipeTableViewCell *)swipeTableViewCell fromPoint:(CGPoint)point animation:(RMSwipeTableViewCellAnimationType)animation velocity:(CGPoint)velocity {
     
     //Dlog(@"Will reset state");
     return;
@@ -150,7 +158,7 @@
     }
 }
 
--(void)swipeTableViewCellDidResetState:(RMSwipeTableViewCell*)swipeTableViewCell fromPoint:(CGPoint)point animation:(RMSwipeTableViewCellAnimationType)animation velocity:(CGPoint)velocity {
+-(void) swipeTableViewCellDidResetState:(RMSwipeTableViewCell*)swipeTableViewCell fromPoint:(CGPoint)point animation:(RMSwipeTableViewCellAnimationType)animation velocity:(CGPoint)velocity {
     //Dlog(@"Did reset state");
 }
 
