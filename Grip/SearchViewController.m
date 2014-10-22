@@ -40,7 +40,9 @@
     self.searchController.searchResultsUpdater = self;
 
     self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.searchController.searchBar.frame.size.width, 44.0);
-
+    self.searchController.searchBar.barTintColor = PRIMARY_DARK;
+    self.searchController.searchBar.tintColor = [UIColor whiteColor];
+    
     self.tableView.tableHeaderView = self.searchController.searchBar;
 
     self.definesPresentationContext = YES;
@@ -48,19 +50,17 @@
 }
 
 #pragma mark - UITableViewDataSource
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     /*  If the requesting table view is the search controller's table view, return the count of
         the filtered list, otherwise return the count of the main list.
      */
     if (tableView == ((UITableViewController *)self.searchController.searchResultsController).tableView) {
-        return [self.searchResults count];
+        return [self.searchResults count] + 1;
     } else {
         return [self.customers count];
     }
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"ProductCell";
@@ -73,19 +73,29 @@
      */
     Customer *customer;
 
+    
     if (tableView == ((UITableViewController *)self.searchController.searchResultsController).tableView) {
-        customer = [self.searchResults objectAtIndex:indexPath.row];
+        //the first cell is a dummy cell to get around the strange overlap that the search bar does over the table
+        if (indexPath.row != 0) {
+            customer = [self.searchResults objectAtIndex:indexPath.row - 1];
+            cell.textLabel.text = customer.name;
+        }
+        else {
+            cell.textLabel.text = @"";
+        }
     } else {
         customer = [self.customers objectAtIndex:indexPath.row];
+        cell.textLabel.text = customer.name;
     }
+    
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.backgroundColor = [UIColor clearColor];
 
-    cell.textLabel.text = customer.name;
     return cell;
 }
 
 
 #pragma mark - UISearchResultsUpdating
-
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
 
     NSString *searchString = [self.searchController.searchBar text];
@@ -105,7 +115,6 @@
 
 
 #pragma mark - Content Filtering
-
 - (void)updateFilteredContentForProductName:(NSString *)productName type:(NSString *)typeName {
 
     // Update the filtered array based on the search text and scope.
@@ -150,4 +159,6 @@
     _customers = customers;
     [self.tableView reloadData];
 }
+
+
 @end
