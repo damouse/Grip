@@ -17,6 +17,7 @@
 		507D0476193E7CA4003CC3B6 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */; };
 		508F8F3719F70ECA00610C3F /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 508F8F3619F70ECA00610C3F /* SearchViewController.m */; };
 		508F8F3919F7108700610C3F /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508F8F3819F7108700610C3F /* Customer.swift */; };
+		508F8F3B19F73A5F00610C3F /* GripSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508F8F3A19F73A5F00610C3F /* GripSpinner.swift */; };
 		5095EC6919AD49AF00D887F7 /* GripButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095EC6819AD49AF00D887F7 /* GripButton.swift */; };
 		5095EC6C19AD595600D887F7 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5095EC6B19AD595600D887F7 /* UIImage+Utils.m */; };
 		5097550919AED47A006E7859 /* Dealmaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5097550819AED47A006E7859 /* Dealmaker.swift */; };
@@ -111,6 +112,7 @@
 		508F8F3519F70ECA00610C3F /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		508F8F3619F70ECA00610C3F /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		508F8F3819F7108700610C3F /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		508F8F3A19F73A5F00610C3F /* GripSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GripSpinner.swift; sourceTree = "<group>"; };
 		5095EC6819AD49AF00D887F7 /* GripButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GripButton.swift; sourceTree = "<group>"; };
 		5095EC6A19AD595600D887F7 /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
 		5095EC6B19AD595600D887F7 /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
@@ -368,9 +370,10 @@
 				50AF2A8319DF32DF00F49EEE /* SignatureViewQuartzQuadratic.h */,
 				50AF2A8419DF32DF00F49EEE /* SignatureViewQuartzQuadratic.m */,
 				509BA67218EB4E960011D374 /* Main.storyboard */,
+				5095EC6819AD49AF00D887F7 /* GripButton.swift */,
+				508F8F3A19F73A5F00610C3F /* GripSpinner.swift */,
 				507D0477193E7CA7003CC3B6 /* ProductTable */,
 				50AB237419B124AB001D62AB /* PackageTable */,
-				5095EC6819AD49AF00D887F7 /* GripButton.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -729,6 +732,7 @@
 				5048DED7199F0A9B0014ABC4 /* Package.swift in Sources */,
 				5099444B19AE86C600E7D004 /* Receipt.swift in Sources */,
 				509BB18B193A756100FC8CC7 /* MCTextFieldInterpreter.m in Sources */,
+				508F8F3B19F73A5F00610C3F /* GripSpinner.swift in Sources */,
 				508F8F3919F7108700610C3F /* Customer.swift in Sources */,
 				509BB18A193A756100FC8CC7 /* MCLabelInterpreter.m in Sources */,
 				509BB183193A756100FC8CC7 /* MCBinder.m in Sources */,

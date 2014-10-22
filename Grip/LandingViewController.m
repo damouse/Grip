@@ -18,8 +18,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "SignatureViewQuartzQuadratic.h"
 
-
-
 #import "UIButton+Utils.h"
 
 
@@ -147,7 +145,7 @@
     labelPackageCount.text = @"";
 }
 
--(void) presentPackage:(Customer *) customer {
+- (void) presentPackage:(Customer *) customer {
     [self closingAnimations];
     [animator animateObjectOffscreen:viewMenu completion:^(BOOL completion){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
