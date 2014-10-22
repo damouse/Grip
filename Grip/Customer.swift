@@ -22,6 +22,10 @@ class Customer : MTLModel, MTLJSONSerializing {
     var created_at: String?
     var updated_at: String?
     
+    //used to check package downloads
+    var packages = NSArray()
+    var loadedPackages = false
+    
     
     //Boilerplate Mantle code
     class func appURLSchemeJSONTransformer() -> NSValueTransformer {

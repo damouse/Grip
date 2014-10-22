@@ -34,6 +34,19 @@ import UIKit
         );
     }
     
+    func loadPackagesForCustomer(customer: Customer, success:(() -> Void)) {
+        //loads packages associated with the given customer and assigns them to the customer
+        if customer.loadedPackages {
+            success()
+            return
+        }
+        
+        self.loadPackages(customer.id, success: { (packages: AnyObject) -> Void in
+            customer.packages = packages as [Package]
+            success()
+        })
+    }
+    
     
     //MARK: Model Helper Methods
     func findProductById(id:Int) -> Product? {
@@ -77,13 +90,14 @@ import UIKit
         //gets all of the resources sequentially-- waits for the previous one to finished before starting the next
         
         //success blocks
-        let packageSuccess = { () -> Void in
+        let packageSuccess = { (packages: AnyObject) -> Void in
+            self.packages = packages as NSArray
             self.removeHUD()
             success()
         }
         
         let productSuccess = { () -> Void in
-            self.loadPackages(packageSuccess)
+            self.loadPackages(self.user!.group_id, packageSuccess)
         }
         
         let merchandiseSuccess = { () -> Void in
@@ -158,17 +172,18 @@ import UIKit
         })
     }
     
-    func loadPackages(success:(() -> Void)?) -> Void {
+    func loadPackages(id:Int, success:((AnyObject) -> Void)?) -> Void {
         updateHUDText("Updating Packages")
         
-        generateAuthenticatedClient().GET("dashboard/\(self.user!.group_id)/packages", parameters: nil,
+        generateAuthenticatedClient().GET("dashboard/\(id)/packages", parameters: nil,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
-                self.packages = self.serializeObjects(responseObject!, jsonKey: "packages", objectClass: Package.self)
+                //self.packages = self.serializeObjects(responseObject!, jsonKey: "packages", objectClass: Package.self)
+                var packages = self.serializeObjects(responseObject!, jsonKey: "packages", objectClass: Package.self)
                 
                 //Christ this hurts me to look at
-                var packages = responseObject! as [String:AnyObject]
-                var unwrappedPackages: AnyObject? = packages["packages"]!
+                var rawPackages = responseObject! as [String:AnyObject]
+                var unwrappedPackages: AnyObject? = rawPackages["packages"]!
                 var packagesArray = unwrappedPackages! as [[String:AnyObject]]
                 
                 //Manually pair products to packages by comparing ids. Maybe a little rough, but it beats redundantly creating products
@@ -176,7 +191,7 @@ import UIKit
                     let products: AnyObject? = packagesArray[i]["products"]
                     let productsArray = products! as [[String:AnyObject]]
                     
-                    let package = self.packages[0] as Package
+                    let package = packages[i] as Package
                     
                     for product in productsArray {
                         
@@ -189,7 +204,7 @@ import UIKit
                     }
                 }
                 
-                success?()
+                success?(packages)
             },
             
             failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
