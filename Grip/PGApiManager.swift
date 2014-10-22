@@ -73,6 +73,8 @@ import UIKit
         progressHUD?.labelText = "Connecting to Server"
         progressHUD?.detailsLabelText = ""
         
+        progressHUD?.mode = MBProgressHUDModeCustomView
+        progressHUD?.customView = GripSpinner(frame: CGRectMake(0, 0, 37, 37))
     }
     
     func removeHUD() {

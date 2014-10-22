@@ -484,6 +484,10 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		[indicator removeFromSuperview];
 		self.indicator = customView;
 		[self addSubview:indicator];
+        
+        if ([indicator respondsToSelector:@selector(startAnimating)]) {
+            [indicator performSelector:@selector(startAnimating) withObject:nil afterDelay:0.0];
+        }
 	} else if (mode == MBProgressHUDModeText) {
 		[indicator removeFromSuperview];
 		self.indicator = nil;

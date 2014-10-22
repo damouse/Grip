@@ -35,7 +35,6 @@
     __weak IBOutlet UILabel *labelCustomerName;
     __weak IBOutlet UILabel *labelCustomerCreated;
     __weak IBOutlet UILabel *labelPackageCount;
-    
 }
 
 //buttons

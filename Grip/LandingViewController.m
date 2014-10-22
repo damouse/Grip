@@ -332,6 +332,7 @@
 }
 
 - (IBAction) settings:(id)sender {
+    [spinner startAnimating];
     [self presentSettings];
 }
 
@@ -359,7 +360,7 @@
 }
 
 - (IBAction) help:(id)sender {
-    
+    [spinner stopAnimating];
 }
 
 - (IBAction) existingCustomer:(id)sender {
