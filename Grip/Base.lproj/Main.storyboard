@@ -295,13 +295,14 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" id="f9C-Mz-u6H" customClass="GripSpinner" customModule="Grip" customModuleProvider="target">
+                                        <rect key="frame" x="429" y="168" width="80" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" id="RJ7-ni-sXd">
-                                <rect key="frame" x="456" y="669" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -315,6 +316,7 @@
                         <outlet property="labelCustomerCreated" destination="6gv-XM-eMO" id="bFW-4k-TQX"/>
                         <outlet property="labelCustomerName" destination="OoQ-H3-RNx" id="55w-P4-GyL"/>
                         <outlet property="labelPackageCount" destination="5Pf-z9-yox" id="Gjg-jG-Asx"/>
+                        <outlet property="spinnerCustomer" destination="f9C-Mz-u6H" id="FRK-0u-AEF"/>
                         <outlet property="textfieldEmail" destination="lFb-cn-RV4" id="emm-cQ-LSk"/>
                         <outlet property="textfieldPassword" destination="h94-c2-8Y9" id="gWX-K6-3hs"/>
                         <outlet property="viewLogin" destination="2uq-zL-a4b" id="dYO-7P-Gpl"/>

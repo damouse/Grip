@@ -135,7 +135,16 @@
     //package dropdown has selected a customer-- display information about that customer and ungrey the button
     labelCustomerName.text = customer.name;
     labelCustomerCreated.text = customer.created_at;
-    labelPackageCount.text = @"UH OH";
+    
+    //load the customer's packages while showing the spinner
+    if (!customer.loadedPackages)
+        [spinnerCustomer startAnimating];
+    
+    [apiManager loadPackagesForCustomer:customer success:^{
+        labelPackageCount.text = [NSString stringWithFormat:@"Customer Packages: %i", [customer.packages count]];
+        [spinnerCustomer stopAnimating];
+    }];
+    
 }
 
 - (void) packageDeselectedCustomer {
@@ -332,7 +341,6 @@
 }
 
 - (IBAction) settings:(id)sender {
-    [spinner startAnimating];
     [self presentSettings];
 }
 
@@ -360,7 +368,6 @@
 }
 
 - (IBAction) help:(id)sender {
-    [spinner stopAnimating];
 }
 
 - (IBAction) existingCustomer:(id)sender {

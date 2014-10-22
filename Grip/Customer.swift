@@ -19,8 +19,8 @@ class Customer : MTLModel, MTLJSONSerializing {
     var name: String?
     var group_id = -1
     var email: String?
-    var created_at: String?
-    var updated_at: String?
+    var created_at: NSDate?
+    var updated_at: NSDate?
     
     //used to check package downloads
     var packages = NSArray()
@@ -34,6 +34,21 @@ class Customer : MTLModel, MTLJSONSerializing {
     
     class func JSONKeyPathsByPropertyKey() -> [NSObject : AnyObject]! {
         return Dictionary<String, String>()
+    }
+    
+    class func JSONTransformerForKey(key: String!) -> NSValueTransformer! {
+        if key == "created_at" || key == "updated_at" {
+            let formatter = NSDateFormatter()
+            formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+            
+            return MTLValueTransformer(block: { (string: AnyObject?) -> NSDate in
+                return formatter.dateFromString(string! as String)
+            })
+        }
+        else {
+            return nil
+        }
     }
     
     //Boilerplate, compulsory overrides. Kinda stupid, isn't it?
