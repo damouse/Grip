@@ -9,10 +9,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LandingViewController.h"
 
 @interface SearchViewController : UITableViewController
 
 @property (nonatomic, strong) NSArray *customers;
+@property (nonatomic, weak) LandingViewController *parent;
 
+@property (nonatomic, strong) Customer *selectedCustomer;
 @end
 

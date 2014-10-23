@@ -23,10 +23,13 @@
 #pragma mark -
 
 @implementation SearchViewController
+@synthesize selectedCustomer;
 
 - (void)viewDidLoad {
 
     [super viewDidLoad];
+    
+    selectedCustomer = nil;
 
     // Create a mutable array to contain products for the search results table.
     self.searchResults = [NSMutableArray arrayWithCapacity:[self.customers count]];
@@ -42,6 +45,12 @@
     self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.searchController.searchBar.frame.size.width, 44.0);
     self.searchController.searchBar.barTintColor = PRIMARY_DARK;
     self.searchController.searchBar.tintColor = [UIColor whiteColor];
+    
+    //make the search controller pretty (jesus apple)
+    UITableView *searchTable = ((UITableViewController *)self.searchController.searchResultsController).tableView;
+    searchTable.backgroundColor = PRIMARY_DARK;
+    searchTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    searchTable.s
     
     self.tableView.tableHeaderView = self.searchController.searchBar;
 
@@ -88,11 +97,64 @@
         cell.textLabel.text = customer.name;
     }
     
+    //clear selection color
+    UIView *selectionColor = [[UIView alloc] init];
+    selectionColor.backgroundColor = [UIColor colorWithRed:(245/255.0) green:(245/255.0) blue:(245/255.0) alpha:0];
+    cell.selectedBackgroundView = selectionColor;
+    
+    cell.textLabel.highlightedTextColor = HIGHLIGHT_COLOR;
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.backgroundColor = [UIColor clearColor];
 
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Customer *selected;
+    
+    //conditionally select the customer based on which table is displaying
+    if (tableView == ((UITableViewController *)self.searchController.searchResultsController).tableView)
+        selected = [self.customers objectAtIndex: indexPath.row - 1];
+    else
+        selected = [self.customers objectAtIndex: indexPath.row ];
+    
+    //inform parent of a change in the selected customer-- if they match than unselect, else select
+//    if (selectedCustomer == nil) {
+//        [self.parent packageSelectedCustomer:selected];
+//        selectedCustomer = selected;
+//    }
+//    else {
+//        if (selected == selectedCustomer) {
+//            [self.parent packageDeselectedCustomer];
+//            selectedCustomer = nil;
+//        }
+//        else {
+//            [self.parent packageDeselectedCustomer];
+//            [self.parent packageSelectedCustomer:selected];
+//            selectedCustomer = selected;
+//        }
+//    }
+    
+    //if this touched customer was the same as the previous one, its a deselect
+    if (selected == selectedCustomer) {
+        [self.parent packageDeselectedCustomer];
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        selectedCustomer = nil;
+    }
+    else {
+        //another customer was selected before
+        if (selectedCustomer != nil) {
+            [self.parent packageDeselectedCustomer];
+            [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        }
+
+        //either way, select the new customer
+        [self.parent packageSelectedCustomer:selected];
+        selectedCustomer = selected;
+    }
+}
+
+
 
 
 #pragma mark - UISearchResultsUpdating

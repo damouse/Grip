@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Grip-Swift.h"
 
 @interface LandingViewController : UIViewController {
     //Views
@@ -53,4 +54,8 @@
 - (IBAction)existingCustomer:(id)sender;
 - (IBAction)newCustomer:(id)sender;
 
+
+
+- (void) packageSelectedCustomer:(Customer *) customer;
+- (void) packageDeselectedCustomer;
 @end

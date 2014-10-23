@@ -18,7 +18,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "SignatureViewQuartzQuadratic.h"
 
-#import "Grip-Swift.h"
+
 
 #import "UIButton+Utils.h"
 
@@ -35,6 +35,7 @@
     BOOL firstLayout;
     BOOL displayingLogin;
     BOOL displayingSettings;
+    BOOL displayingPackageCustomer;
 }
 
 @end
@@ -56,6 +57,7 @@
     loggedIn = false;
     displayingLogin = false;
     displayingSettings = false;
+    displayingPackageCustomer = false;
 	
     animator = [[MBViewAnimator alloc] initWithDuration:ANIMATION_DURATION];
     
@@ -127,16 +129,31 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString: @"embedSearch"]) {
        searchController = (SearchViewController *) [segue destinationViewController];
+        searchController.parent = self;
     }
 }
 
--(void) presentPackage {
+- (void) packageSelectedCustomer:(Customer *) customer {
+    //package dropdown has selected a customer-- display information about that customer and ungrey the button
+    labelCustomerName.text = customer.name;
+    labelCustomerCreated.text = customer.created_at;
+    labelPackageCount.text = @"UH OH";
+}
+
+- (void) packageDeselectedCustomer {
+    //package dropdown deselected the previously selected customer, remove the details and optionally disable the button
+    labelCustomerName.text = @"";
+    labelCustomerCreated.text = @"";
+    labelPackageCount.text = @"";
+}
+
+-(void) presentPackage:(Customer *) customer {
     [self closingAnimations];
     [animator animateObjectOffscreen:viewMenu completion:^(BOOL completion){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         DealViewController *dealController = [storyboard instantiateViewControllerWithIdentifier:@"dealViewController"];
         
-        Dealmaker *dealmaker = [[Dealmaker alloc] initWithAllProducts:apiManager.products user:apiManager.user customer:nil merchandise:[apiManager.merchandises objectAtIndex: 0]];
+        Dealmaker *dealmaker = [[Dealmaker alloc] initWithAllProducts:apiManager.products user:apiManager.user customer:customer merchandise:[apiManager.merchandises objectAtIndex: 0]];
         
         dealmaker.userPackages = apiManager.packages;
         dealmaker.customerPackages = apiManager.packages;
@@ -242,6 +259,9 @@
     if (displayingLogin)
         [self dismissLogin];
     
+    if (displayingPackageCustomer)
+        [self dismissPackageCustomer];
+    
     [animator animateObjectOnscreen:viewSettings completion:nil];
     [self logosToBottom];
     displayingSettings = true;
@@ -255,6 +275,26 @@
     
     [animator animateObjectOffscreen:viewSettings completion:nil];
     displayingSettings = false;
+    [self showBothLogos];
+}
+
+- (void) presentPackageCustomer {
+    if(displayingSettings)
+        [self dismissSettings];
+    
+    [animator animateObjectOnscreen:viewPresentDialog completion:nil];
+    [self logosToBottom];
+    displayingPackageCustomer = true;
+}
+
+- (void) dismissPackageCustomer {
+    if (!displayingPackageCustomer) {
+        NSLog(@"Landing: WARN: asked to dismiss packagecustomers, but settings is not visible!");
+        return;
+    }
+    
+    [animator animateObjectOffscreen:viewPresentDialog completion:nil];
+    displayingPackageCustomer = false;
     [self showBothLogos];
 }
 
@@ -272,6 +312,8 @@
         loggedIn = false;
         [self setLoginButtonState];
         [self showOnlyGripLogo];
+        [self dismissSettings];
+        [self dismissPackageCustomer];
     }
     else {
         [self presentLogin];
@@ -285,7 +327,10 @@
         return;
     }
     
-    [animator animateObjectOnscreen:viewPresentDialog completion:nil];
+    if (displayingPackageCustomer)
+        [self dismissPackageCustomer];
+    else
+        [self presentPackageCustomer];
 }
 
 - (IBAction) settings:(id)sender {
@@ -320,10 +365,16 @@
 }
 
 - (IBAction) existingCustomer:(id)sender {
-    [self presentPackage];
+    if (searchController.selectedCustomer == nil) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Error"] message:@"Please select a customer or choose 'New Customer'"  delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
+    [self presentPackage:searchController.selectedCustomer];
 }
 
 - (IBAction) newCustomer:(id)sender {
-    [self presentPackage];
+    [self presentPackage:nil];
 }
 @end
