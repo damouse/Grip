@@ -34,6 +34,10 @@
     BOOL displayingLogin;
     BOOL displayingSettings;
     BOOL displayingPackageCustomer;
+
+    //TESTING
+    S3FileManager *upload;
+    PDFFactory *pdf;
 }
 
 @end
@@ -60,6 +64,9 @@
     animator = [[MBViewAnimator alloc] initWithDuration:ANIMATION_DURATION];
     
     apiManager = [[PGApiManager alloc] init];
+    
+    upload = [[S3FileManager alloc] init];
+    pdf = [[PDFFactory alloc] init];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -99,6 +106,13 @@
 
 - (void) viewDidAppear:(BOOL)animated {
     [self initialAnimations];
+    
+    NSMutableData *pdfData = [pdf createPDFFromView:self.view];
+    [upload uploadFile:pdfData name:@"test.pdf" completion:nil];
+    
+//    [upload uploadFile:pdfData name:@"test.pdf" completion:^(BOOL success) {
+//        NSLog(@"Things worked!");
+//    }];
 }
 
 - (void) colorize {
@@ -368,6 +382,7 @@
 }
 
 - (IBAction) help:(id)sender {
+
 }
 
 - (IBAction) existingCustomer:(id)sender {

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		501B6135199259CF00286A6E /* PGArchiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501B6134199259CF00286A6E /* PGArchiver.swift */; };
 		502F0434193FC90900516A0F /* ProductTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 502F0433193FC90900516A0F /* ProductTableViewDelegate.m */; };
+		503BC46D1A01CF7F00CA22DC /* S3FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC46C1A01CF7F00CA22DC /* S3FileManager.swift */; };
 		5048DED7199F0A9B0014ABC4 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5048DED3199F0A9B0014ABC4 /* Package.swift */; };
 		5048DED8199F0A9B0014ABC4 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5048DED4199F0A9B0014ABC4 /* Product.swift */; };
 		5053F108194132B400EDF062 /* RMSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5053F107194132B400EDF062 /* RMSwipeTableViewCell.m */; };
@@ -82,6 +83,7 @@
 		50B701B81991D2AB0018FB31 /* Titillium-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701A81991CFDC0018FB31 /* Titillium-Thin.otf */; };
 		50B701B91991D2AB0018FB31 /* Titillium-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701A91991CFDC0018FB31 /* Titillium-ThinItalic.otf */; };
 		50B701BA1991D2AB0018FB31 /* Titillium-ThinUpright.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701AA1991CFDC0018FB31 /* Titillium-ThinUpright.otf */; };
+		50D718F319F7B65E00E6B731 /* PDFFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D718F219F7B65E00E6B731 /* PDFFactory.swift */; };
 		50EC987D199236D400C62BFE /* PGApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EC987C199236D400C62BFE /* PGApiManager.swift */; };
 		F35AE82AA7F5417A814DCAEE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57EC558AFF9D4E6D9C4B789A /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -100,6 +102,7 @@
 		501B6134199259CF00286A6E /* PGArchiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PGArchiver.swift; sourceTree = "<group>"; };
 		502F0432193FC90900516A0F /* ProductTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableViewDelegate.h; sourceTree = "<group>"; };
 		502F0433193FC90900516A0F /* ProductTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTableViewDelegate.m; sourceTree = "<group>"; };
+		503BC46C1A01CF7F00CA22DC /* S3FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S3FileManager.swift; sourceTree = "<group>"; };
 		5048DED3199F0A9B0014ABC4 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		5048DED4199F0A9B0014ABC4 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		5053F106194132B400EDF062 /* RMSwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSwipeTableViewCell.h; sourceTree = "<group>"; };
@@ -207,6 +210,7 @@
 		50B701A81991CFDC0018FB31 /* Titillium-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-Thin.otf"; sourceTree = "<group>"; };
 		50B701A91991CFDC0018FB31 /* Titillium-ThinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-ThinItalic.otf"; sourceTree = "<group>"; };
 		50B701AA1991CFDC0018FB31 /* Titillium-ThinUpright.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-ThinUpright.otf"; sourceTree = "<group>"; };
+		50D718F219F7B65E00E6B731 /* PDFFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFFactory.swift; sourceTree = "<group>"; };
 		50EC987B199236D400C62BFE /* Grip-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grip-Bridging-Header.h"; sourceTree = "<group>"; };
 		50EC987C199236D400C62BFE /* PGApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PGApiManager.swift; sourceTree = "<group>"; };
 		57EC558AFF9D4E6D9C4B789A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -240,6 +244,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		503BC46B1A01CF6C00CA22DC /* API */ = {
+			isa = PBXGroup;
+			children = (
+				501B6134199259CF00286A6E /* PGArchiver.swift */,
+				50EC987C199236D400C62BFE /* PGApiManager.swift */,
+				503BC46C1A01CF7F00CA22DC /* S3FileManager.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
 		5048DED9199F24FB0014ABC4 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,10 +396,10 @@
 			isa = PBXGroup;
 			children = (
 				5048DED9199F24FB0014ABC4 /* Objects */,
-				50EC987C199236D400C62BFE /* PGApiManager.swift */,
-				501B6134199259CF00286A6E /* PGArchiver.swift */,
+				503BC46B1A01CF6C00CA22DC /* API */,
 				5097550819AED47A006E7859 /* Dealmaker.swift */,
 				5097550A19AED59E006E7859 /* Rollback.swift */,
+				50D718F219F7B65E00E6B731 /* PDFFactory.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -748,6 +762,7 @@
 				5097550B19AED59E006E7859 /* Rollback.swift in Sources */,
 				509BB181193A756100FC8CC7 /* MBProgressHUD.m in Sources */,
 				509BB184193A756100FC8CC7 /* MCProperty.m in Sources */,
+				503BC46D1A01CF7F00CA22DC /* S3FileManager.swift in Sources */,
 				509BB18C193A756100FC8CC7 /* MCTextViewInterpreter.m in Sources */,
 				50637C63199247F40010A6EF /* User.swift in Sources */,
 				509BB18E193A756100FC8CC7 /* MBPickerView.m in Sources */,
@@ -772,6 +787,7 @@
 				502F0434193FC90900516A0F /* ProductTableViewDelegate.m in Sources */,
 				509BA66D18EB4E960011D374 /* main.m in Sources */,
 				509BB18F193A756100FC8CC7 /* MBBoilerplateUtils.m in Sources */,
+				50D718F319F7B65E00E6B731 /* PDFFactory.swift in Sources */,
 				509BB189193A756100FC8CC7 /* MCImageViewInterpreter.m in Sources */,
 				5048DED8199F0A9B0014ABC4 /* Product.swift in Sources */,
 			);

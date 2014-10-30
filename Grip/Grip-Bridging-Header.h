@@ -7,3 +7,10 @@
 #import "MBProgressHUD.h"
 
 #import "UIImage+Utils.h"
+
+//Needed for S3 Uploads
+#import "AWSCore.h"
+#import "S3.h"
+#import "DynamoDB.h"
+#import "SQS.h"
+#import "SNS.h"

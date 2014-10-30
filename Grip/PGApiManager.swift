@@ -165,6 +165,11 @@ import UIKit
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
                 self.merchandises = self.serializeObjects(responseObject!, jsonKey: "merchandises", objectClass: Product.self)
+                
+                for merchandise in self.merchandises {
+                    self.loadImage(merchandise as Product)
+                }
+                
                 success?()
             },
             
@@ -270,6 +275,9 @@ import UIKit
                 product.desaturatedImage = product.image!.desaturate()
             },
             failure: { (operation: AFHTTPRequestOperation!, error: NSError!) ->Void in
+                product.image = UIImage(named: "Placeholder")
+                product.desaturatedImage = product.image!.desaturate()
+                
                 println("Image failure for product \(product.name)")
                 println(error)
         })

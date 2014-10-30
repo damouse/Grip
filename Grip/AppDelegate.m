@@ -8,11 +8,32 @@
 
 #import "AppDelegate.h"
 
+#import "AppDelegate.h"
+#import "AWSCore.h"
+#import "AWSCredentialsProvider.h"
+
+NSString *const AWSAccountID = @"911251281944";
+NSString *const CognitoPoolID = @"us-east-1:81e26719-be8b-4263-9097-c190c43b7c75";
+NSString *const CognitoRoleAuth = nil;
+NSString *const CognitoRoleUnauth = @"arn:aws:iam::911251281944:role/Cognito_grip_usersUnauth_DefaultRole";
+
+NSString *const S3BucketName = @"grippdf";
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    AWSCognitoCredentialsProvider *credentialsProvider = [AWSCognitoCredentialsProvider
+                                                          credentialsWithRegionType:AWSRegionUSEast1
+                                                          accountId:AWSAccountID
+                                                          identityPoolId:CognitoPoolID
+                                                          unauthRoleArn:CognitoRoleUnauth
+                                                          authRoleArn:nil];
+    
+    AWSServiceConfiguration *configuration = [AWSServiceConfiguration configurationWithRegion:AWSRegionUSEast1 credentialsProvider:credentialsProvider];
+    [AWSServiceManager defaultServiceManager].defaultServiceConfiguration = configuration;
+//    [AWSLogger defaultLogger].logLevel = AWSLogLevelVerbose;
+    
     return YES;
 }
 							
@@ -42,5 +63,6 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
 
 @end
