@@ -13,74 +13,19 @@ import MessageUI
 
 class PDFFactory : NSObject {
     var parent: UIViewController?
-    var pdfData: NSMutableData?
-//    override init() {
-//        
-//    }
 
+    //remember-- need to set PDF margins to about 72pixels before uploading!
     func createPDFFromView(target: UIView) -> NSMutableData {
         var rawData = NSMutableData()
         
-        UIGraphicsBeginPDFContextToData(rawData, CGRectMake(0.0, 0.0, 792.0, 612.0), nil)
+        UIGraphicsBeginPDFContextToData(rawData, CGRectMake(0.0, 0.0, 1024, 1768), nil)
         UIGraphicsBeginPDFPage()
         let context = UIGraphicsGetCurrentContext()
-        CGContextScaleCTM(context, 1, 1)
+        CGContextScaleCTM(context, 0.75, 0.75)
         target.layer.renderInContext(context)
         UIGraphicsEndPDFContext()
         
         return rawData
-//        self.pdfData = rawData
-        
-//        UIView* testView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 1024.0f, 768.0f)];
-//        NSMutableData* pdfData = [NSMutableData data];
-//        UIGraphicsBeginPDFContextToData(pdfData, CGRectMake(0.0f, 0.0f, 792.0f, 612.0f), nil);
-//        UIGraphicsBeginPDFPage();
-//        CGContextRef pdfContext = UIGraphicsGetCurrentContext();
-//        CGContextScaleCTM(pdfContext, 0.773f, 0.773f);
-//        [testView.layer renderInContext:pdfContext];
-//        UIGraphicsEndPDFContext();
     }
-    
-    //////
-    // IMPORTED CODE
-    //////
-//    func mailComposeController(controller:MFMailComposeViewController, didFinishWithResult result:MFMailComposeResult, error:NSError) {
-//        switch result.value {
-//        case MFMailComposeResultCancelled.value:
-//            NSLog("Mail cancelled")
-//        case MFMailComposeResultSaved.value:
-//            NSLog("Mail saved")
-//        case MFMailComposeResultSent.value:
-//            NSLog("Mail sent")
-//        case MFMailComposeResultFailed.value:
-//            NSLog("Mail sent failure: %@", [error.localizedDescription])
-//        default:
-//            break
-//        }
-//        
-//        parent?.dismissViewControllerAnimated(false, completion: nil)
-//    }
-//    
-//    func showEmail() {
-//        if MFMailComposeViewController.canSendMail() {
-//            var emailTitle = "Test Email"
-//            var messageBody = "This is a test email body"
-//            var toRecipents = ["damouse007@gmail.com"]
-//    //        var mc: MFMailComposeViewController = MFMailComposeViewController()
-//            let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-//            var mc = appDelegate.mailComposer
-//            
-//            mc.mailComposeDelegate = self
-//            mc.setSubject(emailTitle)
-//            mc.setMessageBody(messageBody, isHTML: false)
-//            mc.setToRecipients(toRecipents)
-//            mc.addAttachmentData(self.pdfData, mimeType: "application/pdf", fileName: "test.pdf")
-//            
-//            parent?.presentViewController(mc, animated: true, completion: nil)
-//        }
-//        else {
-//            print("Cannot send mail!")
-//        }
-//    }
 
 }

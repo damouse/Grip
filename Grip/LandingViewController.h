@@ -38,6 +38,9 @@
     
     //Spinner
     __weak IBOutlet GripSpinner *spinnerCustomer;
+    
+    //TESTING
+    __weak IBOutlet UIView *viewPDF;
 }
 
 //buttons

@@ -10,12 +10,12 @@ import Foundation
 
 
 class PackageTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDelegate {
-    var packages: [Package]
+    var packages: NSArray
     var table: UITableView
     var didSelectBlock: ((package: Package) -> Void)
     
     
-    init(packs: [Package], tableView: UITableView, selectBlock: (package: Package) -> Void) {
+    init(packs: NSArray, tableView: UITableView, selectBlock: (package: Package) -> Void) {
         packages = packs
         table = tableView
         didSelectBlock = selectBlock
@@ -30,16 +30,14 @@ class PackageTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDel
     //MARK: Public Interface
     func highlighCellForPackage(package: Package) {
         //highlights the given cell in the given package
-        let index = find(packages, package)
+        let index = packages.indexOfObject(package)
         
-        //check for nil!
-        
-        var cell = table.cellForRowAtIndexPath(NSIndexPath(forRow: index!, inSection: 0))!
+        var cell = table.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0))!
         cell.textLabel!.textColor = HIGHLIGHT_COLOR
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0;
+        return packages.count;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -54,6 +52,6 @@ class PackageTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDel
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        didSelectBlock(package: packages[indexPath.row])
+        didSelectBlock(package: packages.objectAtIndex(indexPath.row) as Package)
     }
 }

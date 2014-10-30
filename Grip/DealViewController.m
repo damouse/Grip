@@ -314,7 +314,11 @@ typedef enum UIState{
 }
 
 - (IBAction)complete:(id)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SigningViewController *signController = [storyboard instantiateViewControllerWithIdentifier:@"signViewController"];
 
+    [signController uploadPDF];
+//    [self.navigationController pushViewController:signController animated:YES];
 }
 
 - (IBAction)walkthrough:(id)sender {

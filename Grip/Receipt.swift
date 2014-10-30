@@ -18,14 +18,14 @@ class Receipt : MTLModel, MTLJSONSerializing {
     var productReceipts: [ProductReceipt]?
     var merchandise: ProductReceipt?
     var user: User?
-    var customer: User?
+    var customer: Customer?
     var discount = 0
     var base_package_id = -1
     var signature: AnyObject?
     
     
     //class init
-    class func createWith(user: User, customer: User, merchandise: Product) -> Receipt {
+    class func createWith(user: User, customer: Customer, merchandise: Product) -> Receipt {
         let receipt = Receipt()
         
         receipt.merchandise = ProductReceipt.createWith(merchandise)

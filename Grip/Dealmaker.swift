@@ -30,11 +30,11 @@ class Dealmaker : NSObject {
     var packageMatch: ((package: Package) -> Void)?
     
     
-    init(allProducts: [Product], user: User, customer: User, merchandise: Product) {
+    init(allProducts: [Product], user: User, customer: Customer, merchandise: Product) {
         //Packages and customer packages may not exist, so do not assume their presence!
         
         receipt = Receipt.createWith(user, customer: customer, merchandise: merchandise)
-        
+
         super.init()
         
         for product in allProducts {

@@ -83,6 +83,7 @@
 		50B701B81991D2AB0018FB31 /* Titillium-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701A81991CFDC0018FB31 /* Titillium-Thin.otf */; };
 		50B701B91991D2AB0018FB31 /* Titillium-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701A91991CFDC0018FB31 /* Titillium-ThinItalic.otf */; };
 		50B701BA1991D2AB0018FB31 /* Titillium-ThinUpright.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701AA1991CFDC0018FB31 /* Titillium-ThinUpright.otf */; };
+		50CC00FF1A02CC1F00ED1E9D /* SigningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CC00FE1A02CC1F00ED1E9D /* SigningViewController.swift */; };
 		50D718F319F7B65E00E6B731 /* PDFFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D718F219F7B65E00E6B731 /* PDFFactory.swift */; };
 		50EC987D199236D400C62BFE /* PGApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EC987C199236D400C62BFE /* PGApiManager.swift */; };
 		F35AE82AA7F5417A814DCAEE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57EC558AFF9D4E6D9C4B789A /* libPods.a */; };
@@ -210,6 +211,7 @@
 		50B701A81991CFDC0018FB31 /* Titillium-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-Thin.otf"; sourceTree = "<group>"; };
 		50B701A91991CFDC0018FB31 /* Titillium-ThinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-ThinItalic.otf"; sourceTree = "<group>"; };
 		50B701AA1991CFDC0018FB31 /* Titillium-ThinUpright.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-ThinUpright.otf"; sourceTree = "<group>"; };
+		50CC00FE1A02CC1F00ED1E9D /* SigningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningViewController.swift; sourceTree = "<group>"; };
 		50D718F219F7B65E00E6B731 /* PDFFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFFactory.swift; sourceTree = "<group>"; };
 		50EC987B199236D400C62BFE /* Grip-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grip-Bridging-Header.h"; sourceTree = "<group>"; };
 		50EC987C199236D400C62BFE /* PGApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PGApiManager.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				509BA69D18EB50930011D374 /* DealViewController.m */,
 				508F8F3519F70ECA00610C3F /* SearchViewController.h */,
 				508F8F3619F70ECA00610C3F /* SearchViewController.m */,
+				50CC00FE1A02CC1F00ED1E9D /* SigningViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -787,6 +790,7 @@
 				502F0434193FC90900516A0F /* ProductTableViewDelegate.m in Sources */,
 				509BA66D18EB4E960011D374 /* main.m in Sources */,
 				509BB18F193A756100FC8CC7 /* MBBoilerplateUtils.m in Sources */,
+				50CC00FF1A02CC1F00ED1E9D /* SigningViewController.swift in Sources */,
 				50D718F319F7B65E00E6B731 /* PDFFactory.swift in Sources */,
 				509BB189193A756100FC8CC7 /* MCImageViewInterpreter.m in Sources */,
 				5048DED8199F0A9B0014ABC4 /* Product.swift in Sources */,

@@ -34,10 +34,6 @@
     BOOL displayingLogin;
     BOOL displayingSettings;
     BOOL displayingPackageCustomer;
-
-    //TESTING
-    S3FileManager *upload;
-    PDFFactory *pdf;
 }
 
 @end
@@ -64,9 +60,6 @@
     animator = [[MBViewAnimator alloc] initWithDuration:ANIMATION_DURATION];
     
     apiManager = [[PGApiManager alloc] init];
-    
-    upload = [[S3FileManager alloc] init];
-    pdf = [[PDFFactory alloc] init];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -106,13 +99,6 @@
 
 - (void) viewDidAppear:(BOOL)animated {
     [self initialAnimations];
-    
-    NSMutableData *pdfData = [pdf createPDFFromView:self.view];
-    [upload uploadFile:pdfData name:@"test.pdf" completion:nil];
-    
-//    [upload uploadFile:pdfData name:@"test.pdf" completion:^(BOOL success) {
-//        NSLog(@"Things worked!");
-//    }];
 }
 
 - (void) colorize {
@@ -176,8 +162,8 @@
         
         Dealmaker *dealmaker = [[Dealmaker alloc] initWithAllProducts:apiManager.products user:apiManager.user customer:customer merchandise:[apiManager.merchandises objectAtIndex: 0]];
         
+        dealmaker.customerPackages = customer.packages;
         dealmaker.userPackages = apiManager.packages;
-        dealmaker.customerPackages = apiManager.packages;
         
         [dealmaker selectPackage:[apiManager.packages objectAtIndex:0]];
         dealController.dealmaker = dealmaker;
