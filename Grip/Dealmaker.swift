@@ -100,6 +100,21 @@ class Dealmaker : NSObject {
     }
     
     
+    //MARK: complete receipt and return
+    func completeReceipt() -> Receipt {
+        //complete the receipt object by adding the active products
+        receipt.productReceipts = currentProductOrdering.filter({$0.active == true})
+        
+//        println(receipt.productReceipts!.count)
+//        for r in receipt.productReceipts! {
+//            println("\(r)")
+//        }
+        
+        receipt.base_package_id = 0
+        return receipt
+    }
+    
+    
     //MARK: Internal
     func checkPackageMatch() -> Void {
         //if the current setup matches a package, "snap" that package into place, replacing the current discount value

@@ -60,8 +60,6 @@
             <string>Titillium-Light</string>
             <string>Titillium-Light</string>
             <string>Titillium-Light</string>
-            <string>Titillium-Light</string>
-            <string>Titillium-Light</string>
         </mutableArray>
         <mutableArray key="Titillium-Regular.otf">
             <string>Titillium-Regular</string>
@@ -896,13 +894,6 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dealer:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YO2-eS-3jt">
-                                                <rect key="frame" x="564" y="297" width="305" height="29"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="20"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Salesperson:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tHV-A8-FXA">
                                                 <rect key="frame" x="564" y="325" width="305" height="29"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -912,13 +903,6 @@
                                             </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rxO-sk-7fz">
                                                 <rect key="frame" x="564" y="355" width="305" height="29"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="20"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Package Receipt" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f5J-kg-Ptt">
-                                                <rect key="frame" x="693" y="297" width="305" height="29"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="20"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -956,6 +940,28 @@
                                                 <rect key="frame" x="43" y="485" width="343" height="684"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <prototypes>
+                                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="M1a-fh-Mmz" detailTextLabel="fYz-pa-HzU" style="IBUITableViewCellStyleSubtitle" id="gM5-dH-DbV">
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gM5-dH-DbV" id="ISf-GL-oiq">
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="M1a-fh-Mmz">
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fYz-pa-HzU">
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </tableViewCellContentView>
+                                                    </tableViewCell>
+                                                </prototypes>
                                                 <connections>
                                                     <outlet property="dataSource" destination="dIW-Dd-jZE" id="DN2-YH-iKj"/>
                                                     <outlet property="delegate" destination="dIW-Dd-jZE" id="t9Q-Ni-mWJ"/>
@@ -975,7 +981,6 @@
                         <outlet property="imageGripLogo" destination="WaI-bz-LWn" id="z3t-xP-YsN"/>
                         <outlet property="labelCustomerName" destination="IDx-xL-E4W" id="c5j-lE-6yc"/>
                         <outlet property="labelDate" destination="qK9-QI-Q3X" id="oVI-eC-VB6"/>
-                        <outlet property="labelDealerName" destination="f5J-kg-Ptt" id="PLA-Xv-hEe"/>
                         <outlet property="labelFinancing" destination="tSD-S5-UCT" id="9LY-Kn-L8a"/>
                         <outlet property="labelMerchandise" destination="mvS-EP-xiH" id="yEf-Ml-7dk"/>
                         <outlet property="labelPackageName" destination="3KF-SR-9xV" id="r2g-5K-htL"/>

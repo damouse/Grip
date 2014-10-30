@@ -99,6 +99,17 @@
 
 - (void) viewDidAppear:(BOOL)animated {
     [self initialAnimations];
+    
+    //DEBUG LOGIN
+    [apiManager logInAttempt:@"dealer@test.com" password:@"12345678" view: self.view success:^(void) {
+        loggedIn = true;
+        
+        [self dismissLogin];
+        [self showBothLogos];
+        [self setLoginButtonState];
+        
+        [searchController setCustomers:apiManager.customers];
+    }];
 }
 
 - (void) colorize {

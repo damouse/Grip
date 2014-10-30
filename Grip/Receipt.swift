@@ -23,6 +23,7 @@ class Receipt : MTLModel, MTLJSONSerializing {
     var base_package_id = -1
     var signature: AnyObject?
     
+    var package: Package?
     
     //class init
     class func createWith(user: User, customer: Customer, merchandise: Product) -> Receipt {

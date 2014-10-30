@@ -317,8 +317,10 @@ typedef enum UIState{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     SigningViewController *signController = [storyboard instantiateViewControllerWithIdentifier:@"signViewController"];
 
-    [signController uploadPDF];
-//    [self.navigationController pushViewController:signController animated:YES];
+    //dealmaker will take the current state of the package, generate a receipt object, and pass that object along to the signing controller for rendering, siging, and uploading
+    signController.receipt = [self.dealmaker completeReceipt];
+    
+    [self.navigationController pushViewController:signController animated:YES];
 }
 
 - (IBAction)walkthrough:(id)sender {

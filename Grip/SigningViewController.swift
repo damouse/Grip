@@ -19,7 +19,6 @@ class SigningViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var labelFinancing: UILabel!
     @IBOutlet weak var labelPayment: UILabel!
 
-    @IBOutlet weak var labelDealerName: UILabel!
     @IBOutlet weak var labelSalesName: UILabel!
     @IBOutlet weak var labelDate: UILabel!
     @IBOutlet weak var labelPackageName: UILabel!
@@ -42,10 +41,27 @@ class SigningViewController: UIViewController, UITableViewDataSource {
         self.scrollviewContent.contentSize = self.viewPage.frame.size
         self.tableProducts.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        //populate labels
+        labelCustomerName.text = self.receipt?.customer?.name
+        labelMerchandise.text = self.receipt?.merchandise?.name
+        labelFinancing.text = "\(self.receipt?.discount)%"
+        labelPayment.text = "MONEY"
+        
+        labelSalesName.text = self.receipt?.user?.name
+        labelPackageName.text = "PACKAGE NAME"
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd 'at' h:mm a"
+        labelDate.text = dateFormatter.stringFromDate(NSDate())
+        
+        //colorze
+        self.colorize()
+    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func colorize() {
+        
     }
     
     @IBAction func upload(sender: AnyObject) {
@@ -68,12 +84,16 @@ class SigningViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        var cell:UITableViewCell = self.tableProducts.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
+        var cell:UITableViewCell? = self.tableProducts.dequeueReusableCellWithIdentifier("cell") as? UITableViewCell
+        
+        if cell != nil {
+            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
+        }
         
         let receipt = self.receipt!.productReceipts![indexPath.row]
         
-        cell.textLabel.text = receipt.name
-        cell.detailTextLabel.text = "\(receipt.price)"
+        cell!.textLabel.text = receipt.name
+        cell!.detailTextLabel.text = "\(receipt.price)"
         
         return cell
     }
