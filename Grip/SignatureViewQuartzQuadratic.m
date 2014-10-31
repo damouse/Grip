@@ -52,6 +52,9 @@ static CGPoint midpoint(CGPoint p0, CGPoint p1) {
     [self setNeedsDisplay];
 }
 
+- (void) decolor {
+    //change the color to black
+}
 
 - (void)pan:(UIPanGestureRecognizer *)pan {
     CGPoint currentPoint = [pan locationInView:self];

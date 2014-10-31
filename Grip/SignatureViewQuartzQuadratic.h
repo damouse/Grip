@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SignatureViewQuartzQuadratic : UIView
+@interface SignatureViewQuartzQuadratic : UIView 
+
+- (void) colorBlackAndWhite;
 
 @end

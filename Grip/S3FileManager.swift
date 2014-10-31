@@ -29,7 +29,7 @@ class S3FileManager : NSObject {
     //MARK: Internal Methods
     func saveFileToURL(file: NSMutableData) -> NSURL {
         let temp = NSTemporaryDirectory()
-        let fileURL = NSURL.fileURLWithPath(temp.stringByAppendingPathComponent("temp.pdf"))
+        let fileURL = NSURL.fileURLWithPath(temp.stringByAppendingPathComponent("test/temp.pdf"))
         
         var error: NSError?
         file.writeToURL(fileURL, atomically:false)

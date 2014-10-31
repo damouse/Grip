@@ -53,7 +53,7 @@ private let _singletonInstance = PGApiManager()
         })
     }
     
-    func uploadReceipt(view: UIView, superview: UIView, receipt: Receipt, completion: () -> ()) {
+    func uploadReceipt(view: UIView, superview: UIView, receipt: Receipt, completion: () -> Void) {
         showHUD(superview)
         updateHUDText("Uploading Receipt Document")
         
@@ -134,7 +134,7 @@ private let _singletonInstance = PGApiManager()
     }
     
     
-    // MARK: Calls
+    // MARK: Download
     func logIn(email: String, password:String, success:(() -> Void)?) -> Void {
         updateHUDText("Logging in")
         
@@ -256,6 +256,20 @@ private let _singletonInstance = PGApiManager()
         })
         
         println("API: Customer Success")
+    }
+    
+    
+    //MARK: Upload
+    func createCustomer(customer: Customer, success:(() -> Void)?) {
+        
+    }
+    
+    func createMerchandise(merch: Product, success:(() -> Void)?) {
+        
+    }
+    
+    func createReceipt(receipt: Receipt, success:(() -> Void)?) {
+        
     }
     
     
