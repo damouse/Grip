@@ -53,7 +53,7 @@ private let _singletonInstance = PGApiManager()
         })
     }
     
-    func uploadReceipt(view: UIView, superview: UIView, receipt: Receipt, completion: () -> Void) {
+    func uploadReceipt(view: UIView, superview: UIView, receipt: Receipt, completion: (success: Bool) -> Void) {
 //        showHUD(superview)
 //        updateHUDText("Uploading Receipt Document")
 //        
@@ -67,8 +67,53 @@ private let _singletonInstance = PGApiManager()
         
         //convert the receipt object back into json
         
-        createReceipt(receipt, success: nil)
-
+//        createReceipt(receipt, success: nil)
+        
+        
+        
+        //sequential, batched success tasks
+        let pdfSuccess = { (success: Bool) -> Void in
+            completion(success: success)
+        }
+        
+        let receiptSuccess = {(success: Bool) -> Void in
+            //receipt failed? return a fail
+            if !success {
+                completion(success: false)
+                return
+            }
+            
+            //call pdf task
+        }
+        
+        let customerSuccess = {(success: Bool) -> Void in
+            //customer failed? return a fail
+            if !success {
+                completion(success: false)
+                return
+            }
+            
+            //call reciept task
+        }
+        
+        let merchandiseSuccess = {(success: Bool) -> Void in
+            //merchandise failed? return a fail
+            if !success {
+                completion(success: false)
+                return
+            }
+            
+            //call customer task
+        }
+        
+        //check if customer needs to be created
+        if receipt.merchandise_receipt?.product == nil {
+            createCustomer(receipt.customer!, success: customerSuccess)
+        }
+        
+        if receipt.customer_id == -1 {
+            createCustomer(receipt.customer!, success: customerSuccess)
+        }
     }
     
     
@@ -265,15 +310,15 @@ private let _singletonInstance = PGApiManager()
     
     
     //MARK: Upload
-    func createCustomer(customer: Customer, success:(() -> Void)?) {
+    func createCustomer(customer: Customer, success:(success: Bool) -> Void) {
         
     }
     
-    func createMerchandise(merch: Product, success:(() -> Void)?) {
+    func createMerchandise(merch: Product, success:(success: Bool) -> Void) {
         
     }
     
-    func createReceipt(receipt: Receipt, success:(() -> Void)?) {
+    func createReceipt(receipt: Receipt, success:(success: Bool) -> Void) {
         updateHUDText("Uploading Receipt")
         let json = MTLJSONAdapter.JSONDictionaryFromModel(receipt)
         
@@ -284,7 +329,7 @@ private let _singletonInstance = PGApiManager()
                 
                 println(responseObject)
                 
-                success?()
+                success()
             },
             
             failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in

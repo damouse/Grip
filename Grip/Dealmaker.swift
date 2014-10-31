@@ -103,14 +103,9 @@ class Dealmaker : NSObject {
     //MARK: complete receipt and return
     func completeReceipt() -> Receipt {
         //complete the receipt object by adding the active products
-        receipt.productReceipts = currentProductOrdering.filter({$0.active == true})
+        receipt.product_receipts = currentProductOrdering.filter({$0.active == true})
         
-//        println(receipt.productReceipts!.count)
-//        for r in receipt.productReceipts! {
-//            println("\(r)")
-//        }
-        
-        receipt.base_package_id = 0
+        receipt.package_id = -1
         return receipt
     }
     

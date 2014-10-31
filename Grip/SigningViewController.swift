@@ -87,7 +87,7 @@ class SigningViewController: UIViewController, UITableViewDataSource {
     
     func populateContent() {
         labelCustomerName.text = self.receipt?.customer?.name
-        labelMerchandise.text = self.receipt?.merchandise?.name
+        labelMerchandise.text = self.receipt?.merchandise_receipt?.name
         labelFinancing.text = "\(self.receipt?.discount)%"
         labelPayment.text = "MONEY"
         
@@ -109,7 +109,7 @@ class SigningViewController: UIViewController, UITableViewDataSource {
         let pdfView = renderPDFView()
         
         //upload API
-        api.uploadReceipt(pdfView, superview: self.view, receipt: receipt!, completion: { () -> () in
+        api.uploadReceipt(pdfView, superview: self.view, receipt: receipt!, completion: { (success: Bool) -> () in
             self.dismissController()
         })
     }
@@ -201,7 +201,7 @@ class SigningViewController: UIViewController, UITableViewDataSource {
 
     //MARK: Table delegate and Datasource
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        return self.receipt!.productReceipts!.count
+        return self.receipt!.product_receipts!.count
     }
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
@@ -211,7 +211,7 @@ class SigningViewController: UIViewController, UITableViewDataSource {
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
         }
         
-        let receipt = self.receipt!.productReceipts![indexPath.row]
+        let receipt = self.receipt!.product_receipts![indexPath.row]
         
         cell!.textLabel.text = receipt.name
         cell!.detailTextLabel.text = "\(receipt.price)"

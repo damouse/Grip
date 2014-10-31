@@ -16,14 +16,20 @@ import Foundation
 class Receipt : MTLModel, MTLJSONSerializing {
     var product_receipts: [ProductReceipt]?
     var merchandise_receipt: ProductReceipt?
-    var user: User?
-    var customer: Customer?
-    var discount = 0
     
     var package_id = -1
     var customer_id = -1
     
-    var package: Package?
+//    var package: Package?
+    
+    var discount = 0
+    var cost = 0.0
+    var apr = 0.0
+    
+    //non API fields
+    var user: User?
+    var customer: Customer?
+    
     
     //class init
     class func createWith(user: User, customer: Customer, merchandise: Product) -> Receipt {
@@ -32,6 +38,8 @@ class Receipt : MTLModel, MTLJSONSerializing {
         receipt.merchandise_receipt = ProductReceipt.createWith(merchandise)
         receipt.user = user
         receipt.customer = customer
+        receipt.customer_id = customer.id
+
         
         return receipt
     }
