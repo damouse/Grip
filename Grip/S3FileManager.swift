@@ -9,7 +9,7 @@
 import Foundation
 
 class S3FileManager : NSObject {
-    let debugLog = true
+    let debugLog = false
     
     override init () {
     }

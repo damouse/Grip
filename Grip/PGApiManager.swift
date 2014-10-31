@@ -53,8 +53,9 @@ private let _singletonInstance = PGApiManager()
         })
     }
     
-    func uploadViewAsPdf(view: UIView, superview: UIView, completion: () -> ()) {
+    func uploadReceipt(view: UIView, superview: UIView, receipt: Receipt, completion: () -> ()) {
         showHUD(superview)
+        updateHUDText("Uploading Receipt Document")
         
         let pdfFactory = PDFFactory()
         let uploader = S3FileManager()

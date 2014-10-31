@@ -102,18 +102,38 @@ class SigningViewController: UIViewController, UITableViewDataSource {
         //NOTE: singleton call! Creates a circular dependancy when importing the controller itself, only clean access
         let api = PGApiManager.sharedInstance
         
-        let view = renderPDF()
+        let pdfView = renderPDFView()
         
         //upload API
+        api.uploadReceipt(pdfView, superview: self.view, receipt: receipt!, completion: { () -> () in
+            self.dismissController()
+        })
     }
     
-    func renderPDF() -> UIView{
+    func renderPDFView() -> UIView {
         //Flip the background color of the pdf view, add margins and spacing where needed, move the signature view to the bottom, 
         //and return the view
-        return UIView()
+        viewPage.backgroundColor = UIColor.whiteColor()
+        
+        for label in labels {
+            label.textColor = UIColor.blackColor()
+        }
+        
+        viewSignatureView.removeFromSuperview()
+        viewPage.addSubview(viewSignatureView)
+        
+        let y = viewPage.frame.size.height - viewSignatureView.frame.size.height
+        viewSignatureView.frame = CGRectMake(0, y, viewPage.frame.size.width, viewPage.frame.size.height)
+        
+        //view as shown needs margins. Add them by adding the view to a superview with padding
+        let enclosing = UIView(frame: CGRectMake(0, 0, viewPage.frame.size.width + 200, viewPage.frame.size.height + 200))
+        
+        enclosing.addSubview(viewPage)
+        viewPage.frame.origin = CGPointMake(100, 100);
+        
+        return enclosing
     }
 
-    
     func uploadReceiptModels() {
         //upload the receipt to the backend upon successful pdf transmission
     }
@@ -142,14 +162,16 @@ class SigningViewController: UIViewController, UITableViewDataSource {
     
     //MARK: IBActions
     @IBAction func cancel(sender: AnyObject) {
-        self.teardownAnimations({() -> () in
-            self.dismissViewControllerAnimated(true, completion: nil)
-        })
-        
+        dismissController()
     }
     
     @IBAction func confirm(sender: AnyObject) {
         if showingSignature {
+            
+            //this should not be here
+            animator.animateObjectOffscreen(viewSignatureView, completion: nil)
+            animator.animateObjectToStartingPosition(viewButtonHolder, completion: nil)
+            
             uploadReceipt()
         }
         else {
@@ -157,7 +179,15 @@ class SigningViewController: UIViewController, UITableViewDataSource {
             let margin = view.frame.size.height - viewSignatureView.frame.size.height - viewButtonHolder.frame.size.height
             animator.animateObjectToRelativePosition(viewButtonHolder, direction: VAAnimationDirectionUp, withMargin: Int32(margin), completion: nil)
             animator.animateObjectOnscreen(viewSignatureView, completion: nil)
+            
+            showingSignature = true
         }
+    }
+    
+    func dismissController() {
+        self.teardownAnimations({() -> () in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
     }
     
 
@@ -177,6 +207,10 @@ class SigningViewController: UIViewController, UITableViewDataSource {
         
         cell!.textLabel.text = receipt.name
         cell!.detailTextLabel.text = "\(receipt.price)"
+        
+        cell?.backgroundColor = UIColor.clearColor()
+        cell?.textLabel.textColor = UIColor.whiteColor()
+        cell?.detailTextLabel.textColor = UIColor.whiteColor()
         
         return cell
     }
