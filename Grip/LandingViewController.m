@@ -59,7 +59,7 @@
 	
     animator = [[MBViewAnimator alloc] initWithDuration:ANIMATION_DURATION];
     
-    apiManager = [[PGApiManager alloc] init];
+    apiManager = [PGApiManager sharedInstance];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -68,13 +68,6 @@
     
     [self colorize];
     [self setLoginButtonState];
-    
-    //TODO: DEBUG!
-//    [apiManager logInAttempt:@"test@test.com" password:@"12345678" view: self.view success:^(void) {
-//        [self dismissLogin];
-//        [self showBothLogos];
-//        loggedIn = true;
-//    }];
 }
 
 - (void) viewDidLayoutSubviews {

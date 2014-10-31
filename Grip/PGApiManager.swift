@@ -10,6 +10,7 @@
 import Foundation
 import UIKit
 
+private let _singletonInstance = PGApiManager()
 
 @objc class PGApiManager : NSObject {
     let base_url = "http://packagegrid.com/"
@@ -21,6 +22,11 @@ import UIKit
     var customers = NSArray()
     
     var progressHUD: MBProgressHUD?
+    
+    //Singleton Accessor: Danger danger red ranger
+    class var sharedInstance: PGApiManager {
+        return _singletonInstance
+    }
     
     
     //MARK: Public Interface
@@ -44,6 +50,18 @@ import UIKit
         self.loadPackages(customer.id, success: { (packages: AnyObject) -> Void in
             customer.packages = packages as [Package]
             success()
+        })
+    }
+    
+    func uploadViewAsPdf(view: UIView, superview: UIView, completion: () -> ()) {
+        showHUD(superview)
+        
+        let pdfFactory = PDFFactory()
+        let uploader = S3FileManager()
+        
+        let data = pdfFactory.createPDFFromView(view)
+        uploader.uploadFile(data, name: "test.pdf", completion: {(success: Bool) -> () in
+            self.removeHUD()
         })
     }
     

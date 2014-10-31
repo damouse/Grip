@@ -12,6 +12,8 @@ class SigningViewController: UIViewController, UITableViewDataSource {
     //views
     @IBOutlet weak var scrollviewContent: UIScrollView!
     @IBOutlet weak var viewPage: UIView!
+    @IBOutlet weak var viewButtonHolder: UIView!
+    @IBOutlet weak var viewSignatureView: SignatureViewQuartzQuadratic!
     
     //labels
     @IBOutlet weak var labelCustomerName: UILabel!
@@ -30,8 +32,21 @@ class SigningViewController: UIViewController, UITableViewDataSource {
     //table
     @IBOutlet weak var tableProducts: UITableView!
     
+    //Collections
+    @IBOutlet var labels: [UILabel]!
+    @IBOutlet var buttons: [UIButton]!
+    
+    
     //External Variables
     var receipt : Receipt?
+    
+    
+    //Local Instance Variables
+    var animator = MBViewAnimator(duration: ANIMATION_DURATION)
+    var api: PGApiManager?
+    
+    var showingSignature = false
+    
     
     
     //MARK: Boilerplate
@@ -40,10 +55,33 @@ class SigningViewController: UIViewController, UITableViewDataSource {
 
         self.scrollviewContent.contentSize = self.viewPage.frame.size
         self.tableProducts.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        showingSignature = false
     }
     
     override func viewWillAppear(animated: Bool) {
-        //populate labels
+        populateContent()
+        setupAnimations()
+        colorize()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        initialAnimations()
+    }
+
+    func colorize() {
+        view.backgroundColor = PRIMARY_LIGHT
+        
+        viewSignatureView.backgroundColor = PRIMARY_DARK
+        viewButtonHolder.backgroundColor = PRIMARY_DARK
+        
+        for button in buttons {
+            button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+            button.setTitleColor(HIGHLIGHT_COLOR, forState: UIControlState.Highlighted)
+        }
+    }
+    
+    func populateContent() {
         labelCustomerName.text = self.receipt?.customer?.name
         labelMerchandise.text = self.receipt?.merchandise?.name
         labelFinancing.text = "\(self.receipt?.discount)%"
@@ -55,26 +93,71 @@ class SigningViewController: UIViewController, UITableViewDataSource {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd 'at' h:mm a"
         labelDate.text = dateFormatter.stringFromDate(NSDate())
+    }
+    
+    
+    //MARK: Rendering, processing, and uploading-- The Money Methods
+    func uploadReceipt() {
+        //fetch API manager from the root controller-- no need to duplicate it
+        //NOTE: singleton call! Creates a circular dependancy when importing the controller itself, only clean access
+        let api = PGApiManager.sharedInstance
         
-        //colorze
-        self.colorize()
+        let view = renderPDF()
+        
+        //upload API
+    }
+    
+    func renderPDF() -> UIView{
+        //Flip the background color of the pdf view, add margins and spacing where needed, move the signature view to the bottom, 
+        //and return the view
+        return UIView()
     }
 
-    func colorize() {
+    
+    func uploadReceiptModels() {
+        //upload the receipt to the backend upon successful pdf transmission
+    }
+    
+    
+    //MARK: IBActions
+    func initialAnimations() {
+        //run the presentation animations
+        animator.animateObjectOnscreen(viewButtonHolder, completion: nil)
+    }
+    
+    func setupAnimations() {
+        //set up the animations for this controller
+        animator.initObject(viewSignatureView, inView: self.view, forSlideinAnimation: VAAnimationDirectionUp)
+        animator.initObject(viewButtonHolder, inView: self.view, forSlideinAnimation: VAAnimationDirectionUp)
+    }
+    
+    func teardownAnimations(completion: () -> ()) {
+        //revert to a state where the controller can be dismissed
+        animator.animateObjectOffscreen(viewSignatureView, completion: nil)
+        animator.animateObjectOffscreen(viewButtonHolder, completion:  { (completed: Bool) -> Void in
+            completion()
+        })
+    }
+    
+    
+    //MARK: IBActions
+    @IBAction func cancel(sender: AnyObject) {
+        self.teardownAnimations({() -> () in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
         
     }
     
-    @IBAction func upload(sender: AnyObject) {
-        self.uploadPDF()
-    }
-    
-    func uploadPDF() {
-        //create and upload the PDF
-        let pdfFactory = PDFFactory()
-        let uploader = S3FileManager()
-        
-        let data = pdfFactory.createPDFFromView(self.scrollviewContent)
-        uploader.uploadFile(data, name: "test.pdf", completion: nil)
+    @IBAction func confirm(sender: AnyObject) {
+        if showingSignature {
+            uploadReceipt()
+        }
+        else {
+            //not showing the signature view, present it
+            let margin = view.frame.size.height - viewSignatureView.frame.size.height - viewButtonHolder.frame.size.height
+            animator.animateObjectToRelativePosition(viewButtonHolder, direction: VAAnimationDirectionUp, withMargin: Int32(margin), completion: nil)
+            animator.animateObjectOnscreen(viewSignatureView, completion: nil)
+        }
     }
     
 

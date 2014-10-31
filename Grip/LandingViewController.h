@@ -38,9 +38,6 @@
     
     //Spinner
     __weak IBOutlet GripSpinner *spinnerCustomer;
-    
-    //TESTING
-    __weak IBOutlet UIView *viewPDF;
 }
 
 //buttons
@@ -58,7 +55,6 @@
 //present package dialog buttons
 - (IBAction)existingCustomer:(id)sender;
 - (IBAction)newCustomer:(id)sender;
-
 
 
 - (void) packageSelectedCustomer:(Customer *) customer;

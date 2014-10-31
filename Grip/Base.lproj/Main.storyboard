@@ -60,9 +60,14 @@
             <string>Titillium-Light</string>
             <string>Titillium-Light</string>
             <string>Titillium-Light</string>
+            <string>Titillium-Light</string>
+            <string>Titillium-Light</string>
         </mutableArray>
         <mutableArray key="Titillium-Regular.otf">
             <string>Titillium-Regular</string>
+        </mutableArray>
+        <mutableArray key="Titillium-Thin.otf">
+            <string>Titillium-Thin</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -588,17 +593,6 @@
                                 <rect key="frame" x="510" y="705" width="514" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WAg-JD-p2O">
-                                        <rect key="frame" x="290" y="17" width="164" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
-                                        <state key="normal" title="WALKTHROUGH">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="walkthrough:" destination="uQL-GH-cEr" eventType="touchUpInside" id="AeV-cc-lBx"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="IDq-rA-Lld">
                                         <rect key="frame" x="108" y="17" width="81" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -608,6 +602,17 @@
                                         </state>
                                         <connections>
                                             <action selector="undo:" destination="uQL-GH-cEr" eventType="touchUpInside" id="J1H-lv-aSh"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WAg-JD-p2O">
+                                        <rect key="frame" x="290" y="17" width="164" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
+                                        <state key="normal" title="WALKTHROUGH">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="walkthrough:" destination="uQL-GH-cEr" eventType="touchUpInside" id="AeV-cc-lBx"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -809,28 +814,6 @@
                                                 <rect key="frame" x="806" y="0.0" width="218" height="215"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bottom!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7fw-nr-RjW">
-                                                <rect key="frame" x="491" y="1660" width="62" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7aj-tq-8hs">
-                                                <rect key="frame" x="391" y="197" width="46" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Button">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="upload:" destination="dIW-Dd-jZE" eventType="touchUpInside" id="arz-uk-KpP"/>
-                                                </connections>
-                                            </button>
-                                            <view contentMode="scaleToFill" id="zNQ-Sc-HlD" customClass="SignatureViewQuartzQuadratic">
-                                                <rect key="frame" x="181" y="459" width="793" height="196"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </view>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Package Receipt" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KRZ-xF-h7E">
                                                 <rect key="frame" x="275" y="69" width="401" height="77"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -936,10 +919,10 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Txh-Kb-L3w">
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Txh-Kb-L3w">
                                                 <rect key="frame" x="43" y="485" width="343" height="684"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <prototypes>
                                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="M1a-fh-Mmz" detailTextLabel="fYz-pa-HzU" style="IBUITableViewCellStyleSubtitle" id="gM5-dH-DbV">
                                                         <autoresizingMask key="autoresizingMask"/>
@@ -970,6 +953,56 @@
                                         </subviews>
                                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                     </view>
+                                    <view contentMode="scaleToFill" id="zNQ-Sc-HlD" customClass="SignatureViewQuartzQuadratic">
+                                        <rect key="frame" x="0.0" y="432" width="1024" height="336"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" id="kVQ-Io-0N8">
+                                                <rect key="frame" x="61" y="230" width="893" height="2"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wnv-wt-wWT">
+                                                <rect key="frame" x="42" y="37" width="100" height="221"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Titillium-Thin" family="Titillium" pointSize="110"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="Y28-8w-sF8">
+                                        <rect key="frame" x="0.0" y="718" width="1024" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Tnk-ka-ROf">
+                                                <rect key="frame" x="225" y="8" width="203" height="34"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
+                                                <state key="normal" title="CANCEL">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="cancel:" destination="dIW-Dd-jZE" eventType="touchUpInside" id="MVl-Wa-HFT"/>
+                                                    <action selector="walkthrough:" destination="uQL-GH-cEr" eventType="touchUpInside" id="hmI-86-r52"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GlA-CC-Cel">
+                                                <rect key="frame" x="619" y="10" width="203" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
+                                                <state key="normal" title="CONFIRM AND SIGN">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="confirm:" destination="dIW-Dd-jZE" eventType="touchUpInside" id="jhk-Gz-JPh"/>
+                                                    <action selector="walkthrough:" destination="uQL-GH-cEr" eventType="touchUpInside" id="OdU-SF-l3j"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -988,7 +1021,26 @@
                         <outlet property="labelSalesName" destination="szy-Bh-fce" id="ULT-bX-6PQ"/>
                         <outlet property="scrollviewContent" destination="4Mz-ne-djA" id="avl-aJ-87z"/>
                         <outlet property="tableProducts" destination="Txh-Kb-L3w" id="hto-m7-LXD"/>
+                        <outlet property="viewButtonHolder" destination="Y28-8w-sF8" id="DD9-dK-8qa"/>
                         <outlet property="viewPage" destination="BIF-62-aD9" id="dd3-Yg-Iwd"/>
+                        <outlet property="viewSignatureView" destination="zNQ-Sc-HlD" id="9Hl-nI-RF7"/>
+                        <outletCollection property="labels" destination="KRZ-xF-h7E" collectionClass="NSMutableArray" id="MrD-s3-bwj"/>
+                        <outletCollection property="labels" destination="QAw-2X-liK" collectionClass="NSMutableArray" id="SCa-cg-ypW"/>
+                        <outletCollection property="labels" destination="qfR-Oi-tCk" collectionClass="NSMutableArray" id="6gU-ft-Ksr"/>
+                        <outletCollection property="labels" destination="MBf-8T-l6C" collectionClass="NSMutableArray" id="riD-Le-f7j"/>
+                        <outletCollection property="labels" destination="gV6-7D-pOC" collectionClass="NSMutableArray" id="b1c-t1-wQC"/>
+                        <outletCollection property="labels" destination="IDx-xL-E4W" collectionClass="NSMutableArray" id="naL-v5-f9R"/>
+                        <outletCollection property="labels" destination="mvS-EP-xiH" collectionClass="NSMutableArray" id="9b7-mT-WhF"/>
+                        <outletCollection property="labels" destination="tSD-S5-UCT" collectionClass="NSMutableArray" id="afy-Ju-nBD"/>
+                        <outletCollection property="labels" destination="g1w-P7-qox" collectionClass="NSMutableArray" id="PUe-5c-Pe0"/>
+                        <outletCollection property="labels" destination="tHV-A8-FXA" collectionClass="NSMutableArray" id="SOz-as-fqj"/>
+                        <outletCollection property="labels" destination="rxO-sk-7fz" collectionClass="NSMutableArray" id="biy-co-yXE"/>
+                        <outletCollection property="labels" destination="szy-Bh-fce" collectionClass="NSMutableArray" id="bOi-7G-9GA"/>
+                        <outletCollection property="labels" destination="qK9-QI-Q3X" collectionClass="NSMutableArray" id="tp8-lv-25B"/>
+                        <outletCollection property="labels" destination="3KF-SR-9xV" collectionClass="NSMutableArray" id="Qd5-LX-C22"/>
+                        <outletCollection property="labels" destination="orJ-pj-7qG" collectionClass="NSMutableArray" id="ohk-MX-eu6"/>
+                        <outletCollection property="buttons" destination="GlA-CC-Cel" collectionClass="NSMutableArray" id="fNF-g8-muE"/>
+                        <outletCollection property="buttons" destination="Tnk-ka-ROf" collectionClass="NSMutableArray" id="pXW-eY-aua"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uLO-v1-wdj" userLabel="First Responder" sceneMemberID="firstResponder"/>

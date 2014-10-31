@@ -20,6 +20,7 @@ let PRIMARY_LIGHT = UIColor(red:47/255, green: 50/255, blue: 56/255, alpha: 1)
 let HIGHLIGHT_COLOR = UIColor(red:222/255, green: 94/255, blue: 96/255, alpha: 1)
 let P_TEXT_COLOR = UIColor(red:127/255, green: 130/255, blue: 137/255, alpha: 1)
 
+let ANIMATION_DURATION = 0.4
 
 class GripButton : UIButton {    
     override init(frame: CGRect) {
