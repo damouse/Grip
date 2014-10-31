@@ -14,13 +14,12 @@ is uploaded to the backend, but it is also used to store intermediary steps as t
 import Foundation
 
 class Receipt : MTLModel, MTLJSONSerializing {
+    //API model Fields
     var product_receipts: [ProductReceipt]?
     var merchandise_receipt: ProductReceipt?
     
     var package_id = -1
     var customer_id = -1
-    
-//    var package: Package?
     
     var discount = 0
     var cost = 0.0
@@ -29,6 +28,8 @@ class Receipt : MTLModel, MTLJSONSerializing {
     //non API fields
     var user: User?
     var customer: Customer?
+    
+//    var package: Package?
     
     
     //class init

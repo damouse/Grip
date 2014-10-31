@@ -164,7 +164,8 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         DealViewController *dealController = [storyboard instantiateViewControllerWithIdentifier:@"dealViewController"];
         
-        Dealmaker *dealmaker = [[Dealmaker alloc] initWithAllProducts:apiManager.products user:apiManager.user customer:customer merchandise:[apiManager.merchandises objectAtIndex: 0]];
+        Product *merchandise = [apiManager.merchandises objectAtIndex: 0];
+        Dealmaker *dealmaker = [[Dealmaker alloc] initWithAllProducts:apiManager.products user:apiManager.user customer:customer merchandise:merchandise];
         
         dealmaker.customerPackages = customer.packages;
         dealmaker.userPackages = apiManager.packages;

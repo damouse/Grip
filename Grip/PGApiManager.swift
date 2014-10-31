@@ -23,7 +23,7 @@ private let _singletonInstance = PGApiManager()
     
     var progressHUD: MBProgressHUD?
     
-    //Singleton Accessor: Danger danger red ranger
+    //Singleton Accessor: DANGER DANGER RED RANGER
     class var sharedInstance: PGApiManager {
         return _singletonInstance
     }
@@ -54,66 +54,65 @@ private let _singletonInstance = PGApiManager()
     }
     
     func uploadReceipt(view: UIView, superview: UIView, receipt: Receipt, completion: (success: Bool) -> Void) {
-//        showHUD(superview)
-//        updateHUDText("Uploading Receipt Document")
-//        
-//        let pdfFactory = PDFFactory()
-//        let uploader = S3FileManager()
-//        
-//        let data = pdfFactory.createPDFFromView(view)
-//        uploader.uploadFile(data, name: "test.pdf", completion: {(success: Bool) -> () in
-//            self.removeHUD()
-//        })
+        showHUD(superview)
+        updateHUDText("Uploading Receipt Document")
         
-        //convert the receipt object back into json
+        //sequential, batched success tasks. These are chained together to perform the uploads sequentially
+        //NOTE: refactor this to use BFTasks-- should clean up the code and logic pretty well
         
-//        createReceipt(receipt, success: nil)
-        
-        
-        
-        //sequential, batched success tasks
+        //overall completion-- PDF uploaded to AWS. Call completion block and return
         let pdfSuccess = { (success: Bool) -> Void in
+            self.removeHUD()
             completion(success: success)
         }
         
+        //receipt upload task. Call the PDF task
         let receiptSuccess = {(success: Bool) -> Void in
-            //receipt failed? return a fail
             if !success {
                 completion(success: false)
                 return
             }
             
-            //call pdf task
+            self.createPDF(view, success: pdfSuccess)
         }
         
-        let customerSuccess = {(success: Bool) -> Void in
-            //customer failed? return a fail
-            if !success {
-                completion(success: false)
-                return
+
+        var startBlock: () -> Void
+        
+        let startReceipt = { (success: Bool) in
+            self.createReceipt(receipt, success: receiptSuccess)
+        }
+        
+        //check if the merchandise needs to be created
+        let merchandiseExists = receipt.merchandise_receipt?.product == nil
+        let customerExists = receipt.customer_id == -1
+        
+        //the enumeration here is stupid, but short of using BFTasks instead, this is the cleanest way
+        //create merchandise and/or customer, or neither by batching blocks and then call the upload task
+        if !merchandiseExists && !customerExists {
+            startBlock = {
+                self.createCustomer(receipt, success: { (success) -> Void in
+                    self.createMerchandise(receipt, success: startReceipt)
+                })
             }
-            
-            //call reciept task
         }
-        
-        let merchandiseSuccess = {(success: Bool) -> Void in
-            //merchandise failed? return a fail
-            if !success {
-                completion(success: false)
-                return
+        else if !customerExists {
+            startBlock = {
+                self.createCustomer(receipt, success: startReceipt)
             }
-            
-            //call customer task
+        }
+        else if !merchandiseExists {
+            startBlock = {
+                self.createMerchandise(receipt, success: startReceipt)
+            }
+        }
+        else {
+            startBlock = {
+                self.createReceipt(receipt, success: startReceipt)
+            }
         }
         
-        //check if customer needs to be created
-        if receipt.merchandise_receipt?.product == nil {
-            createCustomer(receipt.customer!, success: customerSuccess)
-        }
-        
-        if receipt.customer_id == -1 {
-            createCustomer(receipt.customer!, success: customerSuccess)
-        }
+        startBlock()
     }
     
     
@@ -156,7 +155,7 @@ private let _singletonInstance = PGApiManager()
     }
     
     
-    //MARK: Batch Tasks
+    //MARK: Batch Login Tasks
     func getAllResourcesSequentially(success:(() -> Void)) {
         //gets all of the resources sequentially-- waits for the previous one to finished before starting the next
         
@@ -310,12 +309,61 @@ private let _singletonInstance = PGApiManager()
     
     
     //MARK: Upload
-    func createCustomer(customer: Customer, success:(success: Bool) -> Void) {
+    func createCustomer(receipt: Receipt, success:(success: Bool) -> Void) {
+        updateHUDText("Creating Customer")
+        let json = MTLJSONAdapter.JSONDictionaryFromModel(receipt.customer)
         
+        generateAuthenticatedClient().POST("dashboard/\(user!.id)/customers", parameters: json,
+            
+            success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
+                println("API: Customer Success")
+                
+                //asign the returned customer object as the receipt's custoemr
+                let customer = self.serializeObjects(responseObject!, jsonKey: "customers", objectClass: Customer.self)
+                receipt.customer = customer[0] as? Customer
+                
+                //add the new customer to the local list of customers
+                let temp = NSMutableArray(array: self.customers)
+                temp.addObject(receipt.customer)
+                self.customers = temp
+                
+                success(success: true)
+            },
+            
+            failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
+                print("failure- ")
+                println(error)
+                success(success: false)
+        })
     }
     
-    func createMerchandise(merch: Product, success:(success: Bool) -> Void) {
+    func createMerchandise(receipt: Receipt, success:(success: Bool) -> Void) {
+        updateHUDText("Creating Merchandise")
+        let json = MTLJSONAdapter.JSONDictionaryFromModel(receipt.merchandise_receipt?.product)
         
+        generateAuthenticatedClient().POST("dashboard/\(user!.id)/merchandise", parameters: json,
+            
+            success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
+                println("API: Merchandise Success")
+                
+                //asign the returned merchandise object as the receipts merchandise root object
+                let merchandise = self.serializeObjects(responseObject!, jsonKey: "merchandise", objectClass: Product.self)
+                let product = merchandise[0] as? Product
+                receipt.merchandise_receipt?.product = product
+                
+                //add the new customer to the local list of customers
+                let temp = NSMutableArray(array: self.merchandises)
+                temp.addObject(product)
+                self.merchandises = temp
+                
+                success(success: true)
+            },
+            
+            failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
+                print("failure- ")
+                println(error)
+                success(success: false)
+        })
     }
     
     func createReceipt(receipt: Receipt, success:(success: Bool) -> Void) {
@@ -325,17 +373,24 @@ private let _singletonInstance = PGApiManager()
         generateAuthenticatedClient().POST("dashboard/\(user!.id)/receipts", parameters: json,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
-                println("API: User Success")
-                
+                println("API: Receipt Success")
                 println(responseObject)
-                
-                success()
+                success(success: true)
             },
             
             failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
                 print("failure- ")
                 println(error)
+                success(success: false)
         })
+    }
+    
+    func createPDF(view: UIView, success: (Bool) -> Void) {
+        let pdfFactory = PDFFactory()
+        let uploader = S3FileManager()
+
+        let data = pdfFactory.createPDFFromView(view)
+        uploader.uploadFile(data, name: "test.pdf", completion: success)
     }
     
     

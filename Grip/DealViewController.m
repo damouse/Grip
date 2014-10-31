@@ -30,6 +30,7 @@
     
     Rollback *rollback;
     
+    //enumed below
     int currentUIState;
     
     //the last discount choosen not from a package

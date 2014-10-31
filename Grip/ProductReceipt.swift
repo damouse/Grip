@@ -15,13 +15,13 @@ import Foundation
 
 
 class ProductReceipt : MTLModel, MTLJSONSerializing {
-    var product_id = -1
-    
+    //API Model Fields
+    var base_item_id = -1
     var name: String?
-    
     var price = 0.0
     var type: String?
 
+    //Non API Fields
     var product: Product?
     
     var active = false
@@ -32,7 +32,7 @@ class ProductReceipt : MTLModel, MTLJSONSerializing {
     class func createWith(product: Product) -> ProductReceipt {
         let receipt = ProductReceipt()
         
-        receipt.product_id = product.id
+        receipt.base_item_id = product.id
         receipt.name = product.name
         receipt.price = product.price
         receipt.type = product.type
