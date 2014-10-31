@@ -14,14 +14,14 @@ is uploaded to the backend, but it is also used to store intermediary steps as t
 import Foundation
 
 class Receipt : MTLModel, MTLJSONSerializing {
-    var id = -1
-    var productReceipts: [ProductReceipt]?
-    var merchandise: ProductReceipt?
+    var product_receipts: [ProductReceipt]?
+    var merchandise_receipt: ProductReceipt?
     var user: User?
     var customer: Customer?
     var discount = 0
-    var base_package_id = -1
-    var signature: AnyObject?
+    
+    var package_id = -1
+    var customer_id = -1
     
     var package: Package?
     
@@ -29,7 +29,7 @@ class Receipt : MTLModel, MTLJSONSerializing {
     class func createWith(user: User, customer: Customer, merchandise: Product) -> Receipt {
         let receipt = Receipt()
         
-        receipt.merchandise = ProductReceipt.createWith(merchandise)
+        receipt.merchandise_receipt = ProductReceipt.createWith(merchandise)
         receipt.user = user
         receipt.customer = customer
         
@@ -45,6 +45,9 @@ class Receipt : MTLModel, MTLJSONSerializing {
     class func JSONKeyPathsByPropertyKey() -> [NSObject : AnyObject]! {
         return [
             "item_description" : "description",
+            "package": NSNull(),
+            "user" : NSNull(),
+            "customer" : NSNull()
         ]
     }
     

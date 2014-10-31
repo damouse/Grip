@@ -15,7 +15,6 @@ import Foundation
 
 
 class ProductReceipt : MTLModel, MTLJSONSerializing {
-    var id = -1
     var base_item_id = -1
     
     var name: String?
@@ -49,6 +48,8 @@ class ProductReceipt : MTLModel, MTLJSONSerializing {
     class func JSONKeyPathsByPropertyKey() -> [NSObject : AnyObject]! {
         return [
             "item_description" : "description",
+            "product" : NSNull(),
+            "active" : NSNull()
         ]
     }
     

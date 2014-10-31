@@ -67,8 +67,8 @@ private let _singletonInstance = PGApiManager()
         
         //convert the receipt object back into json
         
-        let json = MTLJSONAdapter.JSONDictionaryFromModel(receipt)
-        println(json)
+        createReceipt(receipt, success: nil)
+
     }
     
     
@@ -274,7 +274,23 @@ private let _singletonInstance = PGApiManager()
     }
     
     func createReceipt(receipt: Receipt, success:(() -> Void)?) {
+        updateHUDText("Uploading Receipt")
+        let json = MTLJSONAdapter.JSONDictionaryFromModel(receipt)
         
+        generateAuthenticatedClient().POST("dashboard/\(user!.id)/receipts", parameters: json,
+            
+            success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
+                println("API: User Success")
+                
+                println(responseObject)
+                
+                success?()
+            },
+            
+            failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
+                print("failure- ")
+                println(error)
+        })
     }
     
     
