@@ -54,16 +54,21 @@ private let _singletonInstance = PGApiManager()
     }
     
     func uploadReceipt(view: UIView, superview: UIView, receipt: Receipt, completion: () -> Void) {
-        showHUD(superview)
-        updateHUDText("Uploading Receipt Document")
+//        showHUD(superview)
+//        updateHUDText("Uploading Receipt Document")
+//        
+//        let pdfFactory = PDFFactory()
+//        let uploader = S3FileManager()
+//        
+//        let data = pdfFactory.createPDFFromView(view)
+//        uploader.uploadFile(data, name: "test.pdf", completion: {(success: Bool) -> () in
+//            self.removeHUD()
+//        })
         
-        let pdfFactory = PDFFactory()
-        let uploader = S3FileManager()
+        //convert the receipt object back into json
         
-        let data = pdfFactory.createPDFFromView(view)
-        uploader.uploadFile(data, name: "test.pdf", completion: {(success: Bool) -> () in
-            self.removeHUD()
-        })
+        let json = MTLJSONAdapter.JSONDictionaryFromModel(receipt)
+        println(json)
     }
     
     

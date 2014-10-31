@@ -799,65 +799,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="4Mz-ne-djA">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="764"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" id="zNQ-Sc-HlD" customClass="SignatureViewQuartzQuadratic">
-                                        <rect key="frame" x="0.0" y="432" width="1024" height="336"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" id="kVQ-Io-0N8">
-                                                <rect key="frame" x="61" y="230" width="893" height="2"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wnv-wt-wWT">
-                                                <rect key="frame" x="42" y="37" width="100" height="221"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="Titillium-Thin" family="Titillium" pointSize="110"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" id="Y28-8w-sF8">
-                                        <rect key="frame" x="0.0" y="718" width="1024" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Tnk-ka-ROf">
-                                                <rect key="frame" x="225" y="8" width="203" height="34"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
-                                                <state key="normal" title="CANCEL">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="cancel:" destination="dIW-Dd-jZE" eventType="touchUpInside" id="MVl-Wa-HFT"/>
-                                                    <action selector="walkthrough:" destination="uQL-GH-cEr" eventType="touchUpInside" id="hmI-86-r52"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GlA-CC-Cel">
-                                                <rect key="frame" x="619" y="10" width="203" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
-                                                <state key="normal" title="CONFIRM AND SIGN">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="confirm:" destination="dIW-Dd-jZE" eventType="touchUpInside" id="jhk-Gz-JPh"/>
-                                                    <action selector="walkthrough:" destination="uQL-GH-cEr" eventType="touchUpInside" id="OdU-SF-l3j"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
                                     <view contentMode="scaleToFill" id="BIF-62-aD9">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1365"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1361"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder" id="HeY-6W-FdU">
-                                                <rect key="frame" x="0.0" y="0.0" width="229" height="215"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="229" height="211"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </imageView>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Package Receipt" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KRZ-xF-h7E">
@@ -997,7 +947,7 @@
                                                 </connections>
                                             </tableView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TitleIcon" id="WaI-bz-LWn">
-                                                <rect key="frame" x="806" y="0.0" width="218" height="215"/>
+                                                <rect key="frame" x="806" y="0.0" width="218" height="211"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </imageView>
                                         </subviews>
@@ -1005,6 +955,56 @@
                                     </view>
                                 </subviews>
                             </scrollView>
+                            <view contentMode="scaleToFill" id="Y28-8w-sF8">
+                                <rect key="frame" x="0.0" y="718" width="1024" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Tnk-ka-ROf">
+                                        <rect key="frame" x="225" y="8" width="203" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
+                                        <state key="normal" title="CANCEL">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancel:" destination="dIW-Dd-jZE" eventType="touchUpInside" id="MVl-Wa-HFT"/>
+                                            <action selector="walkthrough:" destination="uQL-GH-cEr" eventType="touchUpInside" id="hmI-86-r52"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GlA-CC-Cel">
+                                        <rect key="frame" x="619" y="10" width="203" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
+                                        <state key="normal" title="CONFIRM AND SIGN">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="confirm:" destination="dIW-Dd-jZE" eventType="touchUpInside" id="jhk-Gz-JPh"/>
+                                            <action selector="walkthrough:" destination="uQL-GH-cEr" eventType="touchUpInside" id="OdU-SF-l3j"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="zNQ-Sc-HlD" customClass="SignatureViewQuartzQuadratic">
+                                <rect key="frame" x="0.0" y="432" width="1024" height="336"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="kVQ-Io-0N8">
+                                        <rect key="frame" x="61" y="230" width="893" height="2"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wnv-wt-wWT">
+                                        <rect key="frame" x="42" y="37" width="100" height="221"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Titillium-Thin" family="Titillium" pointSize="110"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1015,12 +1015,12 @@
                         <outlet property="labelCustomerName" destination="IDx-xL-E4W" id="c5j-lE-6yc"/>
                         <outlet property="labelDate" destination="qK9-QI-Q3X" id="oVI-eC-VB6"/>
                         <outlet property="labelFinancing" destination="tSD-S5-UCT" id="9LY-Kn-L8a"/>
-                        <outlet property="labelHancock" destination="wnv-wt-wWT" id="EJG-p9-8eg"/>
+                        <outlet property="labelHancock" destination="wnv-wt-wWT" id="1hE-vf-Ub0"/>
                         <outlet property="labelMerchandise" destination="mvS-EP-xiH" id="yEf-Ml-7dk"/>
                         <outlet property="labelPackageName" destination="3KF-SR-9xV" id="r2g-5K-htL"/>
                         <outlet property="labelPayment" destination="g1w-P7-qox" id="2et-D6-soD"/>
                         <outlet property="labelSalesName" destination="szy-Bh-fce" id="ULT-bX-6PQ"/>
-                        <outlet property="labelUnderline" destination="kVQ-Io-0N8" id="3fa-bF-biO"/>
+                        <outlet property="labelUnderline" destination="kVQ-Io-0N8" id="77g-V9-YyW"/>
                         <outlet property="scrollviewContent" destination="4Mz-ne-djA" id="avl-aJ-87z"/>
                         <outlet property="tableProducts" destination="Txh-Kb-L3w" id="hto-m7-LXD"/>
                         <outlet property="viewButtonHolder" destination="Y28-8w-sF8" id="DD9-dK-8qa"/>

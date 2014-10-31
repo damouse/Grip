@@ -52,8 +52,9 @@ static CGPoint midpoint(CGPoint p0, CGPoint p1) {
     [self setNeedsDisplay];
 }
 
-- (void) decolor {
-    //change the color to black
+- (void) colorBlackAndWhite {
+//    [[UIColor blackColor] setStroke];
+//    [path stroke];
 }
 
 - (void)pan:(UIPanGestureRecognizer *)pan {
@@ -71,8 +72,7 @@ static CGPoint midpoint(CGPoint p0, CGPoint p1) {
     [self setNeedsDisplay];
 }
 
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect {
     [[UIColor whiteColor] setStroke];
     [path stroke];
 }

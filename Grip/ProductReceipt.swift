@@ -52,6 +52,10 @@ class ProductReceipt : MTLModel, MTLJSONSerializing {
         ]
     }
     
+    class func productJSONTransformer() -> NSValueTransformer {
+        return NSValueTransformer.mtl_JSONDictionaryTransformerWithModelClass(Product.self)
+    }
+    
     //Boilerplate, compulsory overrides. Kinda stupid, isn't it?
     //The following four methods allow this class access to its superclass' inherited methods
     override func encodeWithCoder(coder: NSCoder!) {

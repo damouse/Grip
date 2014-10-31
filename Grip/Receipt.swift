@@ -48,6 +48,26 @@ class Receipt : MTLModel, MTLJSONSerializing {
         ]
     }
     
+    class func JSONTransformerForKey(key: String!) -> NSValueTransformer! {
+        var otherKey: String = key
+        
+        switch otherKey {
+        case "merchandise":
+            return NSValueTransformer.mtl_JSONDictionaryTransformerWithModelClass(ProductReceipt.self)
+        case "productReceipts":
+            return NSValueTransformer.mtl_JSONArrayTransformerWithModelClass(ProductReceipt.self)
+        case "customer":
+            return NSValueTransformer.mtl_JSONDictionaryTransformerWithModelClass(Customer.self)
+        case "user":
+            return NSValueTransformer.mtl_JSONDictionaryTransformerWithModelClass(User.self)
+        case "package":
+            return NSValueTransformer.mtl_JSONDictionaryTransformerWithModelClass(Package.self)
+        default:
+            return nil
+        }
+    }
+    
+
     //Boilerplate, compulsory overrides. Kinda stupid, isn't it?
     //The following four methods allow this class access to its superclass' inherited methods
     override func encodeWithCoder(coder: NSCoder!) {
