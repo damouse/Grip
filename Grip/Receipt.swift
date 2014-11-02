@@ -29,8 +29,9 @@ class Receipt : MTLModel, MTLJSONSerializing {
     var user: User?
     var customer: Customer?
     
-//    var package: Package?
+    var id = -1
     
+//    var package: Package?
     
     //class init
     class func createWith(user: User, customer: Customer, merchandise: Product) -> Receipt {
@@ -48,7 +49,7 @@ class Receipt : MTLModel, MTLJSONSerializing {
     
     //Boilerplate Mantle code
     class func appURLSchemeJSONTransformer() -> NSValueTransformer {
-        return NSValueTransformer(forName: MTLURLValueTransformerName)
+        return NSValueTransformer(forName: MTLURLValueTransformerName)!
     }
     
     class func JSONKeyPathsByPropertyKey() -> [NSObject : AnyObject]! {
@@ -56,7 +57,8 @@ class Receipt : MTLModel, MTLJSONSerializing {
             "item_description" : "description",
             "package": NSNull(),
             "user" : NSNull(),
-            "customer" : NSNull()
+            "customer" : NSNull(),
+            "id": NSNull()
         ]
     }
     
@@ -91,4 +93,8 @@ class Receipt : MTLModel, MTLJSONSerializing {
     override init(dictionary dictionaryValue: [NSObject : AnyObject]!, error: NSErrorPointer) {
         super.init(dictionary: dictionaryValue!, error: error)
     }
+    
+    
+    //MARK: Public AWS directory path
+    
 }

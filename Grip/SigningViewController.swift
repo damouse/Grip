@@ -159,7 +159,7 @@ class SigningViewController: UIViewController, UITableViewDataSource {
         animator.initObject(viewButtonHolder, inView: self.view, forSlideinAnimation: VAAnimationDirectionUp)
     }
     
-    func teardownAnimations(completion: () -> ()) {
+    func teardownAnimations(completion: () -> Void) {
         //revert to a state where the controller can be dismissed
         animator.animateObjectOffscreen(viewSignatureView, completion: nil)
         animator.animateObjectOffscreen(viewButtonHolder, completion:  { (completed: Bool) -> Void in
@@ -193,18 +193,19 @@ class SigningViewController: UIViewController, UITableViewDataSource {
     }
     
     func dismissController() {
-        self.teardownAnimations({() -> () in
-            self.dismissViewControllerAnimated(true, completion: nil)
+        self.teardownAnimations({ () -> Void in
+            self.navigationController?.popToRootViewControllerAnimated(false)
+            return
         })
     }
     
 
     //MARK: Table delegate and Datasource
-    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.receipt!.product_receipts_attributes!.count
     }
     
-    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:UITableViewCell? = self.tableProducts.dequeueReusableCellWithIdentifier("cell") as? UITableViewCell
         
         if cell != nil {
@@ -214,12 +215,12 @@ class SigningViewController: UIViewController, UITableViewDataSource {
         let receipt = self.receipt!.product_receipts_attributes![indexPath.row]
         
         cell!.textLabel.text = receipt.name
-        cell!.detailTextLabel.text = "\(receipt.price)"
+        cell!.detailTextLabel!.text = "\(receipt.price)"
         
         cell?.backgroundColor = UIColor.clearColor()
         cell?.textLabel.textColor = UIColor.whiteColor()
-        cell?.detailTextLabel.textColor = UIColor.whiteColor()
+        cell?.detailTextLabel!.textColor = UIColor.whiteColor()
         
-        return cell
+        return cell!
     }
 }

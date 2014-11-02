@@ -64,8 +64,10 @@ private let _singletonInstance = PGApiManager()
         
         //overall completion-- PDF uploaded to AWS. Call completion block and return
         let pdfSuccess = { (success: Bool) -> Void in
-            self.removeHUD()
-            completion(success: success)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.removeHUD()
+                completion(success: success)
+            })
         }
         
         //receipt upload task. Call the PDF task
@@ -75,7 +77,8 @@ private let _singletonInstance = PGApiManager()
                 return
             }
             
-            self.createPDF(view, success: pdfSuccess)
+            let aws_name = "\(self.user!.group_id)/\(receipt.id).pdf"
+            self.createPDF(view, name: aws_name, success: pdfSuccess)
         }
         
 
@@ -326,7 +329,7 @@ private let _singletonInstance = PGApiManager()
                 
                 //add the new customer to the local list of customers
                 let temp = NSMutableArray(array: self.customers)
-                temp.addObject(receipt.customer)
+                temp.addObject(receipt.customer!)
                 self.customers = temp
                 
                 success(success: true)
@@ -377,7 +380,11 @@ private let _singletonInstance = PGApiManager()
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
                 println("API: Receipt Success")
-                println(responseObject)
+//                println(responseObject)
+                
+                //need the receipt ID in order to create the pdf path on S3
+                receipt.id = (responseObject as NSDictionary).objectForKey("receipt") as Int
+                
                 success(success: true)
             },
             
@@ -388,12 +395,12 @@ private let _singletonInstance = PGApiManager()
         })
     }
     
-    func createPDF(view: UIView, success: (Bool) -> Void) {
+    func createPDF(view: UIView, name: String, success: (Bool) -> Void) {
         let pdfFactory = PDFFactory()
         let uploader = S3FileManager()
 
         let data = pdfFactory.createPDFFromView(view)
-//        uploader.uploadFile(data, name: "test.pdf", completion: success)
+        uploader.uploadFile(data, name: name, completion: success)
     }
     
     
@@ -402,7 +409,7 @@ private let _singletonInstance = PGApiManager()
     //authentication fields will silently NOT be filled!
     func generateAuthenticatedClient() -> AFHTTPRequestOperationManager {
         var client = AFHTTPRequestOperationManager(baseURL: NSURL(string: base_url))
-        client.requestSerializer = AFJSONRequestSerializer()
+        client.requestSerializer = AFJSONRequestSerializer() as AFJSONRequestSerializer
         client.requestSerializer.setValue("application/json", forHTTPHeaderField: "Accept")
         
         if user != nil {
@@ -432,9 +439,9 @@ private let _singletonInstance = PGApiManager()
     
     func loadImage(product: Product) {
         //async call to load an image using AFNetworking
-        let request = NSURLRequest(URL: NSURL(string: product.image_url!))
+        let request = NSURLRequest(URL: NSURL(string: product.image_url!)!)
         var operation = AFHTTPRequestOperation(request: request)
-        operation.responseSerializer = AFImageResponseSerializer()
+        operation.responseSerializer = AFImageResponseSerializer() as AFImageResponseSerializer
         
         operation.setCompletionBlockWithSuccess({ (operation: AFHTTPRequestOperation!, object: AnyObject!) -> Void in
                 product.image = object as? UIImage

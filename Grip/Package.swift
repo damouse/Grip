@@ -20,7 +20,7 @@ class Package : MTLModel, MTLJSONSerializing {
     
     //Boilerplate Mantle code
     class func appURLSchemeJSONTransformer() -> NSValueTransformer {
-        return NSValueTransformer(forName: MTLURLValueTransformerName)
+        return NSValueTransformer(forName: MTLURLValueTransformerName)!
     }
     
     class func JSONKeyPathsByPropertyKey() -> [NSObject : AnyObject]! {

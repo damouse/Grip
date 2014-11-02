@@ -33,7 +33,7 @@ class PackageTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDel
         let index = packages.indexOfObject(package)
         
         var cell = table.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0))!
-        cell.textLabel!.textColor = HIGHLIGHT_COLOR
+        cell.textLabel.textColor = HIGHLIGHT_COLOR
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,7 +43,7 @@ class PackageTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDel
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         
-        cell.textLabel!.text = packages[indexPath.row].name
+        cell.textLabel.text = packages[indexPath.row].name
         cell.backgroundColor = UIColor.clearColor()
         //        cell.textLabel.textColor = UIColor(red:222, green: 94, blue: 96, alpha: 1)
         
