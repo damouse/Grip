@@ -13,7 +13,9 @@ import UIKit
 private let _singletonInstance = PGApiManager()
 
 @objc class PGApiManager : NSObject {
-    let base_url = "http://packagegrid.com/"
+//    let base_url = "http://packagegrid.com/"
+    let base_url = "http://192.168.79.166:3000/"
+    
     
     var user: User?
     var products = NSArray()
@@ -84,8 +86,8 @@ private let _singletonInstance = PGApiManager()
         }
         
         //check if the merchandise needs to be created
-        let merchandiseExists = receipt.merchandise_receipt?.product == nil
-        let customerExists = receipt.customer_id == -1
+        let merchandiseExists = receipt.merchandise_receipt_attributes?.product == nil
+        let customerExists = receipt.customer_id != -1
         
         //the enumeration here is stupid, but short of using BFTasks instead, this is the cleanest way
         //create merchandise and/or customer, or neither by batching blocks and then call the upload task
@@ -313,14 +315,14 @@ private let _singletonInstance = PGApiManager()
         updateHUDText("Creating Customer")
         let json = MTLJSONAdapter.JSONDictionaryFromModel(receipt.customer)
         
-        generateAuthenticatedClient().POST("dashboard/\(user!.id)/customers", parameters: json,
+        generateAuthenticatedClient().POST("dashboard/\(user!.group_id)/customers", parameters: json,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
                 println("API: Customer Success")
                 
                 //asign the returned customer object as the receipt's custoemr
-                let customer = self.serializeObjects(responseObject!, jsonKey: "customers", objectClass: Customer.self)
-                receipt.customer = customer[0] as? Customer
+                let customer = self.serializeObject(responseObject!, jsonKey: "customer", objectClass: Customer.self)
+                receipt.customer = customer as? Customer
                 
                 //add the new customer to the local list of customers
                 let temp = NSMutableArray(array: self.customers)
@@ -339,21 +341,20 @@ private let _singletonInstance = PGApiManager()
     
     func createMerchandise(receipt: Receipt, success:(success: Bool) -> Void) {
         updateHUDText("Creating Merchandise")
-        let json = MTLJSONAdapter.JSONDictionaryFromModel(receipt.merchandise_receipt?.product)
+        let json = MTLJSONAdapter.JSONDictionaryFromModel(receipt.merchandise_receipt_attributes?.product)
         
-        generateAuthenticatedClient().POST("dashboard/\(user!.id)/merchandise", parameters: json,
+        generateAuthenticatedClient().POST("dashboard/\(user!.group_id)/merchandise", parameters: json,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
                 println("API: Merchandise Success")
                 
                 //asign the returned merchandise object as the receipts merchandise root object
-                let merchandise = self.serializeObjects(responseObject!, jsonKey: "merchandise", objectClass: Product.self)
-                let product = merchandise[0] as? Product
-                receipt.merchandise_receipt?.product = product
+                let merchandise = self.serializeObject(responseObject!, jsonKey: "merchandise", objectClass: Product.self)
+                receipt.merchandise_receipt_attributes?.product = merchandise as Product
                 
                 //add the new customer to the local list of customers
                 let temp = NSMutableArray(array: self.merchandises)
-                temp.addObject(product)
+                temp.addObject(merchandise)
                 self.merchandises = temp
                 
                 success(success: true)
@@ -370,7 +371,9 @@ private let _singletonInstance = PGApiManager()
         updateHUDText("Uploading Receipt")
         let json = MTLJSONAdapter.JSONDictionaryFromModel(receipt)
         
-        generateAuthenticatedClient().POST("dashboard/\(user!.id)/receipts", parameters: json,
+        println(json)
+        
+        generateAuthenticatedClient().POST("dashboard/\(user!.group_id)/receipts", parameters: json,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
                 println("API: Receipt Success")
@@ -390,7 +393,7 @@ private let _singletonInstance = PGApiManager()
         let uploader = S3FileManager()
 
         let data = pdfFactory.createPDFFromView(view)
-        uploader.uploadFile(data, name: "test.pdf", completion: success)
+//        uploader.uploadFile(data, name: "test.pdf", completion: success)
     }
     
     
@@ -418,6 +421,15 @@ private let _singletonInstance = PGApiManager()
         return cocoaArray
     }
     
+    func serializeObject(responseObject:AnyObject, jsonKey:String, objectClass:AnyClass) -> AnyObject {
+        println("API: \(jsonKey) Success")
+        println(responseObject)
+        var error: NSError?
+        let returnedObject = MTLJSONAdapter.modelOfClass(objectClass, fromJSONDictionary: (responseObject as NSDictionary).objectForKey(jsonKey) as NSDictionary, error: &error) as AnyObject
+        
+        return returnedObject
+    }
+    
     func loadImage(product: Product) {
         //async call to load an image using AFNetworking
         let request = NSURLRequest(URL: NSURL(string: product.image_url!))
@@ -438,4 +450,31 @@ private let _singletonInstance = PGApiManager()
         
         operation.start()
     }
+    
+    //TESTING TESTING TESTING
+    func TEST() {
+        let newProduct = Product()
+        let newReceipt = ProductReceipt()
+        let receipt = Receipt()
+        let customer = Customer()
+        
+        newReceipt.product = newProduct
+        receipt.merchandise_receipt_attributes = newReceipt
+        receipt.customer = customer
+        
+        newProduct.name = "New Merchandise"
+        
+        customer.name = "New Dynamic Customer"
+        customer.email = "newCustomerEMail"
+        customer.group_id = user!.group_id
+        
+//        createMerchandise(receipt, success: { (success) -> Void in
+//            println("Completed Merchandise")
+//        })
+
+        createCustomer(receipt, success:  { (success) -> Void in
+            println("Completed Customer")
+        })
+    }
 }
+

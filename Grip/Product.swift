@@ -44,6 +44,8 @@ class Product : MTLModel, MTLJSONSerializing {
     class func JSONKeyPathsByPropertyKey() -> [NSObject : AnyObject]! {
         return [
             "item_description" : "description",
+            "image": NSNull(),
+            "desaturatedImage": NSNull()
         ]
     }
     

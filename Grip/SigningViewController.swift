@@ -87,7 +87,7 @@ class SigningViewController: UIViewController, UITableViewDataSource {
     
     func populateContent() {
         labelCustomerName.text = self.receipt?.customer?.name
-        labelMerchandise.text = self.receipt?.merchandise_receipt?.name
+        labelMerchandise.text = self.receipt?.merchandise_receipt_attributes?.name
         labelFinancing.text = "\(self.receipt?.discount)%"
         labelPayment.text = "MONEY"
         
@@ -201,7 +201,7 @@ class SigningViewController: UIViewController, UITableViewDataSource {
 
     //MARK: Table delegate and Datasource
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        return self.receipt!.product_receipts!.count
+        return self.receipt!.product_receipts_attributes!.count
     }
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
@@ -211,7 +211,7 @@ class SigningViewController: UIViewController, UITableViewDataSource {
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
         }
         
-        let receipt = self.receipt!.product_receipts![indexPath.row]
+        let receipt = self.receipt!.product_receipts_attributes![indexPath.row]
         
         cell!.textLabel.text = receipt.name
         cell!.detailTextLabel.text = "\(receipt.price)"

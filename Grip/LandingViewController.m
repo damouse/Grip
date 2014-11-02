@@ -373,7 +373,7 @@
 }
 
 - (IBAction) help:(id)sender {
-
+//    [apiManager TEST];
 }
 
 - (IBAction) existingCustomer:(id)sender {

@@ -134,12 +134,12 @@ typedef enum UIState{
     //set merchandise and customer labels
     labelCustomerName.text = self.dealmaker.receipt.customer.name;
     labelDetailsCustomerName.text = self.dealmaker.receipt.customer.name;
-    labelMerchandiseName.text = self.dealmaker.receipt.merchandise_receipt.name;
-    labelDetailsMerchandiseName.text = self.dealmaker.receipt.merchandise_receipt.name;
-    labelDetailsMerchandiseDescription.text = self.dealmaker.receipt.merchandise_receipt.product.item_description;
+    labelMerchandiseName.text = self.dealmaker.receipt.merchandise_receipt_attributes.name;
+    labelDetailsMerchandiseName.text = self.dealmaker.receipt.merchandise_receipt_attributes.name;
+    labelDetailsMerchandiseDescription.text = self.dealmaker.receipt.merchandise_receipt_attributes.product.item_description;
     
-    [imageDetailsMerchandise setImage:self.dealmaker.receipt.merchandise_receipt.product.image];
-    [imageMerchandise setImage:self.dealmaker.receipt.merchandise_receipt.product.image];
+    [imageDetailsMerchandise setImage:self.dealmaker.receipt.merchandise_receipt_attributes.product.image];
+    [imageMerchandise setImage:self.dealmaker.receipt.merchandise_receipt_attributes.product.image];
 }
 
 

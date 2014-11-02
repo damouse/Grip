@@ -35,7 +35,7 @@ class ProductReceipt : MTLModel, MTLJSONSerializing {
         receipt.base_item_id = product.id
         receipt.name = product.name
         receipt.price = product.price
-        receipt.type = product.type
+        receipt.type = product.type! + "Receipt"
         receipt.product = product
         
         return receipt

@@ -15,8 +15,8 @@ import Foundation
 
 class Receipt : MTLModel, MTLJSONSerializing {
     //API model Fields
-    var product_receipts: [ProductReceipt]?
-    var merchandise_receipt: ProductReceipt?
+    var product_receipts_attributes: [ProductReceipt]?
+    var merchandise_receipt_attributes: ProductReceipt?
     
     var package_id = -1
     var customer_id = -1
@@ -36,7 +36,7 @@ class Receipt : MTLModel, MTLJSONSerializing {
     class func createWith(user: User, customer: Customer, merchandise: Product) -> Receipt {
         let receipt = Receipt()
         
-        receipt.merchandise_receipt = ProductReceipt.createWith(merchandise)
+        receipt.merchandise_receipt_attributes = ProductReceipt.createWith(merchandise)
         receipt.user = user
         receipt.customer = customer
         receipt.customer_id = customer.id
@@ -64,16 +64,10 @@ class Receipt : MTLModel, MTLJSONSerializing {
         var otherKey: String = key
         
         switch otherKey {
-        case "merchandise":
+        case "merchandise_receipt_attributes":
             return NSValueTransformer.mtl_JSONDictionaryTransformerWithModelClass(ProductReceipt.self)
-        case "productReceipts":
+        case "product_receipts_attributes":
             return NSValueTransformer.mtl_JSONArrayTransformerWithModelClass(ProductReceipt.self)
-        case "customer":
-            return NSValueTransformer.mtl_JSONDictionaryTransformerWithModelClass(Customer.self)
-        case "user":
-            return NSValueTransformer.mtl_JSONDictionaryTransformerWithModelClass(User.self)
-        case "package":
-            return NSValueTransformer.mtl_JSONDictionaryTransformerWithModelClass(Package.self)
         default:
             return nil
         }
