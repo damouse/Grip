@@ -27,6 +27,7 @@ class Dealmaker : NSObject {
     
     var currentProductOrdering = [ProductReceipt]()
     
+    //blocks communicating with the DealVC
     var packageMatch: ((package: Package) -> Void)?
     var totalChanged: ((total: Double) -> Void)?
     
@@ -179,6 +180,14 @@ class Dealmaker : NSObject {
     func recalculateTotals() {
         //recalculate the sum of all active products and the monthly payment amount
         
-        //call the newTotal block
+        //oooh swift you so nasty
+        let total = currentProductOrdering.reduce(0.0, combine: {if $1.active {return $0 + $1.price} else {return $0}})
+        
+        let temp = 1 + receipt.apr * (Double(receipt.term) / 12)
+        let monthly = (total * temp) / Double(receipt.term)
+        
+        receipt.cost = total
+        
+        totalChanged!(total: monthly)
     }
 }

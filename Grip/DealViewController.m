@@ -163,6 +163,14 @@ typedef enum UIState{
     [imageMerchandise setImage:self.dealmaker.receipt.merchandise_receipt_attributes.product.image];
     
     [self setTextfield:textfieldCustomerName textWithString:self.dealmaker.receipt.customer.name];
+    [self setTextfield:textfieldCustomerEmail textWithString:self.dealmaker.receipt.customer.email];
+    
+    //monies
+    [self setTextfield:textfieldTerm textWithString:[NSString stringWithFormat:@"%d", self.dealmaker.receipt.term]];
+    labelLoanTerm.text = [NSString stringWithFormat:@"%d Months", self.dealmaker.receipt.term];
+    
+    [self setTextfield:textfieldApr textWithString:[NSString stringWithFormat:@"%.3f", self.dealmaker.receipt.apr * 100]];
+    labelApr.text = [NSString stringWithFormat:@"%.2f\%% Interest", self.dealmaker.receipt.apr * 100];
 }
 
 
@@ -287,12 +295,8 @@ typedef enum UIState{
 
 #pragma mark Payment View
 - (void) changeMonthlyPaymentTo:(double) value {
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
-    NSString *textValue = [numberFormatter stringFromNumber:[NSNumber numberWithDouble:value]];
-    
-    labelMonthlyPayment.text = textValue;
-    textfieldMonthly.text = textValue;
+    labelMonthlyPayment.text = [self stringFromCurrencyDouble:value];
+    textfieldMonthly.text = [self stringFromCurrencyDouble:value];
 }
 
 
@@ -466,5 +470,13 @@ typedef enum UIState{
     //remove cursor from the textfields
     for (UITextField *field in textfields)
          [field endEditing:YES];
+}
+
+
+#pragma mark Money Formatting Utility Methods
+- (NSString *) stringFromCurrencyDouble:(double) value {
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
+    return [numberFormatter stringFromNumber:[NSNumber numberWithDouble:value]];
 }
 @end
