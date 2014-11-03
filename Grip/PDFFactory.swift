@@ -18,13 +18,12 @@ class PDFFactory : NSObject {
     func createPDFFromView(target: UIView) -> NSMutableData {
         var rawData = NSMutableData()
         
-        UIGraphicsBeginPDFContextToData(rawData, CGRectMake(0.0, 0.0, 1024, 1768), nil)
+        UIGraphicsBeginPDFContextToData(rawData, CGRectMake(0.0, 0.0, 612, 792), nil)
         UIGraphicsBeginPDFPage()
         
-        //incoming content is the correct dimensions, but is wrapped in a 100px buffed, so downsize
-        //1968x1224
         let context = UIGraphicsGetCurrentContext()
-        CGContextScaleCTM(context, 0.62745, 0.62745)
+        let scale = CGFloat(0.4919614)
+        CGContextScaleCTM(context, scale, scale)
         target.layer.renderInContext(context)
         UIGraphicsEndPDFContext()
         

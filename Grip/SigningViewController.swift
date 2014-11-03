@@ -142,7 +142,7 @@ class SigningViewController: UIViewController, UITableViewDataSource {
         let y = viewPage.frame.size.height - viewSignatureView.frame.size.height
         viewSignatureView.frame = CGRectMake(0, y, viewPage.frame.size.width, viewSignatureView.frame.size.height)
         
-        //view as shown needs margins. Add them by adding the view to a superview with padding
+//        view as shown needs margins. Add them by adding the view to a superview with padding
         let enclosing = UIView(frame: CGRectMake(0, 0, viewPage.frame.size.width + 200, viewPage.frame.size.height + 200))
         
         enclosing.addSubview(viewPage)
