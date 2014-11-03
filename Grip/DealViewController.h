@@ -49,15 +49,10 @@
     __weak IBOutlet UILabel *labelProductName;
     __weak IBOutlet UITextView *labelProductDescription;
     __weak IBOutlet UIImageView *imageProductImage;
-    __weak IBOutlet UITextField *textviewProductPrice;
+
     
     //User and Merchandise Details
-    __weak IBOutlet UITextField *textfieldCustomerName;
-    __weak IBOutlet UITextField *textfieldCustomerEmail;
-    __weak IBOutlet UITextField *textfieldTerm;
-    __weak IBOutlet UITextField *textfieldApr;
-    __weak IBOutlet UITextField *textfieldMonthly;
-    __weak IBOutlet UITextField *textfieldPackageDiscount;
+
     
     __weak IBOutlet UITextView *labelDetailsMerchandiseDescription;
     
@@ -67,17 +62,9 @@
     
     
     //User and Merchandise Mini Pane
-    __weak IBOutlet UILabel *labelApr;
-    __weak IBOutlet UILabel *labelMonthlyPayment;
-    __weak IBOutlet UILabel *labelLoanTerm;
-    __weak IBOutlet UILabel *labelCustomerName;
     __weak IBOutlet UILabel *labelMerchandiseName;
     
     __weak IBOutlet UIImageView *imageMerchandise;
-    
-    //textfield Collection
-    
-    IBOutletCollection(UITextField) NSArray *textfields;
 }
 
 //passed in from the landing controller
@@ -99,5 +86,26 @@
 
 //delegate methods
 - (void) didTouchProduct:(ProductReceipt *) product;
-- (void) didSelectProduct:(ProductReceipt *)product;
+- (void) didSelectProduct:(ProductReceipt *) product;
+
+//callbacks from TextfieldDelegate
+- (void) animateStateShowingInfo:(bool) info;
+
+
+//labels and textfields-- managed by DealTextfieldDelegate
+@property (weak, nonatomic) IBOutlet UITextField *textfieldCustomerName;
+@property (weak, nonatomic) IBOutlet UITextField *textfieldCustomerEmail;
+@property (weak, nonatomic) IBOutlet UITextField *textfieldTerm;
+@property (weak, nonatomic) IBOutlet UITextField *textfieldApr;
+@property (weak, nonatomic) IBOutlet UITextField *textfieldMonthly;
+@property (weak, nonatomic) IBOutlet UITextField *textfieldPackageDiscount;
+
+@property (weak, nonatomic) IBOutlet UITextField *textviewProductPrice;
+
+@property (weak, nonatomic) IBOutlet UILabel *labelApr;
+@property (weak, nonatomic) IBOutlet UILabel *labelMonthlyPayment;
+@property (weak, nonatomic) IBOutlet UILabel *labelLoanTerm;
+@property (weak, nonatomic) IBOutlet UILabel *labelCustomerName;
+
+@property (weak, nonatomic) IBOutletCollection(UITextField) NSArray *textfields;
 @end

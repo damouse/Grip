@@ -854,6 +854,7 @@
                         <outlet property="imageMerchandise" destination="QiP-bh-qa7" id="zjh-FX-O5P"/>
                         <outlet property="imageProductImage" destination="GTO-7c-OAA" id="RJg-ux-mJD"/>
                         <outlet property="labelApr" destination="hq7-7V-br6" id="97v-ks-opc"/>
+                        <outlet property="labelCustomerName" destination="IfR-aM-BRF" id="RyL-qJ-XZE"/>
                         <outlet property="labelDetailsMerchandiseDescription" destination="eaW-Ew-1Pv" id="hvM-ec-jH6"/>
                         <outlet property="labelDetailsMerchandiseName" destination="F39-db-5VW" id="mHt-X5-Ug0"/>
                         <outlet property="labelLoanTerm" destination="mpg-y0-QhI" id="BuX-WH-6kv"/>

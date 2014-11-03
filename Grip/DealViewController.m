@@ -11,6 +11,7 @@
 #import "MBViewAnimator.h"
 #import "UIView+Utils.h"
 #import "ProductTableViewDelegate.h"
+#import "DealTextfieldDelegate.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UIImageView+WebCache.h"
@@ -25,12 +26,13 @@
     PackageTableViewDelegate *userPackageDelegate;
     PackageTableViewDelegate *customerPackageDelegate;
     
+    //manages all of the textfields and labels, interacts with the maker
+    DealTextfieldDelegate *textfieldDelegate;
+    
     //two-pane slider
     MBViewPaneSlider *paneSlider;
     
     Rollback *rollback;
-    
-    ProductReceipt *lastSelectedProductReceipt;
     
     //enumed below
     int currentUIState;
@@ -77,6 +79,10 @@ typedef enum UIState{
     tableProducts.delegate = tableDelegate;
     tableProducts.dataSource = tableDelegate;
     
+    //validation, formatting, and whatnot
+    textfieldDelegate = [[DealTextfieldDelegate alloc] init];
+    textfieldDelegate.parent = self;
+    
     //package table inits
     __weak DealViewController *weak_self = self;
     customerPackageDelegate = [[PackageTableViewDelegate alloc] initWithPacks:self.dealmaker.customerPackages tableView:tableCustomerPackages selectBlock:^(Package *package) {
@@ -91,14 +97,6 @@ typedef enum UIState{
     self.dealmaker.packageMatch = ^(Package* package) {
         [weak_self packageMatch:package];
     };
-    
-    //called when the dealmaker has determined that the monthly cost of the deal has changed
-    self.dealmaker.totalChanged = ^(double newTotal) {
-        [weak_self changeMonthlyPaymentTo:newTotal];
-    };
-    
-    //register to be notified if the keyboard is dismissed
-    [self listenForKeyboardHide];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -147,14 +145,13 @@ typedef enum UIState{
         [button setTitleColor:HIGHLIGHT_COLOR forState:UIControlStateHighlighted];
     }
     
-    for (UITextField *textfield in textfields) {
+    for (UITextField *textfield in self.textfields) {
         textfield.backgroundColor = PRIMARY_LIGHT;
     }
 }
 
 - (void) setInitialLabels {
     //set merchandise and customer labels
-    labelCustomerName.text = self.dealmaker.receipt.customer.name;
     labelMerchandiseName.text = self.dealmaker.receipt.merchandise_receipt_attributes.name;
     labelMerchandiseName.text = self.dealmaker.receipt.merchandise_receipt_attributes.name;
     labelDetailsMerchandiseDescription.text = self.dealmaker.receipt.merchandise_receipt_attributes.product.item_description;
@@ -162,15 +159,7 @@ typedef enum UIState{
     [imageDetailsMerchandise setImage:self.dealmaker.receipt.merchandise_receipt_attributes.product.image];
     [imageMerchandise setImage:self.dealmaker.receipt.merchandise_receipt_attributes.product.image];
     
-    [self setTextfield:textfieldCustomerName textWithString:self.dealmaker.receipt.customer.name];
-    [self setTextfield:textfieldCustomerEmail textWithString:self.dealmaker.receipt.customer.email];
-    
-    //monies
-    [self setTextfield:textfieldTerm textWithString:[NSString stringWithFormat:@"%d", self.dealmaker.receipt.term]];
-    labelLoanTerm.text = [NSString stringWithFormat:@"%d Months", self.dealmaker.receipt.term];
-    
-    [self setTextfield:textfieldApr textWithString:[NSString stringWithFormat:@"%.3f", self.dealmaker.receipt.apr * 100]];
-    labelApr.text = [NSString stringWithFormat:@"%.2f\%% Interest", self.dealmaker.receipt.apr * 100];
+
 }
 
 
@@ -292,11 +281,22 @@ typedef enum UIState{
     currentUIState = StateNeutral;
 }
 
+- (void) animateStateShowingInfo:(bool) info {
+    //called from the textfield delegate. Slide the info pane up or not
 
-#pragma mark Payment View
-- (void) changeMonthlyPaymentTo:(double) value {
-    labelMonthlyPayment.text = [self stringFromCurrencyDouble:value];
-    textfieldMonthly.text = [self stringFromCurrencyDouble:value];
+    //when called with true, the delegate wants to slide the pane up
+    if (info) {
+        [animator animateObjectToRelativePosition:viewInfoDetails direction:VAAnimationDirectionUp withMargin:-300 completion:nil];
+        currentUIState = StateShowingInfoUp;
+    }
+    
+    //if called with false, the delegate thinks the textfields are done and the pane should be slid down. Only do this if we are not already slid down
+    else {
+        if (currentUIState == StateShowingInfoUp) {
+            [animator animateObjectToStartingPosition:viewInfoDetails completion:nil];
+            currentUIState = StateShowingInfo;
+        }
+    }
 }
 
 
@@ -306,14 +306,14 @@ typedef enum UIState{
     if (currentUIState == StateNeutral)
         [self animateProductPaneIn];
     
-    lastSelectedProductReceipt = product;
+    textfieldDelegate.lastSelectedProduct = product;
 
     labelProductName.text = product.name;
     labelProductDescription.text = product.product.item_description;
     
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
-    [self setTextfield:textviewProductPrice textWithString:[numberFormatter stringFromNumber:[NSNumber numberWithFloat:product.price]]];
+//    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+//    [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
+//    [self setTextfield:textviewProductPrice textWithString:[numberFormatter stringFromNumber:[NSNumber numberWithFloat:product.price]]];
 
     [imageProductImage setImage:product.product.image];
 }
@@ -354,13 +354,13 @@ typedef enum UIState{
         
     
     //change the label for discount
-    if (package != nil) {
-        [self setTextfield:textfieldPackageDiscount textWithString:[NSString stringWithFormat:@"%u", package.discount]];
-    }
-    
-    if (package == nil) {
-        [self setTextfield:textfieldPackageDiscount textWithString:@"0"];
-    }
+//    if (package != nil) {
+//        [self setTextfield:textfieldPackageDiscount textWithString:[NSString stringWithFormat:@"%u", package.discount]];
+//    }
+//    
+//    if (package == nil) {
+//        [self setTextfield:textfieldPackageDiscount textWithString:@"0"];
+//    }
 }
 
 
@@ -395,107 +395,15 @@ typedef enum UIState{
 
 - (IBAction) infoDetailsExit:(id)sender {
     [self animateInfoPaneOut];
-    [self keyboardWillHide:nil];
 }
 
 - (IBAction) productDetailsExit:(id)sender {
     //dismiss product pane, return to normal
-    lastSelectedProductReceipt = nil;
+    textfieldDelegate.lastSelectedProduct = nil;
     [self animateProductPaneOut];
 }
 
 
-#pragma mark Textview Delegate
-- (void) textFieldDidBeginEditing:(UITextField *)sender {
-    //animate the details view up to make the textfield visible when the keyboard is up
-    
-    //term, and loan are the two that both can be edited and can't be seen
-    if (sender == textfieldTerm || sender == textfieldApr || sender == textfieldPackageDiscount) {
-        [animator animateObjectToRelativePosition:viewInfoDetails direction:VAAnimationDirectionUp withMargin:-300 completion:nil];
-        currentUIState = StateShowingInfoUp;
-    }
-    
-}
-
-- (BOOL) textFieldShouldReturn:(UITextField *)textView {
-    //value setting- for each textfield
-    if (textviewProductPrice == textView) {
-        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-        [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
-        lastSelectedProductReceipt.price  = [[numberFormatter numberFromString:textView.text] floatValue];
-        
-        //ask dealmaker to recalculate values
-    }
-    
-    if (textView == textfieldTerm)
-        [self.dealmaker termChanged:[textView.text intValue]];
-    
-    if (textView == textfieldApr)
-        [self.dealmaker aprChanged:[textfieldApr.text doubleValue]];
-    
-    if (textView == textfieldPackageDiscount)
-        [self.dealmaker discountChanged:[textfieldApr.text intValue]];
-    
-    if (textView == textfieldCustomerEmail) {
-        self.dealmaker.receipt.customer.email = textView.text;
-    }
-    
-    //should this be allowed if the customer is imported from the backend?
-    if (textView == textfieldCustomerName) {
-        self.dealmaker.receipt.customer.name = textView.text;
-    }
-    
-    //end animation for textviews not normally visible to the user
-    if (currentUIState == StateShowingInfoUp) {
-        [animator animateObjectToStartingPosition:viewInfoDetails completion:nil];
-        currentUIState = StateShowingInfo;
-    }
-    
-    [textView resignFirstResponder];
-    return YES;
-}
-
-- (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    
-    NSString *newString =[textField.text stringByReplacingCharactersInRange:range withString:string];
-    
-    //strip/check leading whitespace
-    newString = [newString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
-    newString = [NSString stringWithFormat:@"  %@", newString];
-    
-    [textField setText:newString];
-    return NO;
-}
-
-- (void) setTextfield:(UITextField *) textfield textWithString: (NSString*) string {
-    //utility method to add whitespace to a textfield
-    textfield.text = [NSString stringWithFormat:@"  %@", string];
-}
-
-- (void) listenForKeyboardHide {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
-}
-
-- (void) keyboardWillHide:(id)sender {
-    if (currentUIState == StateShowingInfoUp) {
-        [animator animateObjectToStartingPosition:viewInfoDetails completion:nil];
-        currentUIState = StateShowingInfo;
-    }
-    
-    //remove cursor from the textfields
-    for (UITextField *field in textfields)
-         [field endEditing:YES];
-}
-
-
 #pragma mark Money Formatting Utility Methods
-- (NSString *) stringFromCurrencyDouble:(double) value {
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
-    return [numberFormatter stringFromNumber:[NSNumber numberWithDouble:value]];
-}
+
 @end

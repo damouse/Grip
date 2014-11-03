@@ -29,7 +29,7 @@ class Dealmaker : NSObject {
     
     //blocks communicating with the DealVC
     var packageMatch: ((package: Package?) -> Void)?
-    var totalChanged: ((total: Double) -> Void)?
+    var totalChanged: ((receipt: Receipt) -> Void)?
     
     
     init(allProducts: [Product], user: User, customer: Customer, merchandise: Product) {
@@ -113,22 +113,6 @@ class Dealmaker : NSObject {
         return receipt
     }
     
-    func aprChanged(apr: Double) {
-        //change the APR in the receipt and calculate the new values. Returns the new monthly payment
-        receipt.apr = apr
-        recalculateTotals()
-    }
-    
-    func termChanged(term: Int) {
-        receipt.term = term
-         recalculateTotals()
-    }
-    
-    func discountChanged(discount: Int) {
-        receipt.discount = discount
-        recalculateTotals()
-    }
-    
     
     //MARK: Internal
     func checkPackageMatch() -> Void {
@@ -199,10 +183,10 @@ class Dealmaker : NSObject {
         total = total * discountRate
         
         let temp = 1 + receipt.apr * (Double(receipt.term) / 12)
-        let monthly = (total * temp) / Double(receipt.term)
         
+        receipt.monthly = (total * temp) / Double(receipt.term)
         receipt.cost = total
         
-        totalChanged!(total: monthly)
+        totalChanged!(receipt: receipt)
     }
 }
