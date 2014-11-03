@@ -28,6 +28,10 @@
     
     PGApiManager *apiManager;
     
+    //customer and merchandise selection for package presentation dialog
+    MerchandiseCollectionViewDelegate *collectionMerchandiseDelegate;
+    CustomerCollectionViewDelegate *collectionCustomerDelegate;
+  
     BOOL loggedIn;
     
     BOOL firstLayout;
@@ -68,6 +72,10 @@
     
     [self colorize];
     [self setLoginButtonState];
+    
+    //set up collection views
+    collectionMerchandiseDelegate = [[MerchandiseCollectionViewDelegate alloc] initWithView:collectionviewMerchandise];
+    collectionCustomerDelegate = [[CustomerCollectionViewDelegate alloc] initWithView:collectionviewCustomers];
 }
 
 - (void) viewDidLayoutSubviews {
@@ -113,6 +121,9 @@
     viewSettings.backgroundColor = PRIMARY_DARK;
     viewPresentDialog.backgroundColor = PRIMARY_DARK;
     
+    collectionviewCustomers.backgroundColor = PRIMARY_DARK;
+    collectionviewMerchandise.backgroundColor = PRIMARY_DARK;
+    
     for(UIButton *button in buttons) {
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button setTitleColor:HIGHLIGHT_COLOR forState:UIControlStateHighlighted];
@@ -137,25 +148,13 @@
 
 - (void) packageSelectedCustomer:(Customer *) customer {
     //package dropdown has selected a customer-- display information about that customer and ungrey the button
-    labelCustomerName.text = customer.name;
-    labelCustomerCreated.text = customer.created_at;
-    
-    //load the customer's packages while showing the spinner
-    if (!customer.loadedPackages)
-        [spinnerCustomer startAnimating];
-    
-    [apiManager loadPackagesForCustomer:customer success:^{
-        labelPackageCount.text = [NSString stringWithFormat:@"Customer Packages: %i", [customer.packages count]];
-        [spinnerCustomer stopAnimating];
-    }];
+
     
 }
 
 - (void) packageDeselectedCustomer {
     //package dropdown deselected the previously selected customer, remove the details and optionally disable the button
-    labelCustomerName.text = @"";
-    labelCustomerCreated.text = @"";
-    labelPackageCount.text = @"";
+    
 }
 
 - (void) presentPackage:(Customer *) customer {

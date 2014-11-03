@@ -28,16 +28,11 @@
     __weak IBOutlet UITextField *textfieldPassword;
     
     //Searching, Customers, and Present Dialog
-    __weak IBOutlet UIView *containerSearchController;
+
     __weak IBOutlet UIView *viewPresentDialog;
-    
-    //labels
-    __weak IBOutlet UILabel *labelCustomerName;
-    __weak IBOutlet UILabel *labelCustomerCreated;
-    __weak IBOutlet UILabel *labelPackageCount;
-    
-    //Spinner
-    __weak IBOutlet GripSpinner *spinnerCustomer;
+
+    __weak IBOutlet UICollectionView *collectionviewMerchandise;
+    __weak IBOutlet UICollectionView *collectionviewCustomers;
 }
 
 //buttons
@@ -51,11 +46,6 @@
 - (IBAction)dialogLoginCancel:(id)sender;
 
 - (IBAction)settingsDone:(id)sender;
-
-//present package dialog buttons
-- (IBAction)existingCustomer:(id)sender;
-- (IBAction)newCustomer:(id)sender;
-
 
 - (void) packageSelectedCustomer:(Customer *) customer;
 - (void) packageDeselectedCustomer;
