@@ -45,7 +45,6 @@ class PackageTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDel
         
         cell.textLabel.text = packages[indexPath.row].name
         cell.backgroundColor = UIColor.clearColor()
-        //        cell.textLabel.textColor = UIColor(red:222, green: 94, blue: 96, alpha: 1)
         
         return cell
     }

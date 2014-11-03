@@ -50,6 +50,7 @@
     __weak IBOutlet UILabel *labelProductPrice;
     __weak IBOutlet UITextView *labelProductDescription;
     __weak IBOutlet UIImageView *imageProductImage;
+    __weak IBOutlet UITextField *textviewProductPrice;
     
     //User and Merchandise Details
     __weak IBOutlet UILabel *labelDetailsCustomerName;

@@ -30,6 +30,8 @@
     
     Rollback *rollback;
     
+    ProductReceipt *lastSelectedProductReceipt;
+    
     //enumed below
     int currentUIState;
     
@@ -107,12 +109,12 @@ typedef enum UIState{
     paneSlider = [[MBViewPaneSlider alloc] initWithView1:viewPresetPackageSlidein button1:buttonStockPackages view2:viewCustomerPackageSlideIn button2:buttonCustomerPackages];
     
     //if there are customer packages, show the first one. Else show the first user package. Else do nothing
-    if ([self.dealmaker.customerPackages count] > 0) {
-        [self selectPackage:[self.dealmaker.customerPackages objectAtIndex:0]];
-    }
-    else if ([self.dealmaker.userPackages count] > 0) {
-        [self selectPackage:[self.dealmaker.userPackages objectAtIndex:0]];
-    }
+//    if ([self.dealmaker.customerPackages count] > 0) {
+//        [self selectPackage:[self.dealmaker.customerPackages objectAtIndex:0]];
+//    }
+//    else if ([self.dealmaker.userPackages count] > 0) {
+//        [self selectPackage:[self.dealmaker.userPackages objectAtIndex:0]];
+//    }
 }
 
 
@@ -135,6 +137,8 @@ typedef enum UIState{
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button setTitleColor:HIGHLIGHT_COLOR forState:UIControlStateHighlighted];
     }
+    
+    textviewProductPrice.backgroundColor = PRIMARY_LIGHT;
 }
 
 - (void) setInitialLabels {
@@ -274,13 +278,15 @@ typedef enum UIState{
     //triggered from the table
     if (currentUIState == StateNeutral)
         [self animateProductPaneIn];
+    
+    lastSelectedProductReceipt = product;
 
     labelProductName.text = product.name;
     labelProductDescription.text = product.product.item_description;
     
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
-    labelProductPrice.text = [numberFormatter stringFromNumber:[NSNumber numberWithFloat:product.price]];
+    textviewProductPrice.text = [numberFormatter stringFromNumber:[NSNumber numberWithFloat:product.price]];
     
     [imageProductImage setImage:product.product.image];
 }
@@ -349,6 +355,18 @@ typedef enum UIState{
 
 - (IBAction)productDetailsExit:(id)sender {
     //dismiss product pane, return to normal
+    lastSelectedProductReceipt = nil;
     [self animateProductPaneOut];
+}
+
+
+#pragma mark Textview Delegate
+-(BOOL)textFieldShouldReturn:(UITextField *)textView {
+    if (lastSelectedProductReceipt != nil) {
+        lastSelectedProductReceipt.price = [textView.text floatValue];
+    }
+    
+    [textView resignFirstResponder];
+    return YES;
 }
 @end

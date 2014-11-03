@@ -738,13 +738,6 @@
                                             <action selector="productDetailsExit:" destination="uQL-GH-cEr" eventType="touchUpInside" id="u2o-MQ-ftk"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1,000,000,000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EkL-rv-iWZ">
-                                        <rect key="frame" x="26" y="80" width="134" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="19"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" id="ZC5-mu-3HG">
                                         <rect key="frame" x="15" y="211" width="415" height="169"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -753,6 +746,16 @@
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Price" minimumFontSize="17" id="dpV-6b-Kwb">
+                                        <rect key="frame" x="26" y="80" width="181" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="uQL-GH-cEr" id="tu1-ji-eFi"/>
+                                        </connections>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -781,10 +784,10 @@
                         <outlet property="labelMonthlyPayment" destination="MlG-Wr-rMD" id="zyJ-Ud-Pfk"/>
                         <outlet property="labelProductDescription" destination="ZC5-mu-3HG" id="KFg-kg-Qlq"/>
                         <outlet property="labelProductName" destination="1kh-x8-ulS" id="N18-ZO-Tsl"/>
-                        <outlet property="labelProductPrice" destination="EkL-rv-iWZ" id="C6R-sc-wls"/>
                         <outlet property="tableCustomerPackages" destination="JCV-1u-w8E" id="Dpd-Yg-bN7"/>
                         <outlet property="tablePresetPackages" destination="oJT-iW-fJR" id="MBB-lM-Ow9"/>
                         <outlet property="tableProducts" destination="0tj-ff-apI" id="jiy-j1-kus"/>
+                        <outlet property="textviewProductPrice" destination="dpV-6b-Kwb" id="cJS-DU-e9M"/>
                         <outlet property="viewBottomLeftContainer" destination="850-dh-vMx" id="qce-2D-YfD"/>
                         <outlet property="viewBottomRightContainer" destination="6ok-YB-t8I" id="tdd-3K-Phh"/>
                         <outlet property="viewCustomerPackageSlideIn" destination="hjR-28-JJQ" id="xVV-Yk-Bq8"/>
