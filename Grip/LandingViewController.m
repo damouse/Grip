@@ -109,6 +109,8 @@
         
         collectionCustomerDelegate.customers = apiManager.customers;
         collectionMerchandiseDelegate.merchandises = apiManager.merchandises;
+        
+        [imageCompanyLogo setImage:apiManager.user.image];
     }];
 }
 
@@ -378,6 +380,8 @@
         //set the collection views' models
         collectionCustomerDelegate.customers = apiManager.customers;
         collectionMerchandiseDelegate.merchandises = apiManager.merchandises;
+        
+        [imageCompanyLogo setImage:apiManager.user.image];
     }];
 }
 

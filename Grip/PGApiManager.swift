@@ -13,8 +13,8 @@ import UIKit
 private let _singletonInstance = PGApiManager()
 
 @objc class PGApiManager : NSObject {
-    let base_url = "http://packagegrid.com/"
-//    let base_url = "http://192.168.79.166:3000/"
+//    let base_url = "http://packagegrid.com/"
+    let base_url = "http://192.168.79.166:3000/"
     
     
     var user: User?
@@ -198,7 +198,12 @@ private let _singletonInstance = PGApiManager()
                 println("API: User Success")
                 
                 var error: NSError?
-                self.user = MTLJSONAdapter.modelOfClass(User.self, fromJSONDictionary: responseObject as Dictionary<String, AnyObject>, error: &error) as? User
+                let json = responseObject as Dictionary<String, AnyObject>
+                let userDictionary = json["user"] as Dictionary<String, AnyObject>
+                
+                self.user = MTLJSONAdapter.modelOfClass(User.self, fromJSONDictionary: userDictionary, error: &error) as? User
+                self.user?.image_url = json["image_url"] as? String
+                self.loadUserImage(self.user!)
                 
                 success?()
             },
@@ -452,6 +457,25 @@ private let _singletonInstance = PGApiManager()
                 product.desaturatedImage = product.image!.desaturate()
                 
                 println("Image failure for product \(product.name)")
+                println(error)
+        })
+        
+        operation.start()
+    }
+    
+    func loadUserImage(user: User) {
+        //async call to load an image using AFNetworking
+        let request = NSURLRequest(URL: NSURL(string: user.image_url!)!)
+        var operation = AFHTTPRequestOperation(request: request)
+        operation.responseSerializer = AFImageResponseSerializer() as AFImageResponseSerializer
+        
+        operation.setCompletionBlockWithSuccess({ (operation: AFHTTPRequestOperation!, object: AnyObject!) -> Void in
+            user.image = object as? UIImage
+            },
+            failure: { (operation: AFHTTPRequestOperation!, error: NSError!) ->Void in
+                user.image = UIImage(named: "Placeholder")
+                
+                println("Image failure for product \(user.name)")
                 println(error)
         })
         

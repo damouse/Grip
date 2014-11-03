@@ -17,7 +17,9 @@ class User : MTLModel, MTLJSONSerializing {
     var token_expiration: String?
     var created_at: String?
     var updated_at: String?
+    var image_url: String?
     
+    var image: UIImage?
 
 
     //Boilerplate Mantle code
@@ -26,7 +28,9 @@ class User : MTLModel, MTLJSONSerializing {
     }
     
     class func JSONKeyPathsByPropertyKey() -> [NSObject : AnyObject]! {
-        return Dictionary<String, String>()
+        return [
+            "image": NSNull()
+        ]
     }
     
     //Boilerplate, compulsory overrides. Kinda stupid, isn't it?
