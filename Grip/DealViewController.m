@@ -42,7 +42,8 @@
 typedef enum UIState{
     StateNeutral,
     StateShowingInfo,
-    StateShowingProduct
+    StateShowingProduct,
+    StateShowingInfoUp
 } UIState;
 
 @end
@@ -90,6 +91,9 @@ typedef enum UIState{
     self.dealmaker.packageMatch = ^(Package* package) {
         [weak_self packageMatch:package];
     };
+    
+    //register to be notified if the keyboard is dismissed
+    [self listenForKeyboardHide];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -138,19 +142,22 @@ typedef enum UIState{
         [button setTitleColor:HIGHLIGHT_COLOR forState:UIControlStateHighlighted];
     }
     
-    textviewProductPrice.backgroundColor = PRIMARY_LIGHT;
+    for (UITextField *textfield in textfields) {
+        textfield.backgroundColor = PRIMARY_LIGHT;
+    }
 }
 
 - (void) setInitialLabels {
     //set merchandise and customer labels
     labelCustomerName.text = self.dealmaker.receipt.customer.name;
-    labelDetailsCustomerName.text = self.dealmaker.receipt.customer.name;
     labelMerchandiseName.text = self.dealmaker.receipt.merchandise_receipt_attributes.name;
-    labelDetailsMerchandiseName.text = self.dealmaker.receipt.merchandise_receipt_attributes.name;
+    labelMerchandiseName.text = self.dealmaker.receipt.merchandise_receipt_attributes.name;
     labelDetailsMerchandiseDescription.text = self.dealmaker.receipt.merchandise_receipt_attributes.product.item_description;
     
     [imageDetailsMerchandise setImage:self.dealmaker.receipt.merchandise_receipt_attributes.product.image];
     [imageMerchandise setImage:self.dealmaker.receipt.merchandise_receipt_attributes.product.image];
+    
+    [self setTextfield:textfieldCustomerName textWithString:self.dealmaker.receipt.customer.name];
 }
 
 
@@ -286,8 +293,8 @@ typedef enum UIState{
     
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
-    textviewProductPrice.text = [numberFormatter stringFromNumber:[NSNumber numberWithFloat:product.price]];
-    
+    [self setTextfield:textviewProductPrice textWithString:[numberFormatter stringFromNumber:[NSNumber numberWithFloat:product.price]]];
+
     [imageProductImage setImage:product.product.image];
 }
 
@@ -361,12 +368,66 @@ typedef enum UIState{
 
 
 #pragma mark Textview Delegate
--(BOOL)textFieldShouldReturn:(UITextField *)textView {
+- (void)textFieldDidBeginEditing:(UITextField *)sender {
+    //animate the details view up to make the textfield visible when the keyboard is up
+    
+    //term, and loan are the two that both can be edited and can't be seen
+    if (sender == textfieldTerm || sender == textfieldApr) {
+        [animator animateObjectToRelativePosition:viewInfoDetails direction:VAAnimationDirectionUp withMargin:-300 completion:nil];
+        currentUIState = StateShowingInfoUp;
+    }
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textView {
     if (lastSelectedProductReceipt != nil) {
-        lastSelectedProductReceipt.price = [textView.text floatValue];
+        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+        [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
+        lastSelectedProductReceipt.price  = [[numberFormatter numberFromString:textView.text] floatValue];
+    }
+    
+    if (currentUIState == StateShowingInfoUp) {
+        [animator animateObjectToStartingPosition:viewInfoDetails completion:nil];
+        currentUIState = StateShowingInfo;
     }
     
     [textView resignFirstResponder];
     return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    NSString *newString =[textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    //strip/check leading whitespace
+    newString = [newString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    newString = [NSString stringWithFormat:@"  %@", newString];
+    
+    [textField setText:newString];
+    return NO;
+}
+
+- (void) setTextfield:(UITextField *) textfield textWithString: (NSString*) string {
+    //utility method to add whitespace to a textfield
+    textfield.text = [NSString stringWithFormat:@"  %@", string];
+}
+
+- (void) listenForKeyboardHide {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+}
+
+- (void) keyboardWillHide:(id)sender {
+    if (currentUIState == StateShowingInfoUp) {
+        [animator animateObjectToStartingPosition:viewInfoDetails completion:nil];
+        currentUIState = StateShowingInfo;
+    }
+    
+    [textfieldApr endEditing:YES];
+    [textfieldTerm endEditing:YES];
+    [textviewProductPrice endEditing:YES];
 }
 @end

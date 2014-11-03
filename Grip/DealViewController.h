@@ -47,21 +47,22 @@
     //Package Details Views
     __weak IBOutlet UIWebView *webviewVideo;
     __weak IBOutlet UILabel *labelProductName;
-    __weak IBOutlet UILabel *labelProductPrice;
     __weak IBOutlet UITextView *labelProductDescription;
     __weak IBOutlet UIImageView *imageProductImage;
     __weak IBOutlet UITextField *textviewProductPrice;
     
     //User and Merchandise Details
-    __weak IBOutlet UILabel *labelDetailsCustomerName;
-    __weak IBOutlet UILabel *labelDetailsMerchandiseName;
-    __weak IBOutlet UILabel *labelDetailsLoanTerm;
-    __weak IBOutlet UILabel *labelDetailsMonthlyPayment;
-    __weak IBOutlet UILabel *labelDetailsApr;
+    __weak IBOutlet UITextField *textfieldCustomerName;
+    __weak IBOutlet UITextField *textfieldCustomerEmail;
+    __weak IBOutlet UITextField *textfieldTerm;
+    __weak IBOutlet UITextField *textfieldApr;
+    __weak IBOutlet UITextField *textfieldMonthly;
     
     __weak IBOutlet UITextView *labelDetailsMerchandiseDescription;
     
     __weak IBOutlet UIImageView *imageDetailsMerchandise;
+    
+    __weak IBOutlet UILabel *labelDetailsMerchandiseName;
     
     
     //User and Merchandise Mini Pane
@@ -72,6 +73,10 @@
     __weak IBOutlet UILabel *labelMerchandiseName;
     
     __weak IBOutlet UIImageView *imageMerchandise;
+    
+    //textfield Collection
+    
+    IBOutletCollection(UITextField) NSArray *textfields;
 }
 
 //passed in from the landing controller
