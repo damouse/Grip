@@ -57,6 +57,7 @@
     __weak IBOutlet UITextField *textfieldTerm;
     __weak IBOutlet UITextField *textfieldApr;
     __weak IBOutlet UITextField *textfieldMonthly;
+    __weak IBOutlet UITextField *textfieldPackageDiscount;
     
     __weak IBOutlet UITextView *labelDetailsMerchandiseDescription;
     

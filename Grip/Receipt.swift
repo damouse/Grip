@@ -32,7 +32,18 @@ class Receipt : MTLModel, MTLJSONSerializing {
     
     var id = -1
     
-//    var package: Package?
+    var package: Package? {
+        didSet {
+            if package == nil {
+                self.discount = 0
+            }
+            else {
+                self.package_id = package!.id
+                self.discount = package!.discount
+            }
+        }
+    }
+    
     
     //class init
     class func createWith(user: User, customer: Customer, merchandise: Product) -> Receipt {
@@ -42,7 +53,6 @@ class Receipt : MTLModel, MTLJSONSerializing {
         receipt.user = user
         receipt.customer = customer
         receipt.customer_id = customer.id
-
         
         return receipt
     }
@@ -96,6 +106,5 @@ class Receipt : MTLModel, MTLJSONSerializing {
     }
     
     
-    //MARK: Public AWS directory path
-    
+    //
 }

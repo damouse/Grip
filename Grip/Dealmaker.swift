@@ -28,7 +28,7 @@ class Dealmaker : NSObject {
     var currentProductOrdering = [ProductReceipt]()
     
     //blocks communicating with the DealVC
-    var packageMatch: ((package: Package) -> Void)?
+    var packageMatch: ((package: Package?) -> Void)?
     var totalChanged: ((total: Double) -> Void)?
     
     
@@ -65,6 +65,7 @@ class Dealmaker : NSObject {
         
         establishProductOrdering()
         checkPackageMatch()
+        recalculateTotals()
         
         return currentProductOrdering
     }
@@ -97,6 +98,7 @@ class Dealmaker : NSObject {
         
         establishProductOrdering()
         checkPackageMatch()
+        recalculateTotals()
         
         return alteredProducts
     }
@@ -120,6 +122,11 @@ class Dealmaker : NSObject {
     func termChanged(term: Int) {
         receipt.term = term
          recalculateTotals()
+    }
+    
+    func discountChanged(discount: Int) {
+        receipt.discount = discount
+        recalculateTotals()
     }
     
     
@@ -148,10 +155,15 @@ class Dealmaker : NSObject {
             }
             
             if foundPackage {
+                receipt.package = package
                 packageMatch?(package: package)
                 return
             }
         }
+        
+        //went through all packages, didn't find a match (since we didn't return.) Alert DealVC to unhighlight the given package
+        receipt.package = nil
+        packageMatch?(package: nil)
     }
     
     func establishProductOrdering() {
@@ -181,7 +193,10 @@ class Dealmaker : NSObject {
         //recalculate the sum of all active products and the monthly payment amount
         
         //oooh swift you so nasty
-        let total = currentProductOrdering.reduce(0.0, combine: {if $1.active {return $0 + $1.price} else {return $0}})
+        var total = currentProductOrdering.reduce(0.0, combine: {if $1.active {return $0 + $1.price} else {return $0}})
+        
+        let discountRate = (100.0 - Double(receipt.discount)) / 100.0
+        total = total * discountRate
         
         let temp = 1 + receipt.apr * (Double(receipt.term) / 12)
         let monthly = (total * temp) / Double(receipt.term)

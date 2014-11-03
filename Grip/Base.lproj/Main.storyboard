@@ -65,6 +65,8 @@
             <string>Titillium-Light</string>
             <string>Titillium-Light</string>
             <string>Titillium-Light</string>
+            <string>Titillium-Light</string>
+            <string>Titillium-Light</string>
         </mutableArray>
         <mutableArray key="Titillium-Regular.otf">
             <string>Titillium-Regular</string>
@@ -742,7 +744,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Term" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h1C-Fz-AGD">
-                                        <rect key="frame" x="24" y="434" width="225" height="21"/>
+                                        <rect key="frame" x="24" y="470" width="225" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -756,14 +758,14 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monthly Payment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="a1a-WA-TLX">
-                                        <rect key="frame" x="24" y="516" width="204" height="21"/>
+                                        <rect key="frame" x="24" y="552" width="204" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ixy-KR-4E7">
-                                        <rect key="frame" x="24" y="475" width="144" height="21"/>
+                                        <rect key="frame" x="24" y="511" width="144" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -790,7 +792,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Rate" minimumFontSize="17" id="wam-aR-rtg">
-                                        <rect key="frame" x="229" y="466" width="181" height="40"/>
+                                        <rect key="frame" x="229" y="502" width="181" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="18"/>
@@ -799,8 +801,8 @@
                                             <outlet property="delegate" destination="uQL-GH-cEr" id="i0d-vX-Ehj"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Payment Amount" minimumFontSize="17" id="0k7-sf-Chv">
-                                        <rect key="frame" x="229" y="507" width="181" height="40"/>
+                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Payment Amount" minimumFontSize="17" id="0k7-sf-Chv">
+                                        <rect key="frame" x="229" y="543" width="181" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="18"/>
@@ -809,14 +811,31 @@
                                             <outlet property="delegate" destination="uQL-GH-cEr" id="ObB-Ae-hMy"/>
                                         </connections>
                                     </textField>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Package Discount" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e4h-oS-eFo">
+                                        <rect key="frame" x="24" y="431" width="204" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Term" minimumFontSize="17" id="tZX-2s-3HW">
-                                        <rect key="frame" x="229" y="425" width="181" height="40"/>
+                                        <rect key="frame" x="229" y="461" width="181" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="light" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="uQL-GH-cEr" id="yM6-x3-0jd"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Package Discount" minimumFontSize="17" id="UHP-l2-GeZ">
+                                        <rect key="frame" x="229" y="422" width="181" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="light" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="uQL-GH-cEr" id="X8g-ns-AaD"/>
                                         </connections>
                                     </textField>
                                 </subviews>
@@ -849,6 +868,7 @@
                         <outlet property="textfieldCustomerEmail" destination="Jdm-Oa-A3q" id="tzH-sq-mac"/>
                         <outlet property="textfieldCustomerName" destination="Om5-4s-AhK" id="hvg-PZ-BdN"/>
                         <outlet property="textfieldMonthly" destination="0k7-sf-Chv" id="Jie-X9-hUv"/>
+                        <outlet property="textfieldPackageDiscount" destination="UHP-l2-GeZ" id="9NB-j8-6j3"/>
                         <outlet property="textfieldTerm" destination="tZX-2s-3HW" id="FLD-zm-rIj"/>
                         <outlet property="textviewProductPrice" destination="dpV-6b-Kwb" id="cJS-DU-e9M"/>
                         <outlet property="viewBottomLeftContainer" destination="850-dh-vMx" id="qce-2D-YfD"/>
@@ -874,6 +894,7 @@
                         <outletCollection property="textfields" destination="wam-aR-rtg" id="Ucj-6G-jlY"/>
                         <outletCollection property="textfields" destination="0k7-sf-Chv" id="w4u-z8-qUG"/>
                         <outletCollection property="textfields" destination="dpV-6b-Kwb" id="7Wz-s4-plD"/>
+                        <outletCollection property="textfields" destination="UHP-l2-GeZ" id="NQl-1S-Mhw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rPn-4M-a2P" userLabel="First Responder" sceneMemberID="firstResponder"/>

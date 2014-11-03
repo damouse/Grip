@@ -25,6 +25,8 @@ class MBViewPaneSlider : NSObject {
     
     var activeButton: UIButton?
     
+    var viewOneActive = true
+    
     
     init(view1: UIView, button1: UIButton, view2: UIView, button2: UIButton) {
         super.init()
@@ -48,12 +50,39 @@ class MBViewPaneSlider : NSObject {
             return
         }
         
+        if sender == button1 {
+            animate(true)
+        }
+        else {
+            animate(false)
+        }
+
+    }
+    
+    func activateView(view: UIView) {
+        if view == view1 {
+            animate(true)
+        }
+        else {
+            animate(false)
+        }
+    }
+    
+    
+    //MARK: Internal
+    func animate(right: Bool) {
+        //animate right or left based on the flag passed in 
         var transition = CATransition()
         transition.duration = 0.4
         transition.type = kCATransitionPush
         transition.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseInEaseOut)
         
-        if sender == button1 {
+        if right {
+            if viewOneActive {
+                return
+            }
+            
+            viewOneActive = true
             transition.subtype = kCATransitionFromLeft
             view1?.hidden = false
             view2?.hidden = true
@@ -62,6 +91,11 @@ class MBViewPaneSlider : NSObject {
             activeButton = button1
         }
         else {
+            if !viewOneActive {
+                return
+            }
+            
+            viewOneActive = false
             transition.subtype = kCATransitionFromRight
             view2?.hidden = false
             view1?.hidden = true

@@ -13,8 +13,10 @@ import UIKit
 private let _singletonInstance = PGApiManager()
 
 @objc class PGApiManager : NSObject {
-    let base_url = "http://packagegrid.com/"
-//    let base_url = "http://192.168.79.166:3000/"
+    let logging = true
+    
+//    let base_url = "http://packagegrid.com/"
+    let base_url = "http://192.168.79.166:3000/"
     
     
     var user: User?
@@ -203,7 +205,7 @@ private let _singletonInstance = PGApiManager()
         generateAuthenticatedClient().GET("api/v1/auth?user_email=\(email)&password=\(password)", parameters: nil,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
-                println("API: User Success")
+                self.optionalLog("API: User Success")
                 
                 var error: NSError?
                 let json = responseObject as Dictionary<String, AnyObject>
@@ -322,7 +324,7 @@ private let _singletonInstance = PGApiManager()
                 println(operation)
         })
         
-        println("API: Customer Success")
+        optionalLog("API: Customer Success")
     }
     
     
@@ -334,7 +336,7 @@ private let _singletonInstance = PGApiManager()
         generateAuthenticatedClient().POST("dashboard/\(user!.group_id)/customers", parameters: json,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
-                println("API: Customer Success")
+                self.optionalLog("API: Customer Success")
                 
                 //asign the returned customer object as the receipt's custoemr
                 let customer = self.serializeObject(responseObject!, jsonKey: "customer", objectClass: Customer.self)
@@ -360,7 +362,7 @@ private let _singletonInstance = PGApiManager()
         generateAuthenticatedClient().POST("dashboard/\(user!.group_id)/merchandise", parameters: json,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
-                println("API: Merchandise Success")
+                self.optionalLog("API: Merchandise Success")
                 
                 //asign the returned merchandise object as the receipts merchandise root object
                 let merchandise = self.serializeObject(responseObject!, jsonKey: "merchandise", objectClass: Product.self)
@@ -385,13 +387,13 @@ private let _singletonInstance = PGApiManager()
         updateHUDText("Uploading Receipt")
         let json = MTLJSONAdapter.JSONDictionaryFromModel(receipt)
         
-        println(json)
+        optionalLog(json)
         
         generateAuthenticatedClient().POST("dashboard/\(user!.group_id)/receipts", parameters: json,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
-                println("API: Receipt Success")
-//                println(responseObject)
+                self.optionalLog("API: Receipt Success")
+//                optionalLog(responseObject)
                 
                 //need the receipt ID in order to create the pdf path on S3
                 receipt.id = (responseObject as NSDictionary).objectForKey("receipt") as Int
@@ -432,16 +434,16 @@ private let _singletonInstance = PGApiManager()
     }
     
     func serializeObjects(responseObject:AnyObject, jsonKey:String, objectClass:AnyClass) -> NSArray {
-        println("API: \(jsonKey) Success")
-        println(responseObject)
+        optionalLog("API: \(jsonKey) Success")
+        optionalLog(responseObject)
         var error: NSError?
         let cocoaArray: NSArray = MTLJSONAdapter.modelsOfClass(objectClass, fromJSONArray: (responseObject as NSDictionary).objectForKey(jsonKey) as NSArray, error: &error) as NSArray
         return cocoaArray
     }
     
     func serializeObject(responseObject:AnyObject, jsonKey:String, objectClass:AnyClass) -> AnyObject {
-        println("API: \(jsonKey) Success")
-        println(responseObject)
+        optionalLog("API: \(jsonKey) Success")
+        optionalLog(responseObject)
         var error: NSError?
         let returnedObject = MTLJSONAdapter.modelOfClass(objectClass, fromJSONDictionary: (responseObject as NSDictionary).objectForKey(jsonKey) as NSDictionary, error: &error) as AnyObject
         
@@ -462,7 +464,7 @@ private let _singletonInstance = PGApiManager()
                 product.image = UIImage(named: "Placeholder")
                 product.desaturatedImage = product.image!.desaturate()
                 
-                println("Image failure for product \(product.name)")
+                self.optionalLog("Image failure for product \(product.name)")
                 println(error)
         })
         
@@ -481,11 +483,17 @@ private let _singletonInstance = PGApiManager()
             failure: { (operation: AFHTTPRequestOperation!, error: NSError!) ->Void in
                 user.image = UIImage(named: "Placeholder")
                 
-                println("Image failure for product \(user.name)")
+                self.optionalLog("Image failure for product \(user.name)")
                 println(error)
         })
         
         operation.start()
+    }
+    
+    func optionalLog(contents: AnyObject) {
+        if logging {
+            println(contents)
+        }
     }
     
     //TESTING TESTING TESTING
@@ -506,11 +514,11 @@ private let _singletonInstance = PGApiManager()
         customer.group_id = user!.group_id
         
 //        createMerchandise(receipt, success: { (success) -> Void in
-//            println("Completed Merchandise")
+//            optionalLog("Completed Merchandise")
 //        })
 
         createCustomer(receipt, success:  { (success) -> Void in
-            println("Completed Customer")
+            self.optionalLog("Completed Customer")
         })
     }
 }

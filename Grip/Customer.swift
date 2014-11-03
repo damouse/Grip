@@ -32,7 +32,7 @@ class Customer : MTLModel, MTLJSONSerializing {
     }
     
     class func JSONKeyPathsByPropertyKey() -> [NSObject : AnyObject]! {
-        return Dictionary<String, String>()
+        return [:]
     }
     
 //    class func JSONTransformerForKey(key: String!) -> NSValueTransformer! {
@@ -67,4 +67,5 @@ class Customer : MTLModel, MTLJSONSerializing {
     override init(dictionary dictionaryValue: [NSObject : AnyObject]!, error: NSErrorPointer) {
         super.init(dictionary: dictionaryValue!, error: error)
     }
+    
 }

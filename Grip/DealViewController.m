@@ -118,12 +118,12 @@ typedef enum UIState{
     paneSlider = [[MBViewPaneSlider alloc] initWithView1:viewPresetPackageSlidein button1:buttonStockPackages view2:viewCustomerPackageSlideIn button2:buttonCustomerPackages];
     
     //if there are customer packages, show the first one. Else show the first user package. Else do nothing
-//    if ([self.dealmaker.customerPackages count] > 0) {
-//        [self selectPackage:[self.dealmaker.customerPackages objectAtIndex:0]];
-//    }
-//    else if ([self.dealmaker.userPackages count] > 0) {
-//        [self selectPackage:[self.dealmaker.userPackages objectAtIndex:0]];
-//    }
+    if ([self.dealmaker.customerPackages count] > 0) {
+        [self selectPackage:[self.dealmaker.customerPackages objectAtIndex:0]];
+    }
+    else if ([self.dealmaker.userPackages count] > 0) {
+        [self selectPackage:[self.dealmaker.userPackages objectAtIndex:0]];
+    }
 }
 
 
@@ -341,20 +341,37 @@ typedef enum UIState{
 
 - (void) packageMatch:(Package *) package {
     //called from dealmaker when a user's selection, rollback, or package selection matches an existing pakage
-    //change or set the package data
-    NSLog(@"Package Match! Package: %@", package.name);
-    [userPackageDelegate highlighCellForPackage:package];
+    // method receives nil if no package matches the content-- unhighlight the selected package
+    bool userPack = [userPackageDelegate highlighCellForPackage:package];
+    bool customerPack = [customerPackageDelegate highlighCellForPackage:package];
+    
+    //swich the pane slider
+    if (userPack)
+        [paneSlider activateView:viewPresetPackageSlidein];
+    
+    if (customerPack)
+        [paneSlider activateView:viewCustomerPackageSlideIn];
+        
+    
+    //change the label for discount
+    if (package != nil) {
+        [self setTextfield:textfieldPackageDiscount textWithString:[NSString stringWithFormat:@"%u", package.discount]];
+    }
+    
+    if (package == nil) {
+        [self setTextfield:textfieldPackageDiscount textWithString:@"0"];
+    }
 }
 
 
 #pragma mark IBActions
-- (IBAction)cancel:(id)sender {
+- (IBAction) cancel:(id)sender {
     [self outroAnimations:^(BOOL completion){
         [self.navigationController popViewControllerAnimated:NO];
     }];
 }
 
-- (IBAction)complete:(id)sender {
+- (IBAction) complete:(id)sender {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     SigningViewController *signController = [storyboard instantiateViewControllerWithIdentifier:@"signViewController"];
 
@@ -364,23 +381,24 @@ typedef enum UIState{
     [self.navigationController pushViewController:signController animated:YES];
 }
 
-- (IBAction)walkthrough:(id)sender {
+- (IBAction) walkthrough:(id)sender {
 
 }
 
-- (IBAction)undo:(id)sender {
+- (IBAction) undo:(id)sender {
     [rollback undo];
 }
 
-- (IBAction)infoTapped:(id)sender {
+- (IBAction) infoTapped:(id)sender {
     [self animateInfoPaneIn];
 }
 
-- (IBAction)infoDetailsExit:(id)sender {
+- (IBAction) infoDetailsExit:(id)sender {
     [self animateInfoPaneOut];
+    [self keyboardWillHide:nil];
 }
 
-- (IBAction)productDetailsExit:(id)sender {
+- (IBAction) productDetailsExit:(id)sender {
     //dismiss product pane, return to normal
     lastSelectedProductReceipt = nil;
     [self animateProductPaneOut];
@@ -392,7 +410,7 @@ typedef enum UIState{
     //animate the details view up to make the textfield visible when the keyboard is up
     
     //term, and loan are the two that both can be edited and can't be seen
-    if (sender == textfieldTerm || sender == textfieldApr) {
+    if (sender == textfieldTerm || sender == textfieldApr || sender == textfieldPackageDiscount) {
         [animator animateObjectToRelativePosition:viewInfoDetails direction:VAAnimationDirectionUp withMargin:-300 completion:nil];
         currentUIState = StateShowingInfoUp;
     }
@@ -409,13 +427,14 @@ typedef enum UIState{
         //ask dealmaker to recalculate values
     }
     
-    if (textView == textfieldTerm) {
+    if (textView == textfieldTerm)
         [self.dealmaker termChanged:[textView.text intValue]];
-    }
     
-    if (textView == textfieldApr) {
+    if (textView == textfieldApr)
         [self.dealmaker aprChanged:[textfieldApr.text doubleValue]];
-    }
+    
+    if (textView == textfieldPackageDiscount)
+        [self.dealmaker discountChanged:[textfieldApr.text intValue]];
     
     if (textView == textfieldCustomerEmail) {
         self.dealmaker.receipt.customer.email = textView.text;

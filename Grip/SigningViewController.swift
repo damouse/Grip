@@ -87,12 +87,19 @@ class SigningViewController: UIViewController, UITableViewDataSource {
     
     func populateContent() {
         labelCustomerName.text = self.receipt?.customer?.name
-        labelMerchandise.text = self.receipt?.merchandise_receipt_attributes?.name
-        labelFinancing.text = "\(self.receipt?.discount)%"
-        labelPayment.text = "MONEY"
+        labelMerchandise.text = self.receipt!.merchandise_receipt_attributes?.name
+        labelFinancing.text = "\(self.receipt!.discount)%"
+        labelPayment.text = "\(self.receipt!.cost)";
         
         labelSalesName.text = self.receipt?.user?.name
-        labelPackageName.text = "PACKAGE NAME"
+        
+        if self.receipt?.package == nil {
+            labelPackageName.text = "Custome"
+        }
+        else {
+            labelPackageName.text = self.receipt?.package?.name
+        }
+        
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd 'at' h:mm a"
@@ -118,6 +125,8 @@ class SigningViewController: UIViewController, UITableViewDataSource {
         //Flip the background color of the pdf view, add margins and spacing where needed, move the signature view to the bottom, 
         //and return the view
         viewPage.backgroundColor = UIColor.whiteColor()
+        
+        viewSignatureView.strokeColor = UIColor.blackColor()
         
         for label in labels {
             label.textColor = UIColor.blackColor()

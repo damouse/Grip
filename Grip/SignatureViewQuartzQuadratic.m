@@ -34,6 +34,7 @@ static CGPoint midpoint(CGPoint p0, CGPoint p1) {
     // Erase with long press
     [self addGestureRecognizer:[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(erase)]];
     
+    self.strokeColor = [UIColor whiteColor];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -73,7 +74,7 @@ static CGPoint midpoint(CGPoint p0, CGPoint p1) {
 }
 
 - (void)drawRect:(CGRect)rect {
-    [[UIColor whiteColor] setStroke];
+    [self.strokeColor setStroke];
     [path stroke];
 }
 

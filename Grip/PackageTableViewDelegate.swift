@@ -10,12 +10,15 @@ import Foundation
 
 
 class PackageTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDelegate {
-    var packages: NSArray
+    var packages: [Package]
     var table: UITableView
     var didSelectBlock: ((package: Package) -> Void)
     
+    //the currently selected cell
+    var selectedCell: UITableViewCell?
     
-    init(packs: NSArray, tableView: UITableView, selectBlock: (package: Package) -> Void) {
+    
+    init(packs: [Package], tableView: UITableView, selectBlock: (package: Package) -> Void) {
         packages = packs
         table = tableView
         didSelectBlock = selectBlock
@@ -28,12 +31,41 @@ class PackageTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDel
     
     
     //MARK: Public Interface
-    func highlighCellForPackage(package: Package) {
-        //highlights the given cell in the given package
-        let index = packages.indexOfObject(package)
+    func highlighCellForPackage(package: Package?) -> Bool {
+        //if nil passed in, then the user has selected a product that makes the packages not match to anything
+        if package == nil {
+            
+            //if selected cell is not nil, package is selected that needs to be unselected
+            if selectedCell != nil {
+                selectedCell!.textLabel.textColor = UIColor.whiteColor();
+            }
+            
+            return false
+        }
         
-        var cell = table.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0))!
+        let index = find(packages, package!)
+        
+        //if package not found, this package is not meant for us. Deselect the active packge if one exists
+        if index == nil {
+            if selectedCell != nil {
+                selectedCell!.textLabel.textColor = UIColor.whiteColor();
+            }
+            
+            return false
+        }
+        
+        var cell = table.cellForRowAtIndexPath(NSIndexPath(forRow: index!, inSection: 0))!
         cell.textLabel.textColor = HIGHLIGHT_COLOR
+        
+        //if another cell was previously selected, deselect it
+        if selectedCell != nil {
+            if cell != selectedCell {
+                selectedCell!.textLabel.textColor = UIColor.whiteColor();
+            }
+        }
+        
+        selectedCell = cell
+        return true
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,6 +83,6 @@ class PackageTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDel
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        didSelectBlock(package: packages.objectAtIndex(indexPath.row) as Package)
+        didSelectBlock(package: packages[indexPath.row] as Package)
     }
 }

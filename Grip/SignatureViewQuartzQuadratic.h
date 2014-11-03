@@ -12,4 +12,6 @@
 
 - (void) colorBlackAndWhite;
 
+@property (strong, nonatomic) UIColor *strokeColor;
+
 @end
