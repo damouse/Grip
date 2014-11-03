@@ -234,7 +234,12 @@ class SigningViewController: UIViewController, UITableViewDataSource {
         let receipt = self.receipt!.product_receipts_attributes![indexPath.row]
         
         cell!.textLabel.text = receipt.name
-        cell!.detailTextLabel!.text = "\(receipt.price)"
+        
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        formatter.roundingMode = NSNumberFormatterRoundingMode.RoundUp
+        
+        cell!.detailTextLabel!.text = "\(formatter.stringFromNumber(receipt.price))"
         
         cell?.backgroundColor = UIColor.clearColor()
         
