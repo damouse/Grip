@@ -42,18 +42,18 @@ private let _singletonInstance = PGApiManager()
         );
     }
     
-    func loadPackagesForCustomer(customer: Customer, success:(() -> Void)) {
-        //loads packages associated with the given customer and assigns them to the customer
-        if customer.loadedPackages {
-            success()
-            return
-        }
-        
-        self.loadPackages(customer.id, success: { (packages: AnyObject) -> Void in
-            customer.packages = packages as [Package]
-            success()
-        })
-    }
+//    func loadPackagesForCustomer(customer: Customer, success:(() -> Void)) {
+//        //loads packages associated with the given customer and assigns them to the customer
+//        if customer.loadedPackages {
+//            success()
+//            return
+//        }
+//        
+//        self.loadPackages(customer.id, success: { (packages: AnyObject) -> Void in
+//            customer.packages = packages as [Package]
+//            success()
+//        })
+//    }
     
     func uploadReceipt(view: UIView, superview: UIView, receipt: Receipt, completion: (success: Bool) -> Void) {
         showHUD(superview)

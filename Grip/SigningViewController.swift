@@ -170,7 +170,10 @@ class SigningViewController: UIViewController, UITableViewDataSource {
     
     //MARK: IBActions
     @IBAction func cancel(sender: AnyObject) {
-        dismissController()
+        self.teardownAnimations({ () -> Void in
+            self.navigationController!.popViewControllerAnimated(true)
+            return
+        })
     }
     
     @IBAction func confirm(sender: AnyObject) {

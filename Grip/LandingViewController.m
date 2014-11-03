@@ -143,24 +143,44 @@
 #pragma mark Login Flow
 
 
-#pragma mark Search Embed and References
-- (void) presentPackage:(Customer *) customer {
+#pragma mark Search, Customers, and Merchandise
+- (void) presentPackage {
     [self closingAnimations];
-    [animator animateObjectOffscreen:viewMenu completion:^(BOOL completion){
+    
+    [animator animateObjectOffscreen:viewPresentDialog completion:^(BOOL completion){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         DealViewController *dealController = [storyboard instantiateViewControllerWithIdentifier:@"dealViewController"];
         
-        Product *merchandise = [apiManager.merchandises objectAtIndex: 0];
+        Product *merchandise = collectionMerchandiseDelegate.selectedMerchandise;
+        Customer *customer = collectionCustomerDelegate.selectedCustomer;
+        
         Dealmaker *dealmaker = [[Dealmaker alloc] initWithAllProducts:apiManager.products user:apiManager.user customer:customer merchandise:merchandise];
         
         dealmaker.customerPackages = customer.packages;
         dealmaker.userPackages = apiManager.packages;
         
-        [dealmaker selectPackage:[apiManager.packages objectAtIndex:0]];
         dealController.dealmaker = dealmaker;
         
         [self.navigationController pushViewController:dealController animated:NO];
     }];
+}
+
+- (void) checkCustomerAndMerchandise {
+    //check the customer and the merchandise fields from the dialog table, filling them in if needed
+    //this method is recalled at the end of every completed alert
+    
+    if (collectionMerchandiseDelegate.selectedMerchandise.name == nil) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Merchandise" message:@"Please enter a name for the new Merchandise" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Done", nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [alert show];
+    }
+    else if (collectionCustomerDelegate.selectedCustomer.name == nil) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Customer" message:@"Please enter a name for the new Customer" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Done", nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [alert show];
+    }
+    else
+        [self presentPackage];
 }
 
 
@@ -316,8 +336,6 @@
 }
 
 
-
-
 #pragma mark IBActions
 - (IBAction) login:(id)sender {
     if (loggedIn) {
@@ -372,13 +390,19 @@
 }
 
 - (IBAction) dialogPresent:(id)sender {
-    if (searchController.selectedCustomer == nil) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Error"] message:@"Please select a customer or choose 'New Customer'"  delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    if (collectionMerchandiseDelegate.selectedMerchandise == nil) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Error"] message:@"Please select an existing merchandise item or create a new one"  delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alert show];
         return;
     }
     
-    [self presentPackage:searchController.selectedCustomer];
+    if (collectionCustomerDelegate.selectedCustomer == nil) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Error"] message:@"Please select an existing customer or create a new one"  delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
+    [self checkCustomerAndMerchandise];
 }
 
 - (IBAction) settingsDone:(id)sender {
@@ -387,5 +411,21 @@
 
 - (IBAction) help:(id)sender {
 //    [apiManager TEST];
+}
+
+
+#pragma mark AlertView Delegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0)
+        return;
+    
+    if ([alertView.title isEqualToString: @"New Merchandise"]) {
+        collectionMerchandiseDelegate.selectedMerchandise.name = [alertView textFieldAtIndex:0].text;
+    }
+    else if ([alertView.title isEqualToString: @"New Customer"]) {
+        collectionCustomerDelegate.selectedCustomer.name = [alertView textFieldAtIndex:0].text;
+    }
+
+    [self checkCustomerAndMerchandise];
 }
 @end

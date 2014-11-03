@@ -24,7 +24,6 @@ class Customer : MTLModel, MTLJSONSerializing {
     
     //used to check package downloads
     var packages = NSArray()
-    var loadedPackages = false
     
     
     //Boilerplate Mantle code

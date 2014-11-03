@@ -91,9 +91,6 @@ typedef enum UIState{
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-    //two-pane slider init
-    paneSlider = [[MBViewPaneSlider alloc] initWithView1:viewPresetPackageSlidein button1:buttonStockPackages view2:viewCustomerPackageSlideIn button2:buttonCustomerPackages];
-    
     [self initAnimations];
     [self setInitialLabels];
     [self colorize];
@@ -106,6 +103,16 @@ typedef enum UIState{
     NSURL *url = [NSURL URLWithString:@"http://www.youtube.com/watch?v=fDXWW5vX-64"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [webviewVideo loadRequest:request];
+    
+    paneSlider = [[MBViewPaneSlider alloc] initWithView1:viewPresetPackageSlidein button1:buttonStockPackages view2:viewCustomerPackageSlideIn button2:buttonCustomerPackages];
+    
+    //if there are customer packages, show the first one. Else show the first user package. Else do nothing
+    if ([self.dealmaker.customerPackages count] > 0) {
+        [self selectPackage:[self.dealmaker.customerPackages objectAtIndex:0]];
+    }
+    else if ([self.dealmaker.userPackages count] > 0) {
+        [self selectPackage:[self.dealmaker.userPackages objectAtIndex:0]];
+    }
 }
 
 
