@@ -23,7 +23,8 @@ class Receipt : MTLModel, MTLJSONSerializing {
     
     var discount = 0
     var cost = 0.0
-    var apr = 0.0
+    var apr = 0.1
+    var term = 36
     
     //non API fields
     var user: User?

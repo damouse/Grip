@@ -28,6 +28,7 @@ class Dealmaker : NSObject {
     var currentProductOrdering = [ProductReceipt]()
     
     var packageMatch: ((package: Package) -> Void)?
+    var totalChanged: ((total: Double) -> Void)?
     
     
     init(allProducts: [Product], user: User, customer: Customer, merchandise: Product) {
@@ -100,13 +101,24 @@ class Dealmaker : NSObject {
     }
     
     
-    //MARK: complete receipt and return
+    //MARK: methods from DealVC
     func completeReceipt() -> Receipt {
         //complete the receipt object by adding the active products
         receipt.product_receipts_attributes = currentProductOrdering.filter({$0.active == true})
         
         receipt.package_id = -1
         return receipt
+    }
+    
+    func aprChanged(apr: Double) {
+        //change the APR in the receipt and calculate the new values. Returns the new monthly payment
+        receipt.apr = apr
+        recalculateTotals()
+    }
+    
+    func termChanged(term: Int) {
+        receipt.term = term
+         recalculateTotals()
     }
     
     
@@ -162,5 +174,11 @@ class Dealmaker : NSObject {
 //        unselectedItems.sort({$0.product?.order_index < $1.product?.order_index})
         
         currentProductOrdering = selectedItems + unselectedItems
+    }
+    
+    func recalculateTotals() {
+        //recalculate the sum of all active products and the monthly payment amount
+        
+        //call the newTotal block
     }
 }

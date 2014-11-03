@@ -13,8 +13,8 @@ import UIKit
 private let _singletonInstance = PGApiManager()
 
 @objc class PGApiManager : NSObject {
-//    let base_url = "http://packagegrid.com/"
-    let base_url = "http://192.168.79.166:3000/"
+    let base_url = "http://packagegrid.com/"
+//    let base_url = "http://192.168.79.166:3000/"
     
     
     var user: User?

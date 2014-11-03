@@ -78,18 +78,23 @@ typedef enum UIState{
     tableProducts.dataSource = tableDelegate;
     
     //package table inits
+    __weak DealViewController *weak_self = self;
     customerPackageDelegate = [[PackageTableViewDelegate alloc] initWithPacks:self.dealmaker.customerPackages tableView:tableCustomerPackages selectBlock:^(Package *package) {
-        [self selectPackage:package];
+        [weak_self selectPackage:package];
     }];
     
     userPackageDelegate = [[PackageTableViewDelegate alloc] initWithPacks:self.dealmaker.userPackages tableView:tablePresetPackages selectBlock:^(Package *package) {
-        [self selectPackage:package];
+        [weak_self selectPackage:package];
     }];
     
     //dealmaker package match callback (note: work around to avoid the circular dependancies when requiring the swift files with this deal controller)
-    __weak id weak_self = self;
     self.dealmaker.packageMatch = ^(Package* package) {
         [weak_self packageMatch:package];
+    };
+    
+    //called when the dealmaker has determined that the monthly cost of the deal has changed
+    self.dealmaker.totalChanged = ^(double newTotal) {
+        [weak_self changeMonthlyPaymentTo:newTotal];
     };
     
     //register to be notified if the keyboard is dismissed
@@ -280,6 +285,17 @@ typedef enum UIState{
 }
 
 
+#pragma mark Payment View
+- (void) changeMonthlyPaymentTo:(double) value {
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
+    NSString *textValue = [numberFormatter stringFromNumber:[NSNumber numberWithDouble:value]];
+    
+    labelMonthlyPayment.text = textValue;
+    textfieldMonthly.text = textValue;
+}
+
+
 #pragma mark Table Delegate Methods
 - (void) didTouchProduct:(ProductReceipt *) product {
     //triggered from the table
@@ -368,7 +384,7 @@ typedef enum UIState{
 
 
 #pragma mark Textview Delegate
-- (void)textFieldDidBeginEditing:(UITextField *)sender {
+- (void) textFieldDidBeginEditing:(UITextField *)sender {
     //animate the details view up to make the textfield visible when the keyboard is up
     
     //term, and loan are the two that both can be edited and can't be seen
@@ -379,13 +395,34 @@ typedef enum UIState{
     
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textView {
-    if (lastSelectedProductReceipt != nil) {
+- (BOOL) textFieldShouldReturn:(UITextField *)textView {
+    //value setting- for each textfield
+    if (textviewProductPrice == textView) {
         NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
         [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
         lastSelectedProductReceipt.price  = [[numberFormatter numberFromString:textView.text] floatValue];
+        
+        //ask dealmaker to recalculate values
     }
     
+    if (textView == textfieldTerm) {
+        [self.dealmaker termChanged:[textView.text intValue]];
+    }
+    
+    if (textView == textfieldApr) {
+        [self.dealmaker aprChanged:[textfieldApr.text doubleValue]];
+    }
+    
+    if (textView == textfieldCustomerEmail) {
+        self.dealmaker.receipt.customer.email = textView.text;
+    }
+    
+    //should this be allowed if the customer is imported from the backend?
+    if (textView == textfieldCustomerName) {
+        self.dealmaker.receipt.customer.name = textView.text;
+    }
+    
+    //end animation for textviews not normally visible to the user
     if (currentUIState == StateShowingInfoUp) {
         [animator animateObjectToStartingPosition:viewInfoDetails completion:nil];
         currentUIState = StateShowingInfo;
@@ -395,7 +432,7 @@ typedef enum UIState{
     return YES;
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+- (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
     NSString *newString =[textField.text stringByReplacingCharactersInRange:range withString:string];
     
@@ -426,8 +463,8 @@ typedef enum UIState{
         currentUIState = StateShowingInfo;
     }
     
-    [textfieldApr endEditing:YES];
-    [textfieldTerm endEditing:YES];
-    [textviewProductPrice endEditing:YES];
+    //remove cursor from the textfields
+    for (UITextField *field in textfields)
+         [field endEditing:YES];
 }
 @end

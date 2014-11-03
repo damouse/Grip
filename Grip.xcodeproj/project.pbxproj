@@ -16,7 +16,6 @@
 		50637C63199247F40010A6EF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50637C62199247F40010A6EF /* User.swift */; };
 		507D0470193E7A18003CC3B6 /* UIView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D046F193E7A18003CC3B6 /* UIView+Utils.m */; };
 		507D0476193E7CA4003CC3B6 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */; };
-		508F8F3719F70ECA00610C3F /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 508F8F3619F70ECA00610C3F /* SearchViewController.m */; };
 		508F8F3919F7108700610C3F /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508F8F3819F7108700610C3F /* Customer.swift */; };
 		508F8F3B19F73A5F00610C3F /* GripSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508F8F3A19F73A5F00610C3F /* GripSpinner.swift */; };
 		5094B1C21A06F12A00FE8BDD /* CustomerMerchCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5094B1C11A06F12A00FE8BDD /* CustomerMerchCollectionCell.swift */; };
@@ -116,8 +115,6 @@
 		507D046F193E7A18003CC3B6 /* UIView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Utils.m"; sourceTree = "<group>"; };
 		507D0474193E7CA4003CC3B6 /* ProductTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableViewCell.h; sourceTree = "<group>"; };
 		507D0475193E7CA4003CC3B6 /* ProductTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTableViewCell.m; sourceTree = "<group>"; };
-		508F8F3519F70ECA00610C3F /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
-		508F8F3619F70ECA00610C3F /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		508F8F3819F7108700610C3F /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		508F8F3A19F73A5F00610C3F /* GripSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GripSpinner.swift; sourceTree = "<group>"; };
 		5094B1C11A06F12A00FE8BDD /* CustomerMerchCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerMerchCollectionCell.swift; sourceTree = "<group>"; };
@@ -380,8 +377,6 @@
 				509BA69A18EB50620011D374 /* LandingViewController.m */,
 				509BA69C18EB50930011D374 /* DealViewController.h */,
 				509BA69D18EB50930011D374 /* DealViewController.m */,
-				508F8F3519F70ECA00610C3F /* SearchViewController.h */,
-				508F8F3619F70ECA00610C3F /* SearchViewController.m */,
 				50CC00FE1A02CC1F00ED1E9D /* SigningViewController.swift */,
 			);
 			name = Controller;
@@ -798,7 +793,6 @@
 				509BB196193A756100FC8CC7 /* MBPreCacher.m in Sources */,
 				509BB186193A756100FC8CC7 /* MCCollectionViewDelegate.m in Sources */,
 				5053F108194132B400EDF062 /* RMSwipeTableViewCell.m in Sources */,
-				508F8F3719F70ECA00610C3F /* SearchViewController.m in Sources */,
 				502F0434193FC90900516A0F /* ProductTableViewDelegate.m in Sources */,
 				509BA66D18EB4E960011D374 /* main.m in Sources */,
 				509BB18F193A756100FC8CC7 /* MBBoilerplateUtils.m in Sources */,
@@ -948,7 +942,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "A0086BA2-018A-4A71-968D-F8149751BBEC";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Grip/Grip-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -971,7 +965,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "A0086BA2-018A-4A71-968D-F8149751BBEC";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Grip/Grip-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
