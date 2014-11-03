@@ -73,9 +73,7 @@
     [self colorize];
     [self setLoginButtonState];
     
-    //set up collection views
-    collectionMerchandiseDelegate = [[MerchandiseCollectionViewDelegate alloc] initWithView:collectionviewMerchandise];
-    collectionCustomerDelegate = [[CustomerCollectionViewDelegate alloc] initWithView:collectionviewCustomers];
+    [self setupCollectionViews];
 }
 
 - (void) viewDidLayoutSubviews {
@@ -109,7 +107,8 @@
         [self showBothLogos];
         [self setLoginButtonState];
         
-        [searchController setCustomers:apiManager.customers];
+        collectionCustomerDelegate.customers = apiManager.customers;
+        collectionMerchandiseDelegate.merchandises = apiManager.merchandises;
     }];
 }
 
@@ -134,29 +133,17 @@
     textfieldPassword.backgroundColor = PRIMARY_LIGHT;
 }
 
+- (void) setupCollectionViews {
+    //set up collection views
+    collectionMerchandiseDelegate = [[MerchandiseCollectionViewDelegate alloc] initWithView:collectionviewMerchandise];
+    collectionCustomerDelegate = [[CustomerCollectionViewDelegate alloc] initWithView:collectionviewCustomers];
+}
+
 
 #pragma mark Login Flow
 
 
 #pragma mark Search Embed and References
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString: @"embedSearch"]) {
-       searchController = (SearchViewController *) [segue destinationViewController];
-        searchController.parent = self;
-    }
-}
-
-- (void) packageSelectedCustomer:(Customer *) customer {
-    //package dropdown has selected a customer-- display information about that customer and ungrey the button
-
-    
-}
-
-- (void) packageDeselectedCustomer {
-    //package dropdown deselected the previously selected customer, remove the details and optionally disable the button
-    
-}
-
 - (void) presentPackage:(Customer *) customer {
     [self closingAnimations];
     [animator animateObjectOffscreen:viewMenu completion:^(BOOL completion){
@@ -192,7 +179,7 @@
 }
 
 
-#pragma mark View Batch Methods
+#pragma mark General Animations
 - (void) initialAnimations {
 //    bring the buttons onscreen
     [animator animateObjectOnscreen:viewMenu completion:nil];
@@ -210,13 +197,18 @@
 }
 
 - (void) closingAnimations {
-    //animations the occur when the
-    
-    //move both logos offscreen
-    [animator animateObjectOffscreen:imageCompanyLogo completion:nil];
-    [animator animateObjectOffscreen:imageGripLogo completion:nil];
+    [self logosOffScreen];
 }
 
+- (void) setLoginButtonState {
+    if (loggedIn)
+        [buttonLogin setTitle:@"LOG OUT" forState:UIControlStateNormal];
+    else
+        [buttonLogin setTitle:@"LOGIN" forState:UIControlStateNormal];
+}
+
+
+#pragma mark Logo Animations
 - (void) logosToBottom {
     //move the logos to the bottom of the screen, clearing space for the top section
     [animator animateCustomAnimationForView:imageGripLogo andKey:@"clear top" completion:nil];
@@ -245,6 +237,13 @@
     [animator animateObjectOffscreen:imageCompanyLogo completion:nil];
 }
 
+- (void) logosOffScreen {
+    [animator animateObjectOffscreen:imageCompanyLogo completion:nil];
+    [animator animateObjectOffscreen:imageGripLogo completion:nil];
+}
+
+
+#pragma mark Pane Animations
 - (void) presentLogin {
     if (displayingSettings)
         [self dismissSettings];
@@ -293,8 +292,11 @@
     if(displayingSettings)
         [self dismissSettings];
     
-    [animator animateObjectOnscreen:viewPresentDialog completion:nil];
-    [self logosToBottom];
+    [self logosOffScreen];
+    [animator animateObjectOffscreen:viewMenu completion:^(BOOL completed) {
+        [animator animateObjectOnscreen:viewPresentDialog completion:nil];
+    }];
+    
     displayingPackageCustomer = true;
 }
 
@@ -304,17 +306,16 @@
         return;
     }
     
-    [animator animateObjectOffscreen:viewPresentDialog completion:nil];
+    [animator animateObjectOffscreen:viewPresentDialog completion:^(BOOL done) {
+        [animator animateObjectOnscreen:viewMenu completion:nil];
+        [self showBothLogos];
+    }];
+        
     displayingPackageCustomer = false;
-    [self showBothLogos];
+    
 }
 
-- (void) setLoginButtonState {
-    if (loggedIn)
-        [buttonLogin setTitle:@"LOG OUT" forState:UIControlStateNormal];
-    else
-        [buttonLogin setTitle:@"LOGIN" forState:UIControlStateNormal];
-}
+
 
 
 #pragma mark IBActions
@@ -338,10 +339,7 @@
         return;
     }
     
-    if (displayingPackageCustomer)
-        [self dismissPackageCustomer];
-    else
-        [self presentPackageCustomer];
+    [self presentPackageCustomer];
 }
 
 - (IBAction) settings:(id)sender {
@@ -359,7 +357,9 @@
         [self showBothLogos];
         [self setLoginButtonState];
         
-        [searchController setCustomers:apiManager.customers];
+        //set the collection views' models
+        collectionCustomerDelegate.customers = apiManager.customers;
+        collectionMerchandiseDelegate.merchandises = apiManager.merchandises;
     }];
 }
 
@@ -367,15 +367,11 @@
     [self dismissLogin];
 }
 
-- (IBAction) settingsDone:(id)sender {
-    [self dismissSettings];
+- (IBAction) customerMerchandiseDialogCancel:(id)sender {
+    [self dismissPackageCustomer];
 }
 
-- (IBAction) help:(id)sender {
-//    [apiManager TEST];
-}
-
-- (IBAction) existingCustomer:(id)sender {
+- (IBAction) dialogPresent:(id)sender {
     if (searchController.selectedCustomer == nil) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Error"] message:@"Please select a customer or choose 'New Customer'"  delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alert show];
@@ -385,7 +381,11 @@
     [self presentPackage:searchController.selectedCustomer];
 }
 
-- (IBAction) newCustomer:(id)sender {
-    [self presentPackage:nil];
+- (IBAction) settingsDone:(id)sender {
+    [self dismissSettings];
+}
+
+- (IBAction) help:(id)sender {
+//    [apiManager TEST];
 }
 @end

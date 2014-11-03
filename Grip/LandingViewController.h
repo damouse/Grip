@@ -28,7 +28,6 @@
     __weak IBOutlet UITextField *textfieldPassword;
     
     //Searching, Customers, and Present Dialog
-
     __weak IBOutlet UIView *viewPresentDialog;
 
     __weak IBOutlet UICollectionView *collectionviewMerchandise;
@@ -47,6 +46,7 @@
 
 - (IBAction)settingsDone:(id)sender;
 
-- (void) packageSelectedCustomer:(Customer *) customer;
-- (void) packageDeselectedCustomer;
+//present screen dialog
+- (IBAction)customerMerchandiseDialogCancel:(id)sender;
+- (IBAction)dialogPresent:(id)sender;
 @end

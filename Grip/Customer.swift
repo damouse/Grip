@@ -61,7 +61,7 @@ class Customer : MTLModel, MTLJSONSerializing {
         super.init(coder: coder)
     }
     
-    override init() {
+    required override init() {
         super.init()
     }
     
