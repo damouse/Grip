@@ -23,7 +23,7 @@ class Customer : MTLModel, MTLJSONSerializing {
     var updated_at: NSString?
     
     //used to check package downloads
-    var packages = NSArray()
+    var packages: [Package]?
     
     
     //Boilerplate Mantle code

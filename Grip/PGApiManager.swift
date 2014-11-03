@@ -21,7 +21,7 @@ private let _singletonInstance = PGApiManager()
     var products = NSArray()
     var merchandises = NSArray()
     var packages = NSArray()
-    var customers = NSArray()
+    var customers = [Customer]()
     
     var progressHUD: MBProgressHUD?
     
@@ -165,7 +165,7 @@ private let _singletonInstance = PGApiManager()
         //gets all of the resources sequentially-- waits for the previous one to finished before starting the next
         
         //success blocks
-        let packageSuccess = { (packages: AnyObject) -> Void in
+        let packageSuccess = { (id: Int, packages: AnyObject) -> Void in
             self.packages = packages as NSArray
             self.removeHUD()
             success()
@@ -181,6 +181,14 @@ private let _singletonInstance = PGApiManager()
         
         let customerSuccess = { () -> Void in
             self.loadMerchandises(merchandiseSuccess)
+            
+            //load customer packages for each customer
+            for customer in self.customers {
+                self.loadPackages(customer.id, success: { (id: Int, packages: AnyObject) -> Void in
+                    let customer = self.customers.filter({$0.id == id})[0] as Customer
+                    customer.packages = packages as? [Package]
+                })
+            }
         }
         
         //Kick off the daisy chain
@@ -257,7 +265,7 @@ private let _singletonInstance = PGApiManager()
         })
     }
     
-    func loadPackages(id:Int, success:((AnyObject) -> Void)?) -> Void {
+    func loadPackages(id:Int, success:((Int, AnyObject) -> Void)?) -> Void {
         updateHUDText("Updating Packages")
         
         generateAuthenticatedClient().GET("dashboard/\(id)/packages", parameters: nil,
@@ -289,7 +297,7 @@ private let _singletonInstance = PGApiManager()
                     }
                 }
                 
-                success?(packages)
+                success?(id, packages)
             },
             
             failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
@@ -304,7 +312,7 @@ private let _singletonInstance = PGApiManager()
         generateAuthenticatedClient().GET("dashboard/\(self.user!.group_id)/customers", parameters: nil,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
-                self.customers = self.serializeObjects(responseObject!, jsonKey: "customers", objectClass: Customer.self)
+                self.customers = self.serializeObjects(responseObject!, jsonKey: "customers", objectClass: Customer.self) as [Customer]
                 success?()
             },
             
@@ -333,9 +341,7 @@ private let _singletonInstance = PGApiManager()
                 receipt.customer = customer as? Customer
                 
                 //add the new customer to the local list of customers
-                let temp = NSMutableArray(array: self.customers)
-                temp.addObject(receipt.customer!)
-                self.customers = temp
+                self.customers.append(receipt.customer!)
                 
                 success(success: true)
             },
