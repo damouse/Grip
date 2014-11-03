@@ -22,6 +22,12 @@
 
 @implementation DealTextfieldDelegate {
     Dealmaker *dealmaker;
+    
+    //Flavor text, added to each textfield when presented
+    NSString *flavorApr;
+    NSString *flavorPayment;
+    NSString *flavorTerm;
+    NSString *flavorDiscount;
 }
 
 @synthesize parent;
@@ -33,6 +39,11 @@
                                                  selector:@selector(keyboardWillHide:)
                                                      name:UIKeyboardWillHideNotification
                                                    object:nil];
+        
+        flavorApr = @" Interest";
+        flavorPayment = @" Monthly";
+        flavorTerm = @" Months";
+        flavorDiscount = @" Package Discount";
     }
     return self;
 }
@@ -62,15 +73,20 @@
 #pragma mark Textfields Changing
 - (void) updateLabelsWith:(Receipt *) receipt {
     //called when the dealmaker makes changes and needs to update the textfields
-    [self setTextfield:parent.textfieldCustomerEmail textWithString: receipt.customer.email];
-    [self setTextfield:parent.textfieldCustomerName textWithString: receipt.customer.name];
     
+    [self setTextfield:parent.textfieldCustomerName textWithString: receipt.customer.name];
     parent.labelCustomerName.text = receipt.customer.name;
     
     [self setTerm:receipt];
     [self setApr:receipt];
     [self setMonthly:receipt];
     [self setDiscount:receipt];
+    
+    [self setEmail:receipt];
+    
+    if (self.lastSelectedProduct != nil) {
+        [self setProduct];
+    }
 }
 
 - (void) textfieldsChanged {
@@ -81,6 +97,7 @@
     dealmaker.receipt.customer.name = [self getName];
     dealmaker.receipt.customer.email = [self getEmail];
     
+    //change the product's price and set the textfield
     if (self.lastSelectedProduct != nil) {
         self.lastSelectedProduct.price = [self getProductPrice];
     }
@@ -90,64 +107,126 @@
     [dealmaker recalculateTotals];
 }
 
+- (void) setLastSelectedProduct:(ProductReceipt *)lastSelectedProduct {
+    _lastSelectedProduct = lastSelectedProduct;
+    NSString *val = [self stringFromCurrencyDouble:lastSelectedProduct.price];
+    [self setTextfield:parent.textviewProductPrice textWithString:val];
+}
 
-#pragma mark Textfield Input and Validation
+
+#pragma mark Textfield Input
 - (double) getApr {
-    return [parent.textfieldApr.text doubleValue];
+    NSString *cleaned = [self removeFlavorApr];
+    double result = [cleaned doubleValue] / 100;
+    return result;
 }
 
 - (double) getDiscount {
-    return [parent.textfieldPackageDiscount.text doubleValue];
+    NSString *cleaned = [self removeFlavorDiscount];
+    double result = [cleaned doubleValue];
+    return result;
 }
 
 - (int) getTerm {
-    return [parent.textfieldTerm.text intValue];
+    NSString *cleaned = [self removeFlavorTerm];
+    double result = [cleaned intValue];
+    return result;
 }
 
 - (NSString *) getEmail {
-    return parent.textfieldCustomerEmail.text;
+    return [parent.textfieldCustomerEmail.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
 
 - (NSString *) getName {
-    return parent.textfieldCustomerName.text;
+    return [parent.textfieldCustomerName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
 
 - (double) getProductPrice {
-    return [parent.textviewProductPrice.text doubleValue];
+    NSString *stripped = [parent.textviewProductPrice.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+//    return [self currencyFromString:stripped];
+    return [stripped doubleValue];
+}
+
+
+#pragma mark Textfield Validation
+- (BOOL) validApr {
+    return true;
+}
+
+- (BOOL) validDiscount {
+    return true;
+}
+
+- (BOOL) validTerm {
+    return true;
+}
+
+- (BOOL) validProductPrice {
+    return true;
+}
+
+
+#pragma mark Textfield Flavor Stripping
+- (NSString *) removeFlavorApr {
+    NSString *temp = [parent.textfieldApr.text stringByReplacingOccurrencesOfString:flavorApr withString:@""];
+    temp = [temp stringByReplacingOccurrencesOfString:@"%" withString:@""];
+    return temp;
+}
+
+- (NSString *) removeFlavorDiscount {
+    NSString *temp = [parent.textfieldPackageDiscount.text stringByReplacingOccurrencesOfString:flavorDiscount withString:@""];
+    temp = [temp stringByReplacingOccurrencesOfString:@"%" withString:@""];
+    return temp;
+}
+
+- (NSString *) removeFlavorTerm {
+    return [parent.textfieldTerm.text stringByReplacingOccurrencesOfString:flavorTerm withString:@""];
+}
+
+- (NSString *) removeFlavorProductPrice {
+    return [NSString stringWithFormat:@"%.2f", [self currencyFromString:parent.textviewProductPrice.text]];
 }
 
 
 #pragma mark Textfield Output Formatting
 - (void) setApr:(Receipt *) receipt {
-    NSString *result = [NSString stringWithFormat:@"%.3f%% Interest", receipt.apr * 100];
+    NSString *result = [NSString stringWithFormat:@"%.3f%%%@", receipt.apr * 100, flavorApr];
     
     [self setTextfield:parent.textfieldApr textWithString: result];
     parent.labelApr.text = result;
 }
 
 - (void) setDiscount:(Receipt *) receipt {
-    NSString *result =[NSString stringWithFormat:@"%d%% Package Discount", receipt.discount];
+    NSString *result =[NSString stringWithFormat:@"%d%%%@", receipt.discount, flavorDiscount];
     
     [self setTextfield:parent.textfieldPackageDiscount textWithString: result];
 }
 
 - (void) setMonthly:(Receipt *) receipt {
     
-    NSString *result = [NSString stringWithFormat:@"%@ Monthly", [self stringFromCurrencyDouble: receipt.monthly]];
+    NSString *result = [NSString stringWithFormat:@"%@%@", [self stringFromCurrencyDouble: receipt.monthly], flavorPayment];
     
     [self setTextfield:parent.textfieldMonthly textWithString: result];
     parent.labelMonthlyPayment.text = result;
 }
 
 - (void) setTerm:(Receipt *) receipt {
-    NSString *result = [NSString stringWithFormat:@"%d Months", receipt.term];
+    NSString *result = [NSString stringWithFormat:@"%d%@", receipt.term, flavorTerm];
     
     [self setTextfield:parent.textfieldTerm textWithString: result];
     parent.labelLoanTerm.text = result;
 }
 
 - (void) setEmail:(Receipt *) receipt {
-    [self setTextfield:parent.textfieldCustomerEmail textWithString:receipt.customer.email];
+    if (receipt.customer.email != nil)
+        [self setTextfield:parent.textfieldCustomerEmail textWithString:receipt.customer.email];
+    else
+        parent.textfieldCustomerEmail.text = @"";
+}
+
+- (void) setProduct {
+    NSString *val = [self stringFromCurrencyDouble:self.lastSelectedProduct.price];
+    [self setTextfield:parent.textviewProductPrice textWithString:val];
 }
 
 
@@ -155,7 +234,16 @@
 - (NSString *) stringFromCurrencyDouble:(double) value {
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
-    return [numberFormatter stringFromNumber:[NSNumber numberWithDouble:value]];
+    [numberFormatter setRoundingMode:NSNumberFormatterRoundUp];
+    NSNumber *temp = [NSNumber numberWithDouble:value];
+    return [numberFormatter stringFromNumber:temp];
+}
+
+- (double) currencyFromString:(NSString *) string {
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
+    [numberFormatter setRoundingMode:NSNumberFormatterRoundUp];
+    return [[numberFormatter numberFromString:string] doubleValue];
 }
 
 - (void) setTextfield:(UITextField *) textfield textWithString: (NSString*) string {
@@ -170,15 +258,25 @@
     if (sender == parent.textfieldTerm || sender == parent.textfieldApr || sender == parent.textfieldPackageDiscount) {
         [parent animateStateShowingInfo:true];
     }
+    
+    //find the appropriate textview and change the data from "flavored" to normal
+    if (sender == parent.textfieldApr)
+        parent.textfieldApr.text = [self removeFlavorApr];
+    
+    
+    if (sender == parent.textfieldTerm)
+        parent.textfieldTerm.text = [self removeFlavorTerm];
+    
+    
+    if (sender == parent.textfieldPackageDiscount)
+        parent.textfieldPackageDiscount.text = [self removeFlavorDiscount];
+    
+    
+    if (sender == parent.textviewProductPrice)
+        parent.textviewProductPrice.text = [self removeFlavorProductPrice];
 }
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textView {
-    //value setting- for each textfield
-    [self textfieldsChanged];
-    
-    //end animation for textviews not normally visible to the user
-    [parent animateStateShowingInfo:false];
-
     [textView resignFirstResponder];
     return YES;
 }
