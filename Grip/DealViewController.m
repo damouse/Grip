@@ -102,10 +102,11 @@ typedef enum UIState{
 - (void) viewWillAppear:(BOOL)animated {
     [self initAnimations];
     [self setInitialLabels];
-    [self colorize];
+    
 }
 
 - (void) viewDidAppear:(BOOL)animated {
+    [self colorize];
     [self introAnimations];
     
     //DEBUG TESTING

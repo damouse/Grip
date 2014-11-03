@@ -56,39 +56,21 @@
     parent.textfieldPackageDiscount.delegate = self;
     
     parent.textviewProductPrice.delegate = self;
-    
-//    [self setTextfield:parent.textfieldCustomerName textWithString:dealmaker.receipt.customer.name];
-//    [self setTextfield:parent.textfieldCustomerEmail textWithString:dealmaker.receipt.customer.email];
-//    
-//    parent.labelCustomerName.text = dealmaker.receipt.customer.name;
-//    
-//    //monies
-//    [self setTextfield:parent.textfieldTerm textWithString:[NSString stringWithFormat:@"%d", dealmaker.receipt.term]];
-//    parent.labelLoanTerm.text = [NSString stringWithFormat:@"%d Months", dealmaker.receipt.term];
-//    
-//    [self setTextfield:parent.textfieldApr textWithString:[NSString stringWithFormat:@"%.3f", dealmaker.receipt.apr * 100]];
-//    parent.labelApr.text = [NSString stringWithFormat:@"%.2f\%% Interest", dealmaker.receipt.apr * 100];
 }
 
 
 #pragma mark Textfields Changing
 - (void) updateLabelsWith:(Receipt *) receipt {
     //called when the dealmaker makes changes and needs to update the textfields
-    parent.textfieldCustomerName.text = receipt.customer.name;
+    [self setTextfield:parent.textfieldCustomerEmail textWithString: receipt.customer.email];
+    [self setTextfield:parent.textfieldCustomerName textWithString: receipt.customer.name];
+    
     parent.labelCustomerName.text = receipt.customer.name;
     
-    parent.textfieldCustomerEmail.text = receipt.customer.email;
-    
-    parent.textfieldTerm.text = [NSString stringWithFormat:@"%d", receipt.term];
-    parent.labelLoanTerm.text = [NSString stringWithFormat:@"%d", receipt.term];
-    
-    parent.textfieldApr.text = [NSString stringWithFormat:@"%f", receipt.apr];
-    parent.labelApr.text = [NSString stringWithFormat:@"%f", receipt.apr];
-    
-    parent.textfieldMonthly.text = [NSString stringWithFormat:@"%f", receipt.monthly];
-    parent.labelMonthlyPayment.text = [NSString stringWithFormat:@"%f", receipt.monthly];
-    
-    parent.textfieldPackageDiscount.text = [NSString stringWithFormat:@"%d", receipt.term];
+    [self setTerm:receipt];
+    [self setApr:receipt];
+    [self setMonthly:receipt];
+    [self setDiscount:receipt];
 }
 
 - (void) textfieldsChanged {
@@ -102,6 +84,8 @@
     if (self.lastSelectedProduct != nil) {
         self.lastSelectedProduct.price = [self getProductPrice];
     }
+    
+    //check for errors here and show alert
     
     [dealmaker recalculateTotals];
 }
@@ -135,19 +119,35 @@
 
 #pragma mark Textfield Output Formatting
 - (void) setApr:(Receipt *) receipt {
+    NSString *result = [NSString stringWithFormat:@"%.3f%% Interest", receipt.apr * 100];
     
+    [self setTextfield:parent.textfieldApr textWithString: result];
+    parent.labelApr.text = result;
 }
 
 - (void) setDiscount:(Receipt *) receipt {
+    NSString *result =[NSString stringWithFormat:@"%d%% Package Discount", receipt.discount];
     
+    [self setTextfield:parent.textfieldPackageDiscount textWithString: result];
+}
+
+- (void) setMonthly:(Receipt *) receipt {
+    
+    NSString *result = [NSString stringWithFormat:@"%@ Monthly", [self stringFromCurrencyDouble: receipt.monthly]];
+    
+    [self setTextfield:parent.textfieldMonthly textWithString: result];
+    parent.labelMonthlyPayment.text = result;
 }
 
 - (void) setTerm:(Receipt *) receipt {
+    NSString *result = [NSString stringWithFormat:@"%d Months", receipt.term];
     
+    [self setTextfield:parent.textfieldTerm textWithString: result];
+    parent.labelLoanTerm.text = result;
 }
 
 - (void) setEmail:(Receipt *) receipt {
-    
+    [self setTextfield:parent.textfieldCustomerEmail textWithString:receipt.customer.email];
 }
 
 
@@ -156,6 +156,11 @@
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
     return [numberFormatter stringFromNumber:[NSNumber numberWithDouble:value]];
+}
+
+- (void) setTextfield:(UITextField *) textfield textWithString: (NSString*) string {
+    //utility method to add whitespace to a textfield
+    textfield.text = [NSString stringWithFormat:@"  %@", string];
 }
 
 
@@ -189,11 +194,6 @@
     
     [textField setText:newString];
     return NO;
-}
-
-- (void) setTextfield:(UITextField *) textfield textWithString: (NSString*) string {
-    //utility method to add whitespace to a textfield
-    textfield.text = [NSString stringWithFormat:@"  %@", string];
 }
 
 - (void) keyboardWillHide:(id)sender {
