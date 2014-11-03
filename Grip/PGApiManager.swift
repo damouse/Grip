@@ -91,7 +91,7 @@ private let _singletonInstance = PGApiManager()
         }
         
         //check if the merchandise needs to be created
-        let merchandiseExists = receipt.merchandise_receipt_attributes?.product == nil
+        let merchandiseExists = receipt.merchandise_receipt_attributes?.product != nil
         let customerExists = receipt.customer_id != -1
         
         //the enumeration here is stupid, but short of using BFTasks instead, this is the cleanest way
@@ -451,6 +451,11 @@ private let _singletonInstance = PGApiManager()
     }
     
     func loadImage(product: Product) {
+        if product.image_url == "default.png" {
+            product.image = UIImage(named: "Placeholder")
+            return
+        }
+        
         //async call to load an image using AFNetworking
         let request = NSURLRequest(URL: NSURL(string: product.image_url!)!)
         var operation = AFHTTPRequestOperation(request: request)
@@ -473,6 +478,11 @@ private let _singletonInstance = PGApiManager()
     
     func loadUserImage(user: User) {
         //async call to load an image using AFNetworking
+        if user.image_url == "default.png" {
+            user.image = UIImage(named: "Placeholder")
+            return
+        }
+        
         let request = NSURLRequest(URL: NSURL(string: user.image_url!)!)
         var operation = AFHTTPRequestOperation(request: request)
         operation.responseSerializer = AFImageResponseSerializer() as AFImageResponseSerializer
@@ -494,32 +504,6 @@ private let _singletonInstance = PGApiManager()
         if logging {
             println(contents)
         }
-    }
-    
-    //TESTING TESTING TESTING
-    func TEST() {
-        let newProduct = Product()
-        let newReceipt = ProductReceipt()
-        let receipt = Receipt()
-        let customer = Customer()
-        
-        newReceipt.product = newProduct
-        receipt.merchandise_receipt_attributes = newReceipt
-        receipt.customer = customer
-        
-        newProduct.name = "New Merchandise"
-        
-        customer.name = "New Dynamic Customer"
-        customer.email = "newCustomerEMail"
-        customer.group_id = user!.group_id
-        
-//        createMerchandise(receipt, success: { (success) -> Void in
-//            optionalLog("Completed Merchandise")
-//        })
-
-        createCustomer(receipt, success:  { (success) -> Void in
-            self.optionalLog("Completed Customer")
-        })
     }
 }
 
