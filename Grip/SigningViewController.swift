@@ -51,6 +51,8 @@ class SigningViewController: UIViewController, UITableViewDataSource {
     
     var showingSignature = false
     
+    var drawTableBlack = false
+    
     
     
     //MARK: Boilerplate
@@ -124,6 +126,11 @@ class SigningViewController: UIViewController, UITableViewDataSource {
     func renderPDFView() -> UIView {
         //Flip the background color of the pdf view, add margins and spacing where needed, move the signature view to the bottom, 
         //and return the view
+        
+        //make the table reload its contents in black
+        drawTableBlack = true
+        tableProducts.reloadData()
+        
         viewPage.backgroundColor = UIColor.whiteColor()
         
         viewSignatureView.strokeColor = UIColor.blackColor()
@@ -142,7 +149,7 @@ class SigningViewController: UIViewController, UITableViewDataSource {
         let y = viewPage.frame.size.height - viewSignatureView.frame.size.height
         viewSignatureView.frame = CGRectMake(0, y, viewPage.frame.size.width, viewSignatureView.frame.size.height)
         
-//        view as shown needs margins. Add them by adding the view to a superview with padding
+        //view as shown needs margins. Add them by adding the view to a superview with padding
         let enclosing = UIView(frame: CGRectMake(0, 0, viewPage.frame.size.width + 200, viewPage.frame.size.height + 200))
         
         enclosing.addSubview(viewPage)
@@ -230,8 +237,15 @@ class SigningViewController: UIViewController, UITableViewDataSource {
         cell!.detailTextLabel!.text = "\(receipt.price)"
         
         cell?.backgroundColor = UIColor.clearColor()
-        cell?.textLabel.textColor = UIColor.whiteColor()
-        cell?.detailTextLabel!.textColor = UIColor.whiteColor()
+        
+        if drawTableBlack {
+            cell?.textLabel.textColor = UIColor.blackColor()
+            cell?.detailTextLabel!.textColor = UIColor.blackColor()
+        }
+        else {
+            cell?.textLabel.textColor = UIColor.whiteColor()
+            cell?.detailTextLabel!.textColor = UIColor.whiteColor()
+        }
         
         return cell!
     }
