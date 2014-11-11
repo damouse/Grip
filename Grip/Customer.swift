@@ -19,8 +19,8 @@ class Customer : MTLModel, MTLJSONSerializing {
     var name: String?
     var group_id = -1
     var email: String?
-    var created_at: NSString?
-    var updated_at: NSString?
+    var created_at: NSDate?
+    var updated_at: NSDate?
     
     //used to check package downloads
     var packages: [Package]?
@@ -37,7 +37,7 @@ class Customer : MTLModel, MTLJSONSerializing {
     
     class func JSONTransformerForKey(key: String) -> NSValueTransformer? {
         if key == "created_at" || key == "updated_at" {
-            return GripDateFormatter.dateFormatter()
+            return NetworkUtils.dateFormatter()
         }
         
         return nil

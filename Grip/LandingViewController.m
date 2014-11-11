@@ -63,17 +63,22 @@
     apiManager = [PGApiManager sharedInstance];
 
     //DEBUG
-    [apiManager logInAttempt:@"dealer@test.com" password:@"12345678" view: self.view success:^(void) {
-        loggedIn = true;
+    apiManager.userEmail = @"dealer@test.com";
+    apiManager.userPassword = @"12345678";
+    
+    [apiManager loadResources:self.view completion:^(BOOL status) {
+        if (status) {
+            loggedIn = true;
 
-        [self dismissLogin];
-        [self showBothLogos];
-        [self setLoginButtonState];
+            [self dismissLogin];
+            [self showBothLogos];
+            [self setLoginButtonState];
 
-        collectionCustomerDelegate.customers = apiManager.customers;
-        collectionMerchandiseDelegate.merchandises = apiManager.merchandises;
+            collectionCustomerDelegate.customers = apiManager.customers;
+            collectionMerchandiseDelegate.merchandises = apiManager.merchandises;
 
-        [imageCompanyLogo setImage:apiManager.user.image];
+            [imageCompanyLogo setImage:apiManager.user.image];
+        }
     }];
 }
 
@@ -364,21 +369,27 @@
 }
 
 - (IBAction) dialogLogin:(id)sender {
-    NSString *email = [textfieldEmail.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    NSString *password = [textfieldPassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    apiManager.userEmail = [textfieldEmail.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    apiManager.userPassword = [textfieldPassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
-    [apiManager logInAttempt:email password:password view: self.view success:^(void) {
-        loggedIn = true;
+    [apiManager loadResources:self.view completion:^(BOOL status) {
+        if (status == true) {
+            loggedIn = true;
+            
+            [self dismissLogin];
+            [self showBothLogos];
+            [self setLoginButtonState];
+            
+            //set the collection views' models
+            collectionCustomerDelegate.customers = apiManager.customers;
+            collectionMerchandiseDelegate.merchandises = apiManager.merchandises;
+            
+            [imageCompanyLogo setImage:apiManager.user.image];
+        }
         
-        [self dismissLogin];
-        [self showBothLogos];
-        [self setLoginButtonState];
-        
-        //set the collection views' models
-        collectionCustomerDelegate.customers = apiManager.customers;
-        collectionMerchandiseDelegate.merchandises = apiManager.merchandises;
-        
-        [imageCompanyLogo setImage:apiManager.user.image];
+        else {
+            
+        }
     }];
 }
 

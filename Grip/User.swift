@@ -35,7 +35,7 @@ class User : MTLModel, MTLJSONSerializing {
     
     class func JSONTransformerForKey(key: String) -> NSValueTransformer? {
         if key == "token_expiration" || key == "created_at" || key == "updated_at" {
-            return GripDateFormatter.dateFormatter()
+            return NetworkUtils.dateFormatter()
         }
 
         return nil

@@ -5,7 +5,6 @@
 //  Created by Mickey Barboi on 8/6/14.
 //  Copyright (c) 2014 Mickey Barboi. All rights reserved.
 
-//TODO: reauth occasionally
 
 import Foundation
 import UIKit
@@ -18,6 +17,9 @@ private let _singletonInstance = PGApiManager()
     let base_url = "http://packagegrid.com/"
 //    let base_url = "http://192.168.79.166:3000/"
     
+    //stored user information-- hold for future auth requests
+    var userPassword: String?
+    var userEmail: String?
     
     var user: User?
     var products = NSArray()
@@ -34,14 +36,19 @@ private let _singletonInstance = PGApiManager()
     
     
     //MARK: Public Interface
-    func logInAttempt(email: String, password:String, view:UIView, success:(() -> Void)) -> Void {
-        //wrapper function for issuing a login request from a controller, performs a login but shows the spinner
-
+    func loadResources(view: UIView, completion: (Bool) -> Void) {
+        //load the resources from the backend
         showHUD(view)
-        logIn(email, password: password, success: { () -> Void in
-                self.getAllResourcesSequentially(success)
-            }
-        );
+        validateCallAndIssue({ () -> Void in
+            self.getAllResourcesSequentially(completion)
+        }, completion: completion)
+        
+    }
+    
+    func setUserCredentials(email: String, password:String) {
+        //called when the user enters login details
+        self.userEmail = email
+        self.userPassword = password
     }
     
     func uploadReceipt(view: UIView, superview: UIView, receipt: Receipt, completion: (success: Bool) -> Void) {
@@ -106,7 +113,9 @@ private let _singletonInstance = PGApiManager()
             }
         }
         
-        startBlock()
+        validateCallAndIssue({ () -> Void in
+            startBlock()
+        }, completion: completion)
     }
     
     
@@ -141,7 +150,10 @@ private let _singletonInstance = PGApiManager()
     
     func removeHUD() {
         //check to see if the HUD is actually present!
-        progressHUD?.hide(true)
+        if progressHUD != nil {
+            progressHUD?.hide(true)
+            progressHUD = nil
+        }
     }
     
     func updateHUDText(newText:String) {
@@ -150,14 +162,14 @@ private let _singletonInstance = PGApiManager()
     
     
     //MARK: Batch Login Tasks
-    func getAllResourcesSequentially(success:(() -> Void)) {
+    func getAllResourcesSequentially(completion: (Bool) -> Void) {
         //gets all of the resources sequentially-- waits for the previous one to finished before starting the next
         
         //success blocks
         let packageSuccess = { (id: Int, packages: AnyObject) -> Void in
             self.packages = packages as NSArray
             self.removeHUD()
-            success()
+            completion(true)
         }
         
         let productSuccess = { () -> Void in
@@ -180,16 +192,15 @@ private let _singletonInstance = PGApiManager()
             }
         }
         
-        //Kick off the daisy chain
-        loadCustomers(customerSuccess)
+        self.loadCustomers(customerSuccess)
     }
     
     
     // MARK: Download
-    func logIn(email: String, password:String, success:(() -> Void)?) -> Void {
+    func logIn(completion: (Bool) -> Void) -> Void {
         updateHUDText("Logging in")
         
-        generateAuthenticatedClient().GET("api/v1/auth?user_email=\(email)&password=\(password)", parameters: nil,
+        generateAuthenticatedClient().GET("api/v1/auth?user_email=\(self.userEmail!)&password=\(self.userPassword!)", parameters: nil,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
                 self.optionalLog("API: User Success")
@@ -201,15 +212,13 @@ private let _singletonInstance = PGApiManager()
                 self.user = MTLJSONAdapter.modelOfClass(User.self, fromJSONDictionary: userDictionary, error: &error) as? User
                 self.user?.image_url = json["image_url"] as? String
                 self.loadUserImage(self.user!)
-                
-                println(self.user)
-                
-                success?()
+
+                completion(true)
             },
             
-            failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
-                print("failure- ")
-                println(error)
+            failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) -> Void in
+                self.apiFailed(operation, error: error)
+                completion(false)
         })
     }
 
@@ -228,10 +237,8 @@ private let _singletonInstance = PGApiManager()
                 }
             },
             
-            failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
-                print("failure- ")
-                println(error)
-                println(operation)
+            failure:  { ( operation: AFHTTPRequestOperation?, error: NSError? ) -> Void in
+                self.apiFailed(operation, error: error)
         })
     }
     
@@ -250,9 +257,8 @@ private let _singletonInstance = PGApiManager()
                 success?()
             },
             
-            failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
-                print("failure- ")
-                println(error)
+            failure:  { ( operation: AFHTTPRequestOperation?, error: NSError? ) -> Void in
+                self.apiFailed(operation, error: error)
         })
     }
     
@@ -291,9 +297,8 @@ private let _singletonInstance = PGApiManager()
                 success?(id, packages)
             },
             
-            failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
-                print("failure- ")
-                println(error)
+            failure:  { ( operation: AFHTTPRequestOperation?, error: NSError? ) -> Void in
+                self.apiFailed(operation, error: error)
         })
     }
     
@@ -307,10 +312,8 @@ private let _singletonInstance = PGApiManager()
                 success?()
             },
             
-            failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
-                print("failure- ")
-                println(error)
-                println(operation)
+            failure:  { ( operation: AFHTTPRequestOperation?, error: NSError? ) -> Void in
+                self.apiFailed(operation, error: error)
         })
         
         optionalLog("API: Customer Success")
@@ -337,10 +340,8 @@ private let _singletonInstance = PGApiManager()
                 success(success: true)
             },
             
-            failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
-                print("failure- ")
-                println(error)
-                success(success: false)
+            failure:  { ( operation: AFHTTPRequestOperation?, error: NSError? ) -> Void in
+                self.apiFailed(operation, error: error)
         })
     }
     
@@ -365,10 +366,8 @@ private let _singletonInstance = PGApiManager()
                 success(success: true)
             },
             
-            failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
-                print("failure- ")
-                println(error)
-                success(success: false)
+            failure:  { ( operation: AFHTTPRequestOperation?, error: NSError? ) -> Void in
+                self.apiFailed(operation, error: error)
         })
     }
     
@@ -389,10 +388,8 @@ private let _singletonInstance = PGApiManager()
                 success(success: true)
             },
             
-            failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) in
-                print("failure- ")
-                println(error)
-                success(success: false)
+            failure:  { ( operation: AFHTTPRequestOperation?, error: NSError? ) -> Void in
+                self.apiFailed(operation, error: error)
         })
     }
     
@@ -406,8 +403,6 @@ private let _singletonInstance = PGApiManager()
     
     
     //MARK: Internal Methods
-    //Returns an authenticated, ready to go AFHTTPManager. If a user is not currently signed in, the 
-    //authentication fields will silently NOT be filled!
     func generateAuthenticatedClient() -> AFHTTPRequestOperationManager {
         var client = AFHTTPRequestOperationManager(baseURL: NSURL(string: base_url))
         client.requestSerializer = AFJSONRequestSerializer() as AFJSONRequestSerializer
@@ -421,10 +416,56 @@ private let _singletonInstance = PGApiManager()
         return client
     }
     
-    func authenticateAndRun(calls: () -> Void) {
-        //ensures the user is authenticated and then executes the API calls passed in
+    func validateCallAndIssue(call: () -> Void, completion: (Bool) -> Void) {
+        //ensure we are online and authenticated and then issue the  passed API call
+        //calls the completion block regardless of what happens to the API call. The completion block
+        //is largely independant of the API call-- assume its a callback from an external object
         
-        //check the expiration time on the token, reauth if needed
+        //check for internet connection
+        if !NetworkUtils.isConnectedToNetwork() {
+            let alert = UIAlertView()
+            alert.title = "Error"
+            alert.message = "It appears Grip can't access the internet. Please make sure you are connected to WiFi or Cellular."
+            alert.addButtonWithTitle("Ok")
+            alert.show()
+            
+            self.removeHUD()
+            
+            completion(false)
+        }
+        
+        //check time authenticity of user token. If invalid, reauthenticate
+        else if self.user == nil || self.user?.token_expiration?.compare(NSDate()) == NSComparisonResult.OrderedDescending {
+            self.logIn({ (status: Bool) -> Void in
+                if !status { //will the controller know why the completion failed? Need to pass an error message back up
+                    completion(false)
+                }
+                
+                call()
+            })
+            
+            return
+        }
+        
+        //issue call if everything is ok
+        else {
+            call()
+        }
+    }
+    
+    func apiFailed(operation: AFHTTPRequestOperation?, error: NSError?) {
+        print("failure- ")
+        println(error)
+        println(operation)
+        
+        PGApiManager.sharedInstance.removeHUD()
+        
+        //show alert!
+        let alert = UIAlertView()
+        alert.title = "Error"
+        alert.message = "An error occured communinicating with the server"
+        alert.addButtonWithTitle("Ok")
+        alert.show()
     }
     
     func serializeObjects(responseObject:AnyObject, jsonKey:String, objectClass:AnyClass) -> NSArray {

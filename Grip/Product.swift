@@ -23,14 +23,14 @@ import Foundation
 class Product : MTLModel, MTLJSONSerializing {
     var id = -1
     var name: String?
-    var created_at: String?
+    var created_at: NSDate?
     var item_description: String?
     var group_id = -1
     var image_url: String?
     var order_index: String?
     var price = 0.0
     var type: String?
-    var updated_at: String?
+    var updated_at: NSDate?
     
     var image: UIImage?
     var desaturatedImage: UIImage?
@@ -51,7 +51,7 @@ class Product : MTLModel, MTLJSONSerializing {
     
     class func JSONTransformerForKey(key: String) -> NSValueTransformer? {
         if key == "created_at" || key == "updated_at" {
-            return GripDateFormatter.dateFormatter()
+            return NetworkUtils.dateFormatter()
         }
         
         return nil
