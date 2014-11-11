@@ -33,6 +33,7 @@ class GripButton : UIButton {
         super.init(coder: aDecoder)
         
         colorize()
+        self.addTarget(self, action: "buttonTouched", forControlEvents: UIControlEvents.TouchUpInside)
     }
     
     override init() {
@@ -47,6 +48,21 @@ class GripButton : UIButton {
         super.adjustsImageWhenHighlighted = true
     }
     
-    
-
+    func buttonTouched() {
+        
+//        let buttonLayer = self.titleLabel!.layer
+//        
+//        var colorAnimation = CABasicAnimation(keyPath: "backgroundColor")
+//        colorAnimation.fromValue = UIColor.whiteColor()
+//        colorAnimation.toValue = HIGHLIGHT_COLOR
+//        
+//        var animationGroup = CAAnimationGroup()
+//        animationGroup.autoreverses = true
+//        animationGroup.duration = 1
+//        
+//        animationGroup.animations = [colorAnimation]
+//        
+//        buttonLayer.addAnimation(animationGroup, forKey: "backgroundColor")
+        
+    }
 }
