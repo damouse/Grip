@@ -49,6 +49,14 @@ class Product : MTLModel, MTLJSONSerializing {
         ]
     }
     
+    class func JSONTransformerForKey(key: String) -> NSValueTransformer? {
+        if key == "created_at" || key == "updated_at" {
+            return GripDateFormatter.dateFormatter()
+        }
+        
+        return nil
+    }
+    
     //Boilerplate, compulsory overrides. Kinda stupid, isn't it?
     //The following four methods allow this class access to its superclass' inherited methods
     override func encodeWithCoder(coder: NSCoder!) {

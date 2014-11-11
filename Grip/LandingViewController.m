@@ -63,18 +63,18 @@
     apiManager = [PGApiManager sharedInstance];
 
     //DEBUG
-//        [apiManager logInAttempt:@"dealer@test.com" password:@"12345678" view: self.view success:^(void) {
-//            loggedIn = true;
-//    
-//            [self dismissLogin];
-//            [self showBothLogos];
-//            [self setLoginButtonState];
-//    
-//            collectionCustomerDelegate.customers = apiManager.customers;
-//            collectionMerchandiseDelegate.merchandises = apiManager.merchandises;
-//    
-//            [imageCompanyLogo setImage:apiManager.user.image];
-//        }];
+    [apiManager logInAttempt:@"dealer@test.com" password:@"12345678" view: self.view success:^(void) {
+        loggedIn = true;
+
+        [self dismissLogin];
+        [self showBothLogos];
+        [self setLoginButtonState];
+
+        collectionCustomerDelegate.customers = apiManager.customers;
+        collectionMerchandiseDelegate.merchandises = apiManager.merchandises;
+
+        [imageCompanyLogo setImage:apiManager.user.image];
+    }];
 }
 
 - (void) viewWillAppear:(BOOL)animated {

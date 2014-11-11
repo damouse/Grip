@@ -28,6 +28,14 @@ class Package : MTLModel, MTLJSONSerializing {
             "products": NSNull()
         ]
     }
+    
+    class func JSONTransformerForKey(key: String) -> NSValueTransformer? {
+        if key == "created_at" || key == "updated_at" {
+            return GripDateFormatter.dateFormatter()
+        }
+        
+        return nil
+    }
 
     
     //Boilerplate, compulsory overrides. Kinda stupid, isn't it?

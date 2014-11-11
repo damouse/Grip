@@ -14,9 +14,9 @@ class User : MTLModel, MTLJSONSerializing {
     var group_id = -1
     var email: String?
     var authentication_token: String?
-    var token_expiration: String?
-    var created_at: String?
-    var updated_at: String?
+    var token_expiration: NSDate?
+    var created_at: NSDate?
+    var updated_at: NSDate?
     var image_url: String?
     
     var image: UIImage?
@@ -32,6 +32,15 @@ class User : MTLModel, MTLJSONSerializing {
             "image": NSNull()
         ]
     }
+    
+    class func JSONTransformerForKey(key: String) -> NSValueTransformer? {
+        if key == "token_expiration" || key == "created_at" || key == "updated_at" {
+            return GripDateFormatter.dateFormatter()
+        }
+
+        return nil
+    }
+
     
     //Boilerplate, compulsory overrides. Kinda stupid, isn't it?
     //The following four methods allow this class access to its superclass' inherited methods
@@ -51,3 +60,4 @@ class User : MTLModel, MTLJSONSerializing {
         super.init(dictionary: dictionaryValue!, error: error)
     }
 }
+

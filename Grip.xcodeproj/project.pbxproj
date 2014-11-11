@@ -86,6 +86,7 @@
 		50B701B81991D2AB0018FB31 /* Titillium-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701A81991CFDC0018FB31 /* Titillium-Thin.otf */; };
 		50B701B91991D2AB0018FB31 /* Titillium-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701A91991CFDC0018FB31 /* Titillium-ThinItalic.otf */; };
 		50B701BA1991D2AB0018FB31 /* Titillium-ThinUpright.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701AA1991CFDC0018FB31 /* Titillium-ThinUpright.otf */; };
+		50C1A05A1A1297CC0005D961 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1A0591A1297CC0005D961 /* DateFormatter.swift */; };
 		50CC00FF1A02CC1F00ED1E9D /* SigningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CC00FE1A02CC1F00ED1E9D /* SigningViewController.swift */; };
 		50D718F319F7B65E00E6B731 /* PDFFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D718F219F7B65E00E6B731 /* PDFFactory.swift */; };
 		50EC987D199236D400C62BFE /* PGApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EC987C199236D400C62BFE /* PGApiManager.swift */; };
@@ -217,12 +218,14 @@
 		50B701A81991CFDC0018FB31 /* Titillium-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-Thin.otf"; sourceTree = "<group>"; };
 		50B701A91991CFDC0018FB31 /* Titillium-ThinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-ThinItalic.otf"; sourceTree = "<group>"; };
 		50B701AA1991CFDC0018FB31 /* Titillium-ThinUpright.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-ThinUpright.otf"; sourceTree = "<group>"; };
+		50C1A0591A1297CC0005D961 /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		50CC00FE1A02CC1F00ED1E9D /* SigningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningViewController.swift; sourceTree = "<group>"; };
 		50D718F219F7B65E00E6B731 /* PDFFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFFactory.swift; sourceTree = "<group>"; };
 		50EC987B199236D400C62BFE /* Grip-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grip-Bridging-Header.h"; sourceTree = "<group>"; };
 		50EC987C199236D400C62BFE /* PGApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PGApiManager.swift; sourceTree = "<group>"; };
+		57A7D9BD59B9FFFE3C20B052 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		57EC558AFF9D4E6D9C4B789A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		86E46A5E4CF540BC84E44282 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		59A0F1C841230A0A82BB3B08 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +274,7 @@
 				5099444819AE86C100E7D004 /* ProductReceipt.swift */,
 				508F8F3819F7108700610C3F /* Customer.swift */,
 				5099444A19AE86C600E7D004 /* Receipt.swift */,
+				50C1A0591A1297CC0005D961 /* DateFormatter.swift */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -302,7 +306,7 @@
 				509BA68518EB4E960011D374 /* GripTests */,
 				509BA65F18EB4E960011D374 /* Frameworks */,
 				509BA65E18EB4E960011D374 /* Products */,
-				86E46A5E4CF540BC84E44282 /* Pods.xcconfig */,
+				EBEE016FC6764DDF517F5946 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -602,6 +606,15 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		EBEE016FC6764DDF517F5946 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				57A7D9BD59B9FFFE3C20B052 /* Pods.debug.xcconfig */,
+				59A0F1C841230A0A82BB3B08 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -728,7 +741,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D72C0A026DEB4F7E9CB4D697 /* Check Pods Manifest.lock */ = {
@@ -753,6 +766,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50C1A05A1A1297CC0005D961 /* DateFormatter.swift in Sources */,
 				50898DF01A07CE4F00B2EEC1 /* DealTextfieldDelegate.m in Sources */,
 				501B6135199259CF00286A6E /* PGArchiver.swift in Sources */,
 				509BB197193A756100FC8CC7 /* MBViewAnimator.m in Sources */,
@@ -935,8 +949,12 @@
 		};
 		509BA69018EB4E960011D374 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 86E46A5E4CF540BC84E44282 /* Pods.xcconfig */;
+			baseConfigurationReference = 57A7D9BD59B9FFFE3C20B052 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = (
+					armv7s,
+					armv7,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
@@ -947,6 +965,7 @@
 				INFOPLIST_FILE = "Grip/Grip-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bf9f61cf-58fa-4261-9a07-9e69f652e225";
 				SDKROOT = iphoneos;
@@ -958,8 +977,12 @@
 		};
 		509BA69118EB4E960011D374 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 86E46A5E4CF540BC84E44282 /* Pods.xcconfig */;
+			baseConfigurationReference = 59A0F1C841230A0A82BB3B08 /* Pods.release.xcconfig */;
 			buildSettings = {
+				ARCHS = (
+					armv7s,
+					armv7,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
@@ -970,6 +993,7 @@
 				INFOPLIST_FILE = "Grip/Grip-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bf9f61cf-58fa-4261-9a07-9e69f652e225";
 				SDKROOT = iphoneos;

@@ -35,6 +35,14 @@ class Customer : MTLModel, MTLJSONSerializing {
         return [:]
     }
     
+    class func JSONTransformerForKey(key: String) -> NSValueTransformer? {
+        if key == "created_at" || key == "updated_at" {
+            return GripDateFormatter.dateFormatter()
+        }
+        
+        return nil
+    }
+    
 //    class func JSONTransformerForKey(key: String!) -> NSValueTransformer! {
 //        if key == "created_at" || key == "updated_at" {
 //            let formatter = NSDateFormatter()
