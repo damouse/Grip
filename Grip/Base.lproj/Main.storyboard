@@ -107,7 +107,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GbZ-vR-7k6">
-                                        <rect key="frame" x="96" y="350" width="140" height="34"/>
+                                        <rect key="frame" x="96" y="349" width="140" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="24"/>
                                         <state key="normal" title="SETTINGS">
@@ -118,7 +118,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ylh-W3-OFi">
-                                        <rect key="frame" x="96" y="386" width="140" height="34"/>
+                                        <rect key="frame" x="96" y="387" width="140" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="24"/>
                                         <state key="normal" title="HELP">
@@ -128,19 +128,8 @@
                                             <action selector="help:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sgt-7e-j9y"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jCT-Jz-Hgg">
-                                        <rect key="frame" x="23" y="308" width="213" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="24"/>
-                                        <state key="normal" title="PRESENT  PACKAGE">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="viewPackages:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vdj-fJ-fcY"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gvw-ax-GGF">
-                                        <rect key="frame" x="96" y="428" width="140" height="34"/>
+                                        <rect key="frame" x="96" y="430" width="140" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="24"/>
                                         <state key="normal" title="LOGIN">
@@ -148,6 +137,17 @@
                                         </state>
                                         <connections>
                                             <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TKX-ys-nbn"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jCT-Jz-Hgg">
+                                        <rect key="frame" x="23" y="306" width="213" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="24"/>
+                                        <state key="normal" title="PRESENT  PACKAGE">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="viewPackages:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vdj-fJ-fcY"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -210,8 +210,33 @@
                                 <rect key="frame" x="403" y="184" width="400" height="400"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <view contentMode="scaleToFill" id="kmD-cp-BAL" userLabel="Settings">
+                                <rect key="frame" x="346" y="0.0" width="606" height="452"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings Placeholder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8pQ-si-hHg">
+                                        <rect key="frame" x="224" y="27" width="159" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.99995754076086951" green="0.99995754076086951" blue="0.99995754076086951" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="12l-FX-5od">
+                                        <rect key="frame" x="252" y="380" width="103" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="settingsDone:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lLV-cv-T1R"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" id="MDL-OS-4iS">
-                                <rect key="frame" x="79" y="0.0" width="876" height="700"/>
+                                <rect key="frame" x="69" y="0.0" width="876" height="700"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="FxU-7m-9B5">
@@ -326,31 +351,6 @@
                                         </state>
                                         <connections>
                                             <action selector="dialogPresent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FtI-hH-JEi"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" id="kmD-cp-BAL" userLabel="Settings">
-                                <rect key="frame" x="346" y="0.0" width="606" height="452"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings Placeholder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8pQ-si-hHg">
-                                        <rect key="frame" x="224" y="27" width="159" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.99995754076086951" green="0.99995754076086951" blue="0.99995754076086951" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="12l-FX-5od">
-                                        <rect key="frame" x="252" y="380" width="103" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
-                                        <state key="normal" title="Done">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="settingsDone:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lLV-cv-T1R"/>
                                         </connections>
                                     </button>
                                 </subviews>

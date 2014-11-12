@@ -523,8 +523,10 @@ private let _singletonInstance = PGApiManager()
         operation.responseSerializer = AFImageResponseSerializer() as AFImageResponseSerializer
         
         operation.setCompletionBlockWithSuccess({ (operation: AFHTTPRequestOperation!, object: AnyObject!) -> Void in
-            user.image = object as? UIImage
+                user.image = object as? UIImage
+                println("User finished loading picture")
             },
+            
             failure: { (operation: AFHTTPRequestOperation!, error: NSError!) ->Void in
                 user.image = UIImage(named: "Placeholder")
                 

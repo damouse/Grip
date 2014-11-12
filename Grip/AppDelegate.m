@@ -12,6 +12,7 @@
 #import "AWSCore.h"
 #import "AWSCredentialsProvider.h"
 
+
 NSString *const AWSAccountID = @"911251281944";
 NSString *const CognitoPoolID = @"us-east-1:81e26719-be8b-4263-9097-c190c43b7c75";
 NSString *const CognitoRoleAuth = nil;

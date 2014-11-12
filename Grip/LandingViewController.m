@@ -61,6 +61,8 @@
     animator = [[MBViewAnimator alloc] initWithDuration:ANIMATION_DURATION];
     
     apiManager = [PGApiManager sharedInstance];
+    
+    [PGAppearance setFont];
 
     //DEBUG
     apiManager.userEmail = @"dealer@test.com";
