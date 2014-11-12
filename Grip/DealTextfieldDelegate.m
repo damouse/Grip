@@ -67,6 +67,17 @@
     parent.textfieldPackageDiscount.delegate = self;
     
     parent.textviewProductPrice.delegate = self;
+    
+    
+    //disable customer textfield if the customer is loaded from the backend: i.e. not created
+    if (dealmaker.receipt.customer.id == -1) {
+        [parent.textfieldCustomerName setUserInteractionEnabled:false];
+        [parent.textfieldCustomerEmail setUserInteractionEnabled:false];
+    }
+    else {
+        [parent.textfieldCustomerName setUserInteractionEnabled:true];
+        [parent.textfieldCustomerEmail setUserInteractionEnabled:true];
+    }
 }
 
 
@@ -90,6 +101,11 @@
 }
 
 - (void) textfieldsChanged {
+    //note: the methods produce their own alert errors
+    if (!([self validApr] && [self validDiscount] & [self validTerm] && [self validProductPrice])) {
+        return;
+    }
+    
     //some of the fields changed. Take all of their values and push the updates to Dealmaker
     dealmaker.receipt.apr = [self getApr];
     dealmaker.receipt.discount = [self getDiscount];
@@ -143,25 +159,76 @@
 
 - (double) getProductPrice {
     NSString *stripped = [parent.textviewProductPrice.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-//    return [self currencyFromString:stripped];
     return [stripped doubleValue];
 }
 
 
 #pragma mark Textfield Validation
 - (BOOL) validApr {
+    double apr = [self getApr];
+    
+//    let scan = NSScanner(string: str)
+//    scan.scanDouble(&ret)
+//    println(ret)
+    
+    if (apr < 0 || apr > 1) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Invalid iterest value" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        [alert show];
+        
+        [self updateLabelsWith:dealmaker.receipt];
+        return false;
+    }
+    
     return true;
 }
 
 - (BOOL) validDiscount {
+    double discount = [self getDiscount];
+    
+    //    let scan = NSScanner(string: str)
+    //    scan.scanDouble(&ret)
+    //    println(ret)
+    
+    if (discount < 0 || discount > 100) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Invalid discount value" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        [alert show];
+        
+        [self updateLabelsWith:dealmaker.receipt];
+        return false;
+    }
+    
     return true;
 }
 
 - (BOOL) validTerm {
+    double term = [self getTerm];
+    
+    //    let scan = NSScanner(string: str)
+    //    scan.scanDouble(&ret)
+    //    println(ret)
+    
+    if (term < 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Invalid term value" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        [alert show];
+        
+        [self updateLabelsWith:dealmaker.receipt];
+        return false;
+    }
+    
     return true;
 }
 
 - (BOOL) validProductPrice {
+    double price = [self getProductPrice];
+    
+    if (price < 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Invalid product price" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        [alert show];
+        
+        self.lastSelectedProduct = self.lastSelectedProduct;
+        return false;
+    }
+    
     return true;
 }
 

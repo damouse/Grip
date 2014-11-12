@@ -61,7 +61,6 @@
 		509BB191193A756100FC8CC7 /* UIButton+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 509BB171193A756100FC8CC7 /* UIButton+Utils.m */; };
 		509BB192193A756100FC8CC7 /* UIImageView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 509BB173193A756100FC8CC7 /* UIImageView+Utils.m */; };
 		509BB193193A756100FC8CC7 /* UILabel+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 509BB175193A756100FC8CC7 /* UILabel+Utils.m */; };
-		509BB194193A756100FC8CC7 /* StraightUpUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 509BB178193A756100FC8CC7 /* StraightUpUtils.m */; };
 		509BB195193A756100FC8CC7 /* MBObjectUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 509BB17B193A756100FC8CC7 /* MBObjectUtils.m */; };
 		509BB196193A756100FC8CC7 /* MBPreCacher.m in Sources */ = {isa = PBXBuildFile; fileRef = 509BB17D193A756100FC8CC7 /* MBPreCacher.m */; };
 		509BB197193A756100FC8CC7 /* MBViewAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 509BB17F193A756100FC8CC7 /* MBViewAnimator.m */; };
@@ -87,6 +86,8 @@
 		50B701B91991D2AB0018FB31 /* Titillium-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701A91991CFDC0018FB31 /* Titillium-ThinItalic.otf */; };
 		50B701BA1991D2AB0018FB31 /* Titillium-ThinUpright.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50B701AA1991CFDC0018FB31 /* Titillium-ThinUpright.otf */; };
 		50C1A05A1A1297CC0005D961 /* NetworkUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1A0591A1297CC0005D961 /* NetworkUtils.swift */; };
+		50C1A05C1A12E7FA0005D961 /* Colorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1A05B1A12E7FA0005D961 /* Colorizer.swift */; };
+		50C1A05E1A12EC3E0005D961 /* MBUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1A05D1A12EC3E0005D961 /* MBUtils.swift */; };
 		50CC00FF1A02CC1F00ED1E9D /* SigningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CC00FE1A02CC1F00ED1E9D /* SigningViewController.swift */; };
 		50D718F319F7B65E00E6B731 /* PDFFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D718F219F7B65E00E6B731 /* PDFFactory.swift */; };
 		50EC987D199236D400C62BFE /* PGApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EC987C199236D400C62BFE /* PGApiManager.swift */; };
@@ -188,8 +189,6 @@
 		509BB173193A756100FC8CC7 /* UIImageView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Utils.m"; sourceTree = "<group>"; };
 		509BB174193A756100FC8CC7 /* UILabel+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Utils.h"; sourceTree = "<group>"; };
 		509BB175193A756100FC8CC7 /* UILabel+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Utils.m"; sourceTree = "<group>"; };
-		509BB177193A756100FC8CC7 /* StraightUpUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StraightUpUtils.h; sourceTree = "<group>"; };
-		509BB178193A756100FC8CC7 /* StraightUpUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StraightUpUtils.m; sourceTree = "<group>"; };
 		509BB17A193A756100FC8CC7 /* MBObjectUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBObjectUtils.h; sourceTree = "<group>"; };
 		509BB17B193A756100FC8CC7 /* MBObjectUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBObjectUtils.m; sourceTree = "<group>"; };
 		509BB17C193A756100FC8CC7 /* MBPreCacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPreCacher.h; sourceTree = "<group>"; };
@@ -219,6 +218,8 @@
 		50B701A91991CFDC0018FB31 /* Titillium-ThinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-ThinItalic.otf"; sourceTree = "<group>"; };
 		50B701AA1991CFDC0018FB31 /* Titillium-ThinUpright.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Titillium-ThinUpright.otf"; sourceTree = "<group>"; };
 		50C1A0591A1297CC0005D961 /* NetworkUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkUtils.swift; sourceTree = "<group>"; };
+		50C1A05B1A12E7FA0005D961 /* Colorizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colorizer.swift; sourceTree = "<group>"; };
+		50C1A05D1A12EC3E0005D961 /* MBUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MBUtils.swift; sourceTree = "<group>"; };
 		50CC00FE1A02CC1F00ED1E9D /* SigningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningViewController.swift; sourceTree = "<group>"; };
 		50D718F219F7B65E00E6B731 /* PDFFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFFactory.swift; sourceTree = "<group>"; };
 		50EC987B199236D400C62BFE /* Grip-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grip-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -399,6 +400,7 @@
 				509BA67218EB4E960011D374 /* Main.storyboard */,
 				5095EC6819AD49AF00D887F7 /* GripButton.swift */,
 				508F8F3A19F73A5F00610C3F /* GripSpinner.swift */,
+				50C1A05B1A12E7FA0005D961 /* Colorizer.swift */,
 				507D0477193E7CA7003CC3B6 /* ProductTable */,
 				50AB237419B124AB001D62AB /* Customer, Merchandise Collection */,
 			);
@@ -543,8 +545,7 @@
 		509BB176193A756100FC8CC7 /* ObcjUtils */ = {
 			isa = PBXGroup;
 			children = (
-				509BB177193A756100FC8CC7 /* StraightUpUtils.h */,
-				509BB178193A756100FC8CC7 /* StraightUpUtils.m */,
+				50C1A05D1A12EC3E0005D961 /* MBUtils.swift */,
 			);
 			path = ObcjUtils;
 			sourceTree = "<group>";
@@ -774,13 +775,13 @@
 				5099444B19AE86C600E7D004 /* Receipt.swift in Sources */,
 				509BB18B193A756100FC8CC7 /* MCTextFieldInterpreter.m in Sources */,
 				508F8F3B19F73A5F00610C3F /* GripSpinner.swift in Sources */,
+				50C1A05C1A12E7FA0005D961 /* Colorizer.swift in Sources */,
 				508F8F3919F7108700610C3F /* Customer.swift in Sources */,
 				509BB18A193A756100FC8CC7 /* MCLabelInterpreter.m in Sources */,
 				509BB183193A756100FC8CC7 /* MCBinder.m in Sources */,
 				509BB192193A756100FC8CC7 /* UIImageView+Utils.m in Sources */,
 				509BB195193A756100FC8CC7 /* MBObjectUtils.m in Sources */,
 				5094B1C61A06F14500FE8BDD /* CustomerCollectionViewDelegate.swift in Sources */,
-				509BB194193A756100FC8CC7 /* StraightUpUtils.m in Sources */,
 				5095EC6919AD49AF00D887F7 /* GripButton.swift in Sources */,
 				5099444919AE86C100E7D004 /* ProductReceipt.swift in Sources */,
 				507D0476193E7CA4003CC3B6 /* ProductTableViewCell.m in Sources */,
@@ -818,6 +819,7 @@
 				509BB18F193A756100FC8CC7 /* MBBoilerplateUtils.m in Sources */,
 				50CC00FF1A02CC1F00ED1E9D /* SigningViewController.swift in Sources */,
 				50D718F319F7B65E00E6B731 /* PDFFactory.swift in Sources */,
+				50C1A05E1A12EC3E0005D961 /* MBUtils.swift in Sources */,
 				509BB189193A756100FC8CC7 /* MCImageViewInterpreter.m in Sources */,
 				5048DED8199F0A9B0014ABC4 /* Product.swift in Sources */,
 			);

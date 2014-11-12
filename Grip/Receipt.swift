@@ -30,6 +30,7 @@ class Receipt : MTLModel, MTLJSONSerializing {
     //non API fields
     var user: User?
     var customer: Customer?
+    var declinedProducts = [ProductReceipt]()
     
     var id = -1
     
@@ -70,6 +71,7 @@ class Receipt : MTLModel, MTLJSONSerializing {
             "package": NSNull(),
             "user" : NSNull(),
             "customer" : NSNull(),
+            "declinedProducts" : NSNull(),
             "id": NSNull()
         ]
     }

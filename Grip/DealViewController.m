@@ -373,13 +373,19 @@ typedef enum UIState{
 }
 
 - (IBAction) complete:(id)sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    SigningViewController *signController = [storyboard instantiateViewControllerWithIdentifier:@"signViewController"];
+    if ([self.dealmaker validPackage]) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        SigningViewController *signController = [storyboard instantiateViewControllerWithIdentifier:@"signViewController"];
 
-    //dealmaker will take the current state of the package, generate a receipt object, and pass that object along to the signing controller for rendering, siging, and uploading
-    signController.receipt = [self.dealmaker completeReceipt];
-    
-    [self.navigationController pushViewController:signController animated:YES];
+        //dealmaker will take the current state of the package, generate a receipt object, and pass that object along to the signing controller for rendering, siging, and uploading
+        signController.receipt = [self.dealmaker completeReceipt];
+        
+        [self.navigationController pushViewController:signController animated:YES];
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"You must select at least one product in a packge." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        [alert show];
+    }
 }
 
 - (IBAction) walkthrough:(id)sender {

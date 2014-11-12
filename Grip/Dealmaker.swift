@@ -108,9 +108,22 @@ class Dealmaker : NSObject {
     func completeReceipt() -> Receipt {
         //complete the receipt object by adding the active products
         receipt.product_receipts_attributes = currentProductOrdering.filter({$0.active == true})
+        receipt.declinedProducts = currentProductOrdering.filter({$0.active == false})
         
         receipt.package_id = -1
         return receipt
+    }
+    
+    func validPackage() -> Bool {
+        //validates that the current selection is valid-- i.e. non-empty
+        let activeItems = currentProductOrdering.filter({$0.active == true})
+        
+        if activeItems.count == 0 {
+            return false
+        }
+        else {
+            return true
+        }
     }
     
     

@@ -30,7 +30,8 @@ class SigningViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var imageGripLogo: UIImageView!
     
     //table
-    @IBOutlet weak var tableProducts: UITableView!
+    @IBOutlet weak var tableDeclined: UITableView!
+    @IBOutlet weak var tableAccepted: UITableView!
     
     //Collections
     @IBOutlet var labels: [UILabel]!
@@ -60,7 +61,8 @@ class SigningViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
 
         self.scrollviewContent.contentSize = self.viewPage.frame.size
-        self.tableProducts.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.tableAccepted.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.tableDeclined.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         showingSignature = false
     }
@@ -129,7 +131,8 @@ class SigningViewController: UIViewController, UITableViewDataSource {
         
         //make the table reload its contents in black
         drawTableBlack = true
-        tableProducts.reloadData()
+        tableDeclined.reloadData()
+        tableAccepted.reloadData()
         
         viewPage.backgroundColor = UIColor.whiteColor()
         
@@ -221,27 +224,42 @@ class SigningViewController: UIViewController, UITableViewDataSource {
 
     //MARK: Table delegate and Datasource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.receipt!.product_receipts_attributes!.count
+        if tableView == tableAccepted {
+            return self.receipt!.product_receipts_attributes!.count
+        }
+        else {
+            return self.receipt!.declinedProducts.count
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell? = self.tableProducts.dequeueReusableCellWithIdentifier("cell") as? UITableViewCell
+        var productReceipt: ProductReceipt
+        var cell = tableView.dequeueReusableCellWithIdentifier("cell") as? UITableViewCell
         
         if cell != nil {
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
         }
         
-        let receipt = self.receipt!.product_receipts_attributes![indexPath.row]
+        if tableView == tableAccepted {
+            productReceipt = self.receipt!.product_receipts_attributes![indexPath.row]
+        }
+        else {
+            productReceipt = self.receipt!.declinedProducts[indexPath.row]
+        }
         
-        cell!.textLabel.text = receipt.name
+        cell!.textLabel.text = productReceipt.name
         
         let formatter = NSNumberFormatter()
         formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
         formatter.roundingMode = NSNumberFormatterRoundingMode.RoundUp
         
-        cell!.detailTextLabel!.text = "\(formatter.stringFromNumber(receipt.price))"
+        cell!.detailTextLabel!.text = "\(formatter.stringFromNumber(productReceipt.price)!)"
         
         cell?.backgroundColor = UIColor.clearColor()
+        
+        //set cell font programmatically
+        cell!.textLabel.font = UIFont(name: "Titillium-Light", size: 20.0)
+        cell!.detailTextLabel?.font = UIFont(name: "Titillium-Light", size: 15.0)
         
         if drawTableBlack {
             cell?.textLabel.textColor = UIColor.blackColor()

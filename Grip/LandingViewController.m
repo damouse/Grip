@@ -51,7 +51,7 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-    
+
     //default to not logged in
     loggedIn = false;
     displayingLogin = false;
