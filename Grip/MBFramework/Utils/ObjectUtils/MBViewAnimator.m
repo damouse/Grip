@@ -14,6 +14,8 @@
  */
 
 #import "MBViewAnimator.h"
+#import <UIView+MTAnimation.h>
+
 //#define DEBUG 1
 
 //define the starting number to tag at (declared here in case of conflict)
@@ -168,6 +170,10 @@
     }
     
     //perform the animation
+//    [UIView mt_animateWithViews:@[view] duration:animationDuration timingFunction:kMTEaseInOutExpo animations:^ {
+//        view.frame = [save hiddenFrame];
+//    } completion:completion];
+    
     [UIView animateWithDuration:animationDuration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
                      animations:^ {
                          view.frame = [save hiddenFrame];

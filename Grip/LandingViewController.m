@@ -62,7 +62,7 @@
     
     apiManager = [PGApiManager sharedInstance];
     
-    [PGAppearance setFont];
+    [PGAppearance setAppearance];
 
     //DEBUG
     apiManager.userEmail = @"dealer@test.com";
@@ -134,9 +134,6 @@
         [button setTitleColor:HIGHLIGHT_COLOR forState:UIControlStateHighlighted];
         button.adjustsImageWhenHighlighted = YES;
     }
-    
-    textfieldEmail.backgroundColor = PRIMARY_LIGHT;
-    textfieldPassword.backgroundColor = PRIMARY_LIGHT;
 }
 
 - (void) setupCollectionViews {
@@ -187,21 +184,6 @@
     }
     else
         [self presentPackage];
-}
-
-
-#pragma mark Delegate
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-
-    NSString *newString =[textField.text stringByReplacingCharactersInRange:range withString:string];
-    
-    //strip/check leading whitespace
-    newString = [newString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
-    newString = [NSString stringWithFormat:@"  %@", newString];
-    
-    [textField setText:newString];
-    return NO;
 }
 
 
@@ -367,7 +349,8 @@
 }
 
 - (IBAction) settings:(id)sender {
-    [self presentSettings];
+    [textfieldEmail setNeedsDisplay];
+//    [self presentSettings];
 }
 
 - (IBAction) dialogLogin:(id)sender {

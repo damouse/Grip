@@ -91,7 +91,7 @@
 		50CC00FF1A02CC1F00ED1E9D /* SigningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CC00FE1A02CC1F00ED1E9D /* SigningViewController.swift */; };
 		50D718F319F7B65E00E6B731 /* PDFFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D718F219F7B65E00E6B731 /* PDFFactory.swift */; };
 		50EC987D199236D400C62BFE /* PGApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EC987C199236D400C62BFE /* PGApiManager.swift */; };
-		50F7F44B1A12F57F00429941 /* GripLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F7F44A1A12F57F00429941 /* GripLabel.swift */; };
+		50F7F44B1A12F57F00429941 /* GripTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F7F44A1A12F57F00429941 /* GripTextfield.swift */; };
 		F35AE82AA7F5417A814DCAEE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57EC558AFF9D4E6D9C4B789A /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -225,7 +225,7 @@
 		50D718F219F7B65E00E6B731 /* PDFFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFFactory.swift; sourceTree = "<group>"; };
 		50EC987B199236D400C62BFE /* Grip-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grip-Bridging-Header.h"; sourceTree = "<group>"; };
 		50EC987C199236D400C62BFE /* PGApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PGApiManager.swift; sourceTree = "<group>"; };
-		50F7F44A1A12F57F00429941 /* GripLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GripLabel.swift; sourceTree = "<group>"; };
+		50F7F44A1A12F57F00429941 /* GripTextfield.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GripTextfield.swift; sourceTree = "<group>"; };
 		57A7D9BD59B9FFFE3C20B052 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		57EC558AFF9D4E6D9C4B789A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		59A0F1C841230A0A82BB3B08 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -403,7 +403,7 @@
 				5095EC6819AD49AF00D887F7 /* GripButton.swift */,
 				508F8F3A19F73A5F00610C3F /* GripSpinner.swift */,
 				50C1A05B1A12E7FA0005D961 /* PGAppearance.swift */,
-				50F7F44A1A12F57F00429941 /* GripLabel.swift */,
+				50F7F44A1A12F57F00429941 /* GripTextfield.swift */,
 				507D0477193E7CA7003CC3B6 /* ProductTable */,
 				50AB237419B124AB001D62AB /* Customer, Merchandise Collection */,
 			);
@@ -782,7 +782,7 @@
 				508F8F3919F7108700610C3F /* Customer.swift in Sources */,
 				509BB18A193A756100FC8CC7 /* MCLabelInterpreter.m in Sources */,
 				509BB183193A756100FC8CC7 /* MCBinder.m in Sources */,
-				50F7F44B1A12F57F00429941 /* GripLabel.swift in Sources */,
+				50F7F44B1A12F57F00429941 /* GripTextfield.swift in Sources */,
 				509BB192193A756100FC8CC7 /* UIImageView+Utils.m in Sources */,
 				509BB195193A756100FC8CC7 /* MBObjectUtils.m in Sources */,
 				5094B1C61A06F14500FE8BDD /* CustomerCollectionViewDelegate.swift in Sources */,

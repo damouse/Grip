@@ -145,10 +145,6 @@ typedef enum UIState{
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button setTitleColor:HIGHLIGHT_COLOR forState:UIControlStateHighlighted];
     }
-    
-    for (UITextField *textfield in self.textfields) {
-        textfield.backgroundColor = PRIMARY_LIGHT;
-    }
 }
 
 - (void) setInitialLabels {
@@ -409,8 +405,4 @@ typedef enum UIState{
     textfieldDelegate.lastSelectedProduct = nil;
     [self animateProductPaneOut];
 }
-
-
-#pragma mark Money Formatting Utility Methods
-
 @end

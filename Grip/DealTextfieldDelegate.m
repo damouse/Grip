@@ -348,19 +348,6 @@
     return YES;
 }
 
-- (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    
-    NSString *newString =[textField.text stringByReplacingCharactersInRange:range withString:string];
-    
-    //strip/check leading whitespace
-    newString = [newString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
-    newString = [NSString stringWithFormat:@"  %@", newString];
-    
-    [textField setText:newString];
-    return NO;
-}
-
 - (void) keyboardWillHide:(id)sender {
     //call parent animation action
     [parent animateStateShowingInfo:false];
