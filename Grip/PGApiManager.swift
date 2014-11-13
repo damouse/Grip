@@ -211,9 +211,10 @@ private let _singletonInstance = PGApiManager()
                 
                 self.user = MTLJSONAdapter.modelOfClass(User.self, fromJSONDictionary: userDictionary, error: &error) as? User
                 self.user?.image_url = json["image_url"] as? String
-                self.loadUserImage(self.user!)
-
-                completion(true)
+                
+                self.loadUserImage(self.user!, completion: { () -> Void in
+                    completion(true)
+                })
             },
             
             failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) -> Void in
@@ -488,6 +489,7 @@ private let _singletonInstance = PGApiManager()
     func loadImage(product: Product) {
         if product.image_url == "default.png" {
             product.image = UIImage(named: "Placeholder")
+            product.desaturatedImage = product.image!.desaturate()
             return
         }
         
@@ -511,10 +513,12 @@ private let _singletonInstance = PGApiManager()
         operation.start()
     }
     
-    func loadUserImage(user: User) {
+    func loadUserImage(user: User, completion:() ->Void) {
+        updateHUDText("Loading Logo");
         //async call to load an image using AFNetworking
         if user.image_url == "default.png" {
             user.image = UIImage(named: "Placeholder")
+            completion()
             return
         }
         
@@ -525,6 +529,7 @@ private let _singletonInstance = PGApiManager()
         operation.setCompletionBlockWithSuccess({ (operation: AFHTTPRequestOperation!, object: AnyObject!) -> Void in
                 user.image = object as? UIImage
                 println("User finished loading picture")
+                completion()
             },
             
             failure: { (operation: AFHTTPRequestOperation!, error: NSError!) ->Void in
@@ -532,6 +537,7 @@ private let _singletonInstance = PGApiManager()
                 
                 self.optionalLog("Image failure for product \(user.name)")
                 println(error)
+                completion()
         })
         
         operation.start()

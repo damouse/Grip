@@ -65,23 +65,9 @@
     [PGAppearance setAppearance];
 
     //DEBUG
-    apiManager.userEmail = @"dealer@test.com";
-    apiManager.userPassword = @"12345678";
-    
-    [apiManager loadResources:self.view completion:^(BOOL status) {
-        if (status) {
-            loggedIn = true;
-
-            [self dismissLogin];
-            [self showBothLogos];
-            [self setLoginButtonState];
-
-            collectionCustomerDelegate.customers = apiManager.customers;
-            collectionMerchandiseDelegate.merchandises = apiManager.merchandises;
-
-            [imageCompanyLogo setImage:apiManager.user.image];
-        }
-    }];
+    textfieldEmail.text = @"dealer@test.com";
+    textfieldPassword.text = @"12345678";
+    [self performLogin];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -157,6 +143,8 @@
             [self showBothLogos];
             [self setLoginButtonState];
             
+            textfieldPassword.text = @"";
+            
             //set the collection views' models
             collectionCustomerDelegate.customers = apiManager.customers;
             collectionMerchandiseDelegate.merchandises = apiManager.merchandises;
@@ -165,7 +153,7 @@
         }
         
         else {
-            
+            NSLog(@"LOGIN FAILED");
         }
     }];
 }
