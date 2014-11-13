@@ -144,7 +144,31 @@
 
 
 #pragma mark Login Flow
-
+- (void) performLogin {
+    //actually performs the login with the text in the boxes
+    apiManager.userEmail = [textfieldEmail.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    apiManager.userPassword = [textfieldPassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    [apiManager loadResources:self.view completion:^(BOOL status) {
+        if (status == true) {
+            loggedIn = true;
+            
+            [self dismissLogin];
+            [self showBothLogos];
+            [self setLoginButtonState];
+            
+            //set the collection views' models
+            collectionCustomerDelegate.customers = apiManager.customers;
+            collectionMerchandiseDelegate.merchandises = apiManager.merchandises;
+            
+            [imageCompanyLogo setImage:apiManager.user.image];
+        }
+        
+        else {
+            
+        }
+    }];
+}
 
 #pragma mark Search, Customers, and Merchandise
 - (void) presentPackage {
@@ -354,31 +378,26 @@
 }
 
 - (IBAction) dialogLogin:(id)sender {
-    apiManager.userEmail = [textfieldEmail.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    apiManager.userPassword = [textfieldPassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    [textfieldEmail resignFirstResponder];
+    [textfieldPassword resignFirstResponder];
     
-    [apiManager loadResources:self.view completion:^(BOOL status) {
-        if (status == true) {
-            loggedIn = true;
-            
-            [self dismissLogin];
-            [self showBothLogos];
-            [self setLoginButtonState];
-            
-            //set the collection views' models
-            collectionCustomerDelegate.customers = apiManager.customers;
-            collectionMerchandiseDelegate.merchandises = apiManager.merchandises;
-            
-            [imageCompanyLogo setImage:apiManager.user.image];
-        }
-        
-        else {
-            
-        }
-    }];
+    if ([textfieldEmail.text isEqualToString:@""]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Login Error"] message:@"Email cannot be blank"  delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+    }
+    else if  ([textfieldEmail.text isEqualToString:@""]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Login Error"] message:@"Password cannot be blank"  delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+    }
+    else {
+        [self performLogin];
+    }
 }
 
 - (IBAction) dialogLoginCancel:(id)sender {
+    [textfieldEmail resignFirstResponder];
+    [textfieldPassword resignFirstResponder];
+    
     [self dismissLogin];
 }
 
@@ -416,6 +435,10 @@
     if (buttonIndex == 0)
         return;
     
+    if ([alertView.title isEqualToString: @"Login Eror"]) {
+        return;
+    }
+    
     if ([alertView.title isEqualToString: @"New Merchandise"]) {
         collectionMerchandiseDelegate.selectedMerchandise.name = [alertView textFieldAtIndex:0].text;
     }
@@ -424,5 +447,12 @@
     }
 
     [self checkCustomerAndMerchandise];
+}
+
+
+#pragma mark Textfield Delegate
+- (BOOL) textFieldShouldReturn:(UITextField *)textView {
+    [textView resignFirstResponder];
+    return YES;
 }
 @end
