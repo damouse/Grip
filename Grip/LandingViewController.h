@@ -35,6 +35,7 @@
     
     //settings fields
     __weak IBOutlet UISwitch *switchCustomizeProductCosts;
+    __weak IBOutlet UIButton *infoProductCosts;
 }
 
 //buttons

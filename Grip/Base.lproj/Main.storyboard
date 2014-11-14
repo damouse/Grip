@@ -355,19 +355,15 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="1Dp-gV-G81">
-                                        <rect key="frame" x="69" y="115" width="51" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </switch>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customize Product Costs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iWD-7C-wZX">
-                                        <rect key="frame" x="140" y="115" width="247" height="35"/>
+                                        <rect key="frame" x="80" y="115" width="247" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="XZ6-dc-fYN">
-                                        <rect key="frame" x="437" y="122" width="22" height="22"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="XZ6-dc-fYN">
+                                        <rect key="frame" x="493" y="122" width="22" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -376,6 +372,10 @@
                                             <action selector="customizeProductCostsInfo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Z0-Ik-Xzr"/>
                                         </connections>
                                     </button>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="1Dp-gV-G81">
+                                        <rect key="frame" x="421" y="117" width="51" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </switch>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -390,6 +390,7 @@
                         <outlet property="collectionviewMerchandise" destination="fkv-uk-QxI" id="N1v-dT-bHY"/>
                         <outlet property="imageCompanyLogo" destination="PK2-73-G0e" id="HdJ-bj-idm"/>
                         <outlet property="imageGripLogo" destination="Lqo-kf-cTD" id="JlX-wu-vE1"/>
+                        <outlet property="infoProductCosts" destination="XZ6-dc-fYN" id="4zc-Jx-HH4"/>
                         <outlet property="switchCustomizeProductCosts" destination="1Dp-gV-G81" id="Pfj-cx-vdq"/>
                         <outlet property="textfieldEmail" destination="lFb-cn-RV4" id="emm-cQ-LSk"/>
                         <outlet property="textfieldPassword" destination="h94-c2-8Y9" id="gWX-K6-3hs"/>

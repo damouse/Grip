@@ -25,6 +25,7 @@ class PGAppearance: NSObject {
     class func setColors() {
         //sets the color-- light or dark
         UITextField.appearance().keyboardAppearance = UIKeyboardAppearance.Dark
+        UISwitch.appearance().onTintColor = HIGHLIGHT_COLOR
     }
     
     class func setFonts() {

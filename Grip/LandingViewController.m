@@ -130,6 +130,8 @@
         [button setTitleColor:HIGHLIGHT_COLOR forState:UIControlStateHighlighted];
         button.adjustsImageWhenHighlighted = YES;
     }
+    
+    infoProductCosts.tintColor = HIGHLIGHT_COLOR;
 }
 
 - (void) setupCollectionViews {
