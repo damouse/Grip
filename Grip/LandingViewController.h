@@ -32,6 +32,9 @@
 
     __weak IBOutlet UICollectionView *collectionviewMerchandise;
     __weak IBOutlet UICollectionView *collectionviewCustomers;
+    
+    //settings fields
+    __weak IBOutlet UISwitch *switchCustomizeProductCosts;
 }
 
 //buttons
@@ -49,4 +52,8 @@
 //present screen dialog
 - (IBAction)customerMerchandiseDialogCancel:(id)sender;
 - (IBAction)dialogPresent:(id)sender;
+
+//settings
+- (IBAction)customizeProductCostsInfo:(id)sender;
+
 @end

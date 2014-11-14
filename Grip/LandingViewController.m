@@ -62,10 +62,11 @@
     
     apiManager = [PGApiManager sharedInstance];
     
+    //wide, sweeping appearance changes
     [PGAppearance setAppearance];
 
     //DEBUG
-    textfieldEmail.text = @"dealer@test.com";
+    textfieldEmail.text = @"demo@test.com";
     textfieldPassword.text = @"12345678";
     [self performLogin];
 }
@@ -78,6 +79,9 @@
     [self setLoginButtonState];
     
     [self setupCollectionViews];
+    
+    //called regardless if user is logged in or not, the default settings are applied
+    [self populateSettings:apiManager.setting];
 }
 
 - (void) viewDidLayoutSubviews {
@@ -148,6 +152,7 @@
             [self dismissLogin];
             [self showBothLogos];
             [self setLoginButtonState];
+            [self populateSettings:apiManager.setting];
             
             textfieldPassword.text = @"";
             
@@ -162,6 +167,7 @@
         }
     }];
 }
+
 
 #pragma mark Search, Customers, and Merchandise
 - (void) presentPackage {
@@ -308,6 +314,9 @@
         return;
     }
     
+    //check if the settings changed, and if so attempt to update with backend
+    [self changeSettings];
+    
     [animator animateObjectOffscreen:viewSettings completion:nil];
     displayingSettings = false;
     [self showBothLogos];
@@ -366,8 +375,7 @@
 }
 
 - (IBAction) settings:(id)sender {
-    [textfieldEmail setNeedsDisplay];
-//    [self presentSettings];
+    [self presentSettings];
 }
 
 - (IBAction) dialogLogin:(id)sender {
@@ -423,12 +431,38 @@
 }
 
 
+#pragma mark IBActions- Settings
+- (void) populateSettings:(Setting *) settings {
+    //populate the settings fields with settings objects
+    [switchCustomizeProductCosts setOn:settings.customize_product_cost];
+}
+
+- (void) changeSettings {
+    //looks at all of the switches in the settings section and upload a new settings object if they changed
+    if (switchCustomizeProductCosts.isOn != apiManager.setting.customize_product_cost) {
+        
+        //perform changes
+        apiManager.setting.customize_product_cost = switchCustomizeProductCosts.isOn;
+        
+        //issue call
+        [apiManager updateSettings:self.view completion:^(BOOL completed) {
+            NSLog(@"Settings updated");
+        }];
+    }
+}
+
+- (IBAction)customizeProductCostsInfo:(id)sender {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Settings Info" message:@"Permit product prices to be changed while a package is being presented." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    [alert show];
+}
+
+
 #pragma mark AlertView Delegate
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0)
         return;
     
-    if ([alertView.title isEqualToString: @"Login Eror"]) {
+    if ([alertView.title isEqualToString: @"Login Eror"] || [alertView.title isEqualToString: @"Settings Info"]) {
         return;
     }
     

@@ -14,8 +14,8 @@ private let _singletonInstance = PGApiManager()
 @objc class PGApiManager : NSObject {
     let logging = false
     
-    let base_url = "http://packagegrid.com/"
-//    let base_url = "http://192.168.79.166:3000/"
+//    let base_url = "http://packagegrid.com/"
+    let base_url = "http://192.168.79.166:3000/"
     
     //stored user information-- hold for future auth requests
     var userPassword: String?
@@ -26,6 +26,7 @@ private let _singletonInstance = PGApiManager()
     var merchandises = NSArray()
     var packages = NSArray()
     var customers = [Customer]()
+    var setting = Setting()
     
     var progressHUD: MBProgressHUD?
     
@@ -118,6 +119,11 @@ private let _singletonInstance = PGApiManager()
         }, completion: completion)
     }
     
+    func updateSettings(view: UIView, completion: (success: Bool) -> Void) {
+        //update the settings object. Rely on Landing to change the fields of the object
+        updateSettings(setting, success: completion)
+    }
+    
     
     //MARK: Model Helper Methods
     func findProductById(id:Int) -> Product? {
@@ -172,8 +178,12 @@ private let _singletonInstance = PGApiManager()
             completion(true)
         }
         
-        let productSuccess = { () -> Void in
+        let settingSuccess = { () -> Void in
             self.loadPackages(self.user!.group_id, packageSuccess)
+        }
+        
+        let productSuccess = { () -> Void in
+            self.loadSettings(self.user!.group_id, settingSuccess)
         }
         
         let merchandiseSuccess = { () -> Void in
@@ -223,21 +233,20 @@ private let _singletonInstance = PGApiManager()
         })
     }
     
-    func loadSettings(success:(() -> Void)?) -> Void {
+    func loadSettings(id:Int, success:(() -> Void)?) -> Void {
         //load the user settings from the backend
         updateHUDText("Loading Settings")
         
-        generateAuthenticatedClient().GET("dashboard/\(self.user!.group_id)/settings", parameters: nil,
+        generateAuthenticatedClient().GET("dashboard/\(id)/settings.json", parameters: nil,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
                 self.optionalLog("API: Settings Success")
-//                self.products = self.serializeObjects(responseObject!, jsonKey: "products", objectClass: Product.self)
+                self.setting = self.serializeObject(responseObject!, jsonKey: "setting", objectClass: Setting.self) as Setting
                 success?()
             },
             
             failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) -> Void in
                 self.apiFailed(operation, error: error)
-                completion(false)
         })
     }
 
@@ -420,8 +429,22 @@ private let _singletonInstance = PGApiManager()
         uploader.uploadFile(data, name: name, completion: success)
     }
     
-    func updateSettings(settings: AnyObject, success: (Bool) -> Void) {
+    func updateSettings(settings: Setting, success: (Bool) -> Void) {
         //update the user's settings. Patch to the backend
+        let json = MTLJSONAdapter.JSONDictionaryFromModel(settings)
+        optionalLog(json)
+        
+        generateAuthenticatedClient().PUT("dashboard/\(user!.group_id)/settings", parameters: json,
+            
+            success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
+                self.optionalLog("API: Setting update Success")
+                success(true)
+            },
+            
+            failure:  { ( operation: AFHTTPRequestOperation?, error: NSError? ) -> Void in
+                success(false)
+                self.apiFailed(operation, error: error)
+        })
     }
     
     
@@ -429,7 +452,9 @@ private let _singletonInstance = PGApiManager()
     func generateAuthenticatedClient() -> AFHTTPRequestOperationManager {
         var client = AFHTTPRequestOperationManager(baseURL: NSURL(string: base_url))
         client.requestSerializer = AFJSONRequestSerializer() as AFJSONRequestSerializer
+        
         client.requestSerializer.setValue("application/json", forHTTPHeaderField: "Accept")
+        client.requestSerializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         if user != nil {
             client.requestSerializer.setValue(String(user!.id), forHTTPHeaderField: "X-USER-ID")
@@ -480,7 +505,9 @@ private let _singletonInstance = PGApiManager()
     func apiFailed(operation: AFHTTPRequestOperation?, error: NSError?) {
         print("failure- ")
         println(error)
-        println(operation)
+//        println(operation)
+        println(operation!.responseObject)
+        
         var message = "An error occured communinicating with the server"
         
         //conditionally display errors if they are presented

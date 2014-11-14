@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		501B6135199259CF00286A6E /* PGArchiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501B6134199259CF00286A6E /* PGArchiver.swift */; };
 		502F0434193FC90900516A0F /* ProductTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 502F0433193FC90900516A0F /* ProductTableViewDelegate.m */; };
+		5032BAB91A15B31F00A8359A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5032BAB81A15B31F00A8359A /* Settings.swift */; };
 		503BC46D1A01CF7F00CA22DC /* S3FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503BC46C1A01CF7F00CA22DC /* S3FileManager.swift */; };
 		5048DED7199F0A9B0014ABC4 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5048DED3199F0A9B0014ABC4 /* Package.swift */; };
 		5048DED8199F0A9B0014ABC4 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5048DED4199F0A9B0014ABC4 /* Product.swift */; };
@@ -109,6 +110,7 @@
 		501B6134199259CF00286A6E /* PGArchiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PGArchiver.swift; sourceTree = "<group>"; };
 		502F0432193FC90900516A0F /* ProductTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableViewDelegate.h; sourceTree = "<group>"; };
 		502F0433193FC90900516A0F /* ProductTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTableViewDelegate.m; sourceTree = "<group>"; };
+		5032BAB81A15B31F00A8359A /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		503BC46C1A01CF7F00CA22DC /* S3FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S3FileManager.swift; sourceTree = "<group>"; };
 		5048DED3199F0A9B0014ABC4 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		5048DED4199F0A9B0014ABC4 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				5048DED3199F0A9B0014ABC4 /* Package.swift */,
 				5048DED4199F0A9B0014ABC4 /* Product.swift */,
 				50637C62199247F40010A6EF /* User.swift */,
+				5032BAB81A15B31F00A8359A /* Settings.swift */,
 				5099444819AE86C100E7D004 /* ProductReceipt.swift */,
 				508F8F3819F7108700610C3F /* Customer.swift */,
 				5099444A19AE86C600E7D004 /* Receipt.swift */,
@@ -788,6 +791,7 @@
 				5094B1C61A06F14500FE8BDD /* CustomerCollectionViewDelegate.swift in Sources */,
 				5095EC6919AD49AF00D887F7 /* GripButton.swift in Sources */,
 				5099444919AE86C100E7D004 /* ProductReceipt.swift in Sources */,
+				5032BAB91A15B31F00A8359A /* Settings.swift in Sources */,
 				507D0476193E7CA4003CC3B6 /* ProductTableViewCell.m in Sources */,
 				509BB185193A756100FC8CC7 /* MCCollectionView.m in Sources */,
 				509BB187193A756100FC8CC7 /* MCTableView.m in Sources */,
