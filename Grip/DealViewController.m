@@ -103,6 +103,10 @@ typedef enum UIState{
     [self initAnimations];
     [self setInitialLabels];
     
+    //weird bug. The table is overlapping the option bars for unknown reasons. Because
+    //clipsSubviews is turned off,
+    [self.view bringSubviewToFront:viewBottomLeftContainer];
+    [self.view bringSubviewToFront:viewBottomRightContainer];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -152,14 +156,12 @@ typedef enum UIState{
 
 - (void) setInitialLabels {
     //set merchandise and customer labels
-    labelMerchandiseName.text = self.dealmaker.receipt.merchandise_receipt_attributes.name;
+    labelDetailsMerchandiseName.text = self.dealmaker.receipt.merchandise_receipt_attributes.name;
     labelMerchandiseName.text = self.dealmaker.receipt.merchandise_receipt_attributes.name;
     labelDetailsMerchandiseDescription.text = self.dealmaker.receipt.merchandise_receipt_attributes.product.item_description;
-    
-    [imageDetailsMerchandise setImage:self.dealmaker.receipt.merchandise_receipt_attributes.product.image];
-    [imageMerchandise setImage:self.dealmaker.receipt.merchandise_receipt_attributes.product.image];
-    
 
+    [imageDetailsMerchandise setImage:self.dealmaker.receipt.user.image];
+    [imageMerchandise setImage:self.dealmaker.receipt.user.image];
 }
 
 

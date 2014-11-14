@@ -66,9 +66,9 @@
     [PGAppearance setAppearance];
 
     //DEBUG
-    textfieldEmail.text = @"demo@test.com";
-    textfieldPassword.text = @"12345678";
-    [self performLogin];
+//    textfieldEmail.text = @"demo@test.com";
+//    textfieldPassword.text = @"12345678";
+//    [self performLogin];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -360,6 +360,9 @@
         [self showOnlyGripLogo];
         [self dismissSettings];
         [self dismissPackageCustomer];
+        
+        apiManager.userEmail = @"";
+        apiManager.userPassword = @"";
     }
     else {
         [self presentLogin];

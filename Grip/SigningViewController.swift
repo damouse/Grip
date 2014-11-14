@@ -95,10 +95,12 @@ class SigningViewController: UIViewController, UITableViewDataSource {
         labelFinancing.text = "\(self.receipt!.discount)%"
         labelPayment.text = "\(self.receipt!.cost)";
         
+        imageCompanyLogo.image = self.receipt?.user?.image
+        
         labelSalesName.text = self.receipt?.user?.name
         
         if self.receipt?.package == nil {
-            labelPackageName.text = "Custome"
+            labelPackageName.text = "Custom"
         }
         else {
             labelPackageName.text = self.receipt?.package?.name

@@ -12,7 +12,7 @@ import UIKit
 private let _singletonInstance = PGApiManager()
 
 @objc class PGApiManager : NSObject {
-    let logging = false
+    let logging = true
     
     let base_url = "http://packagegrid.com/"
 //    let base_url = "http://192.168.79.166:3000/"
