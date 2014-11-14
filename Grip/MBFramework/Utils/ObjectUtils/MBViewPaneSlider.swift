@@ -45,6 +45,13 @@ class MBViewPaneSlider : NSObject {
         self.button1?.setTitleColor(HIGHLIGHT_COLOR, forState: .Normal)
     }
     
+    func onlyShowView(view: UIView) {
+        //hides the table and button if asked
+        button1?.hidden = true
+        button2?.hidden = true
+        activateView(view)
+    }
+    
     func buttonPress(sender: UIButton) {
         if activeButton == sender {
             return

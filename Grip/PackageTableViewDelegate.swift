@@ -78,6 +78,8 @@ class PackageTableViewDelegate : NSObject, UITableViewDataSource, UITableViewDel
         cell.textLabel.text = packages[indexPath.row].name
         cell.backgroundColor = UIColor.clearColor()
         
+        cell.textLabel.font = UIFont(name: "Titillium-Light", size: 20.0)
+        
         return cell
     }
     

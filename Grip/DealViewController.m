@@ -122,6 +122,9 @@ typedef enum UIState{
     }
     else if ([self.dealmaker.userPackages count] > 0) {
         [self selectPackage:[self.dealmaker.userPackages objectAtIndex:0]];
+        
+        //there are no user packages. Hide the user package side.
+        [paneSlider onlyShowView:viewPresetPackageSlidein];
     }
 }
 

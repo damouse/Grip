@@ -52,8 +52,6 @@
 
     
     //User and Merchandise Details
-
-    
     __weak IBOutlet UITextView *labelDetailsMerchandiseDescription;
     
     __weak IBOutlet UIImageView *imageDetailsMerchandise;

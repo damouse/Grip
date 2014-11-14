@@ -151,7 +151,6 @@
             
             [imageCompanyLogo setImage:apiManager.user.image];
         }
-        
         else {
             NSLog(@"LOGIN FAILED");
         }
@@ -373,7 +372,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Login Error"] message:@"Email cannot be blank"  delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alert show];
     }
-    else if  ([textfieldEmail.text isEqualToString:@""]) {
+    else if  ([textfieldPassword.text isEqualToString:@""]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Login Error"] message:@"Password cannot be blank"  delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alert show];
     }

@@ -440,6 +440,7 @@ private let _singletonInstance = PGApiManager()
             self.logIn({ (status: Bool) -> Void in
                 if !status { //will the controller know why the completion failed? Need to pass an error message back up
                     completion(false)
+                    return
                 }
                 
                 call()
@@ -458,13 +459,23 @@ private let _singletonInstance = PGApiManager()
         print("failure- ")
         println(error)
         println(operation)
+        var message = "An error occured communinicating with the server"
+        
+        //conditionally display errors if they are presented
+        let responseDict = operation!.responseObject as? [String: String]
+        if responseDict != nil {
+            let errorMessage = responseDict!["message"]
+            if errorMessage != nil {
+                message = errorMessage!
+            }
+        }
         
         PGApiManager.sharedInstance.removeHUD()
         
         //show alert!
         let alert = UIAlertView()
         alert.title = "Error"
-        alert.message = "An error occured communinicating with the server"
+        alert.message = message
         alert.addButtonWithTitle("Ok")
         alert.show()
     }
