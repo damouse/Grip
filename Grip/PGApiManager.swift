@@ -222,6 +222,24 @@ private let _singletonInstance = PGApiManager()
                 completion(false)
         })
     }
+    
+    func loadSettings(success:(() -> Void)?) -> Void {
+        //load the user settings from the backend
+        updateHUDText("Loading Settings")
+        
+        generateAuthenticatedClient().GET("dashboard/\(self.user!.group_id)/settings", parameters: nil,
+            
+            success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
+                self.optionalLog("API: Settings Success")
+//                self.products = self.serializeObjects(responseObject!, jsonKey: "products", objectClass: Product.self)
+                success?()
+            },
+            
+            failure: { ( operation: AFHTTPRequestOperation?, error: NSError? ) -> Void in
+                self.apiFailed(operation, error: error)
+                completion(false)
+        })
+    }
 
     func loadProducts(success:(() -> Void)?) -> Void {
         updateHUDText("Updating Products")
@@ -400,6 +418,10 @@ private let _singletonInstance = PGApiManager()
 
         let data = pdfFactory.createPDFFromView(view)
         uploader.uploadFile(data, name: name, completion: success)
+    }
+    
+    func updateSettings(settings: AnyObject, success: (Bool) -> Void) {
+        //update the user's settings. Patch to the backend
     }
     
     

@@ -102,6 +102,12 @@
 
 - (void) viewDidAppear:(BOOL)animated {
     [self initialAnimations];
+    
+    //if user is already logged in, be sure to populate relevant fields
+    if (loggedIn) {
+        collectionCustomerDelegate.customers = apiManager.customers;
+        collectionMerchandiseDelegate.merchandises = apiManager.merchandises;
+    }
 }
 
 - (void) colorize {
