@@ -35,6 +35,8 @@ class Product : MTLModel, MTLJSONSerializing {
     var image: UIImage?
     var desaturatedImage: UIImage?
     
+    var details: [Detail]?
+    
 
     //Boilerplate Mantle code
     class func appURLSchemeJSONTransformer() -> NSValueTransformer {
@@ -52,6 +54,9 @@ class Product : MTLModel, MTLJSONSerializing {
     class func JSONTransformerForKey(key: String) -> NSValueTransformer? {
         if key == "created_at" || key == "updated_at" {
             return NetworkUtils.dateFormatter()
+        }
+        if key == "details" {
+            return NSValueTransformer.mtl_JSONArrayTransformerWithModelClass(Detail.self)
         }
         
         return nil

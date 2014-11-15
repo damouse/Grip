@@ -26,6 +26,9 @@
     PackageTableViewDelegate *userPackageDelegate;
     PackageTableViewDelegate *customerPackageDelegate;
     
+    //product info table controller
+    AccordionDescriptionTable *productDetails;
+    
     //manages all of the textfields and labels, interacts with the maker
     DealTextfieldDelegate *textfieldDelegate;
     
@@ -79,6 +82,9 @@ typedef enum UIState{
     tableProducts.delegate = tableDelegate;
     tableProducts.dataSource = tableDelegate;
     
+    //product info
+    productDetails = [[AccordionDescriptionTable alloc] initWithTable:tableviewDetails];
+    
     //validation, formatting, and whatnot
     textfieldDelegate = [[DealTextfieldDelegate alloc] init];
     textfieldDelegate.parent = self;
@@ -113,11 +119,6 @@ typedef enum UIState{
     [self colorize];
     [self introAnimations];
     
-    //DEBUG TESTING
-    NSURL *url = [NSURL URLWithString:@"http://www.youtube.com/watch?v=fDXWW5vX-64"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [webviewVideo loadRequest:request];
-    
     paneSlider = [[MBViewPaneSlider alloc] initWithView1:viewPresetPackageSlidein button1:buttonStockPackages view2:viewCustomerPackageSlideIn button2:buttonCustomerPackages];
     
     //if there are customer packages, show the first one. Else show the first user package. Else do nothing
@@ -145,8 +146,6 @@ typedef enum UIState{
     
     self.view.backgroundColor = PRIMARY_LIGHT;
     tableProducts.backgroundColor = PRIMARY_LIGHT;
-    
-    [labelProductDescription setTextColor:P_TEXT_COLOR];
     
     for(UIButton *button in buttons) {
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -311,7 +310,10 @@ typedef enum UIState{
     textfieldDelegate.lastSelectedProduct = product;
 
     labelProductName.text = product.name;
-    labelProductDescription.text = product.product.item_description;
+    
+    //load the details into the details table
+    productDetails.details = product.product.details;
+
     
 //    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
 //    [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];

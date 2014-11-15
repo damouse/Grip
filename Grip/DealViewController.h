@@ -45,10 +45,9 @@
     __weak IBOutlet UIButton *buttonCustomerPackages;
     
     //Package Details Views
-    __weak IBOutlet UIWebView *webviewVideo;
     __weak IBOutlet UILabel *labelProductName;
-    __weak IBOutlet UITextView *labelProductDescription;
     __weak IBOutlet UIImageView *imageProductImage;
+    __weak IBOutlet UITableView *tableviewDetails;
 
     
     //User and Merchandise Details

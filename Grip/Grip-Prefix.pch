@@ -8,7 +8,7 @@
 //Constants
 #define ANIMATION_DURATION 0.4
 
-#define PRIMARY_DARK [UIColor colorWithRed:38.0/255.0 green:41.0/255.0 blue:46.0/255.0 alpha:1.0]
+#define PRIMARY_DARK [UIColor colorWithRed:35.0/255.0 green:38.0/255.0 blue:44.0/255.0 alpha:1.0]
 #define PRIMARY_LIGHT [UIColor colorWithRed:47.0/255.0 green:50.0/255.0 blue:56.0/255.0 alpha:1.0]
 #define HIGHLIGHT_COLOR [UIColor colorWithRed:222.0/255.0 green:94.0/255.0 blue:96.0/255.0 alpha:1.0]
 #define P_TEXT_COLOR [UIColor colorWithRed:127.0/255.0 green:130.0/255.0 blue:137.0/255.0 alpha:1.0]

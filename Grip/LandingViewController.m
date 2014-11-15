@@ -66,9 +66,9 @@
     [PGAppearance setAppearance];
 
     //DEBUG
-//    textfieldEmail.text = @"demo@test.com";
-//    textfieldPassword.text = @"12345678";
-//    [self performLogin];
+    textfieldEmail.text = @"demo@test.com";
+    textfieldPassword.text = @"12345678";
+    [self performLogin];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
