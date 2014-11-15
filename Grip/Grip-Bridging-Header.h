@@ -19,3 +19,6 @@
 #import "SignatureViewQuartzQuadratic.h"
 
 #import "MBViewAnimator.h"
+
+//YTPlayer
+#import "YTPlayerView.h"

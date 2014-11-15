@@ -16,7 +16,12 @@ class AccordionDescriptionTable : NSObject, UITableViewDataSource, UITableViewDe
     var product: Product?
     var selectedIndex: NSIndexPath?
     
-    let textviewWidth: Float = 401.0
+    //fixed heights used to size the cells
+    let textviewWidth: Float = 401
+    let videoHeight: Float = 200
+    let titleViewHeight: Float = 67
+    let seperatorHeight: Float = 3
+    let padding: Float = 20
     
     var tableView: UITableView
     var details: [Detail]? {
@@ -37,12 +42,20 @@ class AccordionDescriptionTable : NSObject, UITableViewDataSource, UITableViewDe
         details = [Detail]()
     }
     
-    func heightForRow() {
-        //calculate the height of the row based on the text size of the description text
+    func heightForRow(index: NSIndexPath) -> CGFloat {
+        //calculate the height of the OPEN row based on the text size of the description text
+        let detail = details![index.row]
         
+        if detail.detail_type == "video" {
+            return CGFloat(videoHeight + titleViewHeight)
+        }
+        
+        let textfield = heightForTextview(detail)
+        let height = textfield + CGFloat(titleViewHeight + seperatorHeight + padding)
+        return height
     }
     
-    func heightForTextview(string: String, detail: Detail) -> CGFloat {
+    func heightForTextview(detail: Detail) -> CGFloat {
         //return the height of a textview with a fixed width with a given attributed string
         let font = UIFont(name: "Titillium", size: 14)!
         let attributedString = NSMutableAttributedString(string: detail.description_text!, attributes:[NSFontAttributeName : font])
@@ -52,25 +65,19 @@ class AccordionDescriptionTable : NSObject, UITableViewDataSource, UITableViewDe
         return rect.size.height
     }
     
-    /*
-    - (CGSize)calculateHeightForString:(NSString *)str
-    {
-    CGSize size = CGSizeZero;
-    
-    UIFont *labelFont = [UIFont systemFontOfSize:17.0f];
-    NSDictionary *systemFontAttrDict = [NSDictionary dictionaryWithObject:labelFont forKey:NSFontAttributeName];
-    
-    NSMutableAttributedString *message = [[NSMutableAttributedString alloc] initWithString:str attributes:systemFontAttrDict];
-    CGRect rect = [message boundingRectWithSize:(CGSize){320, MAXFLOAT}
-    options:NSStringDrawingUsesLineFragmentOrigin
-    context:nil];//you need to specify the some width, height will be calculated
-    size = CGSizeMake(rect.size.width, rect.size.height + 5); //padding
-    
-    return size;
-    
-    
+    func getVideoUrl(detail: Detail) -> String? {
+        //get the video URL from the detail object. Check the type of the video first
+        //returns nil if we don't know how to handle this video, else the YT string
+        let ytBase = "https://www.youtube.com/watch?v="
+        
+        if detail.description_text!.rangeOfString(ytBase) != nil{
+            
+            return detail.description_text?.stringByReplacingOccurrencesOfString(ytBase, withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        }
+        
+        return nil
     }
-    */
+    
     
     //MARK: UITableView Delegate and Datasource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -78,13 +85,11 @@ class AccordionDescriptionTable : NSObject, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let detail = details![indexPath.row] as Detail?
-        
         if selectedIndex != nil && indexPath == selectedIndex {
-            return 200
+            return heightForRow(indexPath)
         }
         
-        return 67
+        return CGFloat(titleViewHeight)
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -95,6 +100,18 @@ class AccordionDescriptionTable : NSObject, UITableViewDataSource, UITableViewDe
 
         cell.labelTitle.text = detail.name?.uppercaseString
         cell.textviewDescription.text = detail.description_text
+        
+        //resize relevant views as needed
+        cell.textviewDescription.frame.size = CGSizeMake(cell.textviewDescription.frame.size.width, heightForTextview(detail))
+        cell.viewVideo.frame.size = CGSizeMake(cell.viewVideo.frame.size.width, CGFloat(videoHeight))
+        
+        if detail.detail_type == "video" {
+            cell.showVideo(true, url: getVideoUrl(detail))
+            cell.viewVideo.frame.size.height = CGFloat(videoHeight)
+        }
+        else {
+            cell.showVideo(false, url: nil)
+        }
         
         //custom seperators- should seperate the
         let sep = CALayer()
@@ -116,6 +133,7 @@ class AccordionDescriptionTable : NSObject, UITableViewDataSource, UITableViewDe
         else  {
             let oldCell = tableView.cellForRowAtIndexPath(selectedIndex!) as DetailsCell
             oldCell.animateColor(false)
+            oldCell.viewVideo.pauseVideo()
             
             if selectedIndex != indexPath {
                 newCell.animateColor(true)

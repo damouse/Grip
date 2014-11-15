@@ -19,27 +19,22 @@ class DetailsCell : UITableViewCell {
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var textviewDescription: UITextView!
     
+    @IBOutlet weak var viewVideo: YTPlayerView!
     
     var chevron: CAShapeLayer?
     
-    //    override init(frame: CGRect) {
-    //        super.init(frame: frame)
-    //        colorize()
-    //    }
-    //
-    //    required init(coder aDecoder: NSCoder) {
-    //        super.init(coder: aDecoder)
-    //        colorize()
-    //    }
-    
-    
-    func orphaned() {
-        /*
-        //DEBUG TESTING
-        NSURL *url = [NSURL URLWithString:@"http://www.youtube.com/watch?v=fDXWW5vX-64"];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        [webviewVideo loadRequest:request];
-        */
+    func showVideo(show: Bool, url: String?) {
+        
+        textviewDescription.hidden = show
+        viewVideo.hidden = !show
+        
+        //optionally show or hide the video
+        if show {
+            viewVideo.loadWithVideoId(url!)
+        }
+        else {
+            viewVideo.clearVideo()
+        }
     }
     
     func animateColor(active: Bool) {
@@ -49,7 +44,7 @@ class DetailsCell : UITableViewCell {
                 self.viewTitleBar.backgroundColor = HIGHLIGHT_COLOR
                 self.labelTitle.textColor = UIColor.whiteColor()
                 self.chevron?.fillColor = UIColor.whiteColor().CGColor
-                self.viewArrow.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
+                self.viewArrow.transform = CGAffineTransformMakeRotation(-CGFloat(M_PI))
                 
                 //while this doesn't work, its pretty funny
                 //self.chevron?.transform = CATransform3DMakeRotation(CGFloat(M_PI_2), 0.0, 0.0, 1.0)
@@ -58,20 +53,9 @@ class DetailsCell : UITableViewCell {
                 self.viewTitleBar.backgroundColor = PRIMARY_LIGHT
                 self.labelTitle.textColor = PRIMARY_DARK
                 self.chevron?.fillColor = PRIMARY_DARK.CGColor
-                self.viewArrow.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI))
+                self.viewArrow.transform = CGAffineTransformMakeRotation(CGFloat(-0))
             }
-            }, completion:nil)
-    }
-    
-    func getHeightOfCell(active: Bool) -> Int {
-        //returns the height of this cell based on the size of its content. If the cell is inactive,
-        //then return height of the titlebar plus some constant. Else, return the size of the text and/or video
-        if active {
-            return 190
-        }
-        else {
-            return 72
-        }
+        }, completion:nil)
     }
     
     func colorize() {
