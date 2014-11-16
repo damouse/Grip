@@ -193,24 +193,6 @@
     }];
 }
 
-- (void) checkCustomerAndMerchandise {
-    //check the customer and the merchandise fields from the dialog table, filling them in if needed
-    //this method is recalled at the end of every completed alert
-    
-    if (collectionMerchandiseDelegate.selectedMerchandise.name == nil) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Merchandise" message:@"Please enter a name for the new Merchandise" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Done", nil];
-        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-        [alert show];
-    }
-    else if (collectionCustomerDelegate.selectedCustomer.name == nil) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Customer" message:@"Please enter a name for the new Customer" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Done", nil];
-        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-        [alert show];
-    }
-    else
-        [self presentPackage];
-}
-
 
 #pragma mark General Animations
 - (void) initialAnimations {
@@ -424,7 +406,7 @@
         return;
     }
     
-    [self checkCustomerAndMerchandise];
+    [self presentPackage];
 }
 
 - (IBAction) settingsDone:(id)sender {
@@ -470,15 +452,6 @@
     if ([alertView.title isEqualToString: @"Login Eror"] || [alertView.title isEqualToString: @"Settings Info"]) {
         return;
     }
-    
-    if ([alertView.title isEqualToString: @"New Merchandise"]) {
-        collectionMerchandiseDelegate.selectedMerchandise.name = [alertView textFieldAtIndex:0].text;
-    }
-    else if ([alertView.title isEqualToString: @"New Customer"]) {
-        collectionCustomerDelegate.selectedCustomer.name = [alertView textFieldAtIndex:0].text;
-    }
-
-    [self checkCustomerAndMerchandise];
 }
 
 

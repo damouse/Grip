@@ -26,7 +26,7 @@ class Receipt : MTLModel, MTLJSONSerializing {
     var apr = 0.1
     var term = 36
     var monthly = 0.0
-    var down_payment = 0
+    var down_payment = 0.0
     
     //non API fields
     var user: User?
@@ -47,6 +47,20 @@ class Receipt : MTLModel, MTLJSONSerializing {
         }
     }
     
+//    
+//    func validCustomer() -> Bool {
+//        //returns true if the customer is valid-- true if has non-default name
+//        if let name = customer!.name {
+//            
+//        }
+//        else {
+//            return false;
+//        }
+//    }
+//    
+//    func validMerchandise() -> Bool {
+//        //returns true if the merchandise is valid-- true if merch has name and price set to non-default values
+//    }
     
     //class init
     class func createWith(user: User, customer: Customer, merchandise: Product) -> Receipt {

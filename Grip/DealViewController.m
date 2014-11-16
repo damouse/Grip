@@ -42,13 +42,17 @@
     
     //the last discount choosen not from a package
     int lastCustomDiscount;
+    
+    //stops clicks from passing through to the rest of the views if the edit dialog is up
+    UIView *touchBlocker;
 }
 
 typedef enum UIState{
     StateNeutral,
     StateShowingInfo,
     StateShowingProduct,
-    StateShowingInfoUp
+    StateShowingInfoUp,
+    StateShowingNewDialog
 } UIState;
 
 @end
@@ -119,6 +123,11 @@ typedef enum UIState{
     [self colorize];
     [self introAnimations];
     
+    //if a new customer or merchandise was created slide the dialog onscreen
+    if (![self.dealmaker validCustomerMerchandise]) {
+        [self showEditCustomerDialog];
+    }
+    
     paneSlider = [[MBViewPaneSlider alloc] initWithView1:viewPresetPackageSlidein button1:buttonStockPackages view2:viewCustomerPackageSlideIn button2:buttonCustomerPackages];
     
     //if there are customer packages, show the first one. Else show the first user package. Else do nothing
@@ -155,8 +164,6 @@ typedef enum UIState{
 
 - (void) setInitialLabels {
     //set merchandise and customer labels
-    labelDetailsMerchandiseName.text = self.dealmaker.receipt.merchandise_receipt_attributes.name;
-    labelMerchandiseName.text = self.dealmaker.receipt.merchandise_receipt_attributes.name;
     labelDetailsMerchandiseDescription.text = self.dealmaker.receipt.merchandise_receipt_attributes.product.item_description;
 
     [imageDetailsMerchandise setImage:self.dealmaker.receipt.user.image];
@@ -175,6 +182,8 @@ typedef enum UIState{
         //slidein details panes
         [animator initObject:viewInfoDetails inView:self.view forSlideinAnimation:VAAnimationDirectionRight];
         [animator initObject:viewProductDetails inView:self.view forSlideinAnimation:VAAnimationDirectionLeft];
+        
+        [animator initObject:viewEditDialog inView:self.view forSlideinAnimation:VAAnimationDirectionDown];
     }
     
     //WARNING-- Force is a hack! click through to read bug description on animator class
@@ -307,6 +316,34 @@ typedef enum UIState{
 }
 
 
+#pragma mark Edit Customer Merchandise Dialog
+- (void) showEditCustomerDialog {
+    //show the dialog on the screen. This should be called first thing
+    touchBlocker = [[UIView alloc] initWithFrame:self.view.frame];
+    [self.view addSubview:touchBlocker];
+    [self.view bringSubviewToFront:viewEditDialog];
+    
+    [animator animateObjectOnscreen:viewEditDialog completion:^(BOOL c) {
+        currentUIState = StateShowingNewDialog;
+    }];
+}
+
+- (void) dismissEditCustomerDialog {
+    //check to make sure the dialog can be removed appropriately
+    if (![self.dealmaker validCustomerMerchandise]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Customer must have a valid name and Merchandise must have valid name and price" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
+    
+    //remove the dialog from the screen
+    [animator animateObjectOffscreen:viewEditDialog completion:^(BOOL c) {
+        currentUIState = StateShowingInfoUp;
+        [touchBlocker removeFromSuperview];
+    }];
+}
+
+
 #pragma mark Table Delegate Methods
 - (void) didTouchProduct:(ProductReceipt *) product {
     //triggered from the table
@@ -418,9 +455,12 @@ typedef enum UIState{
     textfieldDelegate.lastSelectedProduct = nil;
     [self animateProductPaneOut];
 }
-- (IBAction)editCustomerMerchandiseDone:(id)sender {
+
+- (IBAction) editCustomerMerchandiseDone:(id)sender {
+    [self dismissEditCustomerDialog];
 }
 
-- (IBAction)editCustomerMerchandise:(id)sender {
+- (IBAction) editCustomerMerchandise:(id)sender {
+    [self showEditCustomerDialog];
 }
 @end

@@ -109,6 +109,7 @@
     
     [self setMerchandiseName:receipt];
     [self setMerchandisePrice:receipt];
+    [self setDownPayment:receipt];
     
     if (self.lastSelectedProduct != nil) {
         [self setProduct];
@@ -117,7 +118,8 @@
 
 - (void) textfieldsChanged {
     //note: the methods produce their own alert errors
-    if (!([self validApr] && [self validDiscount] & [self validTerm] && [self validProductPrice])) {
+    if (!([self validApr] && [self validDiscount] & [self validTerm] && [self validProductPrice] && [self validDownPayment] &&
+          [self validCustomerEmail] && [self validCustomerName] && [self validMerchandiseName] && [self validMerchandisePrice])) {
         return;
     }
     
@@ -128,12 +130,15 @@
     dealmaker.receipt.customer.name = [self getName];
     dealmaker.receipt.customer.email = [self getEmail];
     
+    dealmaker.receipt.merchandise_receipt_attributes.name = [self getMerchandiseName];
+    dealmaker.receipt.merchandise_receipt_attributes.price = [self getMerchandisePrice];
+    dealmaker.receipt.customer.name = [self getCustomerName];
+    dealmaker.receipt.customer.email = [self getCustomerEmail];
+    
     //change the product's price and set the textfield
     if (self.lastSelectedProduct != nil) {
         self.lastSelectedProduct.price = [self getProductPrice];
     }
-    
-    //check for errors here and show alert
     
     [dealmaker recalculateTotals];
 }
@@ -191,6 +196,11 @@
 
 - (double) getMerchandisePrice {
     NSString *stripped = [parent.textfieldMerchandisePrice.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    return [stripped doubleValue];
+}
+
+- (double) getDownPayment {
+    NSString *stripped = [parent.textfieldDownPayment.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     return [stripped doubleValue];
 }
 
@@ -316,6 +326,19 @@
     return true;
 }
 
+- (BOOL) validDownPayment {
+    double price = [self getDownPayment];
+    
+    if (price < 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Invalid down payment value" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        [alert show];
+        
+        return false;
+    }
+    
+    return true;
+}
+
 
 #pragma mark Textfield Flavor Stripping
 - (NSString *) removeFlavorApr {
@@ -340,6 +363,10 @@
 
 - (NSString *) removeFlavorMerchandisePrice {
     return [NSString stringWithFormat:@"%.2f", [self currencyFromString:parent.textfieldMerchandisePrice.text]];
+}
+
+- (NSString *) removeFlavorDownPayment {
+    return [NSString stringWithFormat:@"%.2f", [self currencyFromString:parent.textfieldDownPayment.text]];
 }
 
 
@@ -407,10 +434,12 @@
     if (str != nil) {
         [self setTextfield:parent.textfieldMerchandiseName textWithString:str];
         [parent.labelDetailsMerchandiseName setText:str];
+        [parent.labelMerchandiseName setText:str];
     }
     else {
         parent.textfieldMerchandiseName.text = @"";
         parent.labelDetailsMerchandiseName.text = @"";
+        parent.labelMerchandiseName.text = @"";
     }
     
 }
@@ -419,6 +448,11 @@
     NSString *val = [self stringFromCurrencyDouble:receipt.merchandise_receipt_attributes.price];
     [self setTextfield:parent.textfieldMerchandisePrice textWithString:val];
     parent.labelMerchandisePrice.text = val;
+}
+
+- (void) setDownPayment:(Receipt *) receipt {
+    NSString *val = [self stringFromCurrencyDouble:receipt.down_payment];
+    [self setTextfield:parent.textfieldDownPayment textWithString:val];
 }
 
 

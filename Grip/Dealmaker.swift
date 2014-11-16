@@ -126,6 +126,27 @@ class Dealmaker : NSObject {
         }
     }
     
+    func validCustomerMerchandise() -> Bool {
+        var customerValid = false
+        var merchandiseValid = false
+        
+        //returns true if the customer and the merchandise are in fine order
+        if let name = receipt.customer?.name {
+            if name != "" {
+                customerValid = true
+            }
+        }
+        
+        //check merch
+        if let name = receipt.merchandise_receipt_attributes?.name {
+            if name != "" && receipt.merchandise_receipt_attributes?.price != 0 {
+                merchandiseValid = true
+            }
+        }
+
+        return customerValid && merchandiseValid
+    }
+    
     
     //MARK: Internal
     func checkPackageMatch() -> Void {
@@ -179,10 +200,6 @@ class Dealmaker : NSObject {
             }
         }
         
-        //sort each section individually
-//        selectedItems.sort({$0.product?.order_index < $1.product?.order_index})
-//        unselectedItems.sort({$0.product?.order_index < $1.product?.order_index})
-        
         currentProductOrdering = selectedItems + unselectedItems
     }
     
@@ -194,6 +211,8 @@ class Dealmaker : NSObject {
         
         let discountRate = (100.0 - Double(receipt.discount)) / 100.0
         total = total * discountRate
+        
+        total = total + receipt.merchandise_receipt_attributes!.price - receipt.down_payment
         
         let temp = 1 + receipt.apr * (Double(receipt.term) / 12)
         
