@@ -78,6 +78,7 @@
             <string>Titillium-Light</string>
             <string>Titillium-Light</string>
             <string>Titillium-Light</string>
+            <string>Titillium-Light</string>
         </mutableArray>
         <mutableArray key="Titillium-Regular.otf">
             <string>Titillium-Regular</string>
@@ -765,7 +766,7 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Price" minimumFontSize="17" id="dpV-6b-Kwb" customClass="GripTextfield" customModule="Grip" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Price" minimumFontSize="17" clearButtonMode="whileEditing" id="dpV-6b-Kwb" customClass="GripTextfield" customModule="Grip" customModuleProvider="target">
                                         <rect key="frame" x="26" y="83" width="181" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -801,7 +802,18 @@
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Term" minimumFontSize="17" id="tZX-2s-3HW" customClass="GripTextfield" customModule="Grip" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Package Discount" minimumFontSize="17" clearButtonMode="whileEditing" id="UHP-l2-GeZ" customClass="GripTextfield" customModule="Grip" customModuleProvider="target">
+                                        <rect key="frame" x="50" y="377" width="350" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.20784313730000001" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="light" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="uQL-GH-cEr" id="X8g-ns-AaD"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Term" minimumFontSize="17" clearButtonMode="whileEditing" id="tZX-2s-3HW" customClass="GripTextfield" customModule="Grip" customModuleProvider="target">
                                         <rect key="frame" x="50" y="439" width="350" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.20784313730000001" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
@@ -812,7 +824,7 @@
                                             <outlet property="delegate" destination="uQL-GH-cEr" id="yM6-x3-0jd"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Rate" minimumFontSize="17" id="wam-aR-rtg" customClass="GripTextfield" customModule="Grip" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Rate" minimumFontSize="17" clearButtonMode="whileEditing" id="wam-aR-rtg" customClass="GripTextfield" customModule="Grip" customModuleProvider="target">
                                         <rect key="frame" x="50" y="501" width="350" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.20784313730000001" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
@@ -843,10 +855,9 @@
                                         </state>
                                         <connections>
                                             <action selector="editCustomerMerchandise:" destination="uQL-GH-cEr" eventType="touchUpInside" id="4RO-VN-I1j"/>
-                                            <action selector="infoDetailsExit:" destination="uQL-GH-cEr" eventType="touchUpInside" id="4r6-xj-Kvm"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Payment Amount" minimumFontSize="17" id="0k7-sf-Chv" customClass="GripTextfield" customModule="Grip" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Payment Amount" minimumFontSize="17" clearButtonMode="whileEditing" id="0k7-sf-Chv" customClass="GripTextfield" customModule="Grip" customModuleProvider="target">
                                         <rect key="frame" x="50" y="563" width="350" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.20784313730000001" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
@@ -878,8 +889,8 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Down Payment" minimumFontSize="17" id="tYa-iC-Tpa" customClass="GripTextfield" customModule="Grip" customModuleProvider="target">
-                                        <rect key="frame" x="50" y="317" width="350" height="40"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Down Payment" minimumFontSize="17" clearButtonMode="whileEditing" id="tYa-iC-Tpa" customClass="GripTextfield" customModule="Grip" customModuleProvider="target">
+                                        <rect key="frame" x="50" y="314" width="350" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.20784313730000001" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -889,17 +900,6 @@
                                             <outlet property="delegate" destination="uQL-GH-cEr" id="2Qr-Cs-rIf"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Package Discount" minimumFontSize="17" id="UHP-l2-GeZ" customClass="GripTextfield" customModule="Grip" customModuleProvider="target">
-                                        <rect key="frame" x="50" y="377" width="350" height="40"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.20000000000000001" green="0.20784313730000001" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="light" returnKeyType="done"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="uQL-GH-cEr" id="X8g-ns-AaD"/>
-                                        </connections>
-                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -907,7 +907,7 @@
                                 <rect key="frame" x="111" y="68" width="801" height="275"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Customer Name" minimumFontSize="17" id="PKK-hy-Yaq" customClass="GripTextfield" customModule="Grip" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Customer Name" minimumFontSize="17" clearButtonMode="whileEditing" id="PKK-hy-Yaq" customClass="GripTextfield" customModule="Grip" customModuleProvider="target">
                                         <rect key="frame" x="32" y="100" width="350" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.20784313730000001" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
@@ -915,7 +915,7 @@
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="light" returnKeyType="done"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Customer Email (Optional)" minimumFontSize="17" id="Hb6-5J-N7J" customClass="GripTextfield" customModule="Grip" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Customer Email (Optional)" minimumFontSize="17" clearButtonMode="whileEditing" id="Hb6-5J-N7J" customClass="GripTextfield" customModule="Grip" customModuleProvider="target">
                                         <rect key="frame" x="32" y="165" width="350" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.20784313730000001" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
@@ -923,8 +923,16 @@
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="light" returnKeyType="done"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Merchandise Price" minimumFontSize="17" id="76b-bA-lf9" customClass="GripTextfield" customModule="Grip" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Merchandise Price" minimumFontSize="17" clearButtonMode="whileEditing" id="76b-bA-lf9" customClass="GripTextfield" customModule="Grip" customModuleProvider="target">
                                         <rect key="frame" x="423" y="165" width="350" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.20784313730000001" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="light" returnKeyType="done"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Merchandise Name" minimumFontSize="17" clearButtonMode="whileEditing" id="qVw-O4-JxL" customClass="GripTextfield" customModule="Grip" customModuleProvider="target">
+                                        <rect key="frame" x="423" y="100" width="350" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.20784313730000001" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -938,15 +946,15 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6vF-eL-aYr">
-                                        <rect key="frame" x="360" y="229" width="81" height="30"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6vF-eL-aYr">
+                                        <rect key="frame" x="239" y="227" width="81" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
-                                        <state key="normal" title="DONE">
+                                        <state key="normal" title="CANCEL">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="editCustomerMerchandiseDone:" destination="uQL-GH-cEr" eventType="touchUpInside" id="P4r-X3-Cbh"/>
+                                            <action selector="cancel:" destination="uQL-GH-cEr" eventType="touchUpInside" id="ajM-3y-XKD"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Customer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WEg-qz-Vgi">
@@ -956,14 +964,17 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Merchandise Name" minimumFontSize="17" id="qVw-O4-JxL" customClass="GripTextfield" customModule="Grip" customModuleProvider="target">
-                                        <rect key="frame" x="423" y="100" width="350" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8Je-FR-DRV">
+                                        <rect key="frame" x="497" y="229" width="81" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.20000000000000001" green="0.20784313730000001" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="light" returnKeyType="done"/>
-                                    </textField>
+                                        <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="22"/>
+                                        <state key="normal" title="DONE">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="editCustomerMerchandiseDone:" destination="uQL-GH-cEr" eventType="touchUpInside" id="wja-r6-v65"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.14901960780000001" green="0.16078431369999999" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -1025,6 +1036,12 @@
                         <outletCollection property="textfields" destination="0k7-sf-Chv" id="w4u-z8-qUG"/>
                         <outletCollection property="textfields" destination="dpV-6b-Kwb" id="7Wz-s4-plD"/>
                         <outletCollection property="textfields" destination="UHP-l2-GeZ" id="NQl-1S-Mhw"/>
+                        <outletCollection property="buttons" destination="6vF-eL-aYr" id="Arx-DC-9AC"/>
+                        <outletCollection property="textfields" destination="PKK-hy-Yaq" id="uA6-Yh-iWI"/>
+                        <outletCollection property="textfields" destination="Hb6-5J-N7J" id="zaz-be-bT5"/>
+                        <outletCollection property="textfields" destination="76b-bA-lf9" id="iZc-ww-1Tz"/>
+                        <outletCollection property="textfields" destination="qVw-O4-JxL" id="CS3-5y-MZk"/>
+                        <outletCollection property="textfields" destination="tYa-iC-Tpa" id="yJr-m4-WWr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rPn-4M-a2P" userLabel="First Responder" sceneMemberID="firstResponder"/>

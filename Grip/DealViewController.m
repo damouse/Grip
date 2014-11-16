@@ -113,6 +113,8 @@ typedef enum UIState{
     [self initAnimations];
     [self setInitialLabels];
     
+    touchBlocker = nil;
+    
     //weird bug. The table is overlapping the option bars for unknown reasons. Because
     //clipsSubviews is turned off,
     [self.view bringSubviewToFront:viewBottomLeftContainer];
@@ -215,6 +217,11 @@ typedef enum UIState{
 }
 
 - (void) outroAnimations:(void (^)(BOOL))completion  {
+    if (currentUIState == StateShowingNewDialog) {
+//        [touchBlocker removeFromSuperview];
+        [animator animateObjectOffscreen:viewEditDialog completion:nil];
+    }
+        
     //left and right panes
     [animator animateObjectOffscreen:viewInfo completion:nil];
     [animator animateObjectOffscreen:viewPackages completion:nil];
@@ -460,6 +467,7 @@ typedef enum UIState{
 }
 
 - (IBAction) editCustomerMerchandiseDone:(id)sender {
+    [textfieldDelegate endEditing];
     [self dismissEditCustomerDialog];
 }
 

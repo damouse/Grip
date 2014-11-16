@@ -20,4 +20,7 @@
 //a container for the product that was slid in. Save in case the textfield opens and the price is changed
 @property (weak, nonatomic) ProductReceipt *lastSelectedProduct;
 
+//force all textfields to stop editing, dismiss the keyboard, and repopulate the values
+- (void) endEditing;
+
 @end

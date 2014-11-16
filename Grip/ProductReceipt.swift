@@ -18,11 +18,7 @@ class ProductReceipt : MTLModel, MTLJSONSerializing {
     //API Model Fields
     var base_item_id = -1
     var name: String?
-    var price: Double = 0.0 {
-        didSet {
-            println("gotSet")
-        }
-    }
+    var price: Double = 0.0
     
     var type: String?
 

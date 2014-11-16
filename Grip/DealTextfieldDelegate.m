@@ -66,6 +66,7 @@
     parent.textfieldApr.delegate = self;
     parent.textfieldMonthly.delegate = self;
     parent.textfieldPackageDiscount.delegate = self;
+    parent.textfieldDownPayment.delegate = self;
     
     parent.textviewProductPrice.delegate = self;
     
@@ -81,7 +82,7 @@
     }
     
     //disable merchandise textfields if the merchandise already exists
-    if (dealmaker.receipt.customer.id != -1) {
+    if (dealmaker.receipt.merchandise_receipt_attributes.base_item_id != -1) {
         [parent.textfieldMerchandiseName setUserInteractionEnabled:false];
     }
     else {
@@ -151,6 +152,12 @@
 }
 
 
+#pragma mark External Interface
+- (void) endEditing {
+    [self keyboardWillHide:nil];
+}
+
+
 #pragma mark Textfield Input
 - (double) getApr {
     NSString *cleaned = [self removeFlavorApr];
@@ -179,8 +186,11 @@
 }
 
 - (double) getProductPrice {
-    NSString *stripped = [parent.textviewProductPrice.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    return [stripped doubleValue];
+    NSString *str = parent.textviewProductPrice.text;
+    if ([str containsString:@"$"])
+        return [self currencyFromString:parent.textfieldMerchandisePrice.text];
+    else
+        return  [parent.textfieldMerchandisePrice.text doubleValue];
 }
 
 - (NSString *) getCustomerName {
@@ -196,14 +206,24 @@
 }
 
 - (double) getMerchandisePrice {
-    NSString *stripped = [parent.textfieldMerchandisePrice.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    return [stripped doubleValue];
+    NSString *str = parent.textfieldMerchandisePrice.text;
+    if ([str containsString:@"$"])
+        return [self currencyFromString:parent.textfieldMerchandisePrice.text];
+    else
+        return  [parent.textfieldMerchandisePrice.text doubleValue];
 }
 
 - (double) getDownPayment {
-    NSString *cleaned = [self removeFlavorDownPayment];
-    double result = [cleaned doubleValue];
-    return result;
+    NSString *str = parent.textfieldDownPayment.text;
+    
+    if ([str containsString:flavorDown])
+        str = [self removeFlavorDownPayment];
+    
+
+    if ([str containsString:@"$"])
+        return [self currencyFromString:str];
+    else
+        return  [str doubleValue];
 }
 
 
@@ -368,7 +388,8 @@
 
 - (NSString *) removeFlavorDownPayment {
     NSString *temp = [parent.textfieldDownPayment.text stringByReplacingOccurrencesOfString:flavorDown withString:@""];
-    return [NSString stringWithFormat:@"%.2f", [self currencyFromString:temp]];
+    temp =  [NSString stringWithFormat:@"%.2f", [self currencyFromString:temp]];
+    return temp;
 }
 
 
@@ -453,8 +474,9 @@
 }
 
 - (void) setDownPayment:(Receipt *) receipt {
-    NSString *val = [self stringFromCurrencyDouble:receipt.down_payment];
-    [self setTextfield:parent.textfieldDownPayment textWithString:val];
+    NSString *result = [NSString stringWithFormat:@"%@%@", [self stringFromCurrencyDouble: receipt.down_payment], flavorDown];
+
+    [self setTextfield:parent.textfieldDownPayment textWithString:result];
 }
 
 
@@ -476,7 +498,7 @@
 
 - (void) setTextfield:(UITextField *) textfield textWithString: (NSString*) string {
     //utility method to add whitespace to a textfield
-    textfield.text = [NSString stringWithFormat:@"  %@", string];
+    textfield.text = [NSString stringWithFormat:@"%@", string];
 }
 
 -(BOOL) NSStringIsValidEmail:(NSString *)checkString {
