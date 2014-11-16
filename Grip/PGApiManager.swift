@@ -14,8 +14,8 @@ private let _singletonInstance = PGApiManager()
 @objc class PGApiManager : NSObject {
     let logging = false
     
-//    let base_url = "http://packagegrid.com/"
-    let base_url = "http://192.168.79.166:3000/"
+    let base_url = "http://packagegrid.com/"
+//    let base_url = "http://192.168.79.166:3000/"
     
     //stored user information-- hold for future auth requests
     var userPassword: String?
@@ -243,6 +243,8 @@ private let _singletonInstance = PGApiManager()
                 
                 self.user = MTLJSONAdapter.modelOfClass(User.self, fromJSONDictionary: userDictionary, error: &error) as? User
                 self.user?.image_url = json["image_url"] as? String
+                
+                println(self.user!.image_url)
                 
                 self.loadUserImage(self.user!, completion: { () -> Void in
                     completion(true)
