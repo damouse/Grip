@@ -28,6 +28,7 @@
     NSString *flavorPayment;
     NSString *flavorTerm;
     NSString *flavorDiscount;
+    NSString *flavorDown;
 }
 
 @synthesize parent;
@@ -35,15 +36,13 @@
 - (instancetype) init {
     self = [super init];
     if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(keyboardWillHide:)
-                                                     name:UIKeyboardWillHideNotification
-                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
         
         flavorApr = @" Interest";
         flavorPayment = @" Monthly";
         flavorTerm = @" Months";
         flavorDiscount = @" Package Discount";
+        flavorDown = @" Down Payment";
     }
     return self;
 }
@@ -135,6 +134,8 @@
     dealmaker.receipt.customer.name = [self getCustomerName];
     dealmaker.receipt.customer.email = [self getCustomerEmail];
     
+    dealmaker.receipt.down_payment = [self getDownPayment];
+    
     //change the product's price and set the textfield
     if (self.lastSelectedProduct != nil) {
         self.lastSelectedProduct.price = [self getProductPrice];
@@ -200,8 +201,9 @@
 }
 
 - (double) getDownPayment {
-    NSString *stripped = [parent.textfieldDownPayment.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    return [stripped doubleValue];
+    NSString *cleaned = [self removeFlavorDownPayment];
+    double result = [cleaned doubleValue];
+    return result;
 }
 
 
@@ -289,15 +291,14 @@
 
 - (BOOL) validCustomerEmail {
     NSString *str = [self getCustomerEmail];
-    
-    if (str.length <= 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Invalid customer email" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        [alert show];
+
+    if ([str isEqualToString:@""] || [self NSStringIsValidEmail:str])
+        return true;
+        
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Invalid customer email" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    [alert show];
         
         return false;
-    }
-    
-    return true;
 }
 
 - (BOOL) validMerchandiseName {
@@ -366,7 +367,8 @@
 }
 
 - (NSString *) removeFlavorDownPayment {
-    return [NSString stringWithFormat:@"%.2f", [self currencyFromString:parent.textfieldDownPayment.text]];
+    NSString *temp = [parent.textfieldDownPayment.text stringByReplacingOccurrencesOfString:flavorDown withString:@""];
+    return [NSString stringWithFormat:@"%.2f", [self currencyFromString:temp]];
 }
 
 
@@ -477,6 +479,15 @@
     textfield.text = [NSString stringWithFormat:@"  %@", string];
 }
 
+-(BOOL) NSStringIsValidEmail:(NSString *)checkString {
+    BOOL stricterFilter = NO; // Discussion http://blog.logichigh.com/2010/09/02/validating-an-e-mail-address/
+    NSString *stricterFilterString = @"[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}";
+    NSString *laxString = @".+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*";
+    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:checkString];
+}
+
 
 #pragma mark TextfieldDelegate Methods
 - (void) textFieldDidBeginEditing:(UITextField *)sender {
@@ -489,20 +500,20 @@
     if (sender == parent.textfieldApr)
         parent.textfieldApr.text = [self removeFlavorApr];
     
-    
     if (sender == parent.textfieldTerm)
         parent.textfieldTerm.text = [self removeFlavorTerm];
     
-    
     if (sender == parent.textfieldPackageDiscount)
         parent.textfieldPackageDiscount.text = [self removeFlavorDiscount];
-    
     
     if (sender == parent.textviewProductPrice)
         parent.textviewProductPrice.text = [self removeFlavorProductPrice];
     
     if (sender == parent.textfieldMerchandisePrice)
         parent.textfieldMerchandisePrice.text = [self removeFlavorMerchandisePrice];
+    
+    if (sender == parent.textfieldDownPayment)
+        parent.textfieldDownPayment.text = [self removeFlavorDownPayment];
 }
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textView {

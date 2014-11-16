@@ -320,6 +320,9 @@ typedef enum UIState{
 - (void) showEditCustomerDialog {
     //show the dialog on the screen. This should be called first thing
     touchBlocker = [[UIView alloc] initWithFrame:self.view.frame];
+    touchBlocker.backgroundColor = [UIColor blackColor];
+    touchBlocker.alpha = 0.5;
+    
     [self.view addSubview:touchBlocker];
     [self.view bringSubviewToFront:viewEditDialog];
     
