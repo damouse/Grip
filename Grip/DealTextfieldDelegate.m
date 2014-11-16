@@ -61,6 +61,8 @@
     //assign delegates
     parent.textfieldCustomerName.delegate = self;
     parent.textfieldCustomerEmail.delegate = self;
+    parent.textfieldMerchandiseName.delegate = self;
+    parent.textfieldMerchandisePrice.delegate = self;
     parent.textfieldTerm.delegate = self;
     parent.textfieldApr.delegate = self;
     parent.textfieldMonthly.delegate = self;
@@ -70,13 +72,21 @@
     
     
     //disable customer textfield if the customer is loaded from the backend: i.e. not created
-    if (dealmaker.receipt.customer.id == -1) {
+    if (dealmaker.receipt.customer.id != -1) {
         [parent.textfieldCustomerName setUserInteractionEnabled:false];
         [parent.textfieldCustomerEmail setUserInteractionEnabled:false];
     }
     else {
         [parent.textfieldCustomerName setUserInteractionEnabled:true];
         [parent.textfieldCustomerEmail setUserInteractionEnabled:true];
+    }
+    
+    //disable merchandise textfields if the merchandise already exists
+    if (dealmaker.receipt.customer.id != -1) {
+        [parent.textfieldMerchandiseName setUserInteractionEnabled:false];
+    }
+    else {
+        [parent.textfieldMerchandiseName setUserInteractionEnabled:true];
     }
 }
 
@@ -86,6 +96,7 @@
     //called when the dealmaker makes changes and needs to update the textfields
     
     [self setTextfield:parent.textfieldCustomerName textWithString: receipt.customer.name];
+    
     parent.labelCustomerName.text = receipt.customer.name;
     
     [self setTerm:receipt];
@@ -94,6 +105,10 @@
     [self setDiscount:receipt];
     
     [self setEmail:receipt];
+    [self setName:receipt];
+    
+    [self setMerchandiseName:receipt];
+    [self setMerchandisePrice:receipt];
     
     if (self.lastSelectedProduct != nil) {
         [self setProduct];
@@ -159,6 +174,23 @@
 
 - (double) getProductPrice {
     NSString *stripped = [parent.textviewProductPrice.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    return [stripped doubleValue];
+}
+
+- (NSString *) getCustomerName {
+    return [parent.textfieldCustomerName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+}
+
+- (NSString *) getCustomerEmail {
+    return [parent.textfieldCustomerEmail.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+}
+
+- (NSString *) getMerchandiseName {
+    return [parent.textfieldMerchandiseName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+}
+
+- (double) getMerchandisePrice {
+    NSString *stripped = [parent.textfieldMerchandisePrice.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     return [stripped doubleValue];
 }
 
@@ -232,6 +264,58 @@
     return true;
 }
 
+- (BOOL) validCustomerName {
+    NSString *str = [self getCustomerName];
+    
+    if (str.length <= 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Invalid customer name" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        [alert show];
+        
+        return false;
+    }
+    
+    return true;
+}
+
+- (BOOL) validCustomerEmail {
+    NSString *str = [self getCustomerEmail];
+    
+    if (str.length <= 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Invalid customer email" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        [alert show];
+        
+        return false;
+    }
+    
+    return true;
+}
+
+- (BOOL) validMerchandiseName {
+    NSString *str = [self getMerchandiseName];
+    
+    if (str.length <= 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Invalid merchandise name" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        [alert show];
+        
+        return false;
+    }
+    
+    return true;
+}
+
+- (BOOL) validMerchandisePrice {
+    double price = [self getMerchandisePrice];
+    
+    if (price < 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Invalid merchandise price" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        [alert show];
+        
+        return false;
+    }
+    
+    return true;
+}
+
 
 #pragma mark Textfield Flavor Stripping
 - (NSString *) removeFlavorApr {
@@ -252,6 +336,10 @@
 
 - (NSString *) removeFlavorProductPrice {
     return [NSString stringWithFormat:@"%.2f", [self currencyFromString:parent.textviewProductPrice.text]];
+}
+
+- (NSString *) removeFlavorMerchandisePrice {
+    return [NSString stringWithFormat:@"%.2f", [self currencyFromString:parent.textfieldMerchandisePrice.text]];
 }
 
 
@@ -285,15 +373,52 @@
 }
 
 - (void) setEmail:(Receipt *) receipt {
-    if (receipt.customer.email != nil)
-        [self setTextfield:parent.textfieldCustomerEmail textWithString:receipt.customer.email];
-    else
+    NSString *str = receipt.customer.email;
+    if (str != nil) {
+        [self setTextfield:parent.textfieldCustomerEmail textWithString:str];
+        [parent.labelCustomerEmail setText:str];
+    }
+    else {
         parent.textfieldCustomerEmail.text = @"";
+        parent.labelCustomerEmail.text = @"";
+    }
+}
+
+- (void) setName:(Receipt *) receipt {
+    NSString *str = receipt.customer.name;
+    if (str != nil) {
+        [self setTextfield:parent.textfieldCustomerName textWithString:str];
+        [parent.labelCustomerName setText:str];
+    }
+    else {
+        parent.textfieldCustomerName.text = @"";
+        parent.labelCustomerName.text = @"";
+    }
 }
 
 - (void) setProduct {
     NSString *val = [self stringFromCurrencyDouble:self.lastSelectedProduct.price];
     [self setTextfield:parent.textviewProductPrice textWithString:val];
+}
+
+- (void) setMerchandiseName:(Receipt *) receipt {
+    NSString *str = receipt.merchandise_receipt_attributes.name;
+    
+    if (str != nil) {
+        [self setTextfield:parent.textfieldMerchandiseName textWithString:str];
+        [parent.labelDetailsMerchandiseName setText:str];
+    }
+    else {
+        parent.textfieldMerchandiseName.text = @"";
+        parent.labelDetailsMerchandiseName.text = @"";
+    }
+    
+}
+
+- (void) setMerchandisePrice:(Receipt *) receipt {
+    NSString *val = [self stringFromCurrencyDouble:receipt.merchandise_receipt_attributes.price];
+    [self setTextfield:parent.textfieldMerchandisePrice textWithString:val];
+    parent.labelMerchandisePrice.text = val;
 }
 
 
@@ -341,6 +466,9 @@
     
     if (sender == parent.textviewProductPrice)
         parent.textviewProductPrice.text = [self removeFlavorProductPrice];
+    
+    if (sender == parent.textfieldMerchandisePrice)
+        parent.textfieldMerchandisePrice.text = [self removeFlavorMerchandisePrice];
 }
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textView {

@@ -94,6 +94,7 @@
 		50C1A05E1A12EC3E0005D961 /* MBUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1A05D1A12EC3E0005D961 /* MBUtils.swift */; };
 		50CC00FF1A02CC1F00ED1E9D /* SigningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CC00FE1A02CC1F00ED1E9D /* SigningViewController.swift */; };
 		50D718F319F7B65E00E6B731 /* PDFFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D718F219F7B65E00E6B731 /* PDFFactory.swift */; };
+		50E8A84B1A18910800DA2DD7 /* CustomerMerchandiseDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E8A84A1A18910800DA2DD7 /* CustomerMerchandiseDialog.m */; };
 		50EC987D199236D400C62BFE /* PGApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EC987C199236D400C62BFE /* PGApiManager.swift */; };
 		50F7F44B1A12F57F00429941 /* GripTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F7F44A1A12F57F00429941 /* GripTextfield.swift */; };
 		F35AE82AA7F5417A814DCAEE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57EC558AFF9D4E6D9C4B789A /* libPods.a */; };
@@ -231,6 +232,8 @@
 		50C1A05D1A12EC3E0005D961 /* MBUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MBUtils.swift; sourceTree = "<group>"; };
 		50CC00FE1A02CC1F00ED1E9D /* SigningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningViewController.swift; sourceTree = "<group>"; };
 		50D718F219F7B65E00E6B731 /* PDFFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFFactory.swift; sourceTree = "<group>"; };
+		50E8A8491A18910800DA2DD7 /* CustomerMerchandiseDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerMerchandiseDialog.h; sourceTree = "<group>"; };
+		50E8A84A1A18910800DA2DD7 /* CustomerMerchandiseDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerMerchandiseDialog.m; sourceTree = "<group>"; };
 		50EC987B199236D400C62BFE /* Grip-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grip-Bridging-Header.h"; sourceTree = "<group>"; };
 		50EC987C199236D400C62BFE /* PGApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PGApiManager.swift; sourceTree = "<group>"; };
 		50F7F44A1A12F57F00429941 /* GripTextfield.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GripTextfield.swift; sourceTree = "<group>"; };
@@ -408,6 +411,8 @@
 				509BA69D18EB50930011D374 /* DealViewController.m */,
 				50898DEE1A07CE4F00B2EEC1 /* DealTextfieldDelegate.h */,
 				50898DEF1A07CE4F00B2EEC1 /* DealTextfieldDelegate.m */,
+				50E8A8491A18910800DA2DD7 /* CustomerMerchandiseDialog.h */,
+				50E8A84A1A18910800DA2DD7 /* CustomerMerchandiseDialog.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -827,6 +832,7 @@
 				50AB237319B0F381001D62AB /* MBViewPaneSlider.swift in Sources */,
 				509BB193193A756100FC8CC7 /* UILabel+Utils.m in Sources */,
 				509BB188193A756100FC8CC7 /* MCButtonInterpreter.m in Sources */,
+				50E8A84B1A18910800DA2DD7 /* CustomerMerchandiseDialog.m in Sources */,
 				5094B1C21A06F12A00FE8BDD /* CustomerMerchCollectionCell.swift in Sources */,
 				5095EC6C19AD595600D887F7 /* UIImage+Utils.m in Sources */,
 				5097550919AED47A006E7859 /* Dealmaker.swift in Sources */,

@@ -34,6 +34,8 @@
     __weak IBOutlet UIView *viewPresetPackageSlidein;
     __weak IBOutlet UIView *viewCustomerPackageSlideIn;
     
+    __weak IBOutlet UIView *viewEditDialog;
+    
     //tables
     __weak IBOutlet UITableView *tableProducts;
     __weak IBOutlet UITableView *tableCustomerPackages;
@@ -54,8 +56,6 @@
     __weak IBOutlet UITextView *labelDetailsMerchandiseDescription;
     
     __weak IBOutlet UIImageView *imageDetailsMerchandise;
-    
-    __weak IBOutlet UILabel *labelDetailsMerchandiseName;
     
     
     //User and Merchandise Mini Pane
@@ -90,8 +90,6 @@
 
 
 //labels and textfields-- managed by DealTextfieldDelegate
-@property (weak, nonatomic) IBOutlet UITextField *textfieldCustomerName;
-@property (weak, nonatomic) IBOutlet UITextField *textfieldCustomerEmail;
 @property (weak, nonatomic) IBOutlet UITextField *textfieldTerm;
 @property (weak, nonatomic) IBOutlet UITextField *textfieldApr;
 @property (weak, nonatomic) IBOutlet UITextField *textfieldMonthly;
@@ -105,5 +103,18 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelCustomerName;
 
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *textfields;
+
+//Edit Dialog for customers and merchandise
+@property (weak, nonatomic) IBOutlet GripTextfield *textfieldCustomerName;
+@property (weak, nonatomic) IBOutlet GripTextfield *textfieldCustomerEmail;
+@property (weak, nonatomic) IBOutlet GripTextfield *textfieldMerchandisePrice;
+@property (weak, nonatomic) IBOutlet GripTextfield *textfieldMerchandiseName;
+
+@property (weak, nonatomic)  IBOutlet UILabel *labelDetailsMerchandiseName;
+@property (weak, nonatomic) IBOutlet UILabel *labelMerchandisePrice;
+@property (weak, nonatomic) IBOutlet UILabel *labelCustomerEmail;
+
+- (IBAction)editCustomerMerchandiseDone:(id)sender;
+- (IBAction)editCustomerMerchandise:(id)sender;
 
 @end

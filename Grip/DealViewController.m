@@ -418,4 +418,9 @@ typedef enum UIState{
     textfieldDelegate.lastSelectedProduct = nil;
     [self animateProductPaneOut];
 }
+- (IBAction)editCustomerMerchandiseDone:(id)sender {
+}
+
+- (IBAction)editCustomerMerchandise:(id)sender {
+}
 @end

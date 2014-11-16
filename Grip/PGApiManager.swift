@@ -359,9 +359,9 @@ private let _singletonInstance = PGApiManager()
                 self.optionalLog("API: Customer Success")
                 
                 //asign the returned customer object as the receipt's custoemr
-                let customer = self.serializeObject(responseObject!, jsonKey: "customer", objectClass: Customer.self)
+                let customer = self.serializeObject(responseObject!, jsonKey: "customer", objectClass: Customer.self) as? Customer
                 
-                receipt.customer = customer as? Customer
+                receipt.customer = customer
                 receipt.customer_id = receipt.customer!.id
                 
                 //add the new customer to the local list of customers
