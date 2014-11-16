@@ -45,6 +45,12 @@ class MBViewPaneSlider : NSObject {
         self.button1?.setTitleColor(HIGHLIGHT_COLOR, forState: .Normal)
     }
     
+    deinit {
+        //if parentVC creates another instance of this class, you crash if the new message gets through
+        button1?.removeTarget(self, action: nil, forControlEvents: .TouchUpInside)
+        button2?.removeTarget(self, action: nil, forControlEvents: .TouchUpInside)
+    }
+    
     func onlyShowView(view: UIView) {
         //hides the table and button if asked
         button1?.hidden = true

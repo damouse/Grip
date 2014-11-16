@@ -12,7 +12,7 @@ import UIKit
 private let _singletonInstance = PGApiManager()
 
 @objc class PGApiManager : NSObject {
-    let logging = false
+    let logging = true
     
 //    let base_url = "http://packagegrid.com/"
     let base_url = "http://192.168.79.166:3000/"
@@ -360,7 +360,9 @@ private let _singletonInstance = PGApiManager()
                 
                 //asign the returned customer object as the receipt's custoemr
                 let customer = self.serializeObject(responseObject!, jsonKey: "customer", objectClass: Customer.self)
+                
                 receipt.customer = customer as? Customer
+                receipt.customer_id = receipt.customer!.id
                 
                 //add the new customer to the local list of customers
                 self.customers.append(receipt.customer!)

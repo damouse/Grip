@@ -16,11 +16,14 @@ class MerchandiseCollectionViewDelegate : NSObject, UICollectionViewDataSource, 
     
     var merchandises: [Product] = [Product]() {
         didSet {
-            merchandises.insert(Product(), atIndex: 0)
+            let blankProduct = Product()
+            blankProduct.type = "Merchandise"
+            merchandises.insert(blankProduct, atIndex: 0)
             collection.reloadData()
         }
     }
-    
+
+
     init(view: UICollectionView) {
         collection = view
         

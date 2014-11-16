@@ -16,7 +16,9 @@ class CustomerCollectionViewDelegate : NSObject, UICollectionViewDataSource, UIC
     
     var customers: [Customer] = [Customer]() {
         didSet {
-            customers.insert(Customer(), atIndex: 0)
+            let newCustomer = Customer()
+            newCustomer.packages = [Package]()
+            customers.insert(newCustomer, atIndex: 0)
             collection.reloadData()
         }
     }

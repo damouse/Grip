@@ -326,7 +326,7 @@
     // cLog = "conditionalLog"
     // log helper method that only outputs to console if DEBUG flag is set
 #ifdef DEBUG
-    NSLog(@"VA: %@", log);
+//    NSLog(@"VA: %@", log);
 #endif
 }
 @end

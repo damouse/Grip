@@ -19,8 +19,8 @@ class Customer : MTLModel, MTLJSONSerializing {
     var name: String?
     var group_id = -1
     var email: String?
-    var created_at: NSDate?
-    var updated_at: NSDate?
+    var created_at = NSDate()
+    var updated_at = NSDate()
     
     //used to check package downloads
     var packages: [Package]?
@@ -55,11 +55,11 @@ class Customer : MTLModel, MTLJSONSerializing {
     }
     
     required override init() {
+
         super.init()
     }
     
     override init(dictionary dictionaryValue: [NSObject : AnyObject]!, error: NSErrorPointer) {
         super.init(dictionary: dictionaryValue!, error: error)
     }
-    
 }

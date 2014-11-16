@@ -16,6 +16,8 @@ class Rollback : NSObject {
     var actions = [RollbackAction]()
     var blockUndo: ((product: ProductReceipt) -> Void)
     
+    let maxActions = 50
+    
     
     init(undoBlock: ((product: ProductReceipt) -> Void)) {
         blockUndo = undoBlock
@@ -27,6 +29,13 @@ class Rollback : NSObject {
     
     func actionPackageSelection(alteredProducts: [ProductReceipt]) {
         actions.append(RollbackAction(products: alteredProducts))
+    }
+    
+    func checkBounds() {
+        //ensure the number of queued actions doesn't pass a certain threshold so we don't crash the app
+        if actions.count > maxActions {
+            actions.removeAtIndex(0)
+        }
     }
     
     func undo() {
