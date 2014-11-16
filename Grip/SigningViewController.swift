@@ -123,7 +123,8 @@ class SigningViewController: UIViewController, UITableViewDataSource {
         
         //upload API
         api.uploadReceipt(pdfView, superview: self.view, receipt: receipt!, completion: { (success: Bool) -> () in
-            self.dismissController()
+            success ? self.dismissController() : self.cancel("s")
+            return
         })
     }
     

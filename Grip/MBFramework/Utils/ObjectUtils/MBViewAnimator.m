@@ -78,6 +78,11 @@
     }
     
     //save the current frame
+    [self initObjectForce:view inView:superview forSlideinAnimation:direction];
+}
+
+-(void) initObjectForce:(UIView *)view inView:(UIView *)superview forSlideinAnimation:(VAAnimationDirection)direction {
+    //Performs the animation, but does not check to see if a frame already exist (or rather doesn't care)
     CGRect active = view.frame;
     CGRect hidden = active;
     
@@ -98,7 +103,7 @@
             hidden.origin.x = -active.size.width;
             break;
     }
-
+    
     
     //set the view to start in its hidden state
     view.frame = hidden;
@@ -106,7 +111,7 @@
     //tag the view (if it does not already have a tag) and add it to the save dictionary
     if(view.tag == 0)
         view.tag = [self getFreeTag];
-
+    
     //create the save object
     VAViewMetadata *save = [[VAViewMetadata alloc] init];
     [save setHiddenFrame:hidden];

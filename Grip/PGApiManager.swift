@@ -12,7 +12,7 @@ import UIKit
 private let _singletonInstance = PGApiManager()
 
 @objc class PGApiManager : NSObject {
-    let logging = true
+    let logging = false
     
 //    let base_url = "http://packagegrid.com/"
     let base_url = "http://192.168.79.166:3000/"
@@ -110,7 +110,7 @@ private let _singletonInstance = PGApiManager()
         }
         else {
             startBlock = {
-                self.createReceipt(receipt, success: startReceipt)
+                self.createReceipt(receipt, success: receiptSuccess)
             }
         }
         
@@ -418,6 +418,7 @@ private let _singletonInstance = PGApiManager()
             
             failure:  { ( operation: AFHTTPRequestOperation?, error: NSError? ) -> Void in
                 self.apiFailed(operation, error: error)
+                success(success: false)
         })
     }
     

@@ -52,6 +52,18 @@ typedef enum VAAnimationDirection{
  */
 - (void) initObject:(UIView *)view inView:(UIView *)superview forSlideinAnimation:(VAAnimationDirection)direction;
 
+/*
+ Emergency hack-- returning view controllers leave some frames offscreen. This is needed to force a reinit without checking for existing frame
+ WARN WARN WARN
+ 
+ When a VC dissapears and reappears, it calls init again. Init normally moves the objects offscreen when called, 
+ but any views that remained onscreen when the VC left will show as duplicates in the save and thus will not be init'd
+ offscreen. 
+ 
+ Similar error- if a view is left offscreen and then re-init'd, it will stay offscreen perpetually. 
+ */
+-(void) initObjectForce:(UIView *)view inView:(UIView *)superview forSlideinAnimation:(VAAnimationDirection)direction;
+
 //move the object onscreen. Does nothing if the object is not in its proper offscreen position
 - (void) animateObjectOnscreen:(UIView *)view completion:(void (^)(BOOL))completion;
 

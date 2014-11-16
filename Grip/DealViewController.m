@@ -167,17 +167,23 @@ typedef enum UIState{
 #pragma mark Animations
 - (void) initAnimations {
     //animations init
-    animator = [[MBViewAnimator alloc] initWithDuration:ANIMATION_DURATION];
-    [animator initObject:viewInfo inView:self.view forSlideinAnimation:VAAnimationDirectionRight];
-    [animator initObject:viewPackages inView:self.view forSlideinAnimation:VAAnimationDirectionLeft];
+    
+    //views that end offscreen at the end of the previous transition will no longer appear here-- only init the offscreen ones if needed
+    if (animator == nil) {
+        animator = [[MBViewAnimator alloc] initWithDuration:ANIMATION_DURATION];
+        
+        //slidein details panes
+        [animator initObject:viewInfoDetails inView:self.view forSlideinAnimation:VAAnimationDirectionRight];
+        [animator initObject:viewProductDetails inView:self.view forSlideinAnimation:VAAnimationDirectionLeft];
+    }
+    
+    //WARNING-- Force is a hack! click through to read bug description on animator class
+    [animator initObjectForce:viewInfo inView:self.view forSlideinAnimation:VAAnimationDirectionRight];
+    [animator initObjectForce:viewPackages inView:self.view forSlideinAnimation:VAAnimationDirectionLeft];
     
     //side in buttons
-    [animator initObject:viewBottomLeftContainer inView:self.view forSlideinAnimation:VAAnimationDirectionUp];
-    [animator initObject:viewBottomRightContainer inView:self.view forSlideinAnimation:VAAnimationDirectionUp];
-    
-    //slidein details panes
-    [animator initObject:viewInfoDetails inView:self.view forSlideinAnimation:VAAnimationDirectionRight];
-    [animator initObject:viewProductDetails inView:self.view forSlideinAnimation:VAAnimationDirectionLeft];
+    [animator initObjectForce:viewBottomLeftContainer inView:self.view forSlideinAnimation:VAAnimationDirectionUp];
+    [animator initObjectForce:viewBottomRightContainer inView:self.view forSlideinAnimation:VAAnimationDirectionUp];
     
     //relative animations
     [animator initObjectForRelativeAnimation:tableProducts inView:self.view];
