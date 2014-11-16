@@ -40,6 +40,10 @@ class User : MTLModel, MTLJSONSerializing {
 
         return nil
     }
+    
+    func demoUser() -> Bool {
+        return email == "demo@test.com" ? true : false
+    }
 
     
     //Boilerplate, compulsory overrides. Kinda stupid, isn't it?

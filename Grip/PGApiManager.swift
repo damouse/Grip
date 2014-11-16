@@ -56,6 +56,24 @@ private let _singletonInstance = PGApiManager()
         showHUD(superview)
         updateHUDText("Uploading Receipt Document")
         
+        //special case-- demo users should not be able to post receipts
+        if user!.demoUser() {
+            dispatch_after(3000, dispatch_get_main_queue(), {
+                self.removeHUD()
+                
+                let alert = UIAlertView()
+                alert.title = "Success"
+                alert.message = "Receipt uploaded to packagegrid.com!"
+                alert.addButtonWithTitle("Ok")
+                alert.show()
+                
+                completion(success: true)
+            })
+            
+            println("Demo user faking it")
+            return
+        }
+        
         //sequential, batched success tasks. These are chained together to perform the uploads sequentially
         //NOTE: refactor this to use BFTasks-- should clean up the code and logic pretty well
         
@@ -120,6 +138,9 @@ private let _singletonInstance = PGApiManager()
     }
     
     func updateSettings(view: UIView, completion: (success: Bool) -> Void) {
+        if user!.demoUser() {
+            return
+        }
         //update the settings object. Rely on Landing to change the fields of the object
         updateSettings(setting, success: completion)
     }
@@ -138,6 +159,7 @@ private let _singletonInstance = PGApiManager()
         return ret
     }
     
+
     
     // MARK: ProgressHUD methods
     func showHUD(view:UIView) {
