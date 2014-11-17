@@ -244,8 +244,6 @@ private let _singletonInstance = PGApiManager()
                 self.user = MTLJSONAdapter.modelOfClass(User.self, fromJSONDictionary: userDictionary, error: &error) as? User
                 self.user?.image_url = json["image_url"] as? String
                 
-                println(self.user!.image_url)
-                
                 self.loadUserImage(self.user!, completion: { () -> Void in
                     completion(true)
                 })

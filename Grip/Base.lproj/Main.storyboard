@@ -180,11 +180,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Email" minimumFontSize="17" id="lFb-cn-RV4" customClass="GripTextfield" customModule="Grip" customModuleProvider="target">
-                                        <rect key="frame" x="111" y="53" width="384" height="33"/>
+                                        <rect key="frame" x="111" y="62" width="384" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Titillium-Light" family="Titillium" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                                         <connections>
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="YHz-Ha-c5n"/>
                                         </connections>
@@ -1369,6 +1369,10 @@
                         <outletCollection property="labels" destination="orJ-pj-7qG" collectionClass="NSMutableArray" id="ohk-MX-eu6"/>
                         <outletCollection property="buttons" destination="GlA-CC-Cel" collectionClass="NSMutableArray" id="fNF-g8-muE"/>
                         <outletCollection property="buttons" destination="Tnk-ka-ROf" collectionClass="NSMutableArray" id="pXW-eY-aua"/>
+                        <outletCollection property="labels" destination="NAI-N8-fxY" collectionClass="NSMutableArray" id="cTo-R0-BUL"/>
+                        <outletCollection property="labels" destination="HQx-HB-dCQ" collectionClass="NSMutableArray" id="JWx-O7-PW6"/>
+                        <outletCollection property="labels" destination="waO-Yd-g7a" collectionClass="NSMutableArray" id="0Yk-xK-Rzf"/>
+                        <outletCollection property="labels" destination="Egw-l1-1sm" collectionClass="NSMutableArray" id="VAw-hS-CxK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uLO-v1-wdj" userLabel="First Responder" sceneMemberID="firstResponder"/>
