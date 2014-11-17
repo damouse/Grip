@@ -7,17 +7,13 @@
 //
 
 import Foundation
-/*
-Remember! Customer models do not match the backend strictly! Whats recorded here is really the group that 
-wraps the customer and the glued on email for that customer. The id is not for the customer object, but rather the group.
 
-The name of the group should always match the customer. Group ownership should also match up fine. Be careful when posting
-new customers-- can't just post this object!
-*/
 class Customer : MTLModel, MTLJSONSerializing {
-    var id = -1
+    var id = -1 //the actual id of this customer
+    var group_id = -1 //the group that wraps this customer
+    var parent_group_id = -1 //the parent of the group that wraps this customer
+    
     var name: String?
-    var group_id = -1
     var email: String?
     var created_at = NSDate()
     var updated_at = NSDate()

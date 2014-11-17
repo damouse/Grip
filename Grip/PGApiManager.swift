@@ -217,9 +217,10 @@ private let _singletonInstance = PGApiManager()
             
             //load customer packages for each customer
             for customer in self.customers {
-                self.loadPackages(customer.id, success: { (id: Int, packages: AnyObject) -> Void in
-                    let customer = self.customers.filter({$0.id == id})[0] as Customer
+                self.loadPackages(customer.group_id, success: { (id: Int, packages: AnyObject) -> Void in
+                    let customer = self.customers.filter({$0.group_id == id})[0] as Customer
                     customer.packages = packages as? [Package]
+                    println(packages)
                 })
             }
         }
