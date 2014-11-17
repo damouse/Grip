@@ -166,7 +166,7 @@ typedef enum UIState{
 
 - (void) setInitialLabels {
     //set merchandise and customer labels
-    labelDetailsMerchandiseDescription.text = self.dealmaker.receipt.merchandise_receipt_attributes.product.item_description;
+    labelDetailsMerchandiseDescription.text = [self.dealmaker.receipt.merchandise_receipt_attributes.product getSummary];
 
     [imageDetailsMerchandise setImage:self.dealmaker.receipt.user.image];
     [imageMerchandise setImage:self.dealmaker.receipt.user.image];

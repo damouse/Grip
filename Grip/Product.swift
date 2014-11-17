@@ -24,7 +24,7 @@ class Product : MTLModel, MTLJSONSerializing {
     var id = -1
     var name: String?
     var created_at: NSDate?
-    var item_description: String?
+
     var group_id = -1
     var image_url: String?
     var order_index: String?
@@ -45,7 +45,6 @@ class Product : MTLModel, MTLJSONSerializing {
     
     class func JSONKeyPathsByPropertyKey() -> [NSObject : AnyObject]! {
         return [
-            "item_description" : "description",
             "image": NSNull(),
             "desaturatedImage": NSNull()
         ]
@@ -60,6 +59,18 @@ class Product : MTLModel, MTLJSONSerializing {
         }
         
         return nil
+    }
+    
+    func getSummary() -> String {
+        //return the summary item from descriptions
+        if let udetails = details {
+            let summary = udetails.filter {$0.detail_type == "summary"}[0]
+            return summary.description_text!
+        }
+        else {
+            return ""
+        }
+        
     }
     
     //Boilerplate, compulsory overrides. Kinda stupid, isn't it?

@@ -13,7 +13,7 @@ class Detail : MTLModel, MTLJSONSerializing {
     var id = -1
     var detail_type: String?
     
-    var name: String?
+    var detail_name: String?
     var description_text: String?
 
     

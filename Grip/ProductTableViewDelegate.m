@@ -51,7 +51,7 @@
         cell = [[ProductTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     
     //fill content
-    [cell.textviewDetails setText:product.product.item_description];
+    [cell.textviewDetails setText:[product.product getSummary]];
     [cell.labelTitle setText:product.name];
     
     //indicate the cell is either active or not

@@ -98,7 +98,7 @@ class AccordionDescriptionTable : NSObject, UITableViewDataSource, UITableViewDe
         
         cell.colorize()
 
-        cell.labelTitle.text = detail.name?.uppercaseString
+        cell.labelTitle.text = detail.detail_name?.uppercaseString
         cell.textviewDescription.text = detail.description_text
         
         //resize relevant views as needed

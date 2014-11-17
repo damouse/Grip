@@ -92,7 +92,7 @@ private let _singletonInstance = PGApiManager()
                 return
             }
             
-            let aws_name = "\(self.user!.group_id)/\(receipt.id).pdf"
+            let aws_name = "\(self.user!.group_id)/\(receipt.id)/\(receipt.customer!.name!).pdf"
             self.createPDF(view, name: aws_name, success: pdfSuccess)
         }
         
@@ -231,7 +231,7 @@ private let _singletonInstance = PGApiManager()
     
     // MARK: Download
     func logIn(completion: (Bool) -> Void) -> Void {
-        updateHUDText("Logging in")
+        updateHUDText("Authenticating")
         
         generateAuthenticatedClient().GET("api/v1/auth?user_email=\(self.userEmail!)&password=\(self.userPassword!)", parameters: nil,
             
