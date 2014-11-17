@@ -24,6 +24,7 @@ class SigningViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var labelSalesName: UILabel!
     @IBOutlet weak var labelDate: UILabel!
     @IBOutlet weak var labelPackageName: UILabel!
+    @IBOutlet weak var labelDiscount: UILabel!
     
     //Images
     @IBOutlet weak var imageCompanyLogo: UIImageView!
@@ -79,6 +80,7 @@ class SigningViewController: UIViewController, UITableViewDataSource {
 
     func colorize() {
         view.backgroundColor = PRIMARY_LIGHT
+        viewPage.backgroundColor = PRIMARY_LIGHT
         
         viewSignatureView.backgroundColor = PRIMARY_DARK
         viewButtonHolder.backgroundColor = PRIMARY_DARK
@@ -92,8 +94,9 @@ class SigningViewController: UIViewController, UITableViewDataSource {
     func populateContent() {
         labelCustomerName.text = self.receipt?.customer?.name
         labelMerchandise.text = self.receipt!.merchandise_receipt_attributes?.name
-        labelFinancing.text = "\(self.receipt!.discount)%"
+        labelFinancing.text = "\(self.receipt!.apr * 100)%"
         labelPayment.text = "\(self.receipt!.cost)";
+        labelDiscount.text = "\(self.receipt!.discount)%"
         
         imageCompanyLogo.image = self.receipt?.user?.image
         

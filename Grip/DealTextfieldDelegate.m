@@ -188,9 +188,9 @@
 - (double) getProductPrice {
     NSString *str = parent.textviewProductPrice.text;
     if ([str containsString:@"$"])
-        return [self currencyFromString:parent.textfieldMerchandisePrice.text];
+        return [self currencyFromString:parent.textviewProductPrice.text];
     else
-        return  [parent.textfieldMerchandisePrice.text doubleValue];
+        return  [parent.textviewProductPrice.text doubleValue];
 }
 
 - (NSString *) getCustomerName {

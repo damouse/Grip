@@ -42,7 +42,8 @@ class User : MTLModel, MTLJSONSerializing {
     }
     
     func demoUser() -> Bool {
-        return email == "demo@test.com" ? true : false
+        return false
+//        return email == "demo@test.com" ? true : false
     }
 
     
