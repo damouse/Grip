@@ -66,9 +66,9 @@
     [PGAppearance setAppearance];
 
     //DEBUG
-    textfieldEmail.text = @"demo@test.com";
-    textfieldPassword.text = @"12345678";
-    [self performLogin];
+//    textfieldEmail.text = @"demo@test.com";
+//    textfieldPassword.text = @"12345678";
+//    [self performLogin];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -414,7 +414,13 @@
 }
 
 - (IBAction) help:(id)sender {
-//    [apiManager TEST];
+    [self closingAnimations];
+    
+    [animator animateObjectOffscreen:viewPresentDialog completion:^(BOOL completion){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        TutorialViewController *tutorial = [storyboard instantiateViewControllerWithIdentifier:@"tutorial"];
+        [self.navigationController pushViewController:tutorial animated:YES];
+    }];
 }
 
 

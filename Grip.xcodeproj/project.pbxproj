@@ -23,6 +23,7 @@
 		50898DF01A07CE4F00B2EEC1 /* DealTextfieldDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50898DEF1A07CE4F00B2EEC1 /* DealTextfieldDelegate.m */; };
 		508F8F3919F7108700610C3F /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508F8F3819F7108700610C3F /* Customer.swift */; };
 		508F8F3B19F73A5F00610C3F /* GripSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508F8F3A19F73A5F00610C3F /* GripSpinner.swift */; };
+		509051291A20881000750A31 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509051281A20881000750A31 /* TutorialViewController.swift */; };
 		5094B1C21A06F12A00FE8BDD /* CustomerMerchCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5094B1C11A06F12A00FE8BDD /* CustomerMerchCollectionCell.swift */; };
 		5094B1C61A06F14500FE8BDD /* CustomerCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5094B1C51A06F14500FE8BDD /* CustomerCollectionViewDelegate.swift */; };
 		5094B1C81A06F14C00FE8BDD /* MerchandiseCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5094B1C71A06F14C00FE8BDD /* MerchandiseCollectionViewDelegate.swift */; };
@@ -132,6 +133,7 @@
 		50898DEF1A07CE4F00B2EEC1 /* DealTextfieldDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealTextfieldDelegate.m; sourceTree = "<group>"; };
 		508F8F3819F7108700610C3F /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		508F8F3A19F73A5F00610C3F /* GripSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GripSpinner.swift; sourceTree = "<group>"; };
+		509051281A20881000750A31 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		5094B1C11A06F12A00FE8BDD /* CustomerMerchCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerMerchCollectionCell.swift; sourceTree = "<group>"; };
 		5094B1C51A06F14500FE8BDD /* CustomerCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		5094B1C71A06F14C00FE8BDD /* MerchandiseCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MerchandiseCollectionViewDelegate.swift; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 				50898DEF1A07CE4F00B2EEC1 /* DealTextfieldDelegate.m */,
 				50E8A8491A18910800DA2DD7 /* CustomerMerchandiseDialog.h */,
 				50E8A84A1A18910800DA2DD7 /* CustomerMerchandiseDialog.m */,
+				509051281A20881000750A31 /* TutorialViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -853,6 +856,7 @@
 				50CC00FF1A02CC1F00ED1E9D /* SigningViewController.swift in Sources */,
 				50D718F319F7B65E00E6B731 /* PDFFactory.swift in Sources */,
 				50C1A05E1A12EC3E0005D961 /* MBUtils.swift in Sources */,
+				509051291A20881000750A31 /* TutorialViewController.swift in Sources */,
 				500C9C721A1601250018EE2F /* DescriptionCell.swift in Sources */,
 				509BB189193A756100FC8CC7 /* MCImageViewInterpreter.m in Sources */,
 				5048DED8199F0A9B0014ABC4 /* Product.swift in Sources */,
