@@ -14,12 +14,12 @@ class TutorialViewController: GAITrackedViewController, UICollectionViewDataSour
     var showAll = true
     
     
-    override func viewDidLoad() {\
+    override func viewDidLoad() {
         if showAll {
-        images = [UIImage(named:"1")!, UIImage(named:"2")!, UIImage(named:"3")!, UIImage(named:"4")!, UIImage(named:"5")!, UIImage(named:"6")!, UIImage(named:"7")!, UIImage(named:"8")!, UIImage(named:"9")!]
+            images = [UIImage(named:"1")!, UIImage(named:"2")!, UIImage(named:"3")!, UIImage(named:"4")!, UIImage(named:"5")!, UIImage(named:"6")!, UIImage(named:"7")!, UIImage(named:"8")!, UIImage(named:"9")!]
         }
         else {
-            
+            images = [UIImage(named:"3")!, UIImage(named:"4")!, UIImage(named:"5")!, UIImage(named:"6")!, UIImage(named:"7")!, UIImage(named:"8")!]
         }
         
         super.viewDidLoad()
@@ -40,7 +40,7 @@ class TutorialViewController: GAITrackedViewController, UICollectionViewDataSour
     
     //MARK: IBActions
     @IBAction func done(sender: AnyObject) {
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     

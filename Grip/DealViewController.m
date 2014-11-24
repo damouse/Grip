@@ -448,7 +448,10 @@ typedef enum UIState{
 }
 
 - (IBAction) walkthrough:(id)sender {
-
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    TutorialViewController *tutorial = [storyboard instantiateViewControllerWithIdentifier:@"tutorial"];
+    tutorial.showAll = false;
+    [self.navigationController pushViewController:tutorial animated:YES];
 }
 
 - (IBAction) undo:(id)sender {
