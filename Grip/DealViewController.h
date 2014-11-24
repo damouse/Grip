@@ -96,6 +96,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelMonthlyPayment;
 @property (weak, nonatomic) IBOutlet UILabel *labelLoanTerm;
 @property (weak, nonatomic) IBOutlet UILabel *labelCustomerName;
+@property (weak, nonatomic) IBOutlet UILabel *labelInfoCustomerName;
 
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *textfields;
 

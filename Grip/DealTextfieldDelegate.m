@@ -98,6 +98,7 @@
     [self setTextfield:parent.textfieldCustomerName textWithString: receipt.customer.name];
     
     parent.labelCustomerName.text = receipt.customer.name;
+    parent.labelInfoCustomerName.text = receipt.customer.name;
     
     [self setTerm:receipt];
     [self setApr:receipt];
@@ -439,10 +440,12 @@
     if (str != nil) {
         [self setTextfield:parent.textfieldCustomerName textWithString:str];
         [parent.labelCustomerName setText:str];
+        [parent.labelInfoCustomerName setText:str];
     }
     else {
         parent.textfieldCustomerName.text = @"";
         parent.labelCustomerName.text = @"";
+        parent.labelInfoCustomerName.text = @"";
     }
 }
 
