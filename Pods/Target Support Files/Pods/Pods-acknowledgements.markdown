@@ -365,6 +365,11 @@ freely, subject to the following restrictions:
    
 3. This notice may not be removed or altered from any source distribution.
 
+## GoogleAnalytics-iOS-SDK
+
+Copyright 2009 - 2014 Google, Inc. All rights reserved.
+
+
 ## MTAnimation
 
 Copyright (c) 2010 Mysterious Trousers, LLC (http://www.mysterioustrousers.com)

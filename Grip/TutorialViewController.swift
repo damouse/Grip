@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TutorialViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class TutorialViewController: GAITrackedViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet weak var collectionMain: UICollectionView!
     var images : [UIImage]
     
@@ -16,6 +16,9 @@ class TutorialViewController: UIViewController, UICollectionViewDataSource, UICo
     override func viewDidLoad() {
         images = [UIImage(named:"1")!, UIImage(named:"2")!, UIImage(named:"3")!, UIImage(named:"4")!, UIImage(named:"5")!, UIImage(named:"6")!, UIImage(named:"7")!, UIImage(named:"8")!, UIImage(named:"9")!]
         super.viewDidLoad()
+        
+        //Google Analytics
+        self.screenName = "Tutorial";
     }
     
     required init(coder aDecoder: NSCoder) {

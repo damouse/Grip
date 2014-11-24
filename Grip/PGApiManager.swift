@@ -14,7 +14,7 @@ private let _singletonInstance = PGApiManager()
 @objc class PGApiManager : NSObject {
     let logging = false
     
-//    let base_url = "http://packagegrid.com/"
+//    let base_url = "https://packagegrid.com/"
     let base_url = "http://192.168.79.167:3000/"
     
     //stored user information-- hold for future auth requests
@@ -73,6 +73,8 @@ private let _singletonInstance = PGApiManager()
             println("Demo user faking it")
             return
         }
+        
+        Analytics.madeDeal()
         
         //sequential, batched success tasks. These are chained together to perform the uploads sequentially
         //NOTE: refactor this to use BFTasks-- should clean up the code and logic pretty well
@@ -220,7 +222,6 @@ private let _singletonInstance = PGApiManager()
                 self.loadPackages(customer.group_id, success: { (id: Int, packages: AnyObject) -> Void in
                     let customer = self.customers.filter({$0.group_id == id})[0] as Customer
                     customer.packages = packages as? [Package]
-                    println(packages)
                 })
             }
         }
@@ -614,7 +615,6 @@ private let _singletonInstance = PGApiManager()
         
         operation.setCompletionBlockWithSuccess({ (operation: AFHTTPRequestOperation!, object: AnyObject!) -> Void in
                 user.image = object as? UIImage
-                println("User finished loading picture")
                 completion()
             },
             

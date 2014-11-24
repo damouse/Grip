@@ -72,6 +72,9 @@ typedef enum UIState{
 - (void) viewDidLoad {
     [super viewDidLoad];
     
+    //Google Analytics
+    self.screenName = @"Package Screen";
+    
     //roll it back now, yall
     rollback = [[Rollback alloc] initWithUndoBlock:^(ProductReceipt * product) {
         [self selectProduct:product];

@@ -21,7 +21,7 @@
 
 #import "Grip-Swift.h"
 
-@interface DealViewController : UIViewController {
+@interface DealViewController : GAITrackedViewController {
     //views
     __weak IBOutlet UIView *viewInfo;
     __weak IBOutlet UIView *viewInfoDetails;

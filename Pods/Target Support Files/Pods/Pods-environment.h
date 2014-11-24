@@ -138,6 +138,12 @@
 #define COCOAPODS_VERSION_MINOR_GZIP 0
 #define COCOAPODS_VERSION_PATCH_GZIP 3
 
+// GoogleAnalytics-iOS-SDK
+#define COCOAPODS_POD_AVAILABLE_GoogleAnalytics_iOS_SDK
+#define COCOAPODS_VERSION_MAJOR_GoogleAnalytics_iOS_SDK 3
+#define COCOAPODS_VERSION_MINOR_GoogleAnalytics_iOS_SDK 10
+#define COCOAPODS_VERSION_PATCH_GoogleAnalytics_iOS_SDK 0
+
 // MTAnimation
 #define COCOAPODS_POD_AVAILABLE_MTAnimation
 #define COCOAPODS_VERSION_MAJOR_MTAnimation 1

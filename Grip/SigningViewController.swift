@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SigningViewController: UIViewController, UITableViewDataSource {
+class SigningViewController: GAITrackedViewController, UITableViewDataSource {
     //views
     @IBOutlet weak var scrollviewContent: UIScrollView!
     @IBOutlet weak var viewPage: UIView!
@@ -66,6 +66,8 @@ class SigningViewController: UIViewController, UITableViewDataSource {
         self.tableDeclined.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         showingSignature = false
+        
+        self.screenName = "Signing";
     }
     
     override func viewWillAppear(animated: Bool) {

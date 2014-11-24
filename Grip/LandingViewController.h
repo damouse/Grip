@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Grip-Swift.h"
 
-@interface LandingViewController : UIViewController {
+@interface LandingViewController : GAITrackedViewController {
     //Views
     __weak IBOutlet UIView *viewMenu;
     __weak IBOutlet UIView *viewLogin;

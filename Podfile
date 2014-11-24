@@ -6,3 +6,4 @@ pod 'PPSSignatureView', '~> 0.1.2'
 pod 'AWSiOSSDKv2'
 pod 'MTAnimation'
 pod "youtube-ios-player-helper"
+pod 'GoogleAnalytics-iOS-SDK'

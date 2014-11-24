@@ -51,6 +51,9 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    
+    //Google Analytics
+    self.screenName = @"Landing Screen";
 
     //default to not logged in
     loggedIn = false;
@@ -66,9 +69,9 @@
     [PGAppearance setAppearance];
 
     //DEBUG
-//    textfieldEmail.text = @"demo@test.com";
-//    textfieldPassword.text = @"12345678";
-//    [self performLogin];
+    textfieldEmail.text = @"demo@test.com";
+    textfieldPassword.text = @"12345678";
+    [self performLogin];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -163,6 +166,10 @@
             collectionMerchandiseDelegate.merchandises = apiManager.merchandises;
             
             [imageCompanyLogo setImage:apiManager.user.image];
+            
+            if (!apiManager.user.demoUser) {
+                [Analytics login];
+            }
         }
         else {
             NSLog(@"LOGIN FAILED");

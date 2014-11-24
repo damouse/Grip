@@ -95,6 +95,9 @@
 		50C1A05E1A12EC3E0005D961 /* MBUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1A05D1A12EC3E0005D961 /* MBUtils.swift */; };
 		50CC00FF1A02CC1F00ED1E9D /* SigningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CC00FE1A02CC1F00ED1E9D /* SigningViewController.swift */; };
 		50D718F319F7B65E00E6B731 /* PDFFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D718F219F7B65E00E6B731 /* PDFFactory.swift */; };
+		50E273FB1A22CDDB00C4B732 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50E273FA1A22CDDB00C4B732 /* SystemConfiguration.framework */; };
+		50E273FD1A22CDEA00C4B732 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 50E273FC1A22CDEA00C4B732 /* libz.dylib */; };
+		50E273FF1A22D0CD00C4B732 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E273FE1A22D0CD00C4B732 /* Analytics.swift */; };
 		50E8A84B1A18910800DA2DD7 /* CustomerMerchandiseDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E8A84A1A18910800DA2DD7 /* CustomerMerchandiseDialog.m */; };
 		50EC987D199236D400C62BFE /* PGApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EC987C199236D400C62BFE /* PGApiManager.swift */; };
 		50F7F44B1A12F57F00429941 /* GripTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F7F44A1A12F57F00429941 /* GripTextfield.swift */; };
@@ -234,6 +237,9 @@
 		50C1A05D1A12EC3E0005D961 /* MBUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MBUtils.swift; sourceTree = "<group>"; };
 		50CC00FE1A02CC1F00ED1E9D /* SigningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningViewController.swift; sourceTree = "<group>"; };
 		50D718F219F7B65E00E6B731 /* PDFFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFFactory.swift; sourceTree = "<group>"; };
+		50E273FA1A22CDDB00C4B732 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		50E273FC1A22CDEA00C4B732 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		50E273FE1A22D0CD00C4B732 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		50E8A8491A18910800DA2DD7 /* CustomerMerchandiseDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerMerchandiseDialog.h; sourceTree = "<group>"; };
 		50E8A84A1A18910800DA2DD7 /* CustomerMerchandiseDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerMerchandiseDialog.m; sourceTree = "<group>"; };
 		50EC987B199236D400C62BFE /* Grip-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grip-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -249,6 +255,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50E273FD1A22CDEA00C4B732 /* libz.dylib in Frameworks */,
+				50E273FB1A22CDDB00C4B732 /* SystemConfiguration.framework in Frameworks */,
 				50AF2A8719DF34DB00F49EEE /* QuartzCore.framework in Frameworks */,
 				509BB19A193A7B9F00FC8CC7 /* CoreData.framework in Frameworks */,
 				509BA66318EB4E960011D374 /* CoreGraphics.framework in Frameworks */,
@@ -349,6 +357,8 @@
 		509BA65F18EB4E960011D374 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				50E273FC1A22CDEA00C4B732 /* libz.dylib */,
+				50E273FA1A22CDDB00C4B732 /* SystemConfiguration.framework */,
 				50AF2A8619DF34DB00F49EEE /* QuartzCore.framework */,
 				509BB199193A7B9F00FC8CC7 /* CoreData.framework */,
 				509BA66018EB4E960011D374 /* Foundation.framework */,
@@ -411,11 +421,8 @@
 				509BA69A18EB50620011D374 /* LandingViewController.m */,
 				509BA69C18EB50930011D374 /* DealViewController.h */,
 				509BA69D18EB50930011D374 /* DealViewController.m */,
-				50898DEE1A07CE4F00B2EEC1 /* DealTextfieldDelegate.h */,
-				50898DEF1A07CE4F00B2EEC1 /* DealTextfieldDelegate.m */,
-				50E8A8491A18910800DA2DD7 /* CustomerMerchandiseDialog.h */,
-				50E8A84A1A18910800DA2DD7 /* CustomerMerchandiseDialog.m */,
 				509051281A20881000750A31 /* TutorialViewController.swift */,
+				50CC00FE1A02CC1F00ED1E9D /* SigningViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -424,13 +431,16 @@
 			isa = PBXGroup;
 			children = (
 				509BA67218EB4E960011D374 /* Main.storyboard */,
+				50898DEE1A07CE4F00B2EEC1 /* DealTextfieldDelegate.h */,
+				50898DEF1A07CE4F00B2EEC1 /* DealTextfieldDelegate.m */,
+				50E8A8491A18910800DA2DD7 /* CustomerMerchandiseDialog.h */,
+				50E8A84A1A18910800DA2DD7 /* CustomerMerchandiseDialog.m */,
 				50AF2A8319DF32DF00F49EEE /* SignatureViewQuartzQuadratic.h */,
 				50AF2A8419DF32DF00F49EEE /* SignatureViewQuartzQuadratic.m */,
 				5095EC6819AD49AF00D887F7 /* GripButton.swift */,
 				508F8F3A19F73A5F00610C3F /* GripSpinner.swift */,
 				50C1A05B1A12E7FA0005D961 /* PGAppearance.swift */,
 				50F7F44A1A12F57F00429941 /* GripTextfield.swift */,
-				50CC00FE1A02CC1F00ED1E9D /* SigningViewController.swift */,
 				500C9C701A1601130018EE2F /* DescriptionTable */,
 				507D0477193E7CA7003CC3B6 /* ProductTable */,
 				50AB237419B124AB001D62AB /* Customer, Merchandise Collection */,
@@ -446,6 +456,7 @@
 				5097550819AED47A006E7859 /* Dealmaker.swift */,
 				5097550A19AED59E006E7859 /* Rollback.swift */,
 				50D718F219F7B65E00E6B731 /* PDFFactory.swift */,
+				50E273FE1A22D0CD00C4B732 /* Analytics.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -806,6 +817,7 @@
 				5099444B19AE86C600E7D004 /* Receipt.swift in Sources */,
 				509BB18B193A756100FC8CC7 /* MCTextFieldInterpreter.m in Sources */,
 				508F8F3B19F73A5F00610C3F /* GripSpinner.swift in Sources */,
+				50E273FF1A22D0CD00C4B732 /* Analytics.swift in Sources */,
 				50C1A05C1A12E7FA0005D961 /* PGAppearance.swift in Sources */,
 				508F8F3919F7108700610C3F /* Customer.swift in Sources */,
 				509BB18A193A756100FC8CC7 /* MCLabelInterpreter.m in Sources */,

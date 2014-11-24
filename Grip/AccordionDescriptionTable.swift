@@ -26,11 +26,18 @@ class AccordionDescriptionTable : NSObject, UITableViewDataSource, UITableViewDe
     var tableView: UITableView
     var details: [Detail]? {
         didSet {
+            if selectedIndex != nil {
+                let oldCell = tableView.cellForRowAtIndexPath(selectedIndex!) as DetailsCell
+                self.selectedIndex = nil
+                oldCell.animateColor(false)
+            }
+            
             self.tableView.reloadData()
         }
     }
     
     
+    //MARK: Public
     init(table: UITableView) {
         self.tableView = table
         
@@ -56,13 +63,24 @@ class AccordionDescriptionTable : NSObject, UITableViewDataSource, UITableViewDe
     }
     
     func heightForTextview(detail: Detail) -> CGFloat {
+        //dynamic calculation fails horribly. Manually calculate the size
+        //a line at size 14 font is 61 characters long, 14px high
+//        let chars = detail.description_text!
+        
+        let string : NSString = detail.description_text!
+        let maxSize = CGSizeMake(CGFloat(textviewWidth), CGFloat(10000))
+        
         //return the height of a textview with a fixed width with a given attributed string
         let font = UIFont(name: "Titillium", size: 14)!
-        let attributedString = NSMutableAttributedString(string: detail.description_text!, attributes:[NSFontAttributeName : font])
+//        let attributedString = NSMutableAttributedString(string: string, attributes:[NSFontAttributeName : font])
         
-        let rect = attributedString.boundingRectWithSize(CGSizeMake(CGFloat(textviewWidth), CGFloat(MAXFLOAT)), options: NSStringDrawingOptions.UsesLineFragmentOrigin, context: nil)
-        
-        return rect.size.height
+        let size = string.boundingRectWithSize(maxSize, options: NSStringDrawingOptions.UsesDeviceMetrics, attributes: [NSFontAttributeName : font], context: nil)
+        let actualSize = ceil(size.width / 401) * 25
+//        
+//        let rect = attributedString.boundingRectWithSize(CGSizeMake(CGFloat(textviewWidth), CGFloat(MAXFLOAT)), options: NSStringDrawingOptions.UsesDeviceMetrics, context: nil)
+//        
+        return actualSize
+//        return rect.size.height
     }
     
     func getVideoUrl(detail: Detail) -> String? {
