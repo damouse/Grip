@@ -219,7 +219,7 @@ typedef enum UIState{
     currentUIState = StateNeutral;
 }
 
-- (void) outroAnimations:(void (^)(BOOL))completion  {
+- (void) outroAnimations:(void (^)())completion  {
     if (currentUIState == StateShowingNewDialog) {
 //        [touchBlocker removeFromSuperview];
         [animator animateObjectOffscreen:viewEditDialog completion:nil];
@@ -238,7 +238,7 @@ typedef enum UIState{
 
 - (void) animateInfoPaneIn {
     //the info pane on the left side of the screen. Perform animations in two ticks
-    void (^secondStep)(BOOL) = ^(BOOL completion) {
+    void (^secondStep)() = ^() {
         [animator animateObjectToRelativePosition:tableProducts direction:VAAnimationDirectionRight withMargin:50 completion:nil];
         [animator animateObjectOnscreen:viewInfoDetails completion:nil];
     };
@@ -256,7 +256,7 @@ typedef enum UIState{
 
 - (void) animateInfoPaneOut {
     //dismiss the info pane, return to normal
-    void (^secondStep)(BOOL) = ^(BOOL completion) {
+    void (^secondStep)() = ^() {
         //bottom buttons
         [animator animateObjectOnscreen:viewBottomRightContainer completion:nil];
         [animator animateObjectOnscreen:viewBottomLeftContainer completion:nil];
@@ -274,7 +274,7 @@ typedef enum UIState{
 
 - (void) animateProductPaneIn {
     //the product pane on the right side of the screen. Perform animations in two ticks
-    void (^secondStep)(BOOL) = ^(BOOL completion) {
+    void (^secondStep)() = ^() {
         [animator animateObjectToRelativePosition:tableProducts direction:VAAnimationDirectionLeft withMargin:50 completion:nil];
         [animator animateObjectOnscreen:viewProductDetails completion:nil];
     };
@@ -291,7 +291,7 @@ typedef enum UIState{
 }
 
 - (void) animateProductPaneOut {
-    void (^secondStep)(BOOL) = ^(BOOL completion) {
+    void (^secondStep)() = ^() {
         //bottom buttons
         [animator animateObjectOnscreen:viewBottomRightContainer completion:nil];
         [animator animateObjectOnscreen:viewBottomLeftContainer completion:nil];
@@ -336,7 +336,7 @@ typedef enum UIState{
     [self.view addSubview:touchBlocker];
     [self.view bringSubviewToFront:viewEditDialog];
     
-    [animator animateObjectOnscreen:viewEditDialog completion:^(BOOL c) {
+    [animator animateObjectOnscreen:viewEditDialog completion:^() {
         currentUIState = StateShowingNewDialog;
     }];
 }
@@ -350,7 +350,7 @@ typedef enum UIState{
     }
     
     //remove the dialog from the screen
-    [animator animateObjectOffscreen:viewEditDialog completion:^(BOOL c) {
+    [animator animateObjectOffscreen:viewEditDialog completion:^() {
         currentUIState = StateShowingInfoUp;
         [touchBlocker removeFromSuperview];
     }];
@@ -426,7 +426,7 @@ typedef enum UIState{
 
 #pragma mark IBActions
 - (IBAction) cancel:(id)sender {
-    [self outroAnimations:^(BOOL completion){
+    [self outroAnimations:^(){
         [self.navigationController popViewControllerAnimated:NO];
     }];
 }

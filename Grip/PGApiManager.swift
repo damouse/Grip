@@ -14,8 +14,8 @@ private let _singletonInstance = PGApiManager()
 @objc class PGApiManager : NSObject {
     let logging = false
     
-//    let base_url = "https://packagegrid.com/"
-    let base_url = "http://192.168.79.167:3000/"
+    let base_url = "https://packagegrid.com/"
+//    let base_url = "http://192.168.79.167:3000/"
     
     //stored user information-- hold for future auth requests
     var userPassword: String?
@@ -206,27 +206,28 @@ private let _singletonInstance = PGApiManager()
             self.loadPackages(self.user!.group_id, packageSuccess)
         }
         
-        let productSuccess = { () -> Void in
-            self.loadSettings(self.user!.group_id, settingSuccess)
-        }
-        
-        let merchandiseSuccess = { () -> Void in
-            self.loadProducts(productSuccess)
-        }
-        
         let customerSuccess = { () -> Void in
-            self.loadMerchandises(merchandiseSuccess)
+            self.loadSettings(self.user!.group_id, settingSuccess)
             
             //load customer packages for each customer
             for customer in self.customers {
                 self.loadPackages(customer.group_id, success: { (id: Int, packages: AnyObject) -> Void in
+                    let upacks = packages as? [Package]
                     let customer = self.customers.filter({$0.group_id == id})[0] as Customer
-                    customer.packages = packages as? [Package]
+                    customer.packages = upacks
                 })
             }
         }
         
-        self.loadCustomers(customerSuccess)
+        let merchandiseSuccess = { () -> Void in
+            self.loadCustomers(customerSuccess)
+        }
+        
+        let productSuccess = { () -> Void in
+            self.loadMerchandises(merchandiseSuccess)
+        }
+        
+        self.loadProducts(productSuccess)
     }
     
     
@@ -234,7 +235,9 @@ private let _singletonInstance = PGApiManager()
     func logIn(completion: (Bool) -> Void) -> Void {
         updateHUDText("Authenticating")
         
-        generateAuthenticatedClient().GET("api/v1/auth?user_email=\(self.userEmail!)&password=\(self.userPassword!)", parameters: nil,
+        let json = ["user_email" : self.userEmail!, "password": self.userPassword!]
+        
+        generateAuthenticatedClient().POST("api/v1/auth", parameters: json,
             
             success: { ( operation: AFHTTPRequestOperation?, responseObject: AnyObject? ) in
                 self.optionalLog("API: User Success")
@@ -256,7 +259,7 @@ private let _singletonInstance = PGApiManager()
                 completion(false)
         })
     }
-    
+
     func loadSettings(id:Int, success:(() -> Void)?) -> Void {
         //load the user settings from the backend
         updateHUDText("Loading Settings")

@@ -69,9 +69,9 @@
     [PGAppearance setAppearance];
 
     //DEBUG
-    textfieldEmail.text = @"demo@test.com";
-    textfieldPassword.text = @"12345678";
-    [self performLogin];
+//    textfieldEmail.text = @"demo@test.com";
+//    textfieldPassword.text = @"12345678";
+//    [self performLogin];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -182,7 +182,7 @@
 - (void) presentPackage {
     [self closingAnimations];
     
-    [animator animateObjectOffscreen:viewPresentDialog completion:^(BOOL completion){
+    [animator animateObjectOffscreen:viewPresentDialog completion:^(){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         DealViewController *dealController = [storyboard instantiateViewControllerWithIdentifier:@"dealViewController"];
         
@@ -193,7 +193,7 @@
         
         dealmaker.customerPackages = customer.packages;
         dealmaker.userPackages = apiManager.packages;
-        
+
         dealController.dealmaker = dealmaker;
         
         [self.navigationController pushViewController:dealController animated:NO];
@@ -318,7 +318,7 @@
         [self dismissSettings];
     
     [self logosOffScreen];
-    [animator animateObjectOffscreen:viewMenu completion:^(BOOL completed) {
+    [animator animateObjectOffscreen:viewMenu completion:^() {
         [animator animateObjectOnscreen:viewPresentDialog completion:nil];
     }];
     
@@ -331,7 +331,7 @@
         return;
     }
     
-    [animator animateObjectOffscreen:viewPresentDialog completion:^(BOOL done) {
+    [animator animateObjectOffscreen:viewPresentDialog completion:^() {
         [animator animateObjectOnscreen:viewMenu completion:nil];
         [self showBothLogos];
     }];
@@ -421,9 +421,15 @@
 }
 
 - (IBAction) help:(id)sender {
+    if (displayingLogin)
+        [self dismissLogin];
+    
+    if (displayingSettings)
+        [self dismissSettings];
+    
     [self closingAnimations];
     
-    [animator animateObjectOffscreen:viewPresentDialog completion:^(BOOL completion){
+    [animator animateObjectOffscreen:viewPresentDialog completion:^(){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         TutorialViewController *tutorial = [storyboard instantiateViewControllerWithIdentifier:@"tutorial"];
         [self.navigationController pushViewController:tutorial animated:YES];

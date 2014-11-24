@@ -65,11 +65,10 @@ typedef enum VAAnimationDirection{
 -(void) initObjectForce:(UIView *)view inView:(UIView *)superview forSlideinAnimation:(VAAnimationDirection)direction;
 
 //move the object onscreen. Does nothing if the object is not in its proper offscreen position
-- (void) animateObjectOnscreen:(UIView *)view completion:(void (^)(BOOL))completion;
+- (void) animateObjectOnscreen:(UIView *)view completion:(void (^)())completion;
 
 //move the object offscreen. Does nothing if the object is not in its proper offscreen position
-- (void) animateObjectOffscreen:(UIView *)view completion:(void (^)(BOOL))completion;
-
+- (void) animateObjectOffscreen:(UIView *)view completion:(void (^)())completion;
 
 #pragma mark Relative Animations
 /*
@@ -88,10 +87,10 @@ typedef enum VAAnimationDirection{
  Moves the view in the direction specified until it is (margin) away from the edge of its superview. Note that the direction given specifies
  which edge to compare the margin to: a right animation will check the right edge of the view with the right edge of the superview.
  */
-- (void) animateObjectToRelativePosition:(UIView *)view direction:(VAAnimationDirection)direction withMargin:(int)margin completion:(void (^)(BOOL))completion;
+- (void) animateObjectToRelativePosition:(UIView *)view direction:(VAAnimationDirection)direction withMargin:(int)margin completion:(void (^)())completion;
 
 //reset the view to its starting position. Must have previously been registered.
-- (void) animateObjectToStartingPosition:(UIView *)view completion:(void (^)(BOOL))completion;
+- (void) animateObjectToStartingPosition:(UIView *)view completion:(void (^)())completion;
 
 
 #pragma mark Custom Animations
@@ -110,5 +109,5 @@ typedef enum VAAnimationDirection{
 /*
  Perform a custom animation previously registered,
  */
-- (void) animateCustomAnimationForView:(UIView *)view andKey:(NSString *) key completion:(void (^)(BOOL))completion;
+- (void) animateCustomAnimationForView:(UIView *)view andKey:(NSString *) key completion:(void (^)())completion;
 @end

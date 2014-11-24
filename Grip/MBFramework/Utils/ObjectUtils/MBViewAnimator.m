@@ -122,7 +122,7 @@
     [animationFrameStorage setObject:save forKey:[NSNumber numberWithInt:view.tag]];
 }
 
-- (void) animateObjectOnscreen:(UIView *)view completion:(void (^)(BOOL))completion {
+- (void) animateObjectOnscreen:(UIView *)view completion:(void (^)())completion {
     
     if(view.tag == 0) {
         [self cLog:@"animateObject called with an untagged view"];
@@ -144,12 +144,20 @@
         ((UIButton *)view).enabled = NO;
     }
     
-    //perform the animation
-    [UIView animateWithDuration:animationDuration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^ {
-                         view.frame = [save activeFrame];
-                     }
-                     completion:completion];
+    if ([view isKindOfClass:[UIImageView class]]) {
+        [UIView animateWithDuration:animationDuration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^ {
+                             view.frame = [save activeFrame];
+                         }
+                         completion:nil];
+        
+    }
+    else {
+        [UIView mt_animateWithViews:@[view] duration:animationDuration timingFunction:kMTEaseInOutExpo animations:^ {
+            view.frame = [save activeFrame];
+        } completion:completion];
+    }
+
     
     //if its a button turn it off while its animating
     if([view isKindOfClass:[UIButton class]]) {
@@ -158,7 +166,7 @@
     }
 }
 
-- (void) animateObjectOffscreen:(UIView *)view completion:(void (^)(BOOL))completion {
+- (void) animateObjectOffscreen:(UIView *)view completion:(void (^)())completion {
     if(view.tag == 0) {
         [self cLog:@"animateObjectOffscreen called with an untagged view"];
         return;
@@ -174,16 +182,21 @@
         //return;
     }
     
-    //perform the animation
-//    [UIView mt_animateWithViews:@[view] duration:animationDuration timingFunction:kMTEaseInOutExpo animations:^ {
-//        view.frame = [save hiddenFrame];
-//    } completion:completion];
-    
-    [UIView animateWithDuration:animationDuration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^ {
-                         view.frame = [save hiddenFrame];
-                     }
-                     completion:completion];
+    if ([view isKindOfClass:[UIImageView class]]) {
+        [UIView animateWithDuration:animationDuration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^ {
+                             view.frame = [save hiddenFrame];
+                         }
+                         completion:nil];
+
+        
+    }
+    else {
+        //perform the animation
+        [UIView mt_animateWithViews:@[view] duration:animationDuration timingFunction:kMTEaseInOutExpo animations:^ {
+            view.frame = [save hiddenFrame];
+        } completion:completion];
+    }
 }
 
 
@@ -210,7 +223,7 @@
 }
 
 //Animates a view to a position relative to its current position (right, left, etc) while preserving the given margin to the superview.
-- (void) animateObjectToRelativePosition:(UIView *)view direction:(VAAnimationDirection)direction withMargin:(int)margin completion:(void (^)(BOOL))completion {
+- (void) animateObjectToRelativePosition:(UIView *)view direction:(VAAnimationDirection)direction withMargin:(int)margin completion:(void (^)())completion {
     //check if save is present and valid
     VAViewMetadata *save = [self getSaveForView:view];
     if(save == nil) return;
@@ -236,12 +249,16 @@
             break;
     }
     
+    [UIView mt_animateWithViews:@[view] duration:animationDuration timingFunction:kMTEaseInOutExpo animations:^ {
+        view.frame = newFrame;
+    } completion:completion];
+    
     //perform the animation
-    [UIView animateWithDuration:animationDuration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^ {
-                         view.frame = newFrame;
-                     }
-                     completion:completion];
+//    [UIView animateWithDuration:animationDuration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
+//                     animations:^ {
+//                         view.frame = newFrame;
+//                     }
+//                     completion:completion];
 }
 
 //Register a custom position with the animator. This position can be used to later animate the view as needed. Note that
@@ -272,7 +289,7 @@
 }
 
 //Peforms the custom animations registered in the method above.
-- (void) animateCustomAnimationForView:(UIView *)view andKey:(NSString *) key completion:(void (^)(BOOL))completion {
+- (void) animateCustomAnimationForView:(UIView *)view andKey:(NSString *) key completion:(void (^)())completion {
     VAViewMetadata *save = [self getSaveForView:view];
     if(save == nil) return;
     
@@ -286,23 +303,42 @@
     
     CGRect newFrame = CGRectFromString(savedFrame);
     
-    [UIView animateWithDuration:animationDuration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^ {
-                         view.frame = newFrame;
-                     }
-                     completion:completion];
+    //for now fallback to UIView animations for images
+    if ([view isKindOfClass:[UIImageView class]]) {
+            [UIView animateWithDuration:animationDuration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
+                             animations:^ {
+                                 view.frame = newFrame;
+                             }
+                             completion:nil];
+    }
+    else {
+        [UIView mt_animateWithViews:@[view] duration:animationDuration timingFunction:kMTEaseInOutExpo animations:^ {
+            view.frame = newFrame;
+            
+        } completion:completion];
+    }
+
 }
 
-- (void) animateObjectToStartingPosition:(UIView *)view completion:(void (^)(BOOL))completion {
+- (void) animateObjectToStartingPosition:(UIView *)view completion:(void (^)())completion {
     VAViewMetadata *save = [self getSaveForView:view];
     if(save == nil) return;
 
+    if ([view isKindOfClass:[UIImageView class]]) {
+        [UIView animateWithDuration:animationDuration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^ {
+                             view.frame = [save activeFrame];
+                         }
+                         completion:nil];
+
+    }
+    else {
+        [UIView mt_animateWithViews:@[view] duration:animationDuration timingFunction:kMTEaseInOutExpo animations:^ {
+            view.frame = [save activeFrame];
+        } completion:completion];
+    }
+    
     //perform the animation
-    [UIView animateWithDuration:animationDuration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^ {
-                         view.frame = [save activeFrame];
-                     }
-                     completion:completion];
 }
 
 #pragma mark Utility

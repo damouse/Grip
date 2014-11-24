@@ -14,6 +14,7 @@
     __weak IBOutlet UIView *viewMenu;
     __weak IBOutlet UIView *viewLogin;
     __weak IBOutlet UIView *viewSettings;
+
     
     //Buttons
     IBOutletCollection(UIButton) NSArray *buttons;

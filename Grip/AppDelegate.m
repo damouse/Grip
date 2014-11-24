@@ -35,16 +35,9 @@ NSString *const S3BucketName = @"grippdf";
     [AWSServiceManager defaultServiceManager].defaultServiceConfiguration = configuration;
 //    [AWSLogger defaultLogger].logLevel = AWSLogLevelVerbose;
     
-    // Optional: automatically send uncaught exceptions to Google Analytics.
     [GAI sharedInstance].trackUncaughtExceptions = YES;
-    
-    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
     [GAI sharedInstance].dispatchInterval = 20;
-    
-    // Optional: set Logger to VERBOSE for debug information.
-    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
-    
-    // Initialize tracker. Replace with your tracking ID.
+//    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-57019834-1"];
 
     

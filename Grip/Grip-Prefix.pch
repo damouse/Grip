@@ -16,7 +16,7 @@
 #import "GAITracker.h"
 
 //Constants
-#define ANIMATION_DURATION 0.4
+#define ANIMATION_DURATION 0.5
 
 #define PRIMARY_DARK [UIColor colorWithRed:35.0/255.0 green:38.0/255.0 blue:44.0/255.0 alpha:1.0]
 #define PRIMARY_LIGHT [UIColor colorWithRed:47.0/255.0 green:50.0/255.0 blue:56.0/255.0 alpha:1.0]

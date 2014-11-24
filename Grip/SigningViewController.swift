@@ -189,7 +189,7 @@ class SigningViewController: GAITrackedViewController, UITableViewDataSource {
     func teardownAnimations(completion: () -> Void) {
         //revert to a state where the controller can be dismissed
         animator.animateObjectOffscreen(viewSignatureView, completion: nil)
-        animator.animateObjectOffscreen(viewButtonHolder, completion:  { (completed: Bool) -> Void in
+        animator.animateObjectOffscreen(viewButtonHolder, completion:  { () -> Void in
             completion()
         })
     }
