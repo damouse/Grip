@@ -1018,7 +1018,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "07b29188-807a-466c-9ef8-9af647c249f1";
+				PROVISIONING_PROFILE = "15201654-21f4-4c4b-84c3-796757cf1747";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Grip/Grip-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1044,7 +1044,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "53bdd3ad-9514-4fcb-b13f-107faf51f983";
+				PROVISIONING_PROFILE = "15201654-21f4-4c4b-84c3-796757cf1747";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Grip/Grip-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
