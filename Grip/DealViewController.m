@@ -118,6 +118,8 @@ typedef enum UIState{
     
     touchBlocker = nil;
     
+    [self addParallax];
+    
     //weird bug. The table is overlapping the option bars for unknown reasons. Because
     //clipsSubviews is turned off,
     [self.view bringSubviewToFront:viewBottomLeftContainer];
@@ -174,6 +176,31 @@ typedef enum UIState{
     [imageDetailsMerchandise setImage:self.dealmaker.receipt.user.image];
     [imageMerchandise setImage:self.dealmaker.receipt.user.image];
 }
+
+- (void) addParallax {
+    CGFloat min = -30.0f;
+    CGFloat max = 30.0f;
+    
+    // create the x axis motion
+    UIInterpolatingMotionEffect *xAxis = [[UIInterpolatingMotionEffect alloc]initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+    
+    xAxis.minimumRelativeValue = @(min);
+    xAxis.maximumRelativeValue = @(max);
+    
+    // create the y axis motion
+    UIInterpolatingMotionEffect *yAxis = [[UIInterpolatingMotionEffect alloc]initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+    
+    yAxis.minimumRelativeValue = @(min);
+    yAxis.maximumRelativeValue = @(max);
+    
+    // combine these is a group
+    UIMotionEffectGroup *xyGroup = [[UIMotionEffectGroup alloc]init];
+    xyGroup.motionEffects = @[xAxis, yAxis];
+    
+    //  apply what was created to the image
+    [tableProducts addMotionEffect:xyGroup];
+}
+
 
 
 #pragma mark Animations
